@@ -1,0 +1,230 @@
+#colunaTexto{
+
+    box-shadow: -3px 5px 10px #CCC;
+    width: 100%;
+    height: 800px;
+    padding: 10px;
+
+}
+
+#imageGallery li{
+
+    list-style: none;
+
+}
+
+#colunaSeletorNumero{
+
+    border: 1px solid #ff60d8;
+    height: auto;
+    border-radius: 5px;
+
+}
+
+.fundoNumero{
+
+    background-color: white;
+    width: 31px;
+    height: 31px;
+    border-radius: 8px;
+    display: inline-block;
+    margin: 0px 0px;
+    border: 1px solid #ff60d8;
+    color: #ff60d8;
+    cursor: pointer;
+    margin-top: 6px;
+
+}
+
+.fundoNumero:hover{
+
+    border: 1px solid #ff60d8;
+    color: white;
+    background-color: #ff60d8;
+
+}
+
+.fundoNumero.ativado{
+
+    border: 1px solid #ff60d8;
+    color: white;
+    background-color: #ff60d8;
+
+}
+
+#numeroAro{
+
+    position: relative;
+    top: 3px;
+
+}
+
+.campoGravacao{
+
+    width: 50%;
+    height: 30px;
+    border: 1px solid #ff60d8;
+    border-radius: 5px;
+    text-indent: 10px;
+    margin-left: 8px;
+    
+
+}
+
+.campoGravacao:focus{
+
+    box-shadow: 0 0 0 0;
+    outline: 0;
+
+}
+
+#botaoDepoisFeminino, #botaoAntesFeminino, #botaoDepoisMasculino, #botaoAntesMasculino, #botaoAntesApenasAro, #botaoDepoisApenasAro{
+
+    color: #ff60d8;
+    cursor: pointer;
+
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+
+}
+
+.boxAro{
+
+    border:1px solid #f5f5f5;
+
+}
+
+#imgSlide{
+
+    max-width: 500px;
+
+}
+
+#inputCalculaFrete{
+
+    width: 100%;
+    border: none;
+    border-bottom: 1px solid rgb(180, 180, 180);
+    height: 40px;
+
+}
+
+#inputCalculaFrete:focus{
+
+    box-shadow: 0 0 0 0;
+    border: 0 none;
+    outline: 0;
+    border-bottom: 1px solid #ff60d8;
+
+}
+
+#selectQtd{
+
+    width: auto;
+    height: 35px;
+    border: 1px solid #e4e4e4;
+    border-radius: 5px;
+
+}
+
+#selectQtd:focus{
+
+    box-shadow: 0 0 0 0;
+    outline: 0;
+
+}
+
+#botaoAddCarrinho{
+
+    width: 100%;
+    height: 40px;
+    border: 1px solid #ff60d8;
+    border-radius: 20px;
+    background-color: #ff60d8;
+    color: white;
+
+}
+
+#botaoAddCarrinho:hover{
+
+    background-color: #ff0cc3;
+    border: 1px solid #ff0cc3;
+
+}
+
+#botaoAddCarrinho:focus{
+
+    box-shadow: 0 0 0 0;
+    outline: 0;
+
+}
+
+#aroFeminino li, #aroMasculino li{
+
+    list-style: none;
+
+}
+
+/* Você pode se interessar */
+
+#espacoItem h5{
+
+    color: #ff60d8;
+
+}
+
+.box{
+
+    margin-top: 5px;
+    height: 355px;
+    width: 99%;
+    margin-bottom: 20px;
+    display: inline-block;
+    border:1px solid #f5f5f5;
+
+}
+
+.box:hover{
+
+    border-bottom: 3px solid #ff60d8;
+
+}
+
+#fotoAnel{
+
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    object-position: center;
+    padding: 1px;
+
+}
+
+#selectVariacao{
+
+    width: 100%;
+    height: 35px;
+    border: 1px solid #e4e4e4;
+    border-radius: 5px;
+
+}
+
+#selectVariacao:focus{
+
+    box-shadow: 0 0 0 0;
+    outline: 0;
+
+}
+
+#caracteristicasGerais{
+
+    white-space: pre-wrap;
+    word-break: keep-all;
+    font-size: 16px;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+
+}

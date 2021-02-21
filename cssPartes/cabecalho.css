@@ -1,0 +1,76 @@
+#imgLogo{
+
+    margin-top: 7px;
+
+}
+
+#iconeSacola{
+
+    margin-top: 22px;
+
+}
+
+#iconePessoa{
+
+    margin-top: 18px;
+
+}
+
+#campoBusca{
+
+    background-image: url(../img/iconeLupa.png);
+    background-size: 22px;
+    background-repeat:no-repeat;
+    background-position: right 10px center;
+    width: 100%;
+    height: 35px;
+    border: 1px solid #CCC;
+    border-radius: 2px;
+    text-indent: 10px;
+    margin-top: 17px;
+    
+
+}
+
+#campoBusca:focus{
+
+    box-shadow: 0 0 0 0;
+    outline: 0;
+
+}
+
+#menu ul {
+    padding:0px;
+    margin:0px;
+    list-style:none;
+}
+
+#menu ul li { display: inline; }
+
+#menu ul li a {
+    padding: 10px 20px;
+    margin-bottom: 3px;
+    display: inline-block;
+
+    /* visual do link */
+    color: #666666;
+    text-decoration: none;
+}
+
+#menu ul li a:hover {
+    color: #ff60d8;
+}
+
+#numeroItemSacola{
+
+    background-color: #ff60d8;
+    color: white;
+    font-size: 11px;
+    width: 17px;
+    height: 17px;
+    border-radius: 50%;
+    position: relative;
+    bottom: 10px;
+    left: 12px;
+
+}

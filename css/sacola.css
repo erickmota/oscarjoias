@@ -1,0 +1,84 @@
+#fundoTituloProdutos{
+
+    background-color: #ff60d8;
+
+}
+
+#espacoImgProduto{
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+
+}
+
+#selectQtd{
+
+    width: auto;
+    height: 35px;
+    border: 1px solid #e4e4e4;
+    border-radius: 5px;
+
+}
+
+#selectQtd:focus{
+
+    box-shadow: 0 0 0 0;
+    outline: 0;
+
+}
+
+#imgProduto{
+
+    max-width: 140px;
+
+}
+
+#inputCalculaFrete{
+
+    width: 100%;
+    border: none;
+    border-bottom: 1px solid rgb(180, 180, 180);
+    height: 40px;
+
+}
+
+#inputCalculaFrete:focus{
+
+    box-shadow: 0 0 0 0;
+    border: 0 none;
+    outline: 0;
+    border-bottom: 1px solid #ff60d8;
+
+}
+
+#botaoFinalizar{
+
+    width: 100%;
+    height: 40px;
+    background-color: rgb(107, 182, 107);
+    border: none;
+    border-radius: 5px;
+    color: white;
+
+}
+
+#botaoFinalizar:hover{
+
+    background-color: rgb(90, 153, 90);
+
+}
+
+#apagarProduto{
+
+    margin-right: 40px;
+    margin-top: 5px;
+
+}
+
+#iconeApagar{
+
+    cursor: pointer;
+
+}
