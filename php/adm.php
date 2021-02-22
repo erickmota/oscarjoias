@@ -18,6 +18,7 @@
     $categoria = $_POST["categoria"];
     $maximo_caracteres = $_POST["maximo_caracteres"];
     $promocao = $_POST["promocao"];
+    $tipo = $_POST["tipo"];
 
     $classeImg = new produtos();
 
@@ -29,6 +30,7 @@
     $classeImg->variacaoPadrao = $variacao;
     $classeImg->maximo_caracteres = $maximo_caracteres;
     $classeImg->promocao = $promocao;
+    $classeImg->tipo = $tipo;
 
     if($novaVariacao != ""){
 

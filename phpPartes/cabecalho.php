@@ -25,27 +25,27 @@ if(!isset($classeCompra)){
 </div>
 
 <!-- Topo site: Logo, Busca etc -->
-<div class="row mt-2 justify-content-center">
+<div class="row justify-content-center" id="fundoPreto">
 
-    <div class="col-6 col-md-4 border-bottom">
+    <div class="col-6 col-md-4 mt-2 mb-3">
 
-        <img src="img/logo.png" id="imgLogo" width="130px">
+        <img src="img/logoOficial2.png" id="imgLogo" width="200px">
 
     </div>
 
-    <div class="col-6 col-md-5 border-bottom pb-3">
+    <div class="col-6 col-md-5 pb-3">
 
-        <div class="row">
+        <div class="row mt-2">
 
             <div class="col-2">
 
-                <img id="iconePessoa" src="img/iconePessoa2.png" width="26px">
+                <img id="iconePessoa" src="img/iconePessoa3.png" width="26px">
 
             </div>
 
             <div class="col-2">
 
-                <img id="iconeSacola" src="img/iconeBolsa2.png" width="21px">
+                <img id="iconeSacola" src="img/iconeBolsa3.png" width="21px">
 
                 <div id="numeroItemSacola" class="text-center"><?php echo $classeCompra->retorna_qtd_itens_carrinho(); ?></div>
 
@@ -69,7 +69,7 @@ if(!isset($classeCompra)){
 <!-- //Topo site: Logo, Busca etc -->
 
 <!-- Menu principal -->
-<div class="row justify-content-center">
+<div class="row justify-content-center" id="fundoPretoMenu">
 
     <div class="col-md-9 text-center">
 
@@ -77,7 +77,7 @@ if(!isset($classeCompra)){
             <ul>
                 <li><a href="">Início</a></li>
 
-                <li><a href="loja">Loja</a></li>
+                <li><a href="loja?pg=1">Loja</a></li>
 
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDarkDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">

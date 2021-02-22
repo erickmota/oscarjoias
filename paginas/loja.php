@@ -2,6 +2,16 @@
 
 <head>
 
+    <?php
+    
+    $explode = explode("/", $_GET["url"]);
+    
+    /* Iniciando classe */
+    include "classes/produtos.class.php";
+    $classeProdutos = new produtos();
+    
+    ?>
+
     <title>Loja - Oscar Jóias e Acessórios</title>
 
     <meta charset="UTF-8">
@@ -77,11 +87,107 @@
 
         }
 
+        function mudar_ordenacao(op){
+
+            if(op == "nome"){
+
+                window.location="loja?pg=1&ordenacao=nome&tipoord=cre";
+
+            }else if(op == "ua"){
+
+                window.location="loja?pg=1&ordenacao=adicionado&tipoord=dec";
+
+            }else if(op == "pa"){
+
+                window.location="loja?pg=1&ordenacao=adicionado&tipoord=cre";
+
+            }else if(op == "mep"){
+
+                window.location="loja?pg=1&ordenacao=preco&tipoord=cre";
+
+            }else if(op == "map"){
+
+                window.location="loja?pg=1&ordenacao=preco&tipoord=dec";
+
+            }
+
+        }
+
+        function filtrar(){
+
+            var selectTipo = document.getElementById("selectTipo").value;
+            var valorMinimo = document.getElementById("campoValorMinimo").value;
+            var valorMaximo = document.getElementById("campoValorMaximo").value;
+
+            if(valorMinimo != "" && valorMaximo == ""){
+
+                valorMaximo = 10000;
+
+            }else if(valorMinimo == "" && valorMaximo != ""){
+
+                valorMinimo = 1;
+
+            }
+
+            <?php
+            
+            if(isset($_GET["ordenacao"]) && isset($_GET["tipoord"])){
+
+            ?>
+
+            var ordenacao = "<?php echo $_GET["ordenacao"]; ?>";
+            var tipoOrdenacao = "<?php echo $_GET["tipoord"]; ?>";
+
+            <?php
+
+            }else{
+
+            ?>
+            
+            var ordenacao = "adicionado";
+            var tipoOrdenacao = "dec";
+
+            <?php
+
+            }
+            
+            ?>
+
+            if(selectTipo == "nenhum" && valorMinimo == "" && valorMaximo == ""){
+
+                
+
+            }else if(selectTipo != "nenhum" && valorMinimo == "" && valorMaximo == ""){
+
+                window.location="loja?pg=1&tipo="+selectTipo+"&ordenacao="+ordenacao+"&tipoord="+tipoOrdenacao;
+
+            }else if(selectTipo == "nenhum" && valorMinimo != "" && valorMaximo != ""){
+
+                window.location="loja?pg=1&vmi="+valorMinimo+"&vma="+valorMaximo+"&ordenacao="+ordenacao+"&tipoord="+tipoOrdenacao;
+
+            }else if(selectTipo != "nenhum" && valorMinimo != "" && valorMaximo != ""){
+
+                window.location="loja?pg=1&tipo="+selectTipo+"&vmi="+valorMinimo+"&vma="+valorMaximo+"&ordenacao="+ordenacao+"&tipoord="+tipoOrdenacao;
+
+            }
+
+        }
+
+        function definir_texto_qtd(){
+
+            var espacoTextoQtd = document.getElementById("espacoTextoQtd");
+            var hiddenQtdItemPagina = document.getElementById("hiddenQtdItemPagina").value;
+            var hiddenQtdItemTotal = document.getElementById("hiddenQtdItemTotal").value;
+
+            espacoTextoQtd.innerHTML = "Mostrando "+hiddenQtdItemPagina+" de "+hiddenQtdItemTotal+" itens";
+
+        }
+
     </script>
 
 </head>
 
-<body>
+<body onload="definir_texto_qtd()">
 
     <div class="container-fluid">
 
@@ -95,13 +201,11 @@
         <!-- Cabecalho Filtro -->
         <div class="row justify-content-center">
 
-            <div class="col-12 col-md-9 border-top pt-3">
+            <div class="col-12 col-md-9 pt-3">
 
                 <div class="row">
 
-                    <div class="col-6 text-secondary">
-
-                        Mostrando 12 de 87 itens
+                    <div id="espacoTextoQtd" class="col-6 text-secondary">
         
                     </div>
         
@@ -113,14 +217,14 @@
         
                     <div class="col-3">
     
-                        <select id="campoSelect" class="text-secondary">
+                        <select id="campoSelect" class="text-secondary campoSelect" onchange="mudar_ordenacao(this.value)">
     
                             <option disabled selected hidden>Organizar por</option>
-                            <option>Nome</option>
-                            <option>Último adicionado</option>
-                            <option>Primeiro Adicionado</option>
-                            <option>Menor Preço</option>
-                            <option>Maior Preço</option>
+                            <option value="nome">Nome</option>
+                            <option value="ua">Último adicionado</option>
+                            <option value="pa">Primeiro Adicionado</option>
+                            <option value="mep">Menor Preço</option>
+                            <option value="map">Maior Preço</option>
     
                         </select>
     
@@ -137,14 +241,11 @@
 
                             <div class="col-12 col-sm-6 col-md-3 mt-3">
 
-                                <select id="campoSelect" class="text-secondary">
+                                <select id="selectTipo" class="text-secondary campoSelect">
     
-                                    <option disabled selected hidden>Tipo</option>
-                                    <option>Nome</option>
-                                    <option>Último adicionado</option>
-                                    <option>Primeiro Adicionado</option>
-                                    <option>Menor Preço</option>
-                                    <option>Maior Preço</option>
+                                    <option value="nenhum" selected>Tipo - Nenhum</option>
+                                    <option value="ouro">Ouro</option>
+                                    <option value="prata">Prata</option>
             
                                 </select>
 
@@ -152,28 +253,19 @@
 
                             <div class="col-12 col-sm-6 col-md-3 mt-3">
 
-                                <select id="campoSelect" class="text-secondary">
-    
-                                    <option disabled selected hidden>Marca</option>
-                                    <option>Nome</option>
-                                    <option>Último adicionado</option>
-                                    <option>Primeiro Adicionado</option>
-                                    <option>Menor Preço</option>
-                                    <option>Maior Preço</option>
-            
-                                </select>
+                                <input id="campoValorMinimo" class="campoSelect" type="number" placeholder="Valor Mínimo">
 
                             </div>
 
                             <div class="col-12 col-sm-6 col-md-3 mt-3">
 
-                                <input id="campoSelect" type="number" placeholder="Valor Máximo">
+                                <input id="campoValorMaximo" class="campoSelect" type="number" placeholder="Valor Máximo">
 
                             </div>
 
                             <div class="col-12 col-sm-6 col-md-3 mt-3">
 
-                                <button id="botaoFiltrar">FILTRAR</button>
+                                <button id="botaoFiltrar" onclick="filtrar()">FILTRAR</button>
 
                             </div>
 
@@ -192,17 +284,17 @@
         <!-- //Cabecalho Filtro -->
 
         <!-- Itens filtro -->
-        <div class="row justify-content-center">
+        <div class="row justify-content-center <?php if(!isset($_GET["tipo"]) && !isset($_GET["vmi"]) && !isset($_GET["vma"])){ echo "d-none"; } ?>">
 
-            <div class="col-md-9 border-top mt-3 pt-3">
+            <div class="col-md-9 mt-3 pt-3">
 
-                <small id="itemFiltro">Ouro</small>
+                <small id="itemFiltro" class="<?php if(!isset($_GET["tipo"])){ echo "d-none"; } ?>"><?php echo $_GET["tipo"] ?></small>
 
-                <small id="itemFiltro">Azara</small>
+                <small id="itemFiltro" class="<?php if(!isset($_GET["vmi"])){ echo "d-none"; } ?>">-R$<?php echo number_format($_GET["vmi"], 2, ",", ".") ?></small>
 
-                <small id="itemFiltro">R$1500,00</small>
+                <small id="itemFiltro" class="<?php if(!isset($_GET["vma"])){ echo "d-none"; } ?>">+R$<?php echo number_format($_GET["vma"], 2, ",", ".") ?></small>
                 
-                <small class="ms-3"><a href="#" class="text-secondary">limpar filtro</a></small>
+                <small class="ms-3"><a href="loja?pg=1" class="text-secondary">limpar filtro</a></small>
 
             </div>
 
@@ -220,24 +312,135 @@
 
                         <div class="row">
 
+                            <?php
+
+                            if(isset($_GET["ordenacao"])){
+
+                                $ordenacao = $_GET["ordenacao"];
+                                $tipoOrdenacao = $_GET["tipoord"];
+
+                                /* Ordenação */
+                                if($ordenacao == "nome"){
+
+                                    $ordenacao2 = "nome";
+
+                                }else if($ordenacao == "adicionado"){
+
+                                    $ordenacao2 = "id";
+
+                                }else if($ordenacao == "preco"){
+
+                                    $ordenacao2 = "preco";
+
+                                };
+
+                                /* Tipo ordenação */
+                                if($tipoOrdenacao == "cre"){
+
+                                    $tipoOrdenacao2 = "ASC";
+
+                                }else{
+
+                                    $tipoOrdenacao2 = "DESC";
+
+                                }
+
+                                /* Tipo */
+                                if(isset($_GET["tipo"])){
+
+                                    $tipo = $_GET["tipo"];
+
+                                    if($tipo == "ouro"){
+
+                                        $tipo2 = "ouro";
+
+                                    }else{
+
+                                        $tipo2 = "prata";
+
+                                    }
+
+                                }else{
+
+                                    $tipo2 = "SE";
+
+                                }
+
+                                if(isset($_GET["vmi"])){
+
+                                    /* $vMinimo = $_GET["vmi"];
+                                    $vMaximo = $_GET["vma"]; */
+                                    $vMinimo = str_replace(array(";", "'", "--", "/", "*", "xp_", "XP_", "SELECT" , "INSERT" , "UPDATE" , "DELETE" , "DROP", "select" , "insert" , "update" , "delete" , "drop"), "", $_GET["vmi"]);
+                                    $vMaximo = str_replace(array(";", "'", "--", "/", "*", "xp_", "XP_", "SELECT" , "INSERT" , "UPDATE" , "DELETE" , "DROP", "select" , "insert" , "update" , "delete" , "drop"), "", $_GET["vma"]);
+
+                                }else{
+
+                                    $vMinimo = "SE";
+                                    $vMaximo = "SE";
+
+                                }
+
+                            }else{
+
+                                $ordenacao2 = "id";
+                                $tipoOrdenacao2 = "ASC";
+                                $tipo2 = "SE";
+                                $vMinimo = "SE";
+                                $vMaximo = "SE";
+
+                            }
+
+                            $numeroPagina = str_replace(array(";", "'", "--", "/", "*", "xp_", "XP_", "SELECT" , "INSERT" , "UPDATE" , "DELETE" , "DROP", "select" , "insert" , "update" , "delete" , "drop"), "", $_GET["pg"]);
+
+                            /* $tipo, $vMinimo, $vMaximo, $categoria, $pg, $ordenacao, $tipoOrdenacao */
+                            foreach($classeProdutos->retorna_lsita_produtos($tipo2, $vMinimo, $vMaximo, "SE", $numeroPagina, $ordenacao2, $tipoOrdenacao2)[0] as $arrProdutos){
+
+                                $idProduto = $arrProdutos["id"];
+
+                                /* $nomeComTraco = str_replace(" ", "-", $arrProdutos["nome"]);
+                                $transformarEmMinuscula = mb_strtolower($nomeComTraco, "UTF-8");
+                                $tirarCaracteres = str_replace("ã", "a", $transformarEmMinuscula);
+                                $convert = iconv('utf-8', 'us-ascii//TRANSLIT', $tirarCaracteres); */
+
+                                $nomeComTraco = str_replace(" ", "-", $arrProdutos["nome"]);
+                                $transformarEmMinuscula = mb_strtolower($nomeComTraco, "UTF-8");
+                                $trataInjection = str_replace(array(";", "'", "--", "/", "*", "xp_", "XP_", "SELECT" , "INSERT" , "UPDATE" , "DELETE" , "DROP", "select" , "insert" , "update" , "delete" , "drop"), "", $transformarEmMinuscula);
+                                $str1 = preg_replace('/[áàãâä]/ui', 'a', $trataInjection);
+                                $str2 = preg_replace('/[éèêë]/ui', 'e', $str1);
+                                $str3 = preg_replace('/[íìîï]/ui', 'i', $str2);
+                                $str4 = preg_replace('/[óòõôö]/ui', 'o', $str3);
+                                $str5 = preg_replace('/[úùûü]/ui', 'u', $str4);
+                                $str6 = preg_replace('/[ç]/ui', 'c', $str5);
+                            
+                            ?>
+
                             <div class="col-12 col-sm-6 col-lg-4">
 
-                                <div onclick="window.location='produto'" class="box" onmouseover="mudarItemAdd(1)" onmouseout="mudarItemRemove(1)">
+                                <div onclick="window.location='produto/<?php echo $str6; ?>'" class="box" onmouseover="mudarItemAdd(<?php echo $idProduto; ?>)" onmouseout="mudarItemRemove(<?php echo $idProduto; ?>)">
 
-                                    <img src="img/aneis/4.jpg" id="fotoAnel">
+                                    <img src="img/produtos/<?php echo $arrProdutos["foto"]; ?>" id="fotoAnel">
                 
-                                    <p id="nomeItem1" class="card-text mt-1 pt-2 border-top">Anel porta objetos 400g</p>
+                                    <p id="nomeItem<?php echo $idProduto; ?>" class="card-text mt-1 pt-2 border-top"><?php echo $arrProdutos["nome"]; ?></p>
                 
-                                    <small id="precoAntigo2" class="text-decoration-line-through">R$500,00</small>
-                                    <h5 id="precoItem1" class="card-title">R$500,00</h5>
+                                    <span id="precoAntigo<?php echo $idProduto; ?>" class="text-decoration-line-through text-secondary <?php if($arrProdutos["preco_promocao"] == ""){ echo "d-none"; } ?>">R$<?php echo $arrProdutos["preco_promocao"]; ?></span>
+                                    <h5 id="precoItem<?php echo $idProduto; ?>" class="card-title">R$<?php echo number_format($arrProdutos["preco"], 2, ",", "."); ?></h5>
 
-                                    <p id="precoItemGrande1" class="card-title mt-1 pt-3 border-top fs-3 text-secondary d-none">R$500,00</p>
+                                    <p id="precoItemGrande<?php echo $idProduto; ?>" class="card-title mt-1 pt-3 border-top fs-3 text-secondary d-none">R$<?php echo number_format($arrProdutos["preco"], 2, ",", "."); ?></p>
 
-                                    <button class="botaoComprar d-none" id="botaoComprar1">COMPRAR</button>
+                                    <button class="botaoComprar d-none" id="botaoComprar<?php echo $idProduto; ?>">COMPRAR</button>
                 
                                 </div>
 
                             </div>
+
+                            <?php
+                            
+                            }
+                            
+                            ?>
+
+                            <input type="hidden" id="hiddenQtdItemPagina" value="<?php echo $classeProdutos->retorna_lsita_produtos($tipo2, $vMinimo, $vMaximo, "SE", $numeroPagina, $ordenacao2, $tipoOrdenacao2)[1]; ?>">
+                            <input type="hidden" id="hiddenQtdItemTotal" value="<?php echo $classeProdutos->retorna_lsita_produtos($tipo2, $vMinimo, $vMaximo, "SE", $numeroPagina, $ordenacao2, $tipoOrdenacao2)[2]; ?>">
 
                         </div>
                         
@@ -252,17 +455,25 @@
 
         <div class="row justify-content-center mt-5">
 
+        <?php
+
+        $pgAnterior = "pg=".$classeProdutos->organizar_paginacao($classeProdutos->retorna_lsita_produtos($tipo2, $vMinimo, $vMaximo, "SE", $numeroPagina, $ordenacao2, $tipoOrdenacao2)[2], $_GET["pg"])[0];
+        $pgProximo = "pg=".$classeProdutos->organizar_paginacao($classeProdutos->retorna_lsita_produtos($tipo2, $vMinimo, $vMaximo, "SE", $numeroPagina, $ordenacao2, $tipoOrdenacao2)[2], $_GET["pg"])[1];
+        $pgAtual = "pg=".$_GET["pg"];
+        
+        ?>
+
             <div class="col-md-9 text-center">
 
-                <div id="numeroPaginacao"><span><<</span></div>
+                <a href="<?php echo str_replace($pgAtual, $pgAnterior, $_SERVER["REQUEST_URI"]); ?>"><div id="numeroPaginacao" class="<?php if($classeProdutos->organizar_paginacao($classeProdutos->retorna_lsita_produtos($tipo2, $vMinimo, $vMaximo, "SE", $numeroPagina, $ordenacao2, $tipoOrdenacao2)[2], $_GET["pg"])[0] == "SE"){ echo "d-none"; } ?>"><span><</span></div></a>
 
-                <div id="numeroPaginacao"><span>4</span></div>
+                <a href="<?php echo str_replace($pgAtual, $pgAnterior, $_SERVER["REQUEST_URI"]); ?>"><div id="numeroPaginacao" class="<?php if($classeProdutos->organizar_paginacao($classeProdutos->retorna_lsita_produtos($tipo2, $vMinimo, $vMaximo, "SE", $numeroPagina, $ordenacao2, $tipoOrdenacao2)[2], $_GET["pg"])[0] == "SE"){ echo "d-none"; } ?>"><span><?php echo $_GET["pg"] - 1; ?></span></div></a>
 
-                <div id="numeroPaginacao" class="ativo"><span>5</span></div>
+                <div id="numeroPaginacao" class="ativo"><span><?php echo $_GET["pg"]; ?></span></div>
                 
-                <div id="numeroPaginacao"><span>6</span></div>
+                <a href="<?php echo str_replace($pgAtual, $pgProximo, $_SERVER["REQUEST_URI"]); ?>"><div id="numeroPaginacao" class="<?php if($classeProdutos->organizar_paginacao($classeProdutos->retorna_lsita_produtos($tipo2, $vMinimo, $vMaximo, "SE", $numeroPagina, $ordenacao2, $tipoOrdenacao2)[2], $_GET["pg"])[1] == "SE"){ echo "d-none"; } ?>"><span><?php echo $_GET["pg"] + 1; ?></span></div></a>
 
-                <div id="numeroPaginacao"><span>></span></div>
+                <a href="<?php echo str_replace($pgAtual, $pgProximo, $_SERVER["REQUEST_URI"]); ?>"><div id="numeroPaginacao" class="<?php if($classeProdutos->organizar_paginacao($classeProdutos->retorna_lsita_produtos($tipo2, $vMinimo, $vMaximo, "SE", $numeroPagina, $ordenacao2, $tipoOrdenacao2)[2], $_GET["pg"])[1] == "SE"){ echo "d-none"; } ?>"><span>></span></div></a>
 
             </div>
 

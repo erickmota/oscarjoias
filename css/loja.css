@@ -6,7 +6,7 @@
     display: inline-block;
     /* border:1px solid #f5f5f5; */
     box-shadow: 0px 5px 15px #CCC;
-    border-bottom: 3px solid #ff60d8;
+    border-bottom: 3px solid #e1d440;
     cursor: pointer;
     border-radius: 10px;
 
@@ -29,17 +29,11 @@
 
 }
 
-.box h5{
-
-    color: #ff60d8;
-
-}
-
 .botaoComprar{
 
     width: 80%;
     height: 40px;
-    background-color: #ff60d8;
+    background-color: #e1d440;
     border-radius: 4px;
     border: none;
     color: white;
@@ -50,7 +44,7 @@
 
 .botaoComprar:hover{
 
-    background-color: #ff0cc3;
+    background-color: #d4c83d;
 
 }
 
@@ -61,11 +55,11 @@
 
 }
 
-#campoSelect{
+.campoSelect{
 
     width: 100%;
     height: 35px;
-    border: 1px solid #ff60d8;
+    border: 1px solid #e1d440;
     border-radius: 7px;
     text-indent: 5px;
     
@@ -76,7 +70,7 @@
     width: 33px;
     height: 33px;
     border-radius: 7px;
-    border: 1px solid #ff60d8;
+    border: 1px solid #e1d440;
     object-fit: cover;
     object-position: center;
     padding: 3px;
@@ -87,7 +81,7 @@
 
 #imgFiltro:hover{
 
-    border: 1px solid #ff0cc3;
+    border: 1px solid #d4c83d;
 
 }
 
@@ -96,7 +90,7 @@
     height: auto;
     background-color: white;
     position: absolute;
-    border-bottom: 3px solid #ff60d8;
+    border-bottom: 3px solid #e1d440;
     box-shadow: 0px 5px 15px 2px #CCC;
     z-index: 99;
 
@@ -117,24 +111,24 @@
 
     width: 100%;
     height: 35px;
-    border: 1px solid #ff60d8;
+    border: 1px solid #e1d440;
     border-radius: 7px;
     text-indent: 5px;
-    background-color: #ff60d8;
+    background-color: #e1d440;
     color: white;
 
 }
 
 #botaoFiltrar:hover{
 
-    background-color: #ff0cc3;
-    border: 1px solid #ff0cc3;
+    background-color: #d4c83d;
+    border: 1px solid #d4c83d;
 
 }
 
 #itemFiltro{
 
-    background-color: #ff60d8;
+    background-color: #e1d440;
     padding: 2px 5px;
     border-radius: 5px;
     color: white;
@@ -150,23 +144,23 @@
     border-radius: 50%;
     display: inline-block;
     margin: 0px 3px;
-    border: 2px solid #ff60d8;
-    color: #ff60d8;
+    border: 2px solid #e1d440;
+    color: #e1d440;
     cursor: pointer;
 
 }
 
 #numeroPaginacao:hover{
 
-    border: 2px solid #ff0cc3;
-    color: #ff0cc3;
+    border: 2px solid #d4c83d;
+    color: #d4c83d;
 
 }
 
 #numeroPaginacao.ativo{
 
-    background-color: #ff60d8;
-    border: 2px solid #ff60d8;
+    background-color: #e1d440;
+    border: 2px solid #e1d440;
     color: white;
 
 }

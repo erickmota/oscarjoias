@@ -10,6 +10,7 @@ class produtos{
     public $variacaoPadrao;
     public $maximo_caracteres;
     public $promocao;
+    public $tipo;
 
     /* Tratar imagem do produto e enviar a pasta de destino */
     public function tratar_img($id_produto, $img, $ordemEnvio, $capaGaleria){
@@ -70,7 +71,7 @@ class produtos{
 
         include 'conexao.class.php';
 
-        $sql = mysqli_query($conn, "INSERT INTO produtos (nome, foto, descricao, preco, qtd_estoque, estado, id_variacao_produto, variacao_padrao, qtd_caracteres, preco_promocao) VALUES ('$this->nome', NULL, '$this->descricao', $this->preco, $this->qtd, '$this->estado', $variacaoAdicional, '$this->variacaoPadrao', $this->maximo_caracteres, $this->promocao)") or die("Erro ao cadastrar o produto");
+        $sql = mysqli_query($conn, "INSERT INTO produtos (nome, foto, descricao, preco, qtd_estoque, estado, id_variacao_produto, variacao_padrao, qtd_caracteres, preco_promocao, tipo) VALUES ('$this->nome', NULL, '$this->descricao', $this->preco, $this->qtd, '$this->estado', $variacaoAdicional, '$this->variacaoPadrao', $this->maximo_caracteres, $this->promocao, '$this->tipo')") or die("Erro ao cadastrar o produto");
 
     }
 
@@ -198,11 +199,70 @@ class produtos{
     }
 
     /* Retorna lista de produtos para a loja */
-    public function retorna_lsita_produtos(){
+    public function retorna_lsita_produtos($tipo, $vMinimo, $vMaximo, $categoria, $pg, $ordenacao, $tipoOrdenacao){
 
         include 'conexao.class.php';
 
-        $sql = mysqli_query($conn, "SELECT * FROM produtos") or die("Erro retornar produtos para a loja");
+        $somaPg = ($pg * 3) - 3;
+
+        if($tipo != "SE" && $vMinimo == "SE"){
+
+            $sql = mysqli_query($conn, "SELECT * FROM produtos WHERE tipo='$tipo' ORDER BY $ordenacao $tipoOrdenacao LIMIT $somaPg, 3") or die("Erro retornar produtos para a loja tipo");
+            $sql2 = mysqli_query($conn, "SELECT * FROM produtos WHERE tipo='$tipo' ORDER BY $ordenacao $tipoOrdenacao") or die("Erro retornar produtos para a loja tipo");
+
+        }else if($vMinimo != "SE" && $vMaximo != "SE" && $tipo == "SE"){
+
+            $sql = mysqli_query($conn, "SELECT * FROM produtos WHERE preco BETWEEN $vMinimo AND $vMaximo ORDER BY $ordenacao $tipoOrdenacao LIMIT $somaPg, 3") or die("Erro retornar produtos para a loja VM");
+            $sql2 = mysqli_query($conn, "SELECT * FROM produtos WHERE preco BETWEEN $vMinimo AND $vMaximo ORDER BY $ordenacao $tipoOrdenacao") or die("Erro retornar produtos para a loja VM");
+
+        }else if($vMinimo != "SE" && $vMaximo != "SE" && $tipo != "SE"){
+
+            $sql = mysqli_query($conn, "SELECT * FROM produtos WHERE tipo='$tipo' AND preco BETWEEN $vMinimo AND $vMaximo ORDER BY $ordenacao $tipoOrdenacao LIMIT $somaPg, 3") or die("Erro retornar produtos para a loja VM + Tipo");
+            $sql2 = mysqli_query($conn, "SELECT * FROM produtos WHERE tipo='$tipo' AND preco BETWEEN $vMinimo AND $vMaximo ORDER BY $ordenacao $tipoOrdenacao") or die("Erro retornar produtos para a loja VM + Tipo");
+
+        }else{
+
+            $sql = mysqli_query($conn, "SELECT * FROM produtos ORDER BY $ordenacao $tipoOrdenacao LIMIT $somaPg, 3") or die("Erro retornar produtos para a loja");
+            $sql2 = mysqli_query($conn, "SELECT * FROM produtos ORDER BY $ordenacao $tipoOrdenacao") or die("Erro retornar produtos para a loja");
+
+        }
+
+        $qtd_sql = mysqli_num_rows($sql);
+        $qtd_sql2 = mysqli_num_rows($sql2);
+        while($linha = mysqli_fetch_assoc($sql)){
+            
+            $array[] = $linha;
+            
+        }
+
+        $retorno = [$array, $qtd_sql, $qtd_sql2];
+
+        return $retorno;
+
+    }
+
+    public function organizar_paginacao($qtdTotalItens, $pgAtual){
+
+        $paginaLimite = $qtdTotalItens / 3;
+
+        $paginaAnterior = $pgAtual - 1;
+        $paginaProxima = $pgAtual + 1;
+
+        if($paginaAnterior < 1){
+
+            $paginaAnterior = "SE";
+
+        }
+
+        if($paginaProxima > ceil($paginaLimite)){
+
+            $paginaProxima = "SE";
+
+        }
+
+        $retorno = [$paginaAnterior, $paginaProxima];
+
+        return $retorno;
 
     }
 

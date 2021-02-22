@@ -89,7 +89,7 @@ Desenvolvido por: Erick Mota (erickmota.com) -->
     <div class="container-fluid" id="divSlide">
 
       <!-- Slide -->
-      <div class="row">
+      <div class="row" id="slideBorda">
 
           <div class="col" id="espacoFoto">
 

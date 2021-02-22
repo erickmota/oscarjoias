@@ -150,6 +150,14 @@
 
                         Promoção: <input type="number" step=".01" name="promocao"><br>
 
+                        Tipo: <select name="tipo">
+
+                            <option value="nenhum">Nenhum</option>
+                            <option value="ouro">Ouro</option>
+                            <option value="prata">Prata</option>
+
+                        </select><br>
+
                         <input type="submit">
 
                     </form>
