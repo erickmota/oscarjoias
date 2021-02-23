@@ -10,6 +10,14 @@ if(!isset($classeCompra)){
 
 }
 
+if(!isset($classeProdutos)){
+    
+    /* Iniciando classe */
+    include "classes/produtos.class.php";
+    $classeProdutos = new produtos();
+
+}
+
 ?>
 
 <link rel="stylesheet" href="cssPartes/cabecalho.css">
@@ -84,11 +92,37 @@ if(!isset($classeCompra)){
                         Categorias
                     </a>
                     <ul class="dropdown-menu" aria-labelledby="navbarDarkDropdownMenuLink">
-                        <li><a class="dropdown-item" href="#">Aneis</a></li>
+
+                        <?php
+                        
+                        foreach($classeProdutos->retorna_categorias() as $arrCategoria){
+
+                        $catComTraco = str_replace(" ", "-", $arrCategoria["nome"]);
+                        $transformarEmMinuscula = mb_strtolower($catComTraco, "UTF-8");
+                        $trataInjection = str_replace(array(";", "'", "--", "/", "*", "xp_", "XP_", "SELECT" , "INSERT" , "UPDATE" , "DELETE" , "DROP", "select" , "insert" , "update" , "delete" , "drop"), "", $transformarEmMinuscula);
+                        $str1 = preg_replace('/[áàãâä]/ui', 'a', $trataInjection);
+                        $str2 = preg_replace('/[éèêë]/ui', 'e', $str1);
+                        $str3 = preg_replace('/[íìîï]/ui', 'i', $str2);
+                        $str4 = preg_replace('/[óòõôö]/ui', 'o', $str3);
+                        $str5 = preg_replace('/[úùûü]/ui', 'u', $str4);
+                        $str6 = preg_replace('/[ç]/ui', 'c', $str5);
+                        
+                        ?>
+
+                        <li><a class="dropdown-item" href="loja?pg=1&cat=<?php echo $str6; ?>&ordenacao=adicionado&tipoord=cre"><?php echo $arrCategoria["nome"]; ?></a></li>
+
+                        <!-- <li><a class="dropdown-item" href="#">Aneis</a></li>
                         <li><a class="dropdown-item" href="#">Alianças</a></li>
                         <li><a class="dropdown-item" href="#">Correntes</a></li>
                         <li><a class="dropdown-item" href="#">Ouro</a></li>
-                        <li><a class="dropdown-item" href="#">Prata</a></li>
+                        <li><a class="dropdown-item" href="#">Prata</a></li> -->
+
+                        <?php
+                        
+                        }
+                        
+                        ?>
+
                     </ul>
                 </li>
 

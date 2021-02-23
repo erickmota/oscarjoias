@@ -312,6 +312,21 @@ class produtos{
 
     }
 
+    public function retorna_categorias(){
+
+        include 'conexao.class.php';
+
+        $sql = mysqli_query($conn, "SELECT * FROM categoria ORDER BY id ASC") or die("Erro ao retornar categorias");
+        while($linha = mysqli_fetch_assoc($sql)){
+            
+            $array[] = $linha;
+            
+        }
+
+        return $array;
+
+    }
+
 }
 
 ?>
