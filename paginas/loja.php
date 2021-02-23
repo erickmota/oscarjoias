@@ -47,7 +47,7 @@
             precoItem.classList.add("d-none");
             precoItemGrande.classList.remove("d-none");
             botaoComprar.classList.remove("d-none");
-            precoAntigo.classList.add("d-none");
+            precoAntigo.style.display="none";
 
         }
 
@@ -63,7 +63,7 @@
             precoItem.classList.remove("d-none");
             precoItemGrande.classList.add("d-none");
             botaoComprar.classList.add("d-none");
-            precoAntigo.classList.remove("d-none");
+            precoAntigo.style.display="block";
 
         }
 
@@ -380,6 +380,28 @@
 
                                 }
 
+                                if(isset($_GET["cat"])){
+
+                                    /* $categoria = $_GET["cat"]; */
+
+                                    $catComTraco = str_replace(" ", "-", $_GET["cat"]);
+                                    $transformarEmMinuscula = mb_strtolower($catComTraco, "UTF-8");
+                                    $trataInjection = str_replace(array(";", "'", "--", "/", "*", "xp_", "XP_", "SELECT" , "INSERT" , "UPDATE" , "DELETE" , "DROP", "select" , "insert" , "update" , "delete" , "drop"), "", $transformarEmMinuscula);
+                                    $str1 = preg_replace('/[áàãâä]/ui', 'a', $trataInjection);
+                                    $str2 = preg_replace('/[éèêë]/ui', 'e', $str1);
+                                    $str3 = preg_replace('/[íìîï]/ui', 'i', $str2);
+                                    $str4 = preg_replace('/[óòõôö]/ui', 'o', $str3);
+                                    $str5 = preg_replace('/[úùûü]/ui', 'u', $str4);
+                                    $str6 = preg_replace('/[ç]/ui', 'c', $str5);
+
+                                    $categoria = $str6;
+
+                                }else{
+
+                                    $categoria = "SE";
+
+                                }
+
                             }else{
 
                                 $ordenacao2 = "id";
@@ -387,13 +409,14 @@
                                 $tipo2 = "SE";
                                 $vMinimo = "SE";
                                 $vMaximo = "SE";
+                                $categoria = "SE";
 
                             }
 
                             $numeroPagina = str_replace(array(";", "'", "--", "/", "*", "xp_", "XP_", "SELECT" , "INSERT" , "UPDATE" , "DELETE" , "DROP", "select" , "insert" , "update" , "delete" , "drop"), "", $_GET["pg"]);
 
                             /* $tipo, $vMinimo, $vMaximo, $categoria, $pg, $ordenacao, $tipoOrdenacao */
-                            foreach($classeProdutos->retorna_lsita_produtos($tipo2, $vMinimo, $vMaximo, "SE", $numeroPagina, $ordenacao2, $tipoOrdenacao2)[0] as $arrProdutos){
+                            foreach($classeProdutos->retorna_lsita_produtos($tipo2, $vMinimo, $vMaximo, $categoria, $numeroPagina, $ordenacao2, $tipoOrdenacao2)[0] as $arrProdutos){
 
                                 $idProduto = $arrProdutos["id"];
 
@@ -439,8 +462,8 @@
                             
                             ?>
 
-                            <input type="hidden" id="hiddenQtdItemPagina" value="<?php echo $classeProdutos->retorna_lsita_produtos($tipo2, $vMinimo, $vMaximo, "SE", $numeroPagina, $ordenacao2, $tipoOrdenacao2)[1]; ?>">
-                            <input type="hidden" id="hiddenQtdItemTotal" value="<?php echo $classeProdutos->retorna_lsita_produtos($tipo2, $vMinimo, $vMaximo, "SE", $numeroPagina, $ordenacao2, $tipoOrdenacao2)[2]; ?>">
+                            <input type="hidden" id="hiddenQtdItemPagina" value="<?php echo $classeProdutos->retorna_lsita_produtos($tipo2, $vMinimo, $vMaximo, $categoria, $numeroPagina, $ordenacao2, $tipoOrdenacao2)[1]; ?>">
+                            <input type="hidden" id="hiddenQtdItemTotal" value="<?php echo $classeProdutos->retorna_lsita_produtos($tipo2, $vMinimo, $vMaximo, $categoria, $numeroPagina, $ordenacao2, $tipoOrdenacao2)[2]; ?>">
 
                         </div>
                         
@@ -457,23 +480,23 @@
 
         <?php
 
-        $pgAnterior = "pg=".$classeProdutos->organizar_paginacao($classeProdutos->retorna_lsita_produtos($tipo2, $vMinimo, $vMaximo, "SE", $numeroPagina, $ordenacao2, $tipoOrdenacao2)[2], $_GET["pg"])[0];
-        $pgProximo = "pg=".$classeProdutos->organizar_paginacao($classeProdutos->retorna_lsita_produtos($tipo2, $vMinimo, $vMaximo, "SE", $numeroPagina, $ordenacao2, $tipoOrdenacao2)[2], $_GET["pg"])[1];
+        $pgAnterior = "pg=".$classeProdutos->organizar_paginacao($classeProdutos->retorna_lsita_produtos($tipo2, $vMinimo, $vMaximo, $categoria, $numeroPagina, $ordenacao2, $tipoOrdenacao2)[2], $_GET["pg"])[0];
+        $pgProximo = "pg=".$classeProdutos->organizar_paginacao($classeProdutos->retorna_lsita_produtos($tipo2, $vMinimo, $vMaximo, $categoria, $numeroPagina, $ordenacao2, $tipoOrdenacao2)[2], $_GET["pg"])[1];
         $pgAtual = "pg=".$_GET["pg"];
         
         ?>
 
             <div class="col-md-9 text-center">
 
-                <a href="<?php echo str_replace($pgAtual, $pgAnterior, $_SERVER["REQUEST_URI"]); ?>"><div id="numeroPaginacao" class="<?php if($classeProdutos->organizar_paginacao($classeProdutos->retorna_lsita_produtos($tipo2, $vMinimo, $vMaximo, "SE", $numeroPagina, $ordenacao2, $tipoOrdenacao2)[2], $_GET["pg"])[0] == "SE"){ echo "d-none"; } ?>"><span><</span></div></a>
+                <a href="<?php echo str_replace($pgAtual, $pgAnterior, $_SERVER["REQUEST_URI"]); ?>"><div id="numeroPaginacao" class="<?php if($classeProdutos->organizar_paginacao($classeProdutos->retorna_lsita_produtos($tipo2, $vMinimo, $vMaximo, $categoria, $numeroPagina, $ordenacao2, $tipoOrdenacao2)[2], $_GET["pg"])[0] == "SE"){ echo "d-none"; } ?>"><span><</span></div></a>
 
-                <a href="<?php echo str_replace($pgAtual, $pgAnterior, $_SERVER["REQUEST_URI"]); ?>"><div id="numeroPaginacao" class="<?php if($classeProdutos->organizar_paginacao($classeProdutos->retorna_lsita_produtos($tipo2, $vMinimo, $vMaximo, "SE", $numeroPagina, $ordenacao2, $tipoOrdenacao2)[2], $_GET["pg"])[0] == "SE"){ echo "d-none"; } ?>"><span><?php echo $_GET["pg"] - 1; ?></span></div></a>
+                <a href="<?php echo str_replace($pgAtual, $pgAnterior, $_SERVER["REQUEST_URI"]); ?>"><div id="numeroPaginacao" class="<?php if($classeProdutos->organizar_paginacao($classeProdutos->retorna_lsita_produtos($tipo2, $vMinimo, $vMaximo, $categoria, $numeroPagina, $ordenacao2, $tipoOrdenacao2)[2], $_GET["pg"])[0] == "SE"){ echo "d-none"; } ?>"><span><?php echo $_GET["pg"] - 1; ?></span></div></a>
 
                 <div id="numeroPaginacao" class="ativo"><span><?php echo $_GET["pg"]; ?></span></div>
                 
-                <a href="<?php echo str_replace($pgAtual, $pgProximo, $_SERVER["REQUEST_URI"]); ?>"><div id="numeroPaginacao" class="<?php if($classeProdutos->organizar_paginacao($classeProdutos->retorna_lsita_produtos($tipo2, $vMinimo, $vMaximo, "SE", $numeroPagina, $ordenacao2, $tipoOrdenacao2)[2], $_GET["pg"])[1] == "SE"){ echo "d-none"; } ?>"><span><?php echo $_GET["pg"] + 1; ?></span></div></a>
+                <a href="<?php echo str_replace($pgAtual, $pgProximo, $_SERVER["REQUEST_URI"]); ?>"><div id="numeroPaginacao" class="<?php if($classeProdutos->organizar_paginacao($classeProdutos->retorna_lsita_produtos($tipo2, $vMinimo, $vMaximo, $categoria, $numeroPagina, $ordenacao2, $tipoOrdenacao2)[2], $_GET["pg"])[1] == "SE"){ echo "d-none"; } ?>"><span><?php echo $_GET["pg"] + 1; ?></span></div></a>
 
-                <a href="<?php echo str_replace($pgAtual, $pgProximo, $_SERVER["REQUEST_URI"]); ?>"><div id="numeroPaginacao" class="<?php if($classeProdutos->organizar_paginacao($classeProdutos->retorna_lsita_produtos($tipo2, $vMinimo, $vMaximo, "SE", $numeroPagina, $ordenacao2, $tipoOrdenacao2)[2], $_GET["pg"])[1] == "SE"){ echo "d-none"; } ?>"><span>></span></div></a>
+                <a href="<?php echo str_replace($pgAtual, $pgProximo, $_SERVER["REQUEST_URI"]); ?>"><div id="numeroPaginacao" class="<?php if($classeProdutos->organizar_paginacao($classeProdutos->retorna_lsita_produtos($tipo2, $vMinimo, $vMaximo, $categoria, $numeroPagina, $ordenacao2, $tipoOrdenacao2)[2], $_GET["pg"])[1] == "SE"){ echo "d-none"; } ?>"><span>></span></div></a>
 
             </div>
 
