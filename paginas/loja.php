@@ -89,25 +89,159 @@
 
         function mudar_ordenacao(op){
 
+            <?php
+                
+            $paginaAtual = $_SERVER["REQUEST_URI"];
+                
+            ?>
+
             if(op == "nome"){
 
-                window.location="loja?pg=1&ordenacao=nome&tipoord=cre";
+                <?php
+                
+                if(isset($_GET["tipo"]) || isset($_GET["vma"]) || isset($_GET["cat"])){
+
+                    $novaOrdenacao = str_replace($_GET["ordenacao"], "nome", $_SERVER["REQUEST_URI"]);
+                    $novaOrdem = str_replace($_GET["tipoord"], "cre", $novaOrdenacao);
+                    $novaPg = str_replace($_GET["pg"], 1, $novaOrdem);
+
+                ?>
+
+                    window.location="<?php echo $novaPg; ?>";
+
+                <?php
+    
+                }else{
+
+                ?>
+
+                    window.location="loja?pg=1&ordenacao=nome&tipoord=cre";
+
+                <?php
+
+                }
+                    
+                ?>
 
             }else if(op == "ua"){
 
-                window.location="loja?pg=1&ordenacao=adicionado&tipoord=dec";
+                <?php
+                
+                if(isset($_GET["tipo"]) || isset($_GET["vma"]) || isset($_GET["cat"])){
+
+                    $novaOrdenacao = str_replace($_GET["ordenacao"], "adicionado", $_SERVER["REQUEST_URI"]);
+                    $novaOrdem = str_replace($_GET["tipoord"], "dec", $novaOrdenacao);
+                    $novaPg = str_replace($_GET["pg"], 1, $novaOrdem);
+
+                ?>
+
+                    window.location="<?php echo $novaPg; ?>";
+
+                <?php
+    
+                }else{
+
+                ?>
+
+                    window.location="loja?pg=1&ordenacao=adicionado&tipoord=dec";
+
+                <?php
+
+                }
+                    
+                ?>
+
+                /* window.location="loja?pg=1&ordenacao=adicionado&tipoord=dec"; */
 
             }else if(op == "pa"){
 
-                window.location="loja?pg=1&ordenacao=adicionado&tipoord=cre";
+                <?php
+                
+                if(isset($_GET["tipo"]) || isset($_GET["vma"]) || isset($_GET["cat"])){
+
+                    $novaOrdenacao = str_replace($_GET["ordenacao"], "adicionado", $_SERVER["REQUEST_URI"]);
+                    $novaOrdem = str_replace($_GET["tipoord"], "cre", $novaOrdenacao);
+                    $novaPg = str_replace($_GET["pg"], 1, $novaOrdem);
+
+                ?>
+
+                    window.location="<?php echo $novaPg; ?>";
+
+                <?php
+    
+                }else{
+
+                ?>
+
+                    window.location="loja?pg=1&ordenacao=adicionado&tipoord=cre";
+
+                <?php
+
+                }
+                    
+                ?>
+
+                /* window.location="loja?pg=1&ordenacao=adicionado&tipoord=cre"; */
 
             }else if(op == "mep"){
 
-                window.location="loja?pg=1&ordenacao=preco&tipoord=cre";
+                <?php
+                
+                if(isset($_GET["tipo"]) || isset($_GET["vma"]) || isset($_GET["cat"])){
+
+                    $novaOrdenacao = str_replace($_GET["ordenacao"], "preco", $_SERVER["REQUEST_URI"]);
+                    $novaOrdem = str_replace($_GET["tipoord"], "cre", $novaOrdenacao);
+                    $novaPg = str_replace($_GET["pg"], 1, $novaOrdem);
+
+                ?>
+
+                    window.location="<?php echo $novaPg; ?>";
+
+                <?php
+    
+                }else{
+
+                ?>
+
+                    window.location="loja?pg=1&ordenacao=preco&tipoord=cre";
+
+                <?php
+
+                }
+                    
+                ?>
+
+                /* window.location="loja?pg=1&ordenacao=preco&tipoord=cre"; */
 
             }else if(op == "map"){
 
-                window.location="loja?pg=1&ordenacao=preco&tipoord=dec";
+                <?php
+                
+                if(isset($_GET["tipo"]) || isset($_GET["vma"]) || isset($_GET["cat"])){
+
+                    $novaOrdenacao = str_replace($_GET["ordenacao"], "preco", $_SERVER["REQUEST_URI"]);
+                    $novaOrdem = str_replace($_GET["tipoord"], "dec", $novaOrdenacao);
+                    $novaPg = str_replace($_GET["pg"], 1, $novaOrdem);
+
+                ?>
+
+                    window.location="<?php echo $novaPg; ?>";
+
+                <?php
+    
+                }else{
+
+                ?>
+
+                    window.location="loja?pg=1&ordenacao=preco&tipoord=dec";
+
+                <?php
+
+                }
+                    
+                ?>
+
+                /* window.location="loja?pg=1&ordenacao=preco&tipoord=dec"; */
 
             }
 
@@ -153,21 +287,99 @@
             
             ?>
 
+            <?php
+            
+
+            
+            ?>
+
             if(selectTipo == "nenhum" && valorMinimo == "" && valorMaximo == ""){
 
                 
 
             }else if(selectTipo != "nenhum" && valorMinimo == "" && valorMaximo == ""){
 
-                window.location="loja?pg=1&tipo="+selectTipo+"&ordenacao="+ordenacao+"&tipoord="+tipoOrdenacao;
+                <?php
+                
+                if(isset($_GET["cat"])){
+
+                    $cat = $_GET["cat"];
+
+                ?>
+
+                    window.location="loja?pg=1&tipo="+selectTipo+"&ordenacao="+ordenacao+"&tipoord="+tipoOrdenacao+"&cat=<?php echo $cat; ?>";
+
+                <?php
+    
+                }else{
+
+                ?>
+
+                    window.location="loja?pg=1&tipo="+selectTipo+"&ordenacao="+ordenacao+"&tipoord="+tipoOrdenacao;
+
+                <?php
+
+                }
+                    
+                ?>
+
+               /*  window.location="loja?pg=1&tipo="+selectTipo+"&ordenacao="+ordenacao+"&tipoord="+tipoOrdenacao; */
 
             }else if(selectTipo == "nenhum" && valorMinimo != "" && valorMaximo != ""){
 
-                window.location="loja?pg=1&vmi="+valorMinimo+"&vma="+valorMaximo+"&ordenacao="+ordenacao+"&tipoord="+tipoOrdenacao;
+                <?php
+                
+                if(isset($_GET["cat"])){
+
+                    $cat = $_GET["cat"];
+
+                ?>
+
+                    window.location="loja?pg=1&vmi="+valorMinimo+"&vma="+valorMaximo+"&ordenacao="+ordenacao+"&tipoord="+tipoOrdenacao+"&cat=<?php echo $cat; ?>";
+
+                <?php
+    
+                }else{
+
+                ?>
+
+                    window.location="loja?pg=1&vmi="+valorMinimo+"&vma="+valorMaximo+"&ordenacao="+ordenacao+"&tipoord="+tipoOrdenacao;
+
+                <?php
+
+                }
+                    
+                ?>
+
+                /* window.location="loja?pg=1&vmi="+valorMinimo+"&vma="+valorMaximo+"&ordenacao="+ordenacao+"&tipoord="+tipoOrdenacao; */
 
             }else if(selectTipo != "nenhum" && valorMinimo != "" && valorMaximo != ""){
 
-                window.location="loja?pg=1&tipo="+selectTipo+"&vmi="+valorMinimo+"&vma="+valorMaximo+"&ordenacao="+ordenacao+"&tipoord="+tipoOrdenacao;
+                <?php
+                
+                if(isset($_GET["cat"])){
+
+                    $cat = $_GET["cat"];
+
+                ?>
+
+                    window.location="loja?pg=1&tipo="+selectTipo+"&vmi="+valorMinimo+"&vma="+valorMaximo+"&ordenacao="+ordenacao+"&tipoord="+tipoOrdenacao+"&cat=<?php echo $cat; ?>";
+
+                <?php
+    
+                }else{
+
+                ?>
+
+                    window.location="loja?pg=1&tipo="+selectTipo+"&vmi="+valorMinimo+"&vma="+valorMaximo+"&ordenacao="+ordenacao+"&tipoord="+tipoOrdenacao;
+
+                <?php
+
+                }
+                    
+                ?>
+
+                /* window.location="loja?pg=1&tipo="+selectTipo+"&vmi="+valorMinimo+"&vma="+valorMaximo+"&ordenacao="+ordenacao+"&tipoord="+tipoOrdenacao; */
 
             }
 
