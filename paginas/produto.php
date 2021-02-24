@@ -139,7 +139,7 @@
 
                 speed: 700, //ms'
                 auto: true,
-                loop: true,
+                loop: false,
                 slideEndAnimation: true,
                 pause: 4000,
                 responsive : [
@@ -1079,6 +1079,8 @@
         <!-- //Caracteristicas -->
 
     <?php
+
+    $id_produto = $arrProduto["id"];
     
     }
     
@@ -1088,7 +1090,7 @@
 
             <div class="col-md-9 pt-3 border-top">
   
-                <p class="pb-2"><span class="text-secondary fs-4">Você pode se interessar</span></p>
+                <p class="pb-2"><span class="text-secondary fs-4">Produtos relacionados</span></p>
   
             </div>
   
@@ -1099,147 +1101,123 @@
             <div class="col-12 col-md-9">
     
               <ul class="col-12 col-md-9" id="espacoItem">
+
+              <?php
+
+              $id_categoria =  $classeProdutos->retorna_nome_categoria_produto($id_produto);
+              
+              foreach($classeProdutos->retorna_produtos_relacionados($id_categoria, $id_produto) as $arrRelacionados){
+
+                $nomeComTraco = str_replace(" ", "-", $arrRelacionados["nome"]);
+                $transformarEmMinuscula = mb_strtolower($nomeComTraco, "UTF-8");
+                $trataInjection = str_replace(array(";", "'", "--", "/", "*", "xp_", "XP_", "SELECT" , "INSERT" , "UPDATE" , "DELETE" , "DROP", "select" , "insert" , "update" , "delete" , "drop"), "", $transformarEmMinuscula);
+                $str1 = preg_replace('/[áàãâä]/ui', 'a', $trataInjection);
+                $str2 = preg_replace('/[éèêë]/ui', 'e', $str1);
+                $str3 = preg_replace('/[íìîï]/ui', 'i', $str2);
+                $str4 = preg_replace('/[óòõôö]/ui', 'o', $str3);
+                $str5 = preg_replace('/[úùûü]/ui', 'u', $str4);
+                $str6 = preg_replace('/[ç]/ui', 'c', $str5);
+              
+              ?>
     
                 <li class="text-center" id="espacoProdutoMaisVendidos">
     
-                      <div class="box">
+                  <div onclick="window.location='produto/<?php echo $str6; ?>'" class="box">
     
-                        <img src="img/aneis/5.jpg" id="fotoAnel">
+                    <img src="img/produtos/<?php echo $arrRelacionados["foto"]; ?>" id="fotoAnel">
     
-                        <p class="card-text mt-1 pt-2 border-top">Anel porta objetos 400g</p>
+                    <p class="card-text mt-1 pt-2 border-top"><?php echo $arrRelacionados["nome"]; ?></p>
     
-                        <h5 class="card-title">R$500,00</h5>
-    
-                      </div>
-    
-                </li>
-    
-                <li class="text-center" id="espacoProdutoMaisVendidos">
-    
-                  <div class="box">
-    
-                    <img src="img/aneis/2.jpg" id="fotoAnel">
-    
-                    <p class="card-text mt-1 pt-2 border-top">Anel porta objetos 400g Anel porta objetos 400g</p>
-    
-                    <small class="text-decoration-line-through">R$500,00</small>
-                    <h5 class="card-title">R$500,00</h5>
+                    <small class="text-decoration-line-through <?php if($arrRelacionados["preco_promocao"] == ""){ echo "d-none"; } ?>">R$<?php echo number_format($arrRelacionados["preco_promocao"], 2, ",", "."); ?></small>
+                    <h5 class="card-title">R$<?php echo number_format($arrRelacionados["preco"], 2, ",", "."); ?></h5>
     
                   </div>
     
                 </li>
-    
+
+                <?php
+                
+                }
+                
+                ?>
+
+                <?php
+
+                $id_categoria =  $classeProdutos->retorna_nome_categoria_produto(0);
+
+                foreach($classeProdutos->retorna_produtos_relacionados($id_categoria, $id_produto) as $arrRelacionados){
+
+                    $nomeComTraco = str_replace(" ", "-", $arrRelacionados["nome"]);
+                    $transformarEmMinuscula = mb_strtolower($nomeComTraco, "UTF-8");
+                    $trataInjection = str_replace(array(";", "'", "--", "/", "*", "xp_", "XP_", "SELECT" , "INSERT" , "UPDATE" , "DELETE" , "DROP", "select" , "insert" , "update" , "delete" , "drop"), "", $transformarEmMinuscula);
+                    $str1 = preg_replace('/[áàãâä]/ui', 'a', $trataInjection);
+                    $str2 = preg_replace('/[éèêë]/ui', 'e', $str1);
+                    $str3 = preg_replace('/[íìîï]/ui', 'i', $str2);
+                    $str4 = preg_replace('/[óòõôö]/ui', 'o', $str3);
+                    $str5 = preg_replace('/[úùûü]/ui', 'u', $str4);
+                    $str6 = preg_replace('/[ç]/ui', 'c', $str5);
+
+                ?>
+
                 <li class="text-center" id="espacoProdutoMaisVendidos">
-    
-                  <div class="box">
-    
-                    <img src="img/aneis/3.jpg" id="fotoAnel">
-    
-                    <p class="card-text mt-1 pt-2 border-top">Anel porta objetos 400g</p>
-    
-                    <h5 class="card-title">R$500,00</h5>
-    
-                  </div>
-    
+
+                    <div onclick="window.location='produto/<?php echo $str6; ?>'" class="box">
+
+                    <img src="img/produtos/<?php echo $arrRelacionados["foto"]; ?>" id="fotoAnel">
+
+                    <p class="card-text mt-1 pt-2 border-top"><?php echo $arrRelacionados["nome"]; ?></p>
+
+                    <small class="text-decoration-line-through <?php if($arrRelacionados["preco_promocao"] == ""){ echo "d-none"; } ?>">R$<?php echo number_format($arrRelacionados["preco_promocao"], 2, ",", "."); ?></small>
+                    <h5 class="card-title">R$<?php echo number_format($arrRelacionados["preco"], 2, ",", "."); ?></h5>
+
+                    </div>
+
                 </li>
-    
+
+                <?php
+                
+                }
+                
+                ?>
+
+                <?php
+
+                $id_categoria =  $classeProdutos->retorna_nome_categoria_produto(0);
+
+                foreach($classeProdutos->retorna_produtos_relacionados($id_categoria, $id_produto) as $arrRelacionados){
+
+                    $nomeComTraco = str_replace(" ", "-", $arrRelacionados["nome"]);
+                    $transformarEmMinuscula = mb_strtolower($nomeComTraco, "UTF-8");
+                    $trataInjection = str_replace(array(";", "'", "--", "/", "*", "xp_", "XP_", "SELECT" , "INSERT" , "UPDATE" , "DELETE" , "DROP", "select" , "insert" , "update" , "delete" , "drop"), "", $transformarEmMinuscula);
+                    $str1 = preg_replace('/[áàãâä]/ui', 'a', $trataInjection);
+                    $str2 = preg_replace('/[éèêë]/ui', 'e', $str1);
+                    $str3 = preg_replace('/[íìîï]/ui', 'i', $str2);
+                    $str4 = preg_replace('/[óòõôö]/ui', 'o', $str3);
+                    $str5 = preg_replace('/[úùûü]/ui', 'u', $str4);
+                    $str6 = preg_replace('/[ç]/ui', 'c', $str5);
+
+                ?>
+
                 <li class="text-center" id="espacoProdutoMaisVendidos">
-    
-                  <div class="box">
-    
-                    <img src="img/aneis/4.jpg" id="fotoAnel">
-    
-                    <p class="card-text mt-1 pt-2 border-top">Anel porta objetos 400g</p>
-    
-                    <h5 class="card-title">R$500,00</h5>
-    
-                  </div>
-    
+
+                    <div onclick="window.location='produto/<?php echo $str6; ?>'" class="box">
+
+                    <img src="img/produtos/<?php echo $arrRelacionados["foto"]; ?>" id="fotoAnel">
+
+                    <p class="card-text mt-1 pt-2 border-top"><?php echo $arrRelacionados["nome"]; ?></p>
+
+                    <small class="text-decoration-line-through <?php if($arrRelacionados["preco_promocao"] == ""){ echo "d-none"; } ?>">R$<?php echo number_format($arrRelacionados["preco_promocao"], 2, ",", "."); ?></small>
+                    <h5 class="card-title">R$<?php echo number_format($arrRelacionados["preco"], 2, ",", "."); ?></h5>
+
+                    </div>
+
                 </li>
-    
-                <li class="text-center" id="espacoProdutoMaisVendidos">
-    
-                  <div class="box">
-    
-                    <img src="img/aneis/1.jpg" id="fotoAnel">
-    
-                    <p class="card-text mt-1 pt-2 border-top">Anel porta objetos 400g</p>
-    
-                    <h5 class="card-title">R$500,00</h5>
-    
-                  </div>
-    
-                </li>
-    
-                <li class="text-center" id="espacoProdutoMaisVendidos">
-    
-                  <div class="box">
-    
-                    <img src="img/aneis/2.jpg" id="fotoAnel">
-    
-                    <p class="card-text mt-1 pt-2 border-top">Anel porta objetos 400g</p>
-    
-                    <h5 class="card-title">R$500,00</h5>
-    
-                  </div>
-    
-                </li>
-    
-                <li class="text-center" id="espacoProdutoMaisVendidos">
-    
-                  <div class="box">
-    
-                    <img src="img/aneis/3.jpg" id="fotoAnel">
-    
-                    <p class="card-text mt-1 pt-2 border-top">Anel porta objetos 400g</p>
-    
-                    <h5 class="card-title">R$500,00</h5>
-    
-                  </div>
-    
-                </li>
-    
-                <li class="text-center" id="espacoProdutoMaisVendidos">
-    
-                  <div class="box">
-    
-                    <img src="img/aneis/4.jpg" id="fotoAnel">
-    
-                    <p class="card-text mt-1 pt-2 border-top">Anel porta objetos 400g</p>
-    
-                    <h5 class="card-title">R$500,00</h5>
-    
-                  </div>
-    
-                </li>
-    
-                <li class="text-center" id="espacoProdutoMaisVendidos">
-    
-                  <div class="box">
-    
-                    <img src="img/aneis/1.jpg" id="fotoAnel">
-    
-                    <p class="card-text mt-1 pt-2 border-top">Anel porta objetos 400g</p>
-    
-                    <h5 class="card-title">R$500,00</h5>
-    
-                  </div>
-    
-                </li>
-    
-                <li class="text-center" id="espacoProdutoMaisVendidos">
-    
-                  <div class="box">
-    
-                    <img src="img/aneis/2.jpg" id="fotoAnel">
-    
-                    <p class="card-text mt-1 pt-2 border-top">Anel porta objetos 400g</p>
-    
-                    <h5 class="card-title">R$500,00</h5>
-    
-                  </div>
-    
-                </li>
+
+                <?php
+
+                }
+
+                ?>
     
               </ul>
     

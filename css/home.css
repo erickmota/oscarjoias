@@ -31,13 +31,13 @@ body{
 
 .box{
 
-    margin: 10px;
     margin-top: 5px;
     height: 355px;
-    width: 100%;
+    width: 99%;
     margin-bottom: 20px;
     display: inline-block;
     border:1px solid #f5f5f5;
+    cursor: pointer;
 
 }
 

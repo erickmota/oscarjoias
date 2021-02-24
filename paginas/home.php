@@ -5,6 +5,20 @@ Desenvolvido por: Erick Mota (erickmota.com) -->
 
 <head>
 
+    <?php
+
+    if(isset($_GET["url"])){
+
+      $explode = explode("/", $_GET["url"]);
+
+    }
+    
+    /* Iniciando classe */
+    include "classes/produtos.class.php";
+    $classeProdutos = new produtos();
+    
+    ?>
+
     <title>Oscar Jóias e Acessórios</title>
 
     <meta charset="UTF-8">
@@ -41,6 +55,8 @@ Desenvolvido por: Erick Mota (erickmota.com) -->
         auto: true,
         loop: true,
         slideEndAnimation: true,
+        pager:true,
+        controls: false,
         pause: 4000,
         responsive : [
             {
@@ -147,7 +163,7 @@ Desenvolvido por: Erick Mota (erickmota.com) -->
       </div>
       <!-- //Bem vindo -->
 
-      <!-- Os mais vendidos -->
+      <!-- Promocionais -->
       <div class="row mt-5 justify-content-center">
 
           <div class="col-md-9">
@@ -164,146 +180,42 @@ Desenvolvido por: Erick Mota (erickmota.com) -->
 
           <ul class="col-12 col-md-9" id="espacoItem">
 
+          <?php
+          
+          foreach($classeProdutos->retorna_produtos_promocionais() as $arrPromocao){
+
+            $nomeComTraco = str_replace(" ", "-", $arrPromocao["nome"]);
+            $transformarEmMinuscula = mb_strtolower($nomeComTraco, "UTF-8");
+            $trataInjection = str_replace(array(";", "'", "--", "/", "*", "xp_", "XP_", "SELECT" , "INSERT" , "UPDATE" , "DELETE" , "DROP", "select" , "insert" , "update" , "delete" , "drop"), "", $transformarEmMinuscula);
+            $str1 = preg_replace('/[áàãâä]/ui', 'a', $trataInjection);
+            $str2 = preg_replace('/[éèêë]/ui', 'e', $str1);
+            $str3 = preg_replace('/[íìîï]/ui', 'i', $str2);
+            $str4 = preg_replace('/[óòõôö]/ui', 'o', $str3);
+            $str5 = preg_replace('/[úùûü]/ui', 'u', $str4);
+            $str6 = preg_replace('/[ç]/ui', 'c', $str5);
+          
+          ?>
+
             <li class="text-center" id="espacoProdutoMaisVendidos">
 
-                  <div class="box">
+              <div onclick="window.location='produto/<?php echo $str6; ?>'" class="box">
 
-                    <img src="img/aneis/5.jpg" id="fotoAnel">
+                <img src="img/produtos/<?php echo $arrPromocao["foto"]; ?>" id="fotoAnel">
 
-                    <p class="card-text mt-1 pt-2 border-top">Anel porta objetos 400g</p>
+                <p class="card-text mt-1 pt-2 border-top"><?php echo $arrPromocao["nome"]; ?></p>
 
-                    <h5 class="card-title">R$500,00</h5>
-
-                  </div>
-
-            </li>
-
-            <li class="text-center" id="espacoProdutoMaisVendidos">
-
-              <div class="box">
-
-                <img src="img/aneis/2.jpg" id="fotoAnel">
-
-                <p class="card-text mt-1 pt-2 border-top">Anel porta objetos 400g Anel porta objetos 400g</p>
-
-                <small class="text-decoration-line-through">R$500,00</small>
-                <h5 class="card-title">R$500,00</h5>
+                <small class="text-decoration-line-through">R$<?php echo number_format($arrPromocao["preco_promocao"], 2, ",", "."); ?></small>
+                <h5 class="card-title">R$<?php echo number_format($arrPromocao["preco"], 2, ",", "."); ?></h5>
 
               </div>
 
             </li>
 
-            <li class="text-center" id="espacoProdutoMaisVendidos">
-
-              <div class="box">
-
-                <img src="img/aneis/3.jpg" id="fotoAnel">
-
-                <p class="card-text mt-1 pt-2 border-top">Anel porta objetos 400g</p>
-
-                <h5 class="card-title">R$500,00</h5>
-
-              </div>
-
-            </li>
-
-            <li class="text-center" id="espacoProdutoMaisVendidos">
-
-              <div class="box">
-
-                <img src="img/aneis/4.jpg" id="fotoAnel">
-
-                <p class="card-text mt-1 pt-2 border-top">Anel porta objetos 400g</p>
-
-                <h5 class="card-title">R$500,00</h5>
-
-              </div>
-
-            </li>
-
-            <li class="text-center" id="espacoProdutoMaisVendidos">
-
-              <div class="box">
-
-                <img src="img/aneis/1.jpg" id="fotoAnel">
-
-                <p class="card-text mt-1 pt-2 border-top">Anel porta objetos 400g</p>
-
-                <h5 class="card-title">R$500,00</h5>
-
-              </div>
-
-            </li>
-
-            <li class="text-center" id="espacoProdutoMaisVendidos">
-
-              <div class="box">
-
-                <img src="img/aneis/2.jpg" id="fotoAnel">
-
-                <p class="card-text mt-1 pt-2 border-top">Anel porta objetos 400g</p>
-
-                <h5 class="card-title">R$500,00</h5>
-
-              </div>
-
-            </li>
-
-            <li class="text-center" id="espacoProdutoMaisVendidos">
-
-              <div class="box">
-
-                <img src="img/aneis/3.jpg" id="fotoAnel">
-
-                <p class="card-text mt-1 pt-2 border-top">Anel porta objetos 400g</p>
-
-                <h5 class="card-title">R$500,00</h5>
-
-              </div>
-
-            </li>
-
-            <li class="text-center" id="espacoProdutoMaisVendidos">
-
-              <div class="box">
-
-                <img src="img/aneis/4.jpg" id="fotoAnel">
-
-                <p class="card-text mt-1 pt-2 border-top">Anel porta objetos 400g</p>
-
-                <h5 class="card-title">R$500,00</h5>
-
-              </div>
-
-            </li>
-
-            <li class="text-center" id="espacoProdutoMaisVendidos">
-
-              <div class="box">
-
-                <img src="img/aneis/1.jpg" id="fotoAnel">
-
-                <p class="card-text mt-1 pt-2 border-top">Anel porta objetos 400g</p>
-
-                <h5 class="card-title">R$500,00</h5>
-
-              </div>
-
-            </li>
-
-            <li class="text-center" id="espacoProdutoMaisVendidos">
-
-              <div class="box">
-
-                <img src="img/aneis/2.jpg" id="fotoAnel">
-
-                <p class="card-text mt-1 pt-2 border-top">Anel porta objetos 400g</p>
-
-                <h5 class="card-title">R$500,00</h5>
-
-              </div>
-
-            </li>
+          <?php
+          
+          }
+          
+          ?>
 
           </ul>
 

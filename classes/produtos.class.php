@@ -199,7 +199,7 @@ class produtos{
     }
 
     /* Retorna lista de produtos para a loja */
-    public function retorna_lsita_produtos($tipo, $vMinimo, $vMaximo, $categoria, $pg, $ordenacao, $tipoOrdenacao){
+    public function retorna_lsita_produtos($tipo, $vMinimo, $vMaximo, $categoria, $pg, $ordenacao, $tipoOrdenacao, $busca){
 
         include 'conexao.class.php';
 
@@ -247,6 +247,39 @@ class produtos{
 
             }
 
+        }else if($busca != "SE"){
+
+            if($tipo != "SE" && $vMinimo == "SE"){
+
+                /* $sql = mysqli_query($conn, "SELECT * FROM produtos WHERE tipo='$tipo' ORDER BY $ordenacao $tipoOrdenacao LIMIT $somaPg, 3") or die("Erro retornar produtos para a loja tipo");
+                $sql2 = mysqli_query($conn, "SELECT * FROM produtos WHERE tipo='$tipo' ORDER BY $ordenacao $tipoOrdenacao") or die("Erro retornar produtos para a loja tipo"); */
+    
+                $sql = mysqli_query($conn, "SELECT * FROM produtos WHERE nome LIKE '%$busca%' collate utf8_general_ci AND tipo='$tipo' ORDER BY $ordenacao $tipoOrdenacao LIMIT $somaPg, 3") or die("Erro retornar produtos para a loja");
+                $sql2 = mysqli_query($conn, "SELECT * FROM produtos WHERE nome LIKE '%$busca%' collate utf8_general_ci AND tipo='$tipo' ORDER BY $ordenacao $tipoOrdenacao") or die("Erro retornar produtos para a loja");
+
+            }else if($vMinimo != "SE" && $vMaximo != "SE" && $tipo == "SE"){
+    
+                /* $sql = mysqli_query($conn, "SELECT * FROM produtos WHERE preco BETWEEN $vMinimo AND $vMaximo ORDER BY $ordenacao $tipoOrdenacao LIMIT $somaPg, 3") or die("Erro retornar produtos para a loja VM");
+                $sql2 = mysqli_query($conn, "SELECT * FROM produtos WHERE preco BETWEEN $vMinimo AND $vMaximo ORDER BY $ordenacao $tipoOrdenacao") or die("Erro retornar produtos para a loja VM"); */
+    
+                $sql = mysqli_query($conn, "SELECT * FROM produtos WHERE nome LIKE '%$busca%' collate utf8_general_ci AND preco BETWEEN $vMinimo AND $vMaximo ORDER BY $ordenacao $tipoOrdenacao LIMIT $somaPg, 3") or die("Erro retornar produtos para a loja");
+                $sql2 = mysqli_query($conn, "SELECT * FROM produtos WHERE nome LIKE '%$busca%' collate utf8_general_ci AND preco BETWEEN $vMinimo AND $vMaximo ORDER BY $ordenacao $tipoOrdenacao") or die("Erro retornar produtos para a loja");
+
+            }else if($vMinimo != "SE" && $vMaximo != "SE" && $tipo != "SE"){
+    
+                /* $sql = mysqli_query($conn, "SELECT * FROM produtos WHERE tipo='$tipo' AND preco BETWEEN $vMinimo AND $vMaximo ORDER BY $ordenacao $tipoOrdenacao LIMIT $somaPg, 3") or die("Erro retornar produtos para a loja VM + Tipo");
+                $sql2 = mysqli_query($conn, "SELECT * FROM produtos WHERE tipo='$tipo' AND preco BETWEEN $vMinimo AND $vMaximo ORDER BY $ordenacao $tipoOrdenacao") or die("Erro retornar produtos para a loja VM + Tipo"); */
+    
+                $sql = mysqli_query($conn, "SELECT * FROM produtos WHERE nome LIKE '%$busca%' collate utf8_general_ci AND tipo='$tipo' AND preco BETWEEN $vMinimo AND $vMaximo ORDER BY $ordenacao $tipoOrdenacao LIMIT $somaPg, 3") or die("Erro retornar produtos para a loja");
+                $sql2 = mysqli_query($conn, "SELECT * FROM produtos WHERE nome LIKE '%$busca%' collate utf8_general_ci AND tipo='$tipo' AND preco BETWEEN $vMinimo AND $vMaximo ORDER BY $ordenacao $tipoOrdenacao") or die("Erro retornar produtos para a loja");
+
+            }else{
+    
+                $sql = mysqli_query($conn, "SELECT * FROM produtos WHERE nome LIKE '%$busca%' collate utf8_general_ci ORDER BY $ordenacao $tipoOrdenacao LIMIT $somaPg, 3") or die("Erro retornar produtos para a loja");
+                $sql2 = mysqli_query($conn, "SELECT * FROM produtos WHERE nome LIKE '%$busca%' collate utf8_general_ci ORDER BY $ordenacao $tipoOrdenacao") or die("Erro retornar produtos para a loja");
+    
+            }
+
         }else{
 
             if($tipo != "SE" && $vMinimo == "SE"){
@@ -281,7 +314,15 @@ class produtos{
             
         }
 
-        $retorno = [$array, $qtd_sql, $qtd_sql2];
+        if($qtd_sql < 1){
+
+            $retorno = [false, $qtd_sql, $qtd_sql2];
+
+        }else{
+
+            $retorno = [$array, $qtd_sql, $qtd_sql2];
+
+        }
 
         return $retorno;
 
@@ -317,6 +358,58 @@ class produtos{
         include 'conexao.class.php';
 
         $sql = mysqli_query($conn, "SELECT * FROM categoria ORDER BY id ASC") or die("Erro ao retornar categorias");
+        while($linha = mysqli_fetch_assoc($sql)){
+            
+            $array[] = $linha;
+            
+        }
+
+        return $array;
+
+    }
+
+    public function retorna_nome_categoria_produto($id_produto){
+
+        include 'conexao.class.php';
+
+        if($id_produto == 0){
+
+            $sql = mysqli_query($conn, "SELECT id FROM categoria ORDER BY RAND() LIMIT 5") or die("Erro ao retornar nome categoria");
+
+        }else{
+
+            $sql = mysqli_query($conn, "SELECT categoria.id AS id FROM categoria INNER JOIN categoria_produto ON categoria.id=categoria_produto.id_categoria WHERE categoria_produto.id_produtos=$id_produto LIMIT 5") or die("Erro ao retornar nome categoria");
+
+        }
+        
+        $linha = mysqli_fetch_assoc($sql);
+
+        $nome = $linha["id"];
+
+        return $nome;
+
+    }
+
+    public function retorna_produtos_relacionados($id_categoria, $id_produto_atual){
+
+        include 'conexao.class.php';
+
+        $sql = mysqli_query($conn, "SELECT * FROM produtos INNER JOIN categoria_produto ON produtos.id=categoria_produto.id_produtos WHERE categoria_produto.id_categoria=$id_categoria AND categoria_produto.id_produtos!=$id_produto_atual") or die("Erro ao retornar produtos relacionados");
+        while($linha = mysqli_fetch_assoc($sql)){
+            
+            $array[] = $linha;
+            
+        }
+
+        return $array;
+
+    }
+
+    public function retorna_produtos_promocionais(){
+
+        include 'conexao.class.php';
+
+        $sql = mysqli_query($conn, "SELECT * FROM  produtos WHERE preco_promocao!='' ORDER BY id DESC LIMIT 20") or die("Erro ao retornar produtos promocionais");
         while($linha = mysqli_fetch_assoc($sql)){
             
             $array[] = $linha;

@@ -61,9 +61,13 @@ if(!isset($classeProdutos)){
 
             <div class="col-8">
 
-                <form>
+                <form action="loja" method="GET">
 
-                    <input type="text" id="campoBusca" placeholder="Buscar Produto">
+                    <input type="text" id="campoBusca" placeholder="Buscar Produto" name="busca">
+
+                    <input type="hidden" name="pg" value="1">
+                    <input type="hidden" name="ordenacao" value="adicionado">
+                    <input type="hidden" name="tipoord" value="cre">
 
                 </form>
 
