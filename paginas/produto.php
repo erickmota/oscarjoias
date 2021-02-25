@@ -41,8 +41,16 @@
     ?>
 
     <link rel="stylesheet" href="css/produto.css">
+    <script src="jQuery-Mask-Plugin-master/src/jquery.mask.js"></script>
 
     <script>
+
+        /* Mask */
+        $(document).ready(function(){
+
+            $('.maskCep').mask('00000-000');
+
+        });
 
         $(document).ready(function() {
             $('#imageGallery').lightSlider({
@@ -1034,11 +1042,76 @@
                     <div class="col-10">
 
                         <label class="text-secondary" for="inputCalculaFrete">Digite seu CEP para calcular o frete</label><br>
-                        <input type="text" id="inputCalculaFrete">
+                        <input type="text" id="inputCalculaFrete" class="maskCep">
 
                     </div>
 
                 </div>
+
+                <div class="row justify-content-center mt-5 d-none" id="areaFrete">
+
+                    <!-- <div class="col-10 text-center">
+
+                        <b>Sedex:</b> R$34,50 - 3 dias para entrega<br>
+                        <b>PAC:</b> R$34,50 - 3 dias para entrega
+
+                    </div> -->
+
+                </div>
+
+                <script type="text/javascript">
+                                                                                
+                    function calcular_frete(cep) {
+
+                        $.ajax({
+
+                            type: "POST",
+                            dataType: "html",
+
+                            url: "php/frete.php",
+
+                            /* beforeSend: function () {
+
+                                $("#loading").html("<img class='imgLoading' src='img/loading.gif'>");
+
+                            }, */
+
+                            data: {cep: cep},
+
+                            success: function (msg) {
+
+                                $("#areaFrete").html(msg);
+                                $("#areaFrete").removeClass("d-none");
+
+                                /* setTimeout(function() {
+                                    $("#areaIconeOk").html("");
+                                    $("#textoAnotacoesRapidas").removeClass("is-valid");;
+                                }, 3000); */
+
+                            }
+
+                        });
+
+                    }
+
+                    $("#inputCalculaFrete").keyup(function(){
+
+                        var cep = document.getElementById("inputCalculaFrete").value;
+                        var campoCep = document.getElementById("areaFrete");
+
+                        if(cep == ""){
+
+                            campoCep.classList.add("d-none");
+
+                        }else{
+
+                            calcular_frete(cep);
+
+                        }
+
+                    });
+
+                    </script>
                 <!-- //Calculo do frete -->
 
                 <!-- Botao Add a sacola -->

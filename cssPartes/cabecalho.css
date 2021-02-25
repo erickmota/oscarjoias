@@ -7,6 +7,7 @@
 #iconeSacola{
 
     margin-top: 50px;
+    cursor: pointer;
 
 }
 
@@ -72,6 +73,7 @@
     position: relative;
     bottom: 10px;
     left: 12px;
+    cursor: pointer;
 
 }
 

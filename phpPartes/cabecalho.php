@@ -53,9 +53,9 @@ if(!isset($classeProdutos)){
 
             <div class="col-2">
 
-                <img id="iconeSacola" src="img/iconeBolsa3.png" width="21px">
+                <img onclick="window.location='sacola'" id="iconeSacola" src="img/iconeBolsa3.png" width="21px">
 
-                <div id="numeroItemSacola" class="text-center"><?php echo $classeCompra->retorna_qtd_itens_carrinho(); ?></div>
+                <div onclick="window.location='sacola'" id="numeroItemSacola" class="text-center"><?php echo $classeCompra->retorna_qtd_itens_carrinho(); ?></div>
 
             </div>
 
