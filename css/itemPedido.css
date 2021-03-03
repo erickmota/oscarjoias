@@ -1,0 +1,24 @@
+#boxProcesso{
+
+    height: 100px;
+    width: 100%;
+    border: 2px solid #efe07b;
+    display: table;
+    border-radius: 15px;
+    color: rgb(141, 141, 141);
+
+}
+
+#boxProcesso.ativo{
+
+    border: 2px solid #00af17;
+    color: rgb(141, 141, 141);
+
+}
+
+#textoBoxProcesso{
+
+    vertical-align: middle;
+    display: table-cell;
+
+}

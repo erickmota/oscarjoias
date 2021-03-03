@@ -14,6 +14,7 @@
 #iconePessoa{
 
     margin-top: 46px;
+    cursor: pointer;
 
 }
 
@@ -95,5 +96,54 @@
 .dropdown-item:focus{
 
     background-color: #efe07b;
+
+}
+
+#botaoEntrar{
+
+    background-color: #efe07b;
+    border: none;
+
+}
+
+#botaoEntrar:hover{
+
+    background-color: #e1d440;
+
+}
+
+#espacoModal{
+
+    border-top: 3px solid #efe07b;
+    border-bottom: 3px solid #efe07b;
+    background-color: #201e1f;
+    background-image: url(../img/fundoTopo.jpg);
+    background-position: center;
+    background-size: cover;
+
+}
+
+#corpoModalLogar2{
+
+    margin-top: 30px;
+
+}
+
+#corpoModalCadastrar2{
+
+    margin-top: -30px;
+
+}
+
+#iconesPessoa{
+
+    margin-top: -2px;
+    margin-right: 10px;
+
+}
+
+#listaPessoa{
+
+    list-style: none;
 
 }

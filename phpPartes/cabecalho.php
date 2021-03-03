@@ -18,9 +18,57 @@ if(!isset($classeProdutos)){
 
 }
 
+if(!isset($classeClientes)){
+    
+    /* Iniciando classe */
+    include "classes/clientes.class.php";
+    $classeClientes = new clientes();
+
+}
+
 ?>
 
 <link rel="stylesheet" href="cssPartes/cabecalho.css">
+
+<script>
+
+    $(function () {
+        $('#iconePessoa').popover({
+        html: true,
+        content: function() {
+                return $('#menu-pessoa').html();
+            }
+        })
+    })
+
+    function trocar_logar_cadastrar(modo){
+
+        var corpoModalLogar = document.getElementById("corpoModalLogar");
+        var corpoModalCadastrar = document.getElementById("corpoModalCadastrar");
+
+        if(modo == 1){
+
+            $(function(){
+
+                $( "#corpoModalLogar2" ).slideUp(300);
+                $( "#corpoModalCadastrar2" ).slideDown(300);
+
+            })
+
+        }else{
+
+            $(function(){
+
+                $( "#corpoModalLogar2" ).slideDown(300);
+                $( "#corpoModalCadastrar2" ).slideUp(300);
+
+            })
+
+        }
+
+    }
+    
+    </script>
 
 <div class="row">
 
@@ -37,7 +85,7 @@ if(!isset($classeProdutos)){
 
     <div class="col-6 col-md-4 mt-2 mb-3">
 
-        <img src="img/logoOficial2.png" id="imgLogo" width="200px">
+        <img src="img/logo.png" id="imgLogo" width="200px">
 
     </div>
 
@@ -47,7 +95,215 @@ if(!isset($classeProdutos)){
 
             <div class="col-2">
 
-                <img id="iconePessoa" src="img/iconePessoa3.png" width="26px">
+                <?php
+                
+                if(!isset($_COOKIE["iu_oj"]) && !isset($_COOKIE["eu_oj"]) && !isset($_COOKIE["su_oj"])){
+                
+                ?>
+
+                <img id="iconePessoa" src="img/iconePessoa3.png" width="26px" data-bs-toggle="modal" data-bs-target="#exampleModal">
+
+                <!-- Modal -->
+                <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content bg-dark" id="espacoModal">
+
+                        <div id="corpoModalLogar" class="modal-body">
+
+                            <div id="corpoModalLogar2">
+
+                            <div class="row justify-content-center">
+
+                                <div class="col-8 text-center">
+
+                                    <img src="img/logo.png" width="150px">
+
+                                </div>
+
+                            </div>
+                            
+                            <div class="row justify-content-center mt-4">
+
+                                <div class="col-10 col-sm-7">
+
+                                    <form method="POST" action="php/login.php">
+
+                                    <input type="email" class="form-control" placeholder="E-mail" name="email">
+
+                                </div>
+
+                            </div>
+
+                            <div class="row justify-content-center">
+
+                                <div class="col-10 col-sm-7">
+
+                                    <input type="password" class="form-control" placeholder="Senha" name="senha">
+                                    <input type="hidden" value="<?php echo $_SERVER["REQUEST_URI"] ?>" name="url">
+
+                                </div>
+
+                            </div>
+
+                            <div class="row justify-content-center mt-3">
+
+                                <div class="col-10 col-sm-7">
+
+                                    <input type="submit" class="form-control" value="ENTRAR" id="botaoEntrar">
+
+                                    </form>
+
+                                </div>
+
+                            </div>
+
+                            <div class="row justify-content-center mt-3">
+
+                                <div class="col-10 col-sm-7 text-white text-center">
+
+                                    Ou
+
+                                </div>
+
+                            </div>
+
+                            <div class="row justify-content-center mt-3">
+
+                                <div class="col-10 col-sm-7">
+
+                                    <button onclick="trocar_logar_cadastrar(1)" type="button" class="form-control btn btn-secondary btn-sm">CRIAR CONTA</button>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                        </div>
+
+                        <div id="corpoModalCadastrar" class="modal-body">
+
+                            <div id="corpoModalCadastrar2" style="display: none;">
+
+                            <div class="row justify-content-center">
+
+                                <div class="col-8 text-center">
+
+                                    <img src="img/logo.png" width="150px">
+
+                                </div>
+
+                            </div>
+                            
+                            <div class="row justify-content-center mt-4">
+
+                                <div class="col-10 col-sm-7">
+
+                                    <input type="text" class="form-control" placeholder="Seu nome">
+                                    <small class="text-white">Como gostaria de ser chamado(a)?</small>
+
+                                </div>
+
+                            </div>
+
+                            <div class="row justify-content-center mt-3">
+
+                                <div class="col-10 col-sm-7">
+
+                                    <input type="email" class="form-control" placeholder="Seu-email">
+                                    <small class="text-white">Use o seu melhor e-mail</small>
+
+                                </div>
+
+                            </div>
+
+                            <div class="row justify-content-center mt-3">
+
+                                <div class="col-10 col-sm-7">
+
+                                    <input type="password" class="form-control" placeholder="Sua senha">
+
+                                </div>
+
+                            </div>
+
+                            <div class="row justify-content-center mt-3">
+
+                                <div class="col-10 col-sm-7">
+
+                                    <input type="password" class="form-control" placeholder="Confirme a senha">
+                                    <small class="text-white">Dica: use letras e números; não use uma senha muito óbvia</small>
+
+                                </div>
+
+                            </div>
+
+                            <div class="row justify-content-center mt-3">
+
+                                <div class="col-10 col-sm-7">
+
+                                    <input type="submit" class="form-control" value="CADASTRAR" id="botaoEntrar">
+
+                                </div>
+
+                            </div>
+
+                            <div class="row justify-content-center mt-3">
+
+                                <div class="col-10 col-sm-7 text-white text-center">
+
+                                    Ou
+
+                                </div>
+
+                            </div>
+
+                            <div class="row justify-content-center mt-3">
+
+                                <div class="col-10 col-sm-7">
+
+                                    <button onclick="trocar_logar_cadastrar(2)" type="button" class="form-control btn btn-secondary btn-sm">VOLTAR AO LOGIN</button>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                        </div>
+
+                    </div>
+                    </div>
+                </div>
+
+                <?php
+                
+                }else if(isset($_COOKIE["iu_oj"]) && isset($_COOKIE["eu_oj"]) && isset($_COOKIE["su_oj"]) && $classeClientes->verificaExistenciaUsuario($_COOKIE["iu_oj"], $_COOKIE["eu_oj"], $_COOKIE["su_oj"]) == true){
+                
+                ?>
+
+                <img id="iconePessoa" src="img/iconePessoa3.png" width="26px" data-toggle="popover" data-bs-placement="bottom" title="Bem Vindo Erick Mota">
+
+                <div id="menu-pessoa" class="text-center bg-dark" style="display: none">
+
+                    <a href="pedidos" class="text-decoration-none text-secondary"><p class="border-bottom pb-3 pt-3 pr-3 pl-3"><img id="iconesPessoa" src="img/check.png" width="25px"> Meus Pedidos</p></a>
+                    <a href="#" class="text-decoration-none text-secondary"><p class="border-bottom pb-3 pr-3 pl-3"><img id="iconesPessoa" src="img/config.png" height="20px"> Ajustes</p></a>
+                    <a href="php/deslogar.php" class="text-decoration-none text-secondary"><p class="pr-3 pl-3"><img id="iconesPessoa" src="img/sair.png" width="25px"> Sair</p></a>
+
+                    <!-- <ul id="listaPessoa" class="text-center">
+                    
+                        <li class="border-bottom pb-3 pt-3 pr-3 pl-3"><img id="iconesPessoa" src="img/check.png" width="25px"> Meus Pedidos</li>
+                        <li class="pr-3 pl-3 mt-3"><img id="iconesPessoa" src="img/sair.png" width="25px"> Sair</li>
+                    
+                    </ul> -->
+            
+                </div>
+
+                <?php
+                
+                }
+                
+                ?>
 
             </div>
 
