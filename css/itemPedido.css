@@ -1,6 +1,6 @@
 #boxProcesso{
 
-    height: 100px;
+    height: 90px;
     width: 100%;
     border: 2px solid #efe07b;
     display: table;
@@ -16,9 +16,57 @@
 
 }
 
+#boxProcesso.transicao{
+
+    border: 2px solid #e7a10a;
+    color: rgb(141, 141, 141);
+
+}
+
 #textoBoxProcesso{
 
     vertical-align: middle;
     display: table-cell;
+
+}
+
+/* Produtos */
+
+#fundoTituloProdutos{
+
+    background-color: #efe07b;
+
+}
+
+#espacoImgProduto{
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+
+}
+
+#imgProduto{
+
+    max-width: 140px;
+
+}
+
+#iconeApagar{
+
+    cursor: pointer;
+
+}
+
+#qtd{
+
+    margin-top: 3px;
+
+}
+
+#fundoEndereco{
+
+    border:1px solid #f5f5f5;
 
 }

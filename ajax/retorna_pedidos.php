@@ -13,6 +13,7 @@ $classeCompra->idCliente = $idCliente;
 <thead>
     <tr>
     <th scope="col">Cód</th>
+    <th scope="col">Valor</th>
     <th scope="col">Data / Hora</th>
     <th scope="col">Status pagamento</th>
     <th scope="col">Status Entrega</th>
@@ -30,22 +31,25 @@ foreach($classeCompra->retorna_pedidos_por_cliente() as $arrPedido){
     $data = new DateTime($arrPedido["data_hora"]);
     $referencia = $arrPedido["id"];
 
+    $status = $classeCompra->retornar_status_compra_pagseguro($arrPedido["id"])["status"];
+
 ?>
 
     <tr>
     <th class="align-middle" scope="row"><?php echo $arrPedido["id"] ?></th>
+    <td class="align-middle">R$<?php echo number_format(floatval($classeCompra->retornar_status_compra_pagseguro($arrPedido["id"])["valor"]), 2, ",", ".") ?></td>
     <td class="align-middle"><?php echo $data->format('d/m/Y H:i');?></td>
     <td class="align-middle <?php
     
-    if($classeCompra->organizar_status_pagseguro($classeCompra->retornar_status_compra_pagseguro($arrPedido["id"])) == "Paga"){
+    if($classeCompra->organizar_status_pagseguro($status) == "Paga"){
 
         echo "text-success";
 
-    }else if($classeCompra->organizar_status_pagseguro($classeCompra->retornar_status_compra_pagseguro($arrPedido["id"])) == "Aguardando pagamento"){
+    }else if($classeCompra->organizar_status_pagseguro($status) == "Aguardando pagamento"){
 
         echo "text-info";
 
-    }else if($classeCompra->organizar_status_pagseguro($classeCompra->retornar_status_compra_pagseguro($arrPedido["id"])) == "Não finalizada"){
+    }else if($classeCompra->organizar_status_pagseguro($status) == "Não finalizada"){
 
         echo "text-black-50";
 
@@ -54,13 +58,13 @@ foreach($classeCompra->retorna_pedidos_por_cliente() as $arrPedido){
     ?>"><?php
     
     /* echo $classeCompra->retornar_status_compra_pagseguro($arrPedido["id"]); */
-    echo $classeCompra->organizar_status_pagseguro($classeCompra->retornar_status_compra_pagseguro($arrPedido["id"]));
+    echo $classeCompra->organizar_status_pagseguro($status);
     
     ?></td>
     <td class="align-middle"><?php echo $arrPedido["status_entrega"] ?></td>
     <td><?php
     
-    if($classeCompra->organizar_status_pagseguro($classeCompra->retornar_status_compra_pagseguro($arrPedido["id"])) == "Não finalizada"){
+    if($classeCompra->organizar_status_pagseguro($status) == "Não finalizada"){
 
     ?>
 
@@ -73,7 +77,7 @@ foreach($classeCompra->retorna_pedidos_por_cliente() as $arrPedido){
     ?></td>
     <td><?php
     
-    if($classeCompra->organizar_status_pagseguro($classeCompra->retornar_status_compra_pagseguro($arrPedido["id"])) == "Não finalizada"){
+    if($classeCompra->organizar_status_pagseguro($status) == "Não finalizada"){
 
     ?>
 
@@ -85,7 +89,7 @@ foreach($classeCompra->retorna_pedidos_por_cliente() as $arrPedido){
 
     ?>
 
-        <button type="button" class="btn btn-primary btn-sm">Detalhes</button>
+        <button onclick="window.location='detalhe-pedido?ref=<?php echo $referencia; ?>'" type="button" class="btn btn-primary btn-sm">Detalhes</button>
 
     <?php
 

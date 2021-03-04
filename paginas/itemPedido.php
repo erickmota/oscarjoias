@@ -2,6 +2,22 @@
 
 <head>
 
+    <?php
+
+    $explode = explode("/", $_GET["url"]);
+    
+    /* Iniciando classe */
+    include "classes/compra.class.php";
+    $classeCompra = new compra();
+
+    $idCliente = 1;
+
+    $classeCompra->idCliente = $idCliente;
+
+    $referencia = $_GET["ref"];
+    
+    ?>
+
     <title>Oscar Jóias e Acessórios</title>
 
     <meta charset="UTF-8">
@@ -40,23 +56,99 @@
 
             <div class="col-md-9 pt-3 pb-1">
 
-                <h1 class="fs-2 fw-light text-secondary" id="nome">Pedido 154888510415</h1>
+                <h1 class="fs-2 fw-light text-secondary" id="nome">Pedido <?php echo $_GET["ref"]; ?></h1>
 
             </div>
 
         </div>
 
-        <div class="row justify-content-center">
+        <?php
+        
+        foreach($classeCompra->retorna_dados_pedido_por_referencia($referencia) as $arrRef){
 
-            <div class="col-md-9 border-top">
+            if($arrRef["status_entrega"] == "Em processamento"){
+
+                $bordaVerde[0] = "";
+                $bordaLaranja[0] = "transicao";
+                $bordaVerde[1] = "";
+                $bordaLaranja[1] = "";
+                $bordaVerde[2] = "";
+                $bordaLaranja[2] = "";
+                $bordaVerde[3] = "";
+                $bordaLaranja[3] = "";
+
+            }else if($arrRef["status_entrega"] == "Preparando produto"){
+
+                $bordaVerde[0] = "ativo";
+                $bordaLaranja[0] = "";
+                $bordaVerde[1] = "";
+                $bordaLaranja[1] = "transicao";
+                $bordaVerde[2] = "";
+                $bordaLaranja[2] = "";
+                $bordaVerde[3] = "";
+                $bordaLaranja[3] = "";
+
+            }else if($arrRef["status_entrega"] == "Em transporte"){
+
+                $bordaVerde[0] = "ativo";
+                $bordaLaranja[0] = "";
+                $bordaVerde[1] = "ativo";
+                $bordaLaranja[1] = "";
+                $bordaVerde[2] = "";
+                $bordaLaranja[2] = "transicao";
+                $bordaVerde[3] = "";
+                $bordaLaranja[3] = "";
+
+            }else if($arrRef["status_entrega"] == "Entregue"){
+
+                $bordaVerde[0] = "ativo";
+                $bordaLaranja[0] = "";
+                $bordaVerde[1] = "ativo";
+                $bordaLaranja[1] = "";
+                $bordaVerde[2] = "ativo";
+                $bordaLaranja[2] = "";
+                $bordaVerde[3] = "ativo";
+                $bordaLaranja[3] = "";
+
+            }
+        
+        ?>
+
+        <div class="row justify-content-center pb-3">
+
+            <div class="col-md-9 border-top border-bottom pb-3">
 
                 <div class="row">
 
                     <div class="col-6 col-sm-3 mt-3">
 
-                        <div id="boxProcesso" class="text-center ativo">
+                        <div id="boxProcesso" class="text-center <?php echo $bordaVerde[0]; echo $bordaLaranja[0]; ?>">
 
-                            <span id="textoBoxProcesso">EM<br>PORCESSAMENTO<br><img src="img/ok.png" width="25px"></span>
+                            <small id="textoBoxProcesso">EM<br>PROCESSAMENTO
+
+                            <?php
+                            
+                            if($arrRef["status_entrega"] == "Em processamento"){
+                            
+                            ?>
+
+                            <br><img src="img/loading2.gif" width="100px">
+
+                            <?php
+                            
+                            }else{
+                            
+                            ?>
+                            
+                            <br><img src="img/ok.png" width="25px">
+
+                            <?php
+                            
+                            }
+                            
+                            ?>
+                        
+                            </small>
 
                         </div>
 
@@ -64,9 +156,33 @@
 
                     <div class="col-6 col-sm-3 mt-3">
 
-                        <div id="boxProcesso" class="text-center ativo">
+                        <div id="boxProcesso" class="text-center <?php echo $bordaVerde[1]; echo $bordaLaranja[1]; ?>">
 
-                            <span id="textoBoxProcesso">PREPARADNDO<br>PRODUTO<br><img src="img/loading2.gif" width="100px"></span>
+                            <small id="textoBoxProcesso">PREPARANDO<br>PRODUTOS
+
+                            <?php
+                            
+                            if($arrRef["status_entrega"] == "Preparando produto"){
+                            
+                            ?>
+
+                            <br><img src="img/loading2.gif" width="100px">
+
+                            <?php
+                            
+                            }else if($arrRef["status_entrega"] == "Em transporte" || $arrRef["status_entrega"] == "Entregue"){
+                            
+                            ?>
+                            
+                            <br><img src="img/ok.png" width="25px">
+
+                            <?php
+                            
+                            }
+                            
+                            ?>
+                        
+                            </small>
 
                         </div>
 
@@ -74,9 +190,33 @@
 
                     <div class="col-6 col-sm-3 mt-3">
 
-                        <div id="boxProcesso" class="text-center">
+                        <div id="boxProcesso" class="text-center <?php echo $bordaVerde[2]; echo $bordaLaranja[2]; ?>">
 
-                            <span id="textoBoxProcesso">EM<br>TRANSPORTE</span>
+                            <small id="textoBoxProcesso">EM<br>TRANSPORTE
+
+                            <?php
+                            
+                            if($arrRef["status_entrega"] == "Em transporte"){
+                            
+                            ?>
+
+                            <br><img src="img/loading2.gif" width="100px">
+
+                            <?php
+                            
+                            }else if($arrRef["status_entrega"] == "Entregue"){
+                            
+                            ?>
+                            
+                            <br><img src="img/ok.png" width="25px">
+
+                            <?php
+                            
+                            }
+                            
+                            ?>
+                        
+                            </small>
 
                         </div>
 
@@ -84,9 +224,25 @@
 
                     <div class="col-6 col-sm-3 mt-3">
 
-                        <div id="boxProcesso" class="text-center">
+                        <div id="boxProcesso" class="text-center <?php echo $bordaVerde[3]; echo $bordaLaranja[3]; ?>">
 
-                            <span id="textoBoxProcesso">ENTREGUE<br>AO<br>DESTINATÁRIO</span>
+                            <small id="textoBoxProcesso">ENTREGUE
+
+                            <?php
+                            
+                            if($arrRef["status_entrega"] == "Entregue"){
+                            
+                            ?>
+                            
+                            <br><img src="img/ok.png" width="25px">
+
+                            <?php
+                            
+                            }
+                            
+                            ?>
+                        
+                            </small>
 
                         </div>
 
@@ -97,6 +253,116 @@
             </div>
 
         </div>
+
+        <div class="row justify-content-center mb-3">
+
+            <div class="col-11 col-md-9 fw-light" id="fundoEndereco">
+
+                <h5 class="text-secondary mt-2">Entragar em:</h5>
+
+                <p class="text-secondary">
+
+                    <b>CEP:</b> <?php echo $arrRef["cep_entrega"]; ?> / <b>Cidade:</b> <?php echo $arrRef["cidade_entrega"]; ?> - <?php echo $arrRef["estado_entrega"]; ?> / <b>Bairro:</b> <?php echo $arrRef["bairro_entrega"]; ?> / <b>Rua:</b> <?php echo $arrRef["rua_entrega"]; ?> / <b>Nº:</b> <?php echo $arrRef["numero_entrega"]; ?>
+                    
+                    <?php
+                    
+                    if($arrRef["complemento_entrega"] != ""){
+                    
+                    ?>
+
+                    / <b>Complemento:</b> <?php echo $arrRef["complemento_entrega"]; ?>
+
+                    <?php
+                    
+                    }
+                    
+                    ?>
+
+                </p>
+
+            </div>
+
+        </div>
+
+        <div class="row justify-content-center">
+
+            <div class="col-md-9" id="fundoTituloProdutos">
+
+                <span class="fs-5 text-white">PRODUTOS</span>
+
+            </div>
+
+        </div>
+
+        <?php
+        
+        foreach($classeCompra->retorna_produtos_pedido($referencia) as $arrReferencia){
+        
+        ?>
+
+        <div class="row justify-content-center">
+
+            <div class="col-md-9 border-start border-end border-bottom">
+
+                <div class="row mb-3">
+
+                    <div class="col">
+
+                        <div class="row">
+
+                            <div id="espacoImgProduto" class="col-md-6 col-lg-2 mt-3">
+
+                                <img id="imgProduto" src="img/produtos/<?php echo $arrReferencia["foto"] ?>" width="100%">
+
+                            </div>
+
+                            <div class="col-md-6 col-lg-6 mt-3">
+
+                                <h2 class="fs-5 text-secondary"><?php echo $arrReferencia["nome"] ?></h2>
+
+                                <ul class="fw-light text-secondary">
+
+                                    <li class="<?php if($arrReferencia["anel_unico"] == "SE"){ echo "d-none";} ?>"><b><?php if($arrReferencia["anel_casal"] == "SE"){ echo "Tamanho aro"; }else{ echo "Aro feminino"; } ?>:</b> <?php echo $arrReferencia["anel_unico"]; ?></li>
+                                    <li class="<?php if($arrReferencia["gravacao_anel_unico"] == "SE"){ echo "d-none";} ?>"><b><?php if($arrReferencia["anel_casal"] == "SE"){ echo "Gravação"; }else{ echo "Gravação Feminina"; } ?>:</b> <?php if($arrReferencia["gravacao_anel_unico"] == ""){ echo "(SEM GRAVAÇÃO)"; }else{ echo $arrReferencia["gravacao_anel_unico"]; } ?></li>
+                                    <li class="<?php if($arrReferencia["anel_casal"] == "SE"){ echo "d-none";} ?>"><b>Aro Masculino:</b> <?php echo $arrReferencia["anel_casal"]; ?></li>
+                                    <li class="<?php if($arrReferencia["gravacao_anel_casal"] == "SE"){ echo "d-none";} ?>"><b>Gravação masculina:</b> <?php if($arrReferencia["gravacao_anel_casal"] == ""){ echo "(SEM GRAVAÇÃO)"; }else{ echo $arrReferencia["gravacao_anel_casal"]; } ?></li>
+                                    <li class="<?php if($arrReferencia["apenas_aro"] == "SE"){ echo "d-none";} ?>"><b>Aro:</b> <?php echo $arrReferencia["apenas_aro"]; ?></li>
+                                    <li class="<?php if($arrReferencia["apenas_gravacao"] == "SE"){ echo "d-none";} ?>"><b>Gravação:</b> <?php if($arrReferencia["apenas_gravacao"] == ""){ echo "(SEM GRAVAÇÃO)"; }else{ echo $arrReferencia["apenas_gravacao"]; } ?></li>
+                                    <li class="<?php if($arrReferencia["variacao_complementar"] == "SE"){ echo "d-none";} ?>"><b>Informação adicional:</b> <?php echo $arrReferencia["variacao_complementar"]; ?></li>
+
+                                </ul>
+
+                            </div>
+
+                            <div id="espacoImgProduto" class="col-md-6 col-lg-2 mt-3">
+
+                                <span class="text-secondary" id="qtd">Qtd <?php echo $arrReferencia["quantidade"] ?></span>
+    
+                            </div>
+
+                            <div id="espacoImgProduto" class="col-md-6 col-lg-2 fs-4 mt-3 text-secondary">
+
+                                R$<?php echo number_format($arrReferencia["preco"], 2, ",", "."); ?>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <?php
+
+        }
+
+        }
+        
+        ?>
 
         <?php
       

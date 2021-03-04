@@ -255,11 +255,15 @@ class compra{
 
         if($result < 1){
 
-            return 0;
+            $valores = ["valor" => 0, "status" => 0];
+
+            return $valores;
 
         }else{
 
-            return $xml -> transactions -> transaction -> status;
+            $valores = ["valor" => $xml -> transactions -> transaction -> grossAmount, "status" => $xml -> transactions -> transaction -> status];
+
+            return $valores;
 
         }
 
@@ -333,6 +337,37 @@ class compra{
             return true;
 
         }
+
+    }
+
+    public function retorna_produtos_pedido($referencia){
+
+        include 'conexao.class.php';
+
+        /* $sql = mysqli_query($conn, "SELECT * FROM item_pedido INNER JOIN pedido ON item_pedido.id_pedido=pedido.id WHERE pedido.id='$referencia' ORDER BY item_pedido.id ASC") or die("Erro ao retornar produtos do pedido"); */
+        $sql = mysqli_query($conn, "SELECT * FROM item_pedido INNER JOIN pedido ON item_pedido.id_pedido=pedido.id INNER JOIN produtos ON item_pedido.id_produtos=produtos.id WHERE pedido.id='$referencia' ORDER BY item_pedido.id ASC") or die("Erro ao retornar produtos do pedido");
+        while($linha = mysqli_fetch_assoc($sql)){
+
+            $array[] = $linha;
+            
+        }
+
+        return $array;
+
+    }
+
+    public function retorna_dados_pedido_por_referencia($referencia){
+
+        include 'conexao.class.php';
+
+        $sql = mysqli_query($conn, "SELECT * FROM pedido WHERE id='$referencia'") or die("Erro ao retornar dados por referencia");
+        while($linha = mysqli_fetch_assoc($sql)){
+
+            $array[] = $linha;
+            
+        }
+
+        return $array;
 
     }
 
