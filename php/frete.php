@@ -29,8 +29,6 @@ $classeCompra->calcular_frete($cep, "04510");
     
     ?>
 
-    <!-- Procurando... -->
-
     <img class='imgLoading' src='img/loading2.gif' width='200px'><br><p>Calculando</p>
 
     <?php

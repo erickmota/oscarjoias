@@ -67,6 +67,34 @@ if(!isset($classeClientes)){
         }
 
     }
+
+    function verificar_senha_igual(senha2){
+
+        var senha1 = document.getElementById("inputSenha").value;
+
+        if(senha1 != "" && senha2 != ""){
+
+            if(senha1 != senha2){
+
+                $("#campoDicaSenha").text("Campo senha e confirmar senha são diferentes!");
+                $("#campoDicaSenha").removeClass("text-white");
+                $("#campoDicaSenha").addClass("text-info");
+
+                $('#botaoCadastrar').attr('disabled', 'disabled');
+
+            }else{
+
+                $("#campoDicaSenha").text("Dica: use letras e números; não use uma senha muito óbvia");
+                $("#campoDicaSenha").addClass("text-white");
+                $("#campoDicaSenha").removeClass("text-info");
+
+                $('#botaoCadastrar').removeAttr('disabled', 'disabled');
+
+            }
+
+        }
+
+    }
     
     </script>
 
@@ -199,19 +227,77 @@ if(!isset($classeClientes)){
 
                                 <div class="col-10 col-sm-7">
 
-                                    <input type="text" class="form-control" placeholder="Seu nome">
+                                    <form method="POST" action="php/cadastrarCliente.php">
+
+                                    <input type="text" class="form-control" placeholder="Seu nome" name="nome" maxlength="27" required>
                                     <small class="text-white">Como gostaria de ser chamado(a)?</small>
 
                                 </div>
 
                             </div>
 
-                            <div class="row justify-content-center mt-3">
+                            <div class="row justify-content-center">
 
                                 <div class="col-10 col-sm-7">
 
-                                    <input type="email" class="form-control" placeholder="Seu-email">
-                                    <small class="text-white">Use o seu melhor e-mail</small>
+                                    <input type="email" class="form-control" placeholder="Seu-email" name="email" id="inputEmail" autocomplete="off" required>
+                                    <small class="text-white" id="espacoVerificarEmail">Use o seu melhor e-mail</small>
+
+                                    <script>
+
+                                    function verifica_existencia_email(email) {
+
+                                    $.ajax({
+
+                                        type: "POST",
+                                        dataType: "html",
+
+                                        url: "ajax/verificar_email.php",
+
+                                        /* beforeSend: function () {
+
+                                            $("#espacoPagseguro").html("<img class='imgLoading' src='img/loading.gif' width='50px'>");
+
+                                        }, */
+
+                                        data: {email: email},
+
+                                        success: function (msg) {
+
+                                            $("#espacoVerificarEmail").html(msg);
+
+                                            var espacoMsg = $("#espacoVerificarEmail").text();  
+
+                                            if(espacoMsg == "Esse e-mail já existe em nossa base de dados, tente clicar em esqueci a senha."){
+
+                                                $('#botaoCadastrar').attr('disabled', 'disabled');
+
+                                            }else{
+
+                                                $('#botaoCadastrar').removeAttr('disabled', 'disabled');
+
+                                            }
+
+                                            /* setTimeout(function() {
+                                                $("#areaIconeOk").html("");
+                                                $("#textoAnotacoesRapidas").removeClass("is-valid");;
+                                            }, 3000); */
+
+                                        }
+
+                                    });
+
+                                    }
+
+                                    $("#inputEmail").keyup(function(){
+
+                                    var inputEmail = document.getElementById("inputEmail").value;
+
+                                    verifica_existencia_email(inputEmail);
+
+                                    });
+
+                                    </script>
 
                                 </div>
 
@@ -221,7 +307,7 @@ if(!isset($classeClientes)){
 
                                 <div class="col-10 col-sm-7">
 
-                                    <input type="password" class="form-control" placeholder="Sua senha">
+                                    <input id="inputSenha" type="password" class="form-control" placeholder="Sua senha" name="senha" maxlength="20" required>
 
                                 </div>
 
@@ -231,8 +317,8 @@ if(!isset($classeClientes)){
 
                                 <div class="col-10 col-sm-7">
 
-                                    <input type="password" class="form-control" placeholder="Confirme a senha">
-                                    <small class="text-white">Dica: use letras e números; não use uma senha muito óbvia</small>
+                                    <input onkeyup="verificar_senha_igual(this.value)" type="password" class="form-control" placeholder="Confirme a senha" maxlength="20" name="confirmarSenha" required>
+                                    <small class="text-white" id="campoDicaSenha">Dica: use letras e números; não use uma senha muito óbvia</small>
 
                                 </div>
 
@@ -242,7 +328,9 @@ if(!isset($classeClientes)){
 
                                 <div class="col-10 col-sm-7">
 
-                                    <input type="submit" class="form-control" value="CADASTRAR" id="botaoEntrar">
+                                    <input type="submit" class="form-control" value="CADASTRAR" id="botaoCadastrar">
+
+                                    </form>
 
                                 </div>
 

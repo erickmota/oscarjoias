@@ -99,14 +99,14 @@
 
 }
 
-#botaoEntrar{
+#botaoEntrar, #botaoCadastrar{
 
     background-color: #efe07b;
     border: none;
 
 }
 
-#botaoEntrar:hover{
+#botaoEntrar:hover, #botaoCadastrar:hover{
 
     background-color: #e1d440;
 

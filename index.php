@@ -66,6 +66,14 @@ if(isset($_GET["url"])){
 
     include "paginas/itemPedido.php";
 
+  }else if($explode[0] == "aviso-confirmar"){
+
+    include "paginas/aviso_confirmar.php";
+
+  }else if($explode[0] == "confirmacao-email"){
+
+    include "paginas/confirmacao_cadastro.php";
+
   }
 
 }else{

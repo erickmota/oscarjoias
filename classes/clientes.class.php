@@ -90,6 +90,46 @@ class clientes{
         
     }
 
+    public function cadastrar($estadoUsuario){
+
+        include 'conexao.class.php';
+
+        $sql = mysqli_query($conn, "INSERT INTO cliente (nome, email, senha, estado) VALUES ('$this->nomeUsuario', '$this->emailUsuario', '$this->senhaUsuario', '$estadoUsuario')") or die("Erro ao cadastrar usuario");
+
+    }
+
+    public function verifica_existencia_email(){
+
+        include 'conexao.class.php';
+
+        $sql = mysqli_query($conn, "SELECT email FROM cliente WHERE email='$this->emailUsuario'") or die("Erro ao verificar e-mail cliente");
+        $qtd = mysqli_num_rows($sql);
+
+        return $qtd;
+
+    }
+
+    public function retorna_estado_cliente(){
+
+        include 'conexao.class.php';
+
+        $sql = mysqli_query($conn, "SELECT estado FROM cliente WHERE email='$this->emailUsuario'") or die("Erro ao retornar estado do cliente");
+        $linha = mysqli_fetch_assoc($sql);
+
+        $estado = $linha["estado"];
+
+        return $estado;
+
+    }
+
+    public function mudar_status_cliente(){
+
+        include 'conexao.class.php';
+
+        $sql = mysqli_query($conn, "UPDATE cliente SET estado='confirmado' WHERE email='$this->emailUsuario'") or die("Erro ao mudar estado do cliente");
+
+    }
+
 }
 
 ?>
