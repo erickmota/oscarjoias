@@ -8,7 +8,7 @@ $cep = str_replace(array(";", "'", "--", "/", "*", "xp_", "XP_", "SELECT" , "INS
 /* 04014 = sedex */
 /* 04510 = PAC */
 
-$classeCompra->calcular_frete($cep, "04510");
+/* $classeCompra->calcular_frete($cep, "04510"); */
 
 ?>
 
@@ -29,7 +29,9 @@ $classeCompra->calcular_frete($cep, "04510");
     
     ?>
 
-    <img class='imgLoading' src='img/loading2.gif' width='200px'><br><p>Calculando</p>
+    <!-- <img class='imgLoading' src='img/loading2.gif' width='200px'><br><p>Calculando</p> -->
+
+    <span>Calculando...</span>
 
     <?php
     

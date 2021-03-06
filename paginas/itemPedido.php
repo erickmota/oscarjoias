@@ -10,11 +10,24 @@
     include "classes/compra.class.php";
     $classeCompra = new compra();
 
-    $idCliente = 1;
+    include "classes/clientes.class.php";
+    $classeClientes = new clientes();
+
+    @$idCliente = str_replace(array(";", "'", "--", "/", "*", "xp_", "XP_", "SELECT" , "INSERT" , "UPDATE" , "DELETE" , "DROP", "select" , "insert" , "update" , "delete" , "drop"), "", base64_decode($_COOKIE["iu_oj"]));
 
     $classeCompra->idCliente = $idCliente;
 
-    $referencia = $_GET["ref"];
+    $referencia = str_replace(array(";", "'", "--", "/", "*", "xp_", "XP_", "SELECT" , "INSERT" , "UPDATE" , "DELETE" , "DROP", "select" , "insert" , "update" , "delete" , "drop"), "", $_GET["ref"]);
+
+    if($classeClientes->verificar_se_numero_pedido_pertence_ao_cliente($referencia, $idCliente) > 0){
+
+
+
+    }else{
+
+        die("<script>window.location='./'</script>");
+
+    }
     
     ?>
 

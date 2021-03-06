@@ -37,7 +37,7 @@ $classeCompra->calcular_frete($cep, "04510");
     
     ?>
 
-    <img class='imgLoading' src='img/loading2.gif' width='200px'><br><p>Calculando</p>
+    <span>Calculando...</span>
 
     <?php
     

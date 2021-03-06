@@ -4,8 +4,10 @@ include "../classes/compra.class.php";
 
 $classeCompra = new compra();
 
-$idCliente = $_GET["idU"];
-$referencia = $_GET["referencia"];
+/* $idCliente = $_GET["idU"];
+$referencia = $_GET["referencia"]; */
+$idCliente = str_replace(array(";", "'", "--", "/", "*", "xp_", "XP_", "SELECT" , "INSERT" , "UPDATE" , "DELETE" , "DROP", "select" , "insert" , "update" , "delete" , "drop"), "", $_GET["idU"]);
+$referencia = str_replace(array(";", "'", "--", "/", "*", "xp_", "XP_", "SELECT" , "INSERT" , "UPDATE" , "DELETE" , "DROP", "select" , "insert" , "update" , "delete" , "drop"), "", $_GET["referencia"]);
 
 if(isset($_GET["ind"])){
 
@@ -17,7 +19,14 @@ if(isset($_GET["ind"])){
 
 }
 
-if(isset($_COOKIE["iu_oj"])){
+if(!isset($classeClientes)){
+
+    include "../classes/clientes.class.php";
+    $classeClientes = new clientes();
+
+}
+
+if(isset($_COOKIE["iu_oj"]) && isset($_COOKIE["eu_oj"]) && isset($_COOKIE["su_oj"]) && $classeClientes->verificaExistenciaUsuario($_COOKIE["iu_oj"], $_COOKIE["eu_oj"], $_COOKIE["su_oj"]) == true){
 
     if($idCliente == base64_decode($_COOKIE["iu_oj"])){
 

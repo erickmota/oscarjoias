@@ -6,7 +6,7 @@ if(!isset($classeCompra)){
     include "classes/compra.class.php";
     $classeCompra = new compra();
 
-    $classeCompra->idCliente = 1; /* Precisa mudar depois */
+    /* $classeCompra->idCliente = 1; */
 
 }
 
@@ -113,7 +113,7 @@ if(!isset($classeClientes)){
 
     <div class="col-6 col-md-4 mt-2 mb-3">
 
-        <img src="img/logo.png" id="imgLogo" width="200px">
+        <img onclick="window.location=''" src="img/logo.png" id="imgLogo" width="200px">
 
     </div>
 
@@ -367,10 +367,13 @@ if(!isset($classeClientes)){
                 <?php
                 
                 }else if(isset($_COOKIE["iu_oj"]) && isset($_COOKIE["eu_oj"]) && isset($_COOKIE["su_oj"]) && $classeClientes->verificaExistenciaUsuario($_COOKIE["iu_oj"], $_COOKIE["eu_oj"], $_COOKIE["su_oj"]) == true){
+
+                    $classeClientes->emailUsuario = str_replace(array(";", "'", "--", "/", "*", "xp_", "XP_", "SELECT" , "INSERT" , "UPDATE" , "DELETE" , "DROP", "select" , "insert" , "update" , "delete" , "drop"), "", base64_decode($_COOKIE["eu_oj"]));
                 
+                    $classeCompra->idCliente = str_replace(array(";", "'", "--", "/", "*", "xp_", "XP_", "SELECT" , "INSERT" , "UPDATE" , "DELETE" , "DROP", "select" , "insert" , "update" , "delete" , "drop"), "", base64_decode($_COOKIE["iu_oj"]));
                 ?>
 
-                <img id="iconePessoa" src="img/iconePessoa3.png" width="26px" data-toggle="popover" data-bs-placement="bottom" title="Bem Vindo Erick Mota">
+                <img id="iconePessoa" src="img/iconePessoa3.png" width="26px" data-toggle="popover" data-bs-placement="bottom" title="Bem Vindo <?php echo $classeClientes->retorna_dado_individual_cliente("nome") ?>">
 
                 <div id="menu-pessoa" class="text-center bg-dark" style="display: none">
 
@@ -389,6 +392,10 @@ if(!isset($classeClientes)){
 
                 <?php
                 
+                }else if($classeClientes->verificaExistenciaUsuario($_COOKIE["iu_oj"], $_COOKIE["eu_oj"], $_COOKIE["su_oj"]) == false){
+
+                    echo "<script>window.location='php/deslogar.php'</script>";
+
                 }
                 
                 ?>
@@ -397,9 +404,31 @@ if(!isset($classeClientes)){
 
             <div class="col-2">
 
+                <?php
+                
+                if(isset($_COOKIE["iu_oj"]) && isset($_COOKIE["eu_oj"]) && isset($_COOKIE["su_oj"])){
+                
+                ?>
+
                 <img onclick="window.location='sacola'" id="iconeSacola" src="img/iconeBolsa3.png" width="21px">
 
                 <div onclick="window.location='sacola'" id="numeroItemSacola" class="text-center"><?php echo $classeCompra->retorna_qtd_itens_carrinho(); ?></div>
+
+                <?php
+                
+                }else{
+                
+                ?>
+
+                <img id="iconeSacola" src="img/iconeBolsa3.png" width="21px" data-bs-toggle="modal" data-bs-target="#exampleModal">
+
+                <div id="numeroItemSacola" class="text-center" data-bs-toggle="modal" data-bs-target="#exampleModal">0</div>
+
+                <?php
+                
+                }
+                
+                ?>
 
             </div>
 

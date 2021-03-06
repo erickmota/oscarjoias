@@ -30,7 +30,29 @@
     $quantidade = $_GET["quantidade"];
     $idProduto = $_GET["idProduto"];
 
-    $classeCompra->idCliente = 1; /* Precisa mudar depois */
+    /* Verificar existencia usuário */
+
+    if(!isset($classeClientes)){
+
+        include "../classes/clientes.class.php";
+        $classeClientes = new clientes();
+
+    }
+
+    if(isset($_COOKIE["iu_oj"]) && isset($_COOKIE["eu_oj"]) && isset($_COOKIE["su_oj"]) && $classeClientes->verificaExistenciaUsuario($_COOKIE["iu_oj"], $_COOKIE["eu_oj"], $_COOKIE["su_oj"]) == true){
+
+        
+
+    }else{
+
+        die("<script>window.location='../php/deslogar.php'</script>");
+
+    }
+
+    /* //Verificar existencia usuário */
+
+    /* $classeCompra->idCliente = 1; */
+    $classeCompra->idCliente = str_replace(array(";", "'", "--", "/", "*", "xp_", "XP_", "SELECT" , "INSERT" , "UPDATE" , "DELETE" , "DROP", "select" , "insert" , "update" , "delete" , "drop"), "", base64_decode($_COOKIE["iu_oj"]));
     $classeCompra->anelUnico = $anelUnico;
     $classeCompra->gravacaoAnelUnico = $gravacaoAnelUnico;
     $classeCompra->anelCasal = $anelCasal;

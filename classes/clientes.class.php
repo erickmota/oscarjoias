@@ -26,10 +26,8 @@ class clientes{
         if($qtd == 1){
     
             if($estado == "pendente"){
-                    
-                /* $novoEmail = base64_encode($this->email);
                 
-                die ("<script>window.location='../confirmacao/$novoEmail'</script>"); */
+                die ("<script>window.location='../aviso-confirmar?e={$this->emailUsuario}'</script>");
                 
             }else{
     
@@ -58,20 +56,18 @@ class clientes{
 
         include 'conexao.class.php';
     
-        $idDecode = base64_decode($idUsuario);
-        $emailDecode = base64_decode($emailUsuario);
+        /* $idDecode = base64_decode($idUsuario);
+        $emailDecode = base64_decode($emailUsuario); */
+        $idDecode = str_replace(array(";", "'", "--", "/", "*", "xp_", "XP_", "SELECT" , "INSERT" , "UPDATE" , "DELETE" , "DROP", "select" , "insert" , "update" , "delete" , "drop"), "", base64_decode($idUsuario));
+        $emailDecode = str_replace(array(";", "'", "--", "/", "*", "xp_", "XP_", "SELECT" , "INSERT" , "UPDATE" , "DELETE" , "DROP", "select" , "insert" , "update" , "delete" , "drop"), "", base64_decode($emailUsuario));
     
-        $sql = mysqli_query($conn, "SELECT * FROM cliente WHERE email='$emailDecode' and senha='$senhaUsuario' and id='$idDecode'");
+        $sql = mysqli_query($conn, "SELECT * FROM cliente WHERE email='$emailDecode' AND senha='$senhaUsuario' AND id='$idDecode'") or die("erro ao verificar existencia Usuario");;
         $qtd = mysqli_num_rows($sql);
     
         if($qtd < 1){
     
-            setcookie("iu_oj", null, -1, "/");
-            setcookie("eu_oj", null, -1, "/");
-            setcookie("su_oj", null, -1, "/");
-    
-            echo "<script>window.location=''</script>";
-    
+            /* die("<script>window.location='./php/deslogar.php'</script>"); */
+
             return false;
     
         }else{
@@ -122,11 +118,46 @@ class clientes{
 
     }
 
+    public function retorna_dado_individual_cliente($dado){
+
+        include 'conexao.class.php';
+
+        $sql = mysqli_query($conn, "SELECT $dado FROM cliente WHERE email='$this->emailUsuario'") or die("Erro ao retornar dado individual do cliente");
+        $linha = mysqli_fetch_assoc($sql);
+
+        $retorno = $linha[$dado];
+
+        return $retorno;
+
+    }
+
     public function mudar_status_cliente(){
 
         include 'conexao.class.php';
 
         $sql = mysqli_query($conn, "UPDATE cliente SET estado='confirmado' WHERE email='$this->emailUsuario'") or die("Erro ao mudar estado do cliente");
+
+    }
+
+    public function verifica_se_sacola_pertence_ao_cliente($idSacola, $idCliente){
+
+        include 'conexao.class.php';
+
+        $sql = mysqli_query($conn, "SELECT * FROM sacola WHERE id='$idSacola' AND id_cliente='$idCliente'") or die("Erro verifica_se_sacola_pertence_ao_cliente");
+        $qtd = mysqli_num_rows($sql);
+
+        return $qtd;
+
+    }
+
+    public function verificar_se_numero_pedido_pertence_ao_cliente($idPedido, $idCliente){
+
+        include 'conexao.class.php';
+
+        $sql = mysqli_query($conn, "SELECT * FROM pedido WHERE id='$idPedido' AND id_cliente='$idCliente'") or die("Erro verificar_se_numero_pedido_pertence_ao_cliente");
+        $qtd = mysqli_num_rows($sql);
+
+        return $qtd;
 
     }
 

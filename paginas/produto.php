@@ -1042,7 +1042,7 @@
                     <div class="col-10">
 
                         <label class="text-secondary" for="inputCalculaFrete">Digite seu CEP para calcular o frete</label><br>
-                        <input type="text" id="inputCalculaFrete" class="maskCep">
+                        <input type="text" id="inputCalculaFrete" autocomplete="off" class="maskCep">
 
                     </div>
 
@@ -1070,11 +1070,12 @@
 
                             url: "php/frete.php",
 
-                            /* beforeSend: function () {
+                            beforeSend: function () {
 
-                                $("#loading").html("<img class='imgLoading' src='img/loading.gif'>");
+                                $("#areaFrete").html("<img class='imgLoading' src='img/loading2.gif'>");
+                                /* $("#areaFrete").html("Carregando"); */
 
-                            }, */
+                            },
 
                             data: {cep: cep},
 

@@ -5,12 +5,33 @@
     <?php
 
     $explode = explode("/", $_GET["url"]);
+
+    /* Verificar existencia usuário */
+
+    if(!isset($classeClientes)){
+
+        include "classes/clientes.class.php";
+        $classeClientes = new clientes();
+
+    }
+
+    if(isset($_COOKIE["iu_oj"]) && isset($_COOKIE["eu_oj"]) && isset($_COOKIE["su_oj"]) && $classeClientes->verificaExistenciaUsuario($_COOKIE["iu_oj"], $_COOKIE["eu_oj"], $_COOKIE["su_oj"]) == true){
+
+
+
+    }else{
+
+        die("<script>window.location='php/deslogar.php'</script>");
+
+    }
+
+    /* //Verificar existencia usuário */
     
     /* Iniciando classe */
     include "classes/compra.class.php";
     $classeCompra = new compra();
 
-    $idCliente = 1;
+    $idCliente = $classeCompra->idCliente = str_replace(array(";", "'", "--", "/", "*", "xp_", "XP_", "SELECT" , "INSERT" , "UPDATE" , "DELETE" , "DROP", "select" , "insert" , "update" , "delete" , "drop"), "", base64_decode($_COOKIE["iu_oj"]));
 
     $classeCompra->idCliente = $idCliente;
     
@@ -407,11 +428,11 @@
         
                                     url: "php/freteSacola.php",
         
-                                    /* beforeSend: function () {
+                                    beforeSend: function () {
         
-                                        $("#loading").html("<img class='imgLoading' src='img/loading.gif'>");
+                                        $("#areaFrete").html("<img class='imgLoading' src='img/loading2.gif'>");
         
-                                    }, */
+                                    },
         
                                     data: {cep: cep},
         
@@ -490,14 +511,14 @@
 
                                             <div class="col-8">
 
-                                                <label for="basic-url" class="form-label">Cidade</label>
+                                                <label for="basic-url" class="form-label">Cidade <span class="text-danger">*</span></label>
                                                 <input id="inputCidade" type="text" class="form-control form-control-sm">
 
                                             </div>
 
                                             <div class="col-4">
 
-                                                <label for="basic-url" class="form-label">UF</label>
+                                                <label for="basic-url" class="form-label">UF <span class="text-danger">*</span></label>
                                                 <input id="inputEstado" type="text" class="form-control form-control-sm">
 
                                             </div>
@@ -550,7 +571,7 @@
 
                                 <script>
 
-                                $("#inputCalculaFrete").focusout(function(){
+                                $("#inputCalculaFrete").keyup(function(){
                                 //Início do Comando AJAX
                                     $.ajax({
                                         //O campo URL diz o caminho de onde virá os dados
@@ -676,7 +697,7 @@
                 
                                             beforeSend: function () {
                 
-                                                $("#espacoPagseguro").html("<img class='imgLoading' src='img/loading.gif' width='50px'>");
+                                                $("#espacoPagseguro").html("<img src='img/loading.gif' width='50px'>");
                 
                                             },
                 

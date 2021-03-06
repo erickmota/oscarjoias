@@ -5,7 +5,29 @@ $classeCompra = new compra();
 
 $frete = str_replace(",", ".", $_POST["frete"]);
 
-$classeCompra->idCliente = 1; /* Precisa mudar depois */
+/* $classeCompra->idCliente = 1; */
+$classeCompra->idCliente = str_replace(array(";", "'", "--", "/", "*", "xp_", "XP_", "SELECT" , "INSERT" , "UPDATE" , "DELETE" , "DROP", "select" , "insert" , "update" , "delete" , "drop"), "", base64_decode($_COOKIE["iu_oj"]));
+
+/* Verificar existencia usuário */
+
+if(!isset($classeClientes)){
+
+    include "../classes/clientes.class.php";
+    $classeClientes = new clientes();
+
+}
+
+if(isset($_COOKIE["iu_oj"]) && isset($_COOKIE["eu_oj"]) && isset($_COOKIE["su_oj"]) && $classeClientes->verificaExistenciaUsuario($_COOKIE["iu_oj"], $_COOKIE["eu_oj"], $_COOKIE["su_oj"]) == true){
+
+    
+
+}else{
+
+    die("<script>window.location='./php/deslogar.php'</script>");
+
+}
+
+/* //Verificar existencia usuário */
 
 foreach($classeCompra->retorna_dados_carrinho() as $arrCarrinho){
 

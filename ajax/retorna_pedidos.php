@@ -4,9 +4,11 @@
 include "../classes/compra.class.php";
 $classeCompra = new compra();
 
-$idCliente = 1;
+$idCliente = str_replace(array(";", "'", "--", "/", "*", "xp_", "XP_", "SELECT" , "INSERT" , "UPDATE" , "DELETE" , "DROP", "select" , "insert" , "update" , "delete" , "drop"), "", base64_decode($_COOKIE["iu_oj"]));
 
 $classeCompra->idCliente = $idCliente;
+
+if($classeCompra->retorna_pedidos_por_cliente()){
 
 ?>
 
@@ -105,3 +107,29 @@ foreach($classeCompra->retorna_pedidos_por_cliente() as $arrPedido){
 ?>
 
 </tbody>
+
+<?php
+
+}else{
+
+?>
+
+<div class="container-fluid">
+
+    <div class="row mt-4">
+
+        <div class="col text-secondary text-center">
+
+            <span>NENHUM REGISTRO ENCONTRADO</span>
+
+        </div>
+
+    </div>
+
+</div>
+
+<?php
+
+}
+
+?>

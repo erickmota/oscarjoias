@@ -5,12 +5,35 @@
     <?php
 
     $explode = explode("/", $_GET["url"]);
+
+    /* Verificar existencia usuário */
+
+    if(!isset($classeClientes)){
+
+        include "classes/clientes.class.php";
+        $classeClientes = new clientes();
+
+    }
+
+    if(isset($_COOKIE["iu_oj"]) && isset($_COOKIE["eu_oj"]) && isset($_COOKIE["su_oj"]) && $classeClientes->verificaExistenciaUsuario($_COOKIE["iu_oj"], $_COOKIE["eu_oj"], $_COOKIE["su_oj"]) == true){
+
+
+
+    }else{
+
+        die("<script>window.location='php/deslogar.php'</script>");
+
+    }
+
+    /* //Verificar existencia usuário */
     
     /* Iniciando classe */
     include "classes/compra.class.php";
     $classeCompra = new compra();
 
-    $classeCompra->idCliente = 1;
+    /* $idCliente = $classeCompra->idCliente = str_replace(array(";", "'", "--", "/", "*", "xp_", "XP_", "SELECT" , "INSERT" , "UPDATE" , "DELETE" , "DROP", "select" , "insert" , "update" , "delete" , "drop"), "", base64_decode($_COOKIE["iu_oj"]));
+
+    $classeCompra->idCliente = $idCliente; */
     
     ?>
 

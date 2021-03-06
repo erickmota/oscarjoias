@@ -26,12 +26,14 @@
         }else{
 
             header("Location: ./");
+            die();
 
         }
 
     }else{
 
         header("Location: ./");
+        die();
 
     }
     
