@@ -1124,10 +1124,26 @@
                         
                         $variacao_padrao = $arrProduto['variacao_padrao'];
                         $variacao_complementar = $arrProduto['id_variacao_produto'];
+
+                        if(isset($_COOKIE["iu_oj"]) && isset($_COOKIE["eu_oj"]) && isset($_COOKIE["su_oj"]) && $classeClientes->verificaExistenciaUsuario($_COOKIE["iu_oj"], $_COOKIE["eu_oj"], $_COOKIE["su_oj"]) == true){
                         
                         ?>
 
                         <button onclick="cadastrarProdutoCarrinho('<?php echo $variacao_padrao ?>', <?php echo $variacao_complementar ?>)" id="botaoAddCarrinho">ADICIONAR À SACOLA</button>
+
+                        <?php
+                        
+                        }else{
+                        
+                        ?>
+
+                        <button data-bs-toggle="modal" data-bs-target="#exampleModal" id="botaoAddCarrinho">ADICIONAR À SACOLA</button>
+
+                        <?php
+                            
+                        }
+                        
+                        ?>
 
                     </div>
 

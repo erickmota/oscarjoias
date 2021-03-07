@@ -5,6 +5,13 @@
 
 }
 
+#imgLogoMini{
+
+    margin-top: 20px;
+    cursor: pointer;
+
+}
+
 #iconeSacola{
 
     margin-top: 50px;
@@ -15,6 +22,13 @@
 #iconePessoa{
 
     margin-top: 46px;
+    cursor: pointer;
+
+}
+
+#iconeMenu{
+
+    margin-top: 44px;
     cursor: pointer;
 
 }
@@ -39,6 +53,13 @@
 
     box-shadow: 0 0 0 0;
     outline: 0;
+
+}
+
+#listraAbaixoTopo{
+
+    height: 5px;
+    background-color: #efe07b;
 
 }
 
@@ -146,5 +167,69 @@
 #listaPessoa{
 
     list-style: none;
+
+}
+
+#areaMenuMobile{
+
+    width: 0px;
+    height: 100%;
+    position: fixed;
+    top: 0px;
+    left: -50px;
+    background-color: #201e1f;
+    z-index: 99;
+    overflow-x: auto;
+
+}
+
+#fundoAreaMenuMobile{
+
+    display: none;
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    background-color: black;
+    opacity: 0.0;
+    z-index: 98;
+    top: 0px;
+    left: 0px;
+
+}
+
+#areaMenuMobile ul{
+
+    font-size: 20px;
+    color: #efe07b;
+
+}
+
+#listaCategoria li a{
+
+    color: #efe07b;
+
+}
+
+#ulMenuPricipal a{
+
+    color: white;
+
+}
+
+#areaMenuMobile ul li{
+
+    padding: 15px 0px;
+
+}
+
+#areaMenuMobile ul li span{
+
+    color: white;
+
+}
+
+#bordaCampoBuscaMobile{
+
+    border-bottom: 1px solid #efe07b;
 
 }

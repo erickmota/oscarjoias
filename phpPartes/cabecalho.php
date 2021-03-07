@@ -29,6 +29,7 @@ if(!isset($classeClientes)){
 ?>
 
 <link rel="stylesheet" href="cssPartes/cabecalho.css">
+<!-- <script src="https://code.jquery.com/jquery-3.5.0.js"></script> -->
 
 <script>
 
@@ -113,7 +114,9 @@ if(!isset($classeClientes)){
 
     <div class="col-6 col-md-4 mt-2 mb-3">
 
-        <img onclick="window.location=''" src="img/logo.png" id="imgLogo" width="200px">
+        <img onclick="window.location=''" class="d-none d-sm-block" src="img/logo.png" id="imgLogo" width="200px">
+        <!-- <img onclick="window.location=''" class="d-block d-sm-none" src="img/logoMini.png" id="imgLogoMini" width="55px"> -->
+        <img onclick="window.location=''" class="d-block d-sm-none mb-3" src="img/logo.png" id="imgLogoMini" width="140px">
 
     </div>
 
@@ -121,7 +124,7 @@ if(!isset($classeClientes)){
 
         <div class="row mt-2">
 
-            <div class="col-2">
+            <div class="col-4 col-sm-2">
 
                 <?php
                 
@@ -402,7 +405,7 @@ if(!isset($classeClientes)){
 
             </div>
 
-            <div class="col-2">
+            <div class="col-4 col-sm-2">
 
                 <?php
                 
@@ -432,11 +435,13 @@ if(!isset($classeClientes)){
 
             </div>
 
-            <div class="col-8">
+            <div class="col-4 col-sm-8">
 
-                <form action="loja" method="GET">
+                <img src="img/iconeMenu2.png" width="38px" class="d-block d-sm-none" id="iconeMenu">
 
-                    <input type="text" id="campoBusca" placeholder="Buscar Produto" name="busca">
+                <form action="loja" class="d-none d-sm-block" method="GET">
+
+                    <input class="d-none d-sm-block" type="text" id="campoBusca" placeholder="Buscar Produto" name="busca">
 
                     <input type="hidden" name="pg" value="1">
                     <input type="hidden" name="ordenacao" value="adicionado">
@@ -446,6 +451,105 @@ if(!isset($classeClientes)){
 
             </div>
 
+            <div id="areaMenuMobile">
+
+                <form id="bordaCampoBuscaMobile" class="pb-4" action="loja" class="" method="GET">
+
+                    <input type="text" id="campoBusca" placeholder="Buscar Produto" name="busca">
+
+                    <input type="hidden" name="pg" value="1">
+                    <input type="hidden" name="ordenacao" value="adicionado">
+                    <input type="hidden" name="tipoord" value="cre">
+
+                </form>
+
+                <nav>
+
+                    <ul class="mt-3" id="ulMenuPricipal" style="display: none;">
+
+                        <li><span><a class="text-decoration-none" href="">Início</a></span></li>
+                        <li><span><a class="text-decoration-none" href="loja?pg=1">Loja</a></span></li>
+                        <li id="itemCategoria"><span>Categorias</span> <img src="img/setaBaixo.png"></li>
+
+                            <ul id="listaCategoria" style="display: none;">
+
+                            <?php
+                        
+                            foreach($classeProdutos->retorna_categorias() as $arrCategoria){
+
+                            $catComTraco = str_replace(" ", "-", $arrCategoria["nome"]);
+                            $transformarEmMinuscula = mb_strtolower($catComTraco, "UTF-8");
+                            $trataInjection = str_replace(array(";", "'", "--", "/", "*", "xp_", "XP_", "SELECT" , "INSERT" , "UPDATE" , "DELETE" , "DROP", "select" , "insert" , "update" , "delete" , "drop"), "", $transformarEmMinuscula);
+                            $str1 = preg_replace('/[áàãâä]/ui', 'a', $trataInjection);
+                            $str2 = preg_replace('/[éèêë]/ui', 'e', $str1);
+                            $str3 = preg_replace('/[íìîï]/ui', 'i', $str2);
+                            $str4 = preg_replace('/[óòõôö]/ui', 'o', $str3);
+                            $str5 = preg_replace('/[úùûü]/ui', 'u', $str4);
+                            $str6 = preg_replace('/[ç]/ui', 'c', $str5);
+                            
+                            ?>
+
+                                <li><a class="text-decoration-none" href="loja?pg=1&cat=<?php echo $str6; ?>&ordenacao=adicionado&tipoord=cre"><?php echo $arrCategoria["nome"]; ?></a></li>
+
+                            <?php
+                    
+                            }
+                            
+                            ?>
+
+                            </ul>
+
+                        <li><span>Quem Somos</span></li>
+                        <li><span>Contato</span></li>
+
+                    </ul>
+
+                </nav>
+
+                <script>
+
+                $( "#itemCategoria" ).click(function() {
+                    $( "#listaCategoria" ).toggle("fast");
+                });
+
+                </script>
+
+            </div>
+
+            <div id="fundoAreaMenuMobile">
+
+
+
+            </div>
+
+            <script>
+
+            $( "#iconeMenu" ).click(function() {
+                $("#fundoAreaMenuMobile").css("display", "block");
+                $("#fundoAreaMenuMobile").animate({
+                    opacity: "0.2"
+                }, 100 );
+                $( "#areaMenuMobile" ).animate({
+                    width: "256px",
+                    left: "0px"
+                }, 100 );
+                $( "#ulMenuPricipal" ).fadeIn();
+            });
+
+            $( "#fundoAreaMenuMobile" ).click(function() {
+                $("#fundoAreaMenuMobile").animate({
+                    opacity: "0.0"
+                }, 100 );
+                $("#fundoAreaMenuMobile").css("display", "none");
+                $( "#areaMenuMobile" ).animate({
+                    width: "0px",
+                    left: "-50px"
+                }, 100 );
+                $( "#ulMenuPricipal" ).fadeOut("fast");
+            });
+
+            </script>
+
         </div>
 
     </div>
@@ -453,8 +557,10 @@ if(!isset($classeClientes)){
 </div>
 <!-- //Topo site: Logo, Busca etc -->
 
+<div class="row d-block d-sm-none" id="listraAbaixoTopo"></div>
+
 <!-- Menu principal -->
-<div class="row justify-content-center" id="fundoPretoMenu">
+<div class="row justify-content-center d-none d-sm-flex" id="fundoPretoMenu">
 
     <div class="col-md-9 text-center">
 

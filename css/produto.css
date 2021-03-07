@@ -26,7 +26,7 @@
     background-color: white;
     width: 31px;
     height: 31px;
-    border-radius: 8px;
+    border-radius: 50%;
     display: inline-block;
     margin: 0px 0px;
     border: 1px solid #e1d440;
@@ -55,7 +55,7 @@
 #numeroAro{
 
     position: relative;
-    top: 3px;
+    top: 2px;
 
 }
 

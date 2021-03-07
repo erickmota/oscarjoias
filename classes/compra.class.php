@@ -145,7 +145,7 @@ class compra{
         /* $data["token"] = "f518ba01-dc67-49ee-815d-ec60447e713b6d8e65be47c981d54911676cca79ea4abef3-5d78-4585-913f-bea31b930745"; */
         $data["email"] = "erick_fcsaopaulo@hotmail.com";
         $data["currency"] = "BRL";
-        /* $data["shippingAddressRequired"] = "true"; */
+        $data["shippingAddressRequired"] = "false";
         /* $data["shippingAddressStreet"] = "Rua Castilho Aribert Fazzio";
         $data["shippingAddressNumber"] = "355";
         $data["shippingAddressCity"] = "Sorocaba";

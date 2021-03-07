@@ -594,7 +594,7 @@
                                             $("#inputEstado").val(resposta.uf);
                                             //Vamos incluir para que o Número seja focado automaticamente
                                             //melhorando a experiência do usuário
-                                            $("#inputNumeroCasa").focus();
+                                            /* $("#inputNumeroCasa").focus(); */
                                         }
                                     });
 
@@ -684,7 +684,7 @@
 
                                         $(function(){
 
-                                            $("#inputNumero").focus();
+                                            /* $("#inputNumero").focus(); */
 
                                         })
                 
