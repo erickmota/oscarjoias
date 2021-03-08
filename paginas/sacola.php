@@ -245,6 +245,8 @@
         }else{
         
         foreach($classeCompra->retorna_dados_carrinho() as $arrCompra){
+
+            $classeCompra->comparar_qtd_carrinho_qtd_produto($arrCompra["id_produto"]);
         
         ?>
 
@@ -290,6 +292,34 @@
 
                                 </div>
 
+                                <?php
+                        
+                                if($arrCompra["qtd_estoque"] < 1 || $arrCompra["estado"] != "publicado-disponivel"){
+
+                                    $prodIndisponivel = "sim";
+                                
+                                ?>
+
+                                <span class="text-black-50">Produto indisponível</span>
+
+                                <script>
+
+                                    $(document).ready(function(){
+
+                                        $("#botaoFinalizar").text("Remova o item indisponível antes de prosseguir");
+                                        $("#botaoFinalizar").addClass("bg-secondary");
+                                        $("#botaoFinalizar").attr("disabled", "disabled");
+
+                                    })
+
+                                </script>
+
+                                <?php
+                        
+                                }else{
+                                
+                                ?>
+
                                 <select class="mt-2 text-secondary" id="selectQtd" onchange="mudar_qtd_produto(this.value, <?php echo $arrCompra['id_sacola']; ?>)">
 
                                     <?php
@@ -311,6 +341,12 @@
                                     ?>
         
                                 </select>
+
+                                <?php
+                        
+                                }
+                                
+                                ?>
     
                             </div>
 
@@ -798,7 +834,7 @@
 
                                                 /* console.log("Compra feita com sucesso, código de transação: " + transactionCode); */
 
-                                                window.location="pedidos";
+                                                window.location="pedidos?ls=s";
 
                                             },
                                             abort : function() {

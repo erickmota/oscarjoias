@@ -13,7 +13,7 @@ class clientes{
     
         $senhaEncode = base64_encode($this->senhaUsuario);
     
-        $sql = mysqli_query($conn, "SELECT * FROM cliente WHERE email='$this->emailUsuario' and senha='$this->senhaUsuario'"); /* Precisa mudar depois */
+        $sql = mysqli_query($conn, "SELECT * FROM cliente WHERE email='$this->emailUsuario' and senha='$senhaEncode'"); /* Precisa mudar depois */
         $qtd = mysqli_num_rows($sql);
         while($linha = mysqli_fetch_array($sql)) {
         
@@ -36,7 +36,7 @@ class clientes{
     
                 setcookie("iu_oj", $idEncode, time() + 7 * (24 * 3600), "/");
                 setcookie("eu_oj", $emailEncode, time() + 7 * (24 * 3600), "/");
-                setcookie("su_oj", $this->senhaUsuario, time() + 7 * (24 * 3600), "/");
+                setcookie("su_oj", $senhaEncode, time() + 7 * (24 * 3600), "/");
     
             }
     
@@ -90,7 +90,9 @@ class clientes{
 
         include 'conexao.class.php';
 
-        $sql = mysqli_query($conn, "INSERT INTO cliente (nome, email, senha, estado) VALUES ('$this->nomeUsuario', '$this->emailUsuario', '$this->senhaUsuario', '$estadoUsuario')") or die("Erro ao cadastrar usuario");
+        $senhaEncode = base64_encode($this->senhaUsuario);
+
+        $sql = mysqli_query($conn, "INSERT INTO cliente (nome, email, senha, estado) VALUES ('$this->nomeUsuario', '$this->emailUsuario', '$senhaEncode', '$estadoUsuario')") or die("Erro ao cadastrar usuario");
 
     }
 

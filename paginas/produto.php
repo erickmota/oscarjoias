@@ -625,6 +625,20 @@
 
                     <div class="col-4">
 
+                        <?php
+                        
+                        if($arrProduto["qtd_estoque"] < 1 || $arrProduto["estado"] != "publicado-disponivel"){
+                        
+                        ?>
+
+                        <span class="text-black-50">Produto indisponível</span>
+
+                        <?php
+                        
+                        }else{
+                        
+                        ?>
+
                         <select class="mt-2 text-secondary" id="selectQtd">
 
                             <?php
@@ -646,6 +660,12 @@
                             ?>
 
                         </select>
+
+                        <?php
+                        
+                        }
+                        
+                        ?>
 
                     </div>
 
@@ -1118,7 +1138,23 @@
                 <!-- Botao Add a sacola -->
                 <div class="row justify-content-center mt-4 pt-4 pb-4">
 
-                    <div class="col-10">
+                    <div class="col-10 text-center">
+
+                        <?php
+                        
+                        if($arrProduto["qtd_estoque"] < 1 || $arrProduto["estado"] != "publicado-disponivel"){
+                        
+                        ?>
+
+                        <span class="text-black-50">Produto indisponível</span>
+
+                        <button class="mt-2" data-bs-toggle="modal" data-bs-target="#exampleModal" id="botaoVerMaisOpcoes">VER OPÇÕES SIMILARES</button>
+
+                        <?php
+                        
+                        }else{
+                        
+                        ?>
 
                         <?php
                         
@@ -1138,6 +1174,12 @@
                         ?>
 
                         <button data-bs-toggle="modal" data-bs-target="#exampleModal" id="botaoAddCarrinho">ADICIONAR À SACOLA</button>
+
+                        <?php
+                            
+                        }
+                        
+                        ?>
 
                         <?php
                             

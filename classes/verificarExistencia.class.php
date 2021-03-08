@@ -12,7 +12,7 @@ class verificarExistencia{
 
         $nomeSemTraco = str_replace("-", " ", $this->comparar);
 
-        $sql = mysqli_query($conn, "SELECT * FROM $this->tabela WHERE $this->comparador='$nomeSemTraco' collate utf8_general_ci") or die("Erro Verifica produto");
+        $sql = mysqli_query($conn, "SELECT * FROM $this->tabela WHERE $this->comparador='$nomeSemTraco' collate utf8_general_ci AND estado!='rascunho'") or die("Erro Verifica produto");
         $qtdSql = mysqli_num_rows($sql);
 
         if($qtdSql < 1){

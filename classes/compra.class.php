@@ -25,7 +25,7 @@ class compra{
 
         include 'conexao.class.php';
 
-        $sql = mysqli_query($conn, "SELECT produtos.foto AS foto, produtos.nome AS nome_produto, sacola.anel_unico AS anel_unico, sacola.gravacao_anel_unico AS gravacao_anel_unico, sacola.anel_casal AS anel_casal, sacola.gravacao_anel_casal AS gravacao_anel_casal, sacola.apenas_aro AS apenas_aro, sacola.apenas_gravacao AS apenas_gravacao, sacola.variacao_complementar AS variacao_complementar, produtos.qtd_estoque AS qtd_estoque, produtos.preco AS preco, sacola.quantidade AS qtd_pedido, sacola.id AS id_sacola, sacola.id_produto AS id_produto FROM sacola INNER JOIN produtos ON sacola.id_produto=produtos.id WHERE sacola.id_cliente=$this->idCliente ORDER BY sacola.id ASC") or die("Erro ao retornar dados do carrinho");
+        $sql = mysqli_query($conn, "SELECT produtos.foto AS foto, produtos.nome AS nome_produto, sacola.anel_unico AS anel_unico, sacola.gravacao_anel_unico AS gravacao_anel_unico, sacola.anel_casal AS anel_casal, sacola.gravacao_anel_casal AS gravacao_anel_casal, sacola.apenas_aro AS apenas_aro, sacola.apenas_gravacao AS apenas_gravacao, sacola.variacao_complementar AS variacao_complementar, produtos.qtd_estoque AS qtd_estoque, produtos.preco AS preco, sacola.quantidade AS qtd_pedido, sacola.id AS id_sacola, sacola.id_produto AS id_produto, produtos.estado AS estado FROM sacola INNER JOIN produtos ON sacola.id_produto=produtos.id WHERE sacola.id_cliente=$this->idCliente ORDER BY sacola.id ASC") or die("Erro ao retornar dados do carrinho");
         $qtd_sql = mysqli_num_rows($sql);
         while($linha = mysqli_fetch_array($sql)){
 
@@ -207,6 +207,28 @@ class compra{
 
         $sql2 = mysqli_query($conn, "INSERT INTO item_pedido (id_produtos, id_pedido, anel_unico, gravacao_anel_unico, anel_casal, gravacao_anel_casal, apenas_aro, apenas_gravacao, variacao_complementar, quantidade) SELECT id_produto, '$idReferencia', anel_unico, gravacao_anel_unico, anel_casal, gravacao_anel_casal, apenas_aro, apenas_gravacao, variacao_complementar, quantidade FROM sacola WHERE id_cliente=$this->idCliente") or die("Erro ao cadastrar novos itens a compra");
 
+        /* -1 produto no estoque */
+
+        $sql3 = mysqli_query($conn, "SELECT id FROM pedido WHERE id_cliente=$this->idCliente ORDER BY data_hora DESC LIMIT 1") or die("Erro ao remover produto do estoque");
+        $linha3 = mysqli_fetch_assoc($sql3);
+
+        $id_pedido = $linha3["id"];
+
+        $sql4 = mysqli_query($conn, "SELECT * FROM item_pedido WHERE id_pedido=$id_pedido") or die("Erro ao obter os produtos do pedido");
+        while($linha4 = mysqli_fetch_assoc($sql4)){
+
+            $id_produto = $linha4["id_produtos"];
+            $qtd_produto = $linha4["quantidade"];
+
+            $sql5 = mysqli_query($conn, "SELECT qtd_estoque FROM produtos WHERE id=$id_produto") or die("Erro ao buscar produto");
+            $linha5 = mysqli_fetch_assoc($sql5);
+
+            $novaQtd = $linha5["qtd_estoque"] - $qtd_produto;
+
+            $sql6 = mysqli_query($conn, "UPDATE produtos SET qtd_estoque=$novaQtd WHERE id=$id_produto") or die("erro nova quantidade");
+
+        }
+
     }
 
     public function retorna_pedidos_por_cliente(){
@@ -318,6 +340,23 @@ class compra{
 
         include 'conexao.class.php';
 
+        /* +1 nos produtos */
+
+        $sql4 = mysqli_query($conn, "SELECT * FROM item_pedido WHERE id_pedido=$referencia") or die("Erro ao obter os produtos do pedido");
+        while($linha4 = mysqli_fetch_assoc($sql4)){
+
+            $id_produto = $linha4["id_produtos"];
+            $qtd_produto = $linha4["quantidade"];
+
+            $sql5 = mysqli_query($conn, "SELECT qtd_estoque FROM produtos WHERE id=$id_produto") or die("Erro ao buscar produto");
+            $linha5 = mysqli_fetch_assoc($sql5);
+
+            $novaQtd = $linha5["qtd_estoque"] + $qtd_produto;
+
+            $sql6 = mysqli_query($conn, "UPDATE produtos SET qtd_estoque=$novaQtd WHERE id=$id_produto") or die("erro nova quantidade");
+
+        }
+
         $sql = mysqli_query($conn, "DELETE FROM pedido WHERE id='$referencia'") or die("Erro ao excluir pedido");
 
         $sql2 = mysqli_query($conn, "DELETE FROM item_pedido WHERE id_pedido='$referencia'") or die("Erro ao excluir item pedido");
@@ -371,6 +410,37 @@ class compra{
         }
 
         return $array;
+
+    }
+
+    public function comparar_qtd_carrinho_qtd_produto($idProduto){
+
+        include 'conexao.class.php';
+
+        /* $sql = mysqli_query($conn, "SELECT qtd_estoque FROM produtos WHERE id=$idProduto") or die("Erro comparar_qtd_carrinho_qtd_produto");
+        $linha = mysqli_fetch_assoc($sql);
+
+        $qtd_produto = $linha["qtd_estoque"];
+
+        $sql2 = mysqli_query($conn, "SELECT quantidade FROM sacola WHERE id_produto=$idProduto AND id_cliente=$this->idCliente") or die("Erro retornar qtd produto carrinho");
+        $linha2 = mysqli_fetch_assoc($sql2);
+
+        $qtd_produto_carrinho = $linha2["quantidade"]; */
+
+        $sql = mysqli_query($conn, "SELECT produtos.qtd_estoque AS qtd_estoque, sacola.quantidade AS quantidade, sacola.id AS id_sacola FROM sacola INNER JOIN produtos ON sacola.id_produto=produtos.id WHERE sacola.id_cliente=$this->idCliente AND sacola.id_produto=$idProduto") or die("Erro comparar_qtd_carrinho_qtd_produto");
+        $linha = mysqli_fetch_assoc($sql);
+
+        $qtd_estoque = $linha["qtd_estoque"];
+        $qtd_carrinho = $linha["quantidade"];
+        $id_sacola = $linha["id_sacola"];
+
+        if($qtd_carrinho > $qtd_estoque && $qtd_estoque > 0){
+
+            $sql2 = mysqli_query($conn, "UPDATE sacola SET quantidade=$qtd_estoque WHERE id=$id_sacola") or die("Erro ao atualizar qtd produto carrinho");
+
+            echo "<script>window.alert('Um ou mais itens na sua sacola tiveram a quantidade diminuída devido a alterações em nosso estoque, por favor, confira antes de finalizar o pedido!'); window.location='sacola'</script>";
+
+        }
 
     }
 

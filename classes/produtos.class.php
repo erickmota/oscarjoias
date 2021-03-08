@@ -221,29 +221,29 @@ class produtos{
                 /* $sql = mysqli_query($conn, "SELECT * FROM produtos WHERE tipo='$tipo' ORDER BY $ordenacao $tipoOrdenacao LIMIT $somaPg, 3") or die("Erro retornar produtos para a loja tipo");
                 $sql2 = mysqli_query($conn, "SELECT * FROM produtos WHERE tipo='$tipo' ORDER BY $ordenacao $tipoOrdenacao") or die("Erro retornar produtos para a loja tipo"); */
     
-                $sql = mysqli_query($conn, "SELECT * FROM categoria_produto INNER JOIN produtos ON categoria_produto.id_produtos=produtos.id WHERE categoria_produto.id_categoria=$id_categoria AND produtos.tipo='$tipo' ORDER BY produtos.$ordenacao $tipoOrdenacao LIMIT $somaPg, 12") or die("Erro retornar produtos para a loja cat");
-                $sql2 = mysqli_query($conn, "SELECT * FROM categoria_produto INNER JOIN produtos ON categoria_produto.id_produtos=produtos.id WHERE categoria_produto.id_categoria=$id_categoria AND produtos.tipo='$tipo' ORDER BY produtos.$ordenacao $tipoOrdenacao") or die("Erro ao retornar dados categoria cat2");
+                $sql = mysqli_query($conn, "SELECT * FROM categoria_produto INNER JOIN produtos ON categoria_produto.id_produtos=produtos.id WHERE categoria_produto.id_categoria=$id_categoria AND produtos.tipo='$tipo' AND produtos.estado='publicado-disponivel' AND produtos.qtd_estoque > 0 ORDER BY produtos.$ordenacao $tipoOrdenacao LIMIT $somaPg, 12") or die("Erro retornar produtos para a loja cat");
+                $sql2 = mysqli_query($conn, "SELECT * FROM categoria_produto INNER JOIN produtos ON categoria_produto.id_produtos=produtos.id WHERE categoria_produto.id_categoria=$id_categoria AND produtos.tipo='$tipo' AND produtos.estado='publicado-disponivel' AND produtos.qtd_estoque > 0 ORDER BY produtos.$ordenacao $tipoOrdenacao") or die("Erro ao retornar dados categoria cat2");
 
             }else if($vMinimo != "SE" && $vMaximo != "SE" && $tipo == "SE"){
     
                 /* $sql = mysqli_query($conn, "SELECT * FROM produtos WHERE preco BETWEEN $vMinimo AND $vMaximo ORDER BY $ordenacao $tipoOrdenacao LIMIT $somaPg, 3") or die("Erro retornar produtos para a loja VM");
                 $sql2 = mysqli_query($conn, "SELECT * FROM produtos WHERE preco BETWEEN $vMinimo AND $vMaximo ORDER BY $ordenacao $tipoOrdenacao") or die("Erro retornar produtos para a loja VM"); */
     
-                $sql = mysqli_query($conn, "SELECT * FROM categoria_produto INNER JOIN produtos ON categoria_produto.id_produtos=produtos.id WHERE categoria_produto.id_categoria=$id_categoria AND produtos.preco BETWEEN $vMinimo AND $vMaximo ORDER BY produtos.$ordenacao $tipoOrdenacao LIMIT $somaPg, 12") or die("Erro retornar produtos para a loja cat");
-                $sql2 = mysqli_query($conn, "SELECT * FROM categoria_produto INNER JOIN produtos ON categoria_produto.id_produtos=produtos.id WHERE categoria_produto.id_categoria=$id_categoria AND produtos.preco BETWEEN $vMinimo AND $vMaximo ORDER BY produtos.$ordenacao $tipoOrdenacao") or die("Erro ao retornar dados categoria cat2");
+                $sql = mysqli_query($conn, "SELECT * FROM categoria_produto INNER JOIN produtos ON categoria_produto.id_produtos=produtos.id WHERE categoria_produto.id_categoria=$id_categoria AND produtos.preco BETWEEN $vMinimo AND $vMaximo AND produtos.estado='publicado-disponivel' AND produtos.qtd_estoque > 0 ORDER BY produtos.$ordenacao $tipoOrdenacao LIMIT $somaPg, 12") or die("Erro retornar produtos para a loja cat");
+                $sql2 = mysqli_query($conn, "SELECT * FROM categoria_produto INNER JOIN produtos ON categoria_produto.id_produtos=produtos.id WHERE categoria_produto.id_categoria=$id_categoria AND produtos.preco BETWEEN $vMinimo AND $vMaximo AND produtos.estado='publicado-disponivel' AND produtos.qtd_estoque > 0 ORDER BY produtos.$ordenacao $tipoOrdenacao") or die("Erro ao retornar dados categoria cat2");
 
             }else if($vMinimo != "SE" && $vMaximo != "SE" && $tipo != "SE"){
     
                 /* $sql = mysqli_query($conn, "SELECT * FROM produtos WHERE tipo='$tipo' AND preco BETWEEN $vMinimo AND $vMaximo ORDER BY $ordenacao $tipoOrdenacao LIMIT $somaPg, 3") or die("Erro retornar produtos para a loja VM + Tipo");
                 $sql2 = mysqli_query($conn, "SELECT * FROM produtos WHERE tipo='$tipo' AND preco BETWEEN $vMinimo AND $vMaximo ORDER BY $ordenacao $tipoOrdenacao") or die("Erro retornar produtos para a loja VM + Tipo"); */
     
-                $sql = mysqli_query($conn, "SELECT * FROM categoria_produto INNER JOIN produtos ON categoria_produto.id_produtos=produtos.id WHERE categoria_produto.id_categoria=$id_categoria AND produtos.tipo='$tipo' AND produtos.preco BETWEEN $vMinimo AND $vMaximo ORDER BY produtos.$ordenacao $tipoOrdenacao LIMIT $somaPg, 12") or die("Erro retornar produtos para a loja cat");
-                $sql2 = mysqli_query($conn, "SELECT * FROM categoria_produto INNER JOIN produtos ON categoria_produto.id_produtos=produtos.id WHERE categoria_produto.id_categoria=$id_categoria AND produtos.tipo='$tipo' AND produtos.preco BETWEEN $vMinimo AND $vMaximo ORDER BY produtos.$ordenacao $tipoOrdenacao") or die("Erro ao retornar dados categoria cat2");
+                $sql = mysqli_query($conn, "SELECT * FROM categoria_produto INNER JOIN produtos ON categoria_produto.id_produtos=produtos.id WHERE categoria_produto.id_categoria=$id_categoria AND produtos.tipo='$tipo' AND produtos.preco BETWEEN $vMinimo AND $vMaximo AND produtos.estado='publicado-disponivel' AND produtos.qtd_estoque > 0 ORDER BY produtos.$ordenacao $tipoOrdenacao LIMIT $somaPg, 12") or die("Erro retornar produtos para a loja cat");
+                $sql2 = mysqli_query($conn, "SELECT * FROM categoria_produto INNER JOIN produtos ON categoria_produto.id_produtos=produtos.id WHERE categoria_produto.id_categoria=$id_categoria AND produtos.tipo='$tipo' AND produtos.preco BETWEEN $vMinimo AND $vMaximo AND produtos.estado='publicado-disponivel' AND produtos.qtd_estoque > 0 ORDER BY produtos.$ordenacao $tipoOrdenacao") or die("Erro ao retornar dados categoria cat2");
 
             }else{
     
-                $sql = mysqli_query($conn, "SELECT * FROM categoria_produto INNER JOIN produtos ON categoria_produto.id_produtos=produtos.id WHERE categoria_produto.id_categoria=$id_categoria ORDER BY produtos.$ordenacao $tipoOrdenacao LIMIT $somaPg, 12") or die("Erro retornar produtos para a loja cat");
-                $sql2 = mysqli_query($conn, "SELECT * FROM categoria_produto INNER JOIN produtos ON categoria_produto.id_produtos=produtos.id WHERE categoria_produto.id_categoria=$id_categoria ORDER BY produtos.$ordenacao $tipoOrdenacao") or die("Erro ao retornar dados categoria cat2");
+                $sql = mysqli_query($conn, "SELECT * FROM categoria_produto INNER JOIN produtos ON categoria_produto.id_produtos=produtos.id WHERE categoria_produto.id_categoria=$id_categoria AND produtos.estado='publicado-disponivel' AND produtos.qtd_estoque > 0 ORDER BY produtos.$ordenacao $tipoOrdenacao LIMIT $somaPg, 12") or die("Erro retornar produtos para a loja cat");
+                $sql2 = mysqli_query($conn, "SELECT * FROM categoria_produto INNER JOIN produtos ON categoria_produto.id_produtos=produtos.id WHERE categoria_produto.id_categoria=$id_categoria AND produtos.estado='publicado-disponivel' AND produtos.qtd_estoque > 0 ORDER BY produtos.$ordenacao $tipoOrdenacao") or die("Erro ao retornar dados categoria cat2");
 
             }
 
@@ -254,29 +254,29 @@ class produtos{
                 /* $sql = mysqli_query($conn, "SELECT * FROM produtos WHERE tipo='$tipo' ORDER BY $ordenacao $tipoOrdenacao LIMIT $somaPg, 3") or die("Erro retornar produtos para a loja tipo");
                 $sql2 = mysqli_query($conn, "SELECT * FROM produtos WHERE tipo='$tipo' ORDER BY $ordenacao $tipoOrdenacao") or die("Erro retornar produtos para a loja tipo"); */
     
-                $sql = mysqli_query($conn, "SELECT * FROM produtos WHERE nome LIKE '%$busca%' collate utf8_general_ci AND tipo='$tipo' ORDER BY $ordenacao $tipoOrdenacao LIMIT $somaPg, 12") or die("Erro retornar produtos para a loja");
-                $sql2 = mysqli_query($conn, "SELECT * FROM produtos WHERE nome LIKE '%$busca%' collate utf8_general_ci AND tipo='$tipo' ORDER BY $ordenacao $tipoOrdenacao") or die("Erro retornar produtos para a loja");
+                $sql = mysqli_query($conn, "SELECT * FROM produtos WHERE nome LIKE '%$busca%' collate utf8_general_ci AND tipo='$tipo' AND estado='publicado-disponivel' AND qtd_estoque > 0 ORDER BY $ordenacao $tipoOrdenacao LIMIT $somaPg, 12") or die("Erro retornar produtos para a loja");
+                $sql2 = mysqli_query($conn, "SELECT * FROM produtos WHERE nome LIKE '%$busca%' collate utf8_general_ci AND tipo='$tipo' AND estado='publicado-disponivel' AND qtd_estoque > 0 ORDER BY $ordenacao $tipoOrdenacao") or die("Erro retornar produtos para a loja");
 
             }else if($vMinimo != "SE" && $vMaximo != "SE" && $tipo == "SE"){
     
                 /* $sql = mysqli_query($conn, "SELECT * FROM produtos WHERE preco BETWEEN $vMinimo AND $vMaximo ORDER BY $ordenacao $tipoOrdenacao LIMIT $somaPg, 3") or die("Erro retornar produtos para a loja VM");
                 $sql2 = mysqli_query($conn, "SELECT * FROM produtos WHERE preco BETWEEN $vMinimo AND $vMaximo ORDER BY $ordenacao $tipoOrdenacao") or die("Erro retornar produtos para a loja VM"); */
     
-                $sql = mysqli_query($conn, "SELECT * FROM produtos WHERE nome LIKE '%$busca%' collate utf8_general_ci AND preco BETWEEN $vMinimo AND $vMaximo ORDER BY $ordenacao $tipoOrdenacao LIMIT $somaPg, 12") or die("Erro retornar produtos para a loja");
-                $sql2 = mysqli_query($conn, "SELECT * FROM produtos WHERE nome LIKE '%$busca%' collate utf8_general_ci AND preco BETWEEN $vMinimo AND $vMaximo ORDER BY $ordenacao $tipoOrdenacao") or die("Erro retornar produtos para a loja");
+                $sql = mysqli_query($conn, "SELECT * FROM produtos WHERE nome LIKE '%$busca%' collate utf8_general_ci AND preco BETWEEN $vMinimo AND $vMaximo AND estado='publicado-disponivel' AND qtd_estoque > 0 ORDER BY $ordenacao $tipoOrdenacao LIMIT $somaPg, 12") or die("Erro retornar produtos para a loja");
+                $sql2 = mysqli_query($conn, "SELECT * FROM produtos WHERE nome LIKE '%$busca%' collate utf8_general_ci AND preco BETWEEN $vMinimo AND $vMaximo AND estado='publicado-disponivel' AND qtd_estoque > 0 ORDER BY $ordenacao $tipoOrdenacao") or die("Erro retornar produtos para a loja");
 
             }else if($vMinimo != "SE" && $vMaximo != "SE" && $tipo != "SE"){
     
                 /* $sql = mysqli_query($conn, "SELECT * FROM produtos WHERE tipo='$tipo' AND preco BETWEEN $vMinimo AND $vMaximo ORDER BY $ordenacao $tipoOrdenacao LIMIT $somaPg, 3") or die("Erro retornar produtos para a loja VM + Tipo");
                 $sql2 = mysqli_query($conn, "SELECT * FROM produtos WHERE tipo='$tipo' AND preco BETWEEN $vMinimo AND $vMaximo ORDER BY $ordenacao $tipoOrdenacao") or die("Erro retornar produtos para a loja VM + Tipo"); */
     
-                $sql = mysqli_query($conn, "SELECT * FROM produtos WHERE nome LIKE '%$busca%' collate utf8_general_ci AND tipo='$tipo' AND preco BETWEEN $vMinimo AND $vMaximo ORDER BY $ordenacao $tipoOrdenacao LIMIT $somaPg, 12") or die("Erro retornar produtos para a loja");
-                $sql2 = mysqli_query($conn, "SELECT * FROM produtos WHERE nome LIKE '%$busca%' collate utf8_general_ci AND tipo='$tipo' AND preco BETWEEN $vMinimo AND $vMaximo ORDER BY $ordenacao $tipoOrdenacao") or die("Erro retornar produtos para a loja");
+                $sql = mysqli_query($conn, "SELECT * FROM produtos WHERE nome LIKE '%$busca%' collate utf8_general_ci AND tipo='$tipo' AND preco BETWEEN $vMinimo AND $vMaximo AND estado='publicado-disponivel' AND qtd_estoque > 0 ORDER BY $ordenacao $tipoOrdenacao LIMIT $somaPg, 12") or die("Erro retornar produtos para a loja");
+                $sql2 = mysqli_query($conn, "SELECT * FROM produtos WHERE nome LIKE '%$busca%' collate utf8_general_ci AND tipo='$tipo' AND preco BETWEEN $vMinimo AND $vMaximo AND estado='publicado-disponivel' AND qtd_estoque > 0 ORDER BY $ordenacao $tipoOrdenacao") or die("Erro retornar produtos para a loja");
 
             }else{
     
-                $sql = mysqli_query($conn, "SELECT * FROM produtos WHERE nome LIKE '%$busca%' collate utf8_general_ci ORDER BY $ordenacao $tipoOrdenacao LIMIT $somaPg, 12") or die("Erro retornar produtos para a loja");
-                $sql2 = mysqli_query($conn, "SELECT * FROM produtos WHERE nome LIKE '%$busca%' collate utf8_general_ci ORDER BY $ordenacao $tipoOrdenacao") or die("Erro retornar produtos para a loja");
+                $sql = mysqli_query($conn, "SELECT * FROM produtos WHERE nome LIKE '%$busca%' collate utf8_general_ci AND estado='publicado-disponivel' AND qtd_estoque > 0 ORDER BY $ordenacao $tipoOrdenacao LIMIT $somaPg, 12") or die("Erro retornar produtos para a loja");
+                $sql2 = mysqli_query($conn, "SELECT * FROM produtos WHERE nome LIKE '%$busca%' collate utf8_general_ci AND estado='publicado-disponivel' AND qtd_estoque > 0 ORDER BY $ordenacao $tipoOrdenacao") or die("Erro retornar produtos para a loja");
     
             }
 
@@ -284,23 +284,23 @@ class produtos{
 
             if($tipo != "SE" && $vMinimo == "SE"){
 
-                $sql = mysqli_query($conn, "SELECT * FROM produtos WHERE tipo='$tipo' ORDER BY $ordenacao $tipoOrdenacao LIMIT $somaPg, 12") or die("Erro retornar produtos para a loja tipo");
-                $sql2 = mysqli_query($conn, "SELECT * FROM produtos WHERE tipo='$tipo' ORDER BY $ordenacao $tipoOrdenacao") or die("Erro retornar produtos para a loja tipo");
+                $sql = mysqli_query($conn, "SELECT * FROM produtos WHERE tipo='$tipo' AND estado='publicado-disponivel' AND qtd_estoque > 0 ORDER BY $ordenacao $tipoOrdenacao LIMIT $somaPg, 12") or die("Erro retornar produtos para a loja tipo");
+                $sql2 = mysqli_query($conn, "SELECT * FROM produtos WHERE tipo='$tipo' AND estado='publicado-disponivel' AND qtd_estoque > 0 ORDER BY $ordenacao $tipoOrdenacao") or die("Erro retornar produtos para a loja tipo");
     
             }else if($vMinimo != "SE" && $vMaximo != "SE" && $tipo == "SE"){
     
-                $sql = mysqli_query($conn, "SELECT * FROM produtos WHERE preco BETWEEN $vMinimo AND $vMaximo ORDER BY $ordenacao $tipoOrdenacao LIMIT $somaPg, 12") or die("Erro retornar produtos para a loja VM");
-                $sql2 = mysqli_query($conn, "SELECT * FROM produtos WHERE preco BETWEEN $vMinimo AND $vMaximo ORDER BY $ordenacao $tipoOrdenacao") or die("Erro retornar produtos para a loja VM");
+                $sql = mysqli_query($conn, "SELECT * FROM produtos WHERE preco BETWEEN $vMinimo AND $vMaximo AND estado='publicado-disponivel' AND qtd_estoque > 0 ORDER BY $ordenacao $tipoOrdenacao LIMIT $somaPg, 12") or die("Erro retornar produtos para a loja VM");
+                $sql2 = mysqli_query($conn, "SELECT * FROM produtos WHERE preco BETWEEN $vMinimo AND $vMaximo AND estado='publicado-disponivel' AND qtd_estoque > 0 ORDER BY $ordenacao $tipoOrdenacao") or die("Erro retornar produtos para a loja VM");
     
             }else if($vMinimo != "SE" && $vMaximo != "SE" && $tipo != "SE"){
     
-                $sql = mysqli_query($conn, "SELECT * FROM produtos WHERE tipo='$tipo' AND preco BETWEEN $vMinimo AND $vMaximo ORDER BY $ordenacao $tipoOrdenacao LIMIT $somaPg, 12") or die("Erro retornar produtos para a loja VM + Tipo");
-                $sql2 = mysqli_query($conn, "SELECT * FROM produtos WHERE tipo='$tipo' AND preco BETWEEN $vMinimo AND $vMaximo ORDER BY $ordenacao $tipoOrdenacao") or die("Erro retornar produtos para a loja VM + Tipo");
+                $sql = mysqli_query($conn, "SELECT * FROM produtos WHERE tipo='$tipo' AND preco BETWEEN $vMinimo AND $vMaximo AND estado='publicado-disponivel' AND qtd_estoque > 0 ORDER BY $ordenacao $tipoOrdenacao LIMIT $somaPg, 12") or die("Erro retornar produtos para a loja VM + Tipo");
+                $sql2 = mysqli_query($conn, "SELECT * FROM produtos WHERE tipo='$tipo' AND preco BETWEEN $vMinimo AND $vMaximo AND estado='publicado-disponivel' AND qtd_estoque > 0 ORDER BY $ordenacao $tipoOrdenacao") or die("Erro retornar produtos para a loja VM + Tipo");
     
             }else{
     
-                $sql = mysqli_query($conn, "SELECT * FROM produtos ORDER BY $ordenacao $tipoOrdenacao LIMIT $somaPg, 12") or die("Erro retornar produtos para a loja");
-                $sql2 = mysqli_query($conn, "SELECT * FROM produtos ORDER BY $ordenacao $tipoOrdenacao") or die("Erro retornar produtos para a loja");
+                $sql = mysqli_query($conn, "SELECT * FROM produtos WHERE estado='publicado-disponivel' AND qtd_estoque > 0 ORDER BY $ordenacao $tipoOrdenacao LIMIT $somaPg, 12") or die("Erro retornar produtos para a loja");
+                $sql2 = mysqli_query($conn, "SELECT * FROM produtos WHERE estado='publicado-disponivel' AND qtd_estoque > 0 ORDER BY $ordenacao $tipoOrdenacao") or die("Erro retornar produtos para a loja");
     
             }
 
@@ -409,7 +409,7 @@ class produtos{
 
         include 'conexao.class.php';
 
-        $sql = mysqli_query($conn, "SELECT * FROM  produtos WHERE preco_promocao!='' ORDER BY id DESC LIMIT 20") or die("Erro ao retornar produtos promocionais");
+        $sql = mysqli_query($conn, "SELECT * FROM  produtos WHERE preco_promocao!='' AND estado='publicado-disponivel' AND qtd_estoque > 0 ORDER BY id DESC LIMIT 20") or die("Erro ao retornar produtos promocionais");
         while($linha = mysqli_fetch_assoc($sql)){
             
             $array[] = $linha;

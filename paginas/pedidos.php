@@ -34,6 +34,14 @@
     /* $idCliente = $classeCompra->idCliente = str_replace(array(";", "'", "--", "/", "*", "xp_", "XP_", "SELECT" , "INSERT" , "UPDATE" , "DELETE" , "DROP", "select" , "insert" , "update" , "delete" , "drop"), "", base64_decode($_COOKIE["iu_oj"]));
 
     $classeCompra->idCliente = $idCliente; */
+
+    if(isset($_GET["ls"]) && $_GET["ls"] == "s"){
+
+        $classeCompra->idCliente = base64_decode($_COOKIE["iu_oj"]);
+
+        $classeCompra->limpar_carrinho();
+
+    }
     
     ?>
 
