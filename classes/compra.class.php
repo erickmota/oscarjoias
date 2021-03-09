@@ -25,7 +25,7 @@ class compra{
 
         include 'conexao.class.php';
 
-        $sql = mysqli_query($conn, "SELECT produtos.foto AS foto, produtos.nome AS nome_produto, sacola.anel_unico AS anel_unico, sacola.gravacao_anel_unico AS gravacao_anel_unico, sacola.anel_casal AS anel_casal, sacola.gravacao_anel_casal AS gravacao_anel_casal, sacola.apenas_aro AS apenas_aro, sacola.apenas_gravacao AS apenas_gravacao, sacola.variacao_complementar AS variacao_complementar, produtos.qtd_estoque AS qtd_estoque, produtos.preco AS preco, sacola.quantidade AS qtd_pedido, sacola.id AS id_sacola, sacola.id_produto AS id_produto, produtos.estado AS estado FROM sacola INNER JOIN produtos ON sacola.id_produto=produtos.id WHERE sacola.id_cliente=$this->idCliente ORDER BY sacola.id ASC") or die("Erro ao retornar dados do carrinho");
+        $sql = mysqli_query($conn, "SELECT produtos.foto AS foto, produtos.nome AS nome_produto, sacola.anel_unico AS anel_unico, sacola.gravacao_anel_unico AS gravacao_anel_unico, sacola.anel_casal AS anel_casal, sacola.gravacao_anel_casal AS gravacao_anel_casal, sacola.apenas_aro AS apenas_aro, sacola.apenas_gravacao AS apenas_gravacao, sacola.variacao_complementar AS variacao_complementar, produtos.qtd_estoque AS qtd_estoque, produtos.preco AS preco, sacola.quantidade AS qtd_pedido, sacola.id AS id_sacola, sacola.id_produto AS id_produto, produtos.estado AS estado, produtos.peso AS peso, produtos.largura AS largura, produtos.altura AS altura, produtos.comprimento AS comprimento FROM sacola INNER JOIN produtos ON sacola.id_produto=produtos.id WHERE sacola.id_cliente=$this->idCliente ORDER BY sacola.id ASC") or die("Erro ao retornar dados do carrinho");
         $qtd_sql = mysqli_num_rows($sql);
         while($linha = mysqli_fetch_array($sql)){
 
@@ -80,7 +80,7 @@ class compra{
 
     }
 
-    public function calcular_frete($sCepDestino, $nCdServico){
+    public function calcular_frete($sCepDestino, $peso, $altura, $largura, $comprimento, $nCdServico){
 
         /* http://ws.correios.com.br/calculador/CalcPrecoPrazo.aspx?nCdEmpresa=08082650&sDsSenha=564321&sCepOrigem=70002900&sCepDestino=04547000&nVlPeso=1&nCdFormato=1&nVlComprimento=20&nVlAltura=20&nVlLargura=20&sCdMaoPropria=n&nVlValorDeclarado=0&sCdAvisoRecebimento=n&nCdServico=04510&nVlDiametro=0&StrRetorno=xml&nIndicaCalculo=3 */
         
@@ -105,6 +105,11 @@ class compra{
         &StrRetorno=xml
         &nIndicaCalculo=3 */
 
+        $pesoString = strval($peso);
+        $alturaString = strval($altura);
+        $larguraString = strval($largura);
+        $comprimentoString = strval($comprimento);
+
         $nCdEmpresa="";
         $sDsSenha="";
         $sCdMaoPropria="n";
@@ -112,18 +117,18 @@ class compra{
 
         $sCepOrigem="18066315";
         /* $sCepDestino="04547000"; */
-        $nVlPeso="1";
+        /* $nVlPeso="1"; */
         $nCdFormato="1";
-        $nVlComprimento="20";
-        $nVlAltura="20";
-        $nVlLargura="20";
+        /* $nVlComprimento="20"; */
+        /* $nVlAltura="20"; */
+        /* $nVlLargura="20"; */
         $nVlValorDeclarado="0";
         /* $nCdServico="04510"; */
         $nVlDiametro="0";
         $StrRetorno="xml";
         $nIndicaCalculo="3";
 
-        $url = "http://ws.correios.com.br/calculador/CalcPrecoPrazo.aspx?nCdEmpresa={$nCdEmpresa}&sDsSenha={$sDsSenha}&sCepOrigem={$sCepOrigem}&sCepDestino={$sCepDestino}&nVlPeso={$nVlPeso}&nCdFormato={$nCdFormato}&nVlComprimento={$nVlComprimento}&nVlAltura={$nVlAltura}&nVlLargura={$nVlLargura}&sCdMaoPropria={$sCdMaoPropria}&nVlValorDeclarado={$nVlValorDeclarado}&sCdAvisoRecebimento={$sCdAvisoRecebimento}&nCdServico={$nCdServico}&nVlDiametro={$nVlDiametro}&StrRetorno={$StrRetorno}&nIndicaCalculo={$nIndicaCalculo}";
+        $url = "http://ws.correios.com.br/calculador/CalcPrecoPrazo.aspx?nCdEmpresa={$nCdEmpresa}&sDsSenha={$sDsSenha}&sCepOrigem={$sCepOrigem}&sCepDestino={$sCepDestino}&nVlPeso={$pesoString}&nCdFormato={$nCdFormato}&nVlComprimento={$comprimentoString}&nVlAltura={$alturaString}&nVlLargura={$larguraString}&sCdMaoPropria={$sCdMaoPropria}&nVlValorDeclarado={$nVlValorDeclarado}&sCdAvisoRecebimento={$sCdAvisoRecebimento}&nCdServico={$nCdServico}&nVlDiametro={$nVlDiametro}&StrRetorno={$StrRetorno}&nIndicaCalculo={$nIndicaCalculo}";
         /* $url = "http://ws.correios.com.br/calculador/CalcPrecoPrazo.aspx?nCdEmpresa=08082650&sDsSenha=564321&sCepOrigem=70002900&sCepDestino=04547000&nVlPeso=1&nCdFormato=1&nVlComprimento=20&nVlAltura=20&nVlLargura=20&sCdMaoPropria=n&nVlValorDeclarado=0&sCdAvisoRecebimento=n&nCdServico=04510&nVlDiametro=0&StrRetorno=xml&nIndicaCalculo=3"; */
 
         $file = file_get_contents($url);

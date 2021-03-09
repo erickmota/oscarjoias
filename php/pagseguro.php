@@ -4,6 +4,7 @@ include "../classes/compra.class.php";
 $classeCompra = new compra();
 
 $frete = str_replace(",", ".", $_POST["frete"]);
+$tipo = $_POST["tipo"];
 
 /* $classeCompra->idCliente = 1; */
 $classeCompra->idCliente = str_replace(array(";", "'", "--", "/", "*", "xp_", "XP_", "SELECT" , "INSERT" , "UPDATE" , "DELETE" , "DROP", "select" , "insert" , "update" , "delete" , "drop"), "", base64_decode($_COOKIE["iu_oj"]));
@@ -35,7 +36,11 @@ foreach($classeCompra->retorna_dados_carrinho() as $arrCarrinho){
 
 }
 
-@$produto[] = ["nome" => "Frete", "preco" => floatval($frete), "qtd" => "1", "id_produtos" => "0"];
+if($frete > 0){
+
+    @$produto[] = ["nome" => "Frete - {$tipo}", "preco" => floatval($frete), "qtd" => "1", "id_produtos" => "0"];
+
+}
 
 $idCliente = base64_decode($_COOKIE["iu_oj"]);
 

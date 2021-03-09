@@ -168,7 +168,7 @@ Desenvolvido por: Erick Mota (erickmota.com) -->
 
           <div class="col-md-9">
 
-              <p class="border-bottom pb-2"><span class="text-secondary fs-4">Nossas Promoções</span> <button id="botaoVerPromocoes">Ver tudo</button></p>
+              <p class="border-bottom pb-2"><span class="text-secondary fs-4">Nossas Promoções</span> <button onclick="window.location='loja?pg=1'" id="botaoVerPromocoes">Ver loja</button></p>
 
           </div>
 

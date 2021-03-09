@@ -217,6 +217,10 @@
 
         $i_preco = 0;
         $preco_total = 0;
+        $pesoTotal = 0;
+        $larguraTotal = 0;
+        $alturaInd = [];
+        $comprimentoInd = [];
 
         if($classeCompra->retorna_dados_carrinho() == false){
 
@@ -378,6 +382,17 @@
         
         $i_preco++;
 
+        /* Fazendo o calculo do frete */
+
+        $pesoTotal += $arrCompra["peso"] * $arrCompra["qtd_pedido"];
+        $larguraTotal += $arrCompra["largura"] * $arrCompra["qtd_pedido"];
+
+        array_push($alturaInd, $arrCompra["altura"]);
+        array_push($comprimentoInd, $arrCompra["comprimento"]);
+
+        $maiorAltura =  max($alturaInd);
+        $maiorComprimento =  max($comprimentoInd);
+
         }
 
         }
@@ -427,7 +442,7 @@
         
                             <div class="col">
         
-                                <label class="text-secondary" for="inputCalculaFrete">Digite seu CEP para calcular o frete</label><br>
+                                <label class="text-secondary" for="inputCalculaFrete">Digite seu CEP e pressione enter</label><br>
                                 <input onkeyup="abrir_campo_endereco()" type="text" id="inputCalculaFrete" class="maskCep" <?php if($classeCompra->retorna_dados_carrinho() == false){ echo "disabled"; } ?>>
         
                             </div>
@@ -455,7 +470,7 @@
 
                         <script type="text/javascript">
                                                                                 
-                            function calcular_frete(cep) {
+                            function calcular_frete(cep, peso, altura, largura, comprimento) {
         
                                 $.ajax({
         
@@ -470,7 +485,7 @@
         
                                     },
         
-                                    data: {cep: cep},
+                                    data: {cep: cep, peso: peso, altura: altura, largura: largura, comprimento: comprimento},
         
                                     success: function (msg) {
         
@@ -488,20 +503,29 @@
         
                             }
         
-                            $("#inputCalculaFrete").keyup(function(){
+                            $("#inputCalculaFrete").keypress(function(event){
         
                                 var cep = document.getElementById("inputCalculaFrete").value;
                                 var campoCep = document.getElementById("areaFrete");
+
+                                var peso = "<?php echo $pesoTotal; ?>";
+                                var altura = "<?php echo $maiorAltura; ?>";
+                                var largura = "<?php echo $larguraTotal; ?>";
+                                var comprimento = "<?php echo $maiorComprimento; ?>";
+
+                                if ( event.which == 13) {
+                                    if(cep == ""){
         
-                                if(cep == ""){
-        
-                                    campoCep.classList.add("d-none");
-        
-                                }else{
-        
-                                    calcular_frete(cep);
-        
+                                        campoCep.classList.add("d-none");
+
+                                    }else{
+
+                                        calcular_frete(cep, peso, altura, largura, comprimento);
+
+                                    }
                                 }
+        
+                                
         
                             });
         
@@ -718,9 +742,9 @@
                                                                                 
                                     function retorna_codigo_pagseguro(frete) {
 
-                                        $(function(){
+                                        var freteSplit = frete.split("-");
 
-                                            /* $("#inputNumero").focus(); */
+                                        $(function(){
 
                                         })
                 
@@ -737,16 +761,11 @@
                 
                                             },
                 
-                                            data: {frete: frete},
+                                            data: {frete: freteSplit[1], tipo: freteSplit[0]},
                 
                                             success: function (msg) {
                 
                                                 $("#espacoPagseguro").html(msg);
-                
-                                                /* setTimeout(function() {
-                                                    $("#areaIconeOk").html("");
-                                                    $("#textoAnotacoesRapidas").removeClass("is-valid");;
-                                                }, 3000); */
                 
                                             }
                 

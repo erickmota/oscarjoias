@@ -1061,7 +1061,7 @@
 
                     <div class="col-10">
 
-                        <label class="text-secondary" for="inputCalculaFrete">Digite seu CEP para calcular o frete</label><br>
+                        <label class="text-secondary" for="inputCalculaFrete">Digite seu CEP e pressione enter</label><br>
                         <input type="text" id="inputCalculaFrete" autocomplete="off" class="maskCep">
 
                     </div>
@@ -1081,7 +1081,7 @@
 
                 <script type="text/javascript">
                                                                                 
-                    function calcular_frete(cep) {
+                    function calcular_frete(cep, peso, altura, largura, comprimento) {
 
                         $.ajax({
 
@@ -1097,7 +1097,7 @@
 
                             },
 
-                            data: {cep: cep},
+                            data: {cep: cep, peso: peso, altura: altura, largura: largura, comprimento: comprimento},
 
                             success: function (msg) {
 
@@ -1115,19 +1115,26 @@
 
                     }
 
-                    $("#inputCalculaFrete").keyup(function(){
+                    $("#inputCalculaFrete").keypress(function(event){
 
                         var cep = document.getElementById("inputCalculaFrete").value;
                         var campoCep = document.getElementById("areaFrete");
 
-                        if(cep == ""){
+                        var peso = "<?php echo $arrProduto['peso']; ?>";
+                        var altura = "<?php echo $arrProduto['altura']; ?>";
+                        var largura = "<?php echo $arrProduto['largura']; ?>";
+                        var comprimento = "<?php echo $arrProduto['comprimento']; ?>";
 
-                            campoCep.classList.add("d-none");
+                        if ( event.which == 13) {
+                            if(cep == ""){
 
-                        }else{
+                                campoCep.classList.add("d-none");
 
-                            calcular_frete(cep);
+                            }else{
 
+                                calcular_frete(cep, peso, altura, largura, comprimento);
+
+                            }
                         }
 
                     });

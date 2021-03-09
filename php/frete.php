@@ -4,11 +4,18 @@ include "../classes/compra.class.php";
 $classeCompra = new compra();
 
 $cep = str_replace(array(";", "'", "--", "/", "*", "xp_", "XP_", "SELECT" , "INSERT" , "UPDATE" , "DELETE" , "DROP", "select" , "insert" , "update" , "delete" , "drop"), "", $_POST["cep"]);
+$peso = $_POST["peso"];
+$altura = $_POST["altura"];
+$largura = $_POST["largura"];
+$comprimento = $_POST["comprimento"];
 
 /* 04014 = sedex */
 /* 04510 = PAC */
 
 /* $classeCompra->calcular_frete($cep, "04510"); */
+
+$calcular04510 = $classeCompra->calcular_frete($cep, $peso, $altura, $largura, $comprimento, "04510");
+$calcular04014 = $classeCompra->calcular_frete($cep, $peso, $altura, $largura, $comprimento, "04014");
 
 ?>
 
@@ -16,22 +23,34 @@ $cep = str_replace(array(";", "'", "--", "/", "*", "xp_", "XP_", "SELECT" , "INS
 
     <?php
     
-    if($classeCompra->calcular_frete($cep, "04510")[2] == ""){
-    
-    ?>
+    if($calcular04510[2] == ""){
+        
+        /* Primeiro numero do CEP de Sorocaba e último número do CEP de Votorantim */
+        if($cep > "18000001" && $cep < "18119999"){
 
-    <b>PAC:</b> R$<?php echo $classeCompra->calcular_frete($cep, "04510")[0]; ?> - <?php echo $classeCompra->calcular_frete($cep, "04510")[1]; ?> dias para entrega<br>
-    <b>SEDEX:</b> R$<?php echo $classeCompra->calcular_frete($cep, "04014")[0]; ?> - <?php echo $classeCompra->calcular_frete($cep, "04014")[1]; ?> dias para entrega
+        ?>
 
-    <?php
+            <b>FRETE GRÁTIS</b> - <?php echo $calcular04510[1]; ?> dias úteis para entrega
+
+        <?php
+
+        }else{
+
+        ?>
+
+            <b>PAC:</b> R$<?php echo $calcular04510[0]; ?> - <?php echo $calcular04510[1]; ?> dias úteis para entrega<br>
+            <b>SEDEX:</b> R$<?php echo $calcular04014[0]; ?> - <?php echo $calcular04014[1]; ?> dias úteis para entrega
+
+        <?php
+
+        }
     
     }else{
     
     ?>
 
-    <!-- <img class='imgLoading' src='img/loading2.gif' width='200px'><br><p>Calculando</p> -->
-
-    <span>Calculando...</span>
+    <span class="text-black-50"><?php echo $calcular04510[2]; ?></span><br><br>
+    <span class="text-info">Problemas para calcular o frete? contato@oscarjoias.com</span>
 
     <?php
     
