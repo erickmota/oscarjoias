@@ -87,6 +87,38 @@ Desenvolvido por: Erick Mota (erickmota.com) -->
   });
   /* //Promoções */
 
+  function mudarItemAdd(item){
+
+    var nomeItem = document.getElementById("nomeItem"+item);
+    var precoItem = document.getElementById("precoItem"+item);
+    var precoItemGrande = document.getElementById("precoItemGrande"+item);
+    var botaoComprar = document.getElementById("botaoComprar"+item);
+    var precoAntigo = document.getElementById("precoAntigo"+item);
+
+    nomeItem.classList.add("d-none");
+    precoItem.classList.add("d-none");
+    precoItemGrande.classList.remove("d-none");
+    botaoComprar.classList.remove("d-none");
+    precoAntigo.style.display="none";
+
+  }
+
+  function mudarItemRemove(item){
+
+    var nomeItem = document.getElementById("nomeItem"+item);
+    var precoItem = document.getElementById("precoItem"+item);
+    var precoItemGrande = document.getElementById("precoItemGrande"+item);
+    var botaoComprar = document.getElementById("botaoComprar"+item);
+    var precoAntigo = document.getElementById("precoAntigo"+item);
+
+    nomeItem.classList.remove("d-none");
+    precoItem.classList.remove("d-none");
+    precoItemGrande.classList.add("d-none");
+    botaoComprar.classList.add("d-none");
+    precoAntigo.style.display="block";
+
+  }
+
 </script>
 
 <body>
@@ -154,7 +186,7 @@ Desenvolvido por: Erick Mota (erickmota.com) -->
 
               <p class="mt-4 text-secondary fst-italic">
 
-                  é um tema responsivo para quem quer uma joalheria on-line, com estilo e qualidade. Com SEO otimizado, ilimitadas opções de cores e com sistema WooCommerce, você consegue ter uma loja para ninguém botar defeito.
+                Minha história com esse segmento começou em 1999 quando fui trabalhar em uma loja tradicional. Lá, tive o primeiro contato com joias. Foi amor à primeira vista.  
 
               </p>
 
@@ -228,7 +260,7 @@ Desenvolvido por: Erick Mota (erickmota.com) -->
 
         <div class="col-md-9">
 
-            <p class="border-bottom pb-2"><span class="text-secondary fs-4">Categorias</span> <button id="botaoVerPromocoes">Ver todas</button></p>
+            <p class="border-bottom pb-2"><span class="text-secondary fs-4">Últimos Adicionados</span> <button onclick="window.location='loja?pg=1&ordenacao=adicionado&tipoord=dec'" id="botaoVerPromocoes">Ver tudo</button></p>
 
         </div>
 
@@ -236,93 +268,58 @@ Desenvolvido por: Erick Mota (erickmota.com) -->
 
       <div class="row justify-content-center">
 
-        <div class="col-11 col-md-9">
+        <div class="col-12 col-md-9 text-center">
 
           <div class="row">
 
-            <div class="col-12 col-md-3 text-center" id="itemCategoria">
+            <?php
+            
+            /* $tipo, $vMinimo, $vMaximo, $categoria, $pg, $ordenacao, $tipoOrdenacao */
+            foreach($classeProdutos->retorna_lista_produtos_home(6) as $arrProdutos){
 
-              <div id="boxCategoria">
+              $idProduto = $arrProdutos["id"];
 
-                <span id="textoItemCategoria" class="fw-bold"><img src="img/brinde.png" width="70px"><br>Alianças de noivado</span>
+              /* $nomeComTraco = str_replace(" ", "-", $arrProdutos["nome"]);
+              $transformarEmMinuscula = mb_strtolower($nomeComTraco, "UTF-8");
+              $tirarCaracteres = str_replace("ã", "a", $transformarEmMinuscula);
+              $convert = iconv('utf-8', 'us-ascii//TRANSLIT', $tirarCaracteres); */
 
-              </div>
-  
-            </div>
-  
-            <div class="col-12 col-md-3 text-center" id="itemCategoria">
-  
-              <div id="boxCategoria">
+              $nomeComTraco = str_replace(" ", "-", $arrProdutos["nome"]);
+              $transformarEmMinuscula = mb_strtolower($nomeComTraco, "UTF-8");
+              $trataInjection = str_replace(array(";", "'", "--", "/", "*", "xp_", "XP_", "SELECT" , "INSERT" , "UPDATE" , "DELETE" , "DROP", "select" , "insert" , "update" , "delete" , "drop"), "", $transformarEmMinuscula);
+              $str1 = preg_replace('/[áàãâä]/ui', 'a', $trataInjection);
+              $str2 = preg_replace('/[éèêë]/ui', 'e', $str1);
+              $str3 = preg_replace('/[íìîï]/ui', 'i', $str2);
+              $str4 = preg_replace('/[óòõôö]/ui', 'o', $str3);
+              $str5 = preg_replace('/[úùûü]/ui', 'u', $str4);
+              $str6 = preg_replace('/[ç]/ui', 'c', $str5);
+            
+            ?>
 
-                <span id="textoItemCategoria" class="fw-bold"><img src="img/anel.png" width="70px"><br>Alianças de casamento</span>
+            <div class="col-12 col-sm-6 col-lg-4">
 
-              </div>
-  
-            </div>
-  
-            <div class="col-12 col-md-3 text-center" id="itemCategoria">
-  
-              <div id="boxCategoria">
+              <div onclick="window.location='produto/<?php echo $str6; ?>'" class="boxProdutos" onmouseover="mudarItemAdd(<?php echo $idProduto; ?>)" onmouseout="mudarItemRemove(<?php echo $idProduto; ?>)">
 
-                <span id="textoItemCategoria" class="fw-bold"><img src="img/formatura.png" width="70px"><br>Anéis de formatura</span>
+                  <img src="img/produtos/<?php echo $arrProdutos["foto"]; ?>" id="fotoAnelProdutos">
 
-              </div>
-  
-            </div>
-  
-            <div class="col-12 col-md-3 text-center" id="itemCategoria">
-  
-              <div id="boxCategoria">
+                  <p id="nomeItem<?php echo $idProduto; ?>" class="card-text mt-1 pt-2 border-top"><?php echo $arrProdutos["nome"]; ?></p>
 
-                <span id="textoItemCategoria" class="fw-bold"><img src="img/letra.png" width="70px"><br>Anéis de letra</span>
+                  <span id="precoAntigo<?php echo $idProduto; ?>" class="text-decoration-line-through text-secondary <?php if($arrProdutos["preco_promocao"] == ""){ echo "d-none"; } ?>">R$<?php echo $arrProdutos["preco_promocao"]; ?></span>
+                  <h5 id="precoItem<?php echo $idProduto; ?>" class="card-title">R$<?php echo number_format($arrProdutos["preco"], 2, ",", "."); ?></h5>
 
-              </div>
-  
-            </div>
+                  <p id="precoItemGrande<?php echo $idProduto; ?>" class="card-title mt-1 pt-3 border-top fs-3 text-secondary d-none">R$<?php echo number_format($arrProdutos["preco"], 2, ",", "."); ?></p>
 
-          </div>
-
-          <div class="row">
-
-            <div class="col-12 col-md-3 text-center" id="itemCategoria">
-
-              <div id="boxCategoria">
-
-                <span id="textoItemCategoria" class="fw-bold"><img src="img/coracao.png" width="70px"><br>Aliança de namoro em prata</span>
+                  <button class="botaoComprar d-none" id="botaoComprar<?php echo $idProduto; ?>">COMPRAR</button>
 
               </div>
-  
+
             </div>
-  
-            <div class="col-12 col-md-3 text-center" id="itemCategoria">
-  
-              <div id="boxCategoria">
 
-                <span id="textoItemCategoria" class="fw-bold"><img src="img/bebe.png" width="70px"><br>Pulseira de chapinha infantil</span>
+          <?php
 
-              </div>
-  
-            </div>
-  
-            <div class="col-12 col-md-3 text-center" id="itemCategoria">
-  
-              <div id="boxCategoria">
-
-                <span id="textoItemCategoria" class="fw-bold"><img src="img/diamante.png" width="70px"><br>Anéis cálice</span>
-
-              </div>
-  
-            </div>
-  
-            <div class="col-12 col-md-3 text-center" id="itemCategoria">
-  
-              <div id="boxCategoria">
-
-                <span id="textoItemCategoria" class="fw-bold"><img src="img/direita.png" width="70px"><br>Outras categorias</span>
-
-              </div>
-  
-            </div>
+          }
+          
+          ?>
 
           </div>
 

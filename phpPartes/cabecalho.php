@@ -109,6 +109,8 @@ if(!isset($classeClientes)){
 
 </div>
 
+<a href="https://api.whatsapp.com/send?phone=5515996803730&text=Olá Oscar, desejo entrar em contato." target="_blank"><img id="iconeWpp" src="img/iconeWpp.png" width="60px"></a>
+
 <!-- Topo site: Logo, Busca etc -->
 <div class="row justify-content-center" id="fundoPreto">
 
@@ -499,8 +501,8 @@ if(!isset($classeClientes)){
 
                             </ul>
 
-                        <li><span>Quem Somos</span></li>
-                        <li><span>Contato</span></li>
+                        <li><span><a class="text-decoration-none" href="quem-somos">Quem Somos</a></span></li>
+                        <li><span><a class="text-decoration-none" href="contato">Contato</a></span></li>
 
                     </ul>
 
@@ -609,9 +611,9 @@ if(!isset($classeClientes)){
                     </ul>
                 </li>
 
-                <li><a href="#">Quem Somos</a></li>
+                <li><a href="quem-somos">Quem Somos</a></li>
 
-                <li><a href="#">Contato</a></li>
+                <li><a href="contato">Contato</a></li>
             </ul>
         </nav>
 

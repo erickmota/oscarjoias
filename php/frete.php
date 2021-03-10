@@ -8,6 +8,7 @@ $peso = $_POST["peso"];
 $altura = $_POST["altura"];
 $largura = $_POST["largura"];
 $comprimento = $_POST["comprimento"];
+$dias_entrega = $_POST["dias_entrega"];
 
 /* 04014 = sedex */
 /* 04510 = PAC */
@@ -30,7 +31,7 @@ $calcular04014 = $classeCompra->calcular_frete($cep, $peso, $altura, $largura, $
 
         ?>
 
-            <b>FRETE GRÁTIS</b> - <?php echo $calcular04510[1]; ?> dias úteis para entrega
+            <b>FRETE GRÁTIS</b> - <?php echo $dias_entrega + 1; ?> dias úteis para entrega
 
         <?php
 
@@ -38,8 +39,8 @@ $calcular04014 = $classeCompra->calcular_frete($cep, $peso, $altura, $largura, $
 
         ?>
 
-            <b>PAC:</b> R$<?php echo $calcular04510[0]; ?> - <?php echo $calcular04510[1]; ?> dias úteis para entrega<br>
-            <b>SEDEX:</b> R$<?php echo $calcular04014[0]; ?> - <?php echo $calcular04014[1]; ?> dias úteis para entrega
+            <b>PAC:</b> R$<?php echo $calcular04510[0]; ?> - <?php echo $calcular04510[1] + $dias_entrega; ?> dias úteis para entrega<br>
+            <b>SEDEX:</b> R$<?php echo $calcular04014[0]; ?> - <?php echo $calcular04014[1] + $dias_entrega; ?> dias úteis para entrega
 
         <?php
 

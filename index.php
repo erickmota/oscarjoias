@@ -74,6 +74,14 @@ if(isset($_GET["url"])){
 
     include "paginas/confirmacao_cadastro.php";
 
+  }else if($explode[0] == "quem-somos"){
+
+    include "paginas/quem_somos.php";
+
+  }else if($explode[0] == "contato"){
+
+    include "paginas/contato.php";
+
   }
 
 }else{

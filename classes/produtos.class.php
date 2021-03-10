@@ -328,6 +328,21 @@ class produtos{
 
     }
 
+    public function retorna_lista_produtos_home($qtd){
+
+        include 'conexao.class.php';
+
+        $sql = mysqli_query($conn, "SELECT * FROM produtos WHERE estado='publicado-disponivel' AND qtd_estoque > 0 ORDER BY id DESC LIMIT $qtd") or die("Erro retornar produtos para a loja");
+        while($linha = mysqli_fetch_assoc($sql)){
+            
+            $array[] = $linha;
+            
+        }
+
+        return $array;
+
+    }
+
     public function organizar_paginacao($qtdTotalItens, $pgAtual){
 
         $paginaLimite = $qtdTotalItens / 12;
@@ -394,7 +409,7 @@ class produtos{
 
         include 'conexao.class.php';
 
-        $sql = mysqli_query($conn, "SELECT * FROM produtos INNER JOIN categoria_produto ON produtos.id=categoria_produto.id_produtos WHERE categoria_produto.id_categoria=$id_categoria AND categoria_produto.id_produtos!=$id_produto_atual") or die("Erro ao retornar produtos relacionados");
+        $sql = mysqli_query($conn, "SELECT * FROM produtos INNER JOIN categoria_produto ON produtos.id=categoria_produto.id_produtos WHERE categoria_produto.id_categoria=$id_categoria AND categoria_produto.id_produtos!=$id_produto_atual AND produtos.qtd_estoque > 0 AND produtos.estado='publicado-disponivel'") or die("Erro ao retornar produtos relacionados");
         while($linha = mysqli_fetch_assoc($sql)){
             
             $array[] = $linha;

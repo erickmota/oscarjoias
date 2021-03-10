@@ -8,6 +8,7 @@ $peso = $_POST["peso"];
 $altura = $_POST["altura"];
 $largura = $_POST["largura"];
 $comprimento = $_POST["comprimento"];
+$dias_entrega = $_POST["dias_entrega"];
 
 /* 04014 = sedex */
 /* 04510 = PAC */
@@ -33,11 +34,11 @@ $calcular04014 = $classeCompra->calcular_frete($cep, $peso, $altura, $largura, $
             <select id="selectFrete" class="text-secondary" onchange="retorna_codigo_pagseguro(this.value)">
 
             <option disabled selected hidden value="vazio">Selecione o tipo de entrega</option>
-            <option value="GRATIS-0.00">Frete Grátis - <?php echo $calcular04510[1]; ?> dias para entrega</option>
+            <option value="GRATIS-0.00-<?php echo $dias_entrega + 1; ?>">Frete Grátis - <?php echo $dias_entrega + 1; ?> dias para entrega</option>
 
             </select>
 
-            <br><br><b>FRETE GRÁTIS</b> - <?php echo $calcular04510[1]; ?> dias úteis para entrega
+            <br><br><b>FRETE GRÁTIS</b> - <?php echo $dias_entrega + 1; ?> dias úteis para entrega
 
         <?php
 
@@ -48,13 +49,13 @@ $calcular04014 = $classeCompra->calcular_frete($cep, $peso, $altura, $largura, $
             <select id="selectFrete" class="text-secondary" onchange="retorna_codigo_pagseguro(this.value)">
 
             <option disabled selected hidden value="vazio">Selecione o tipo de entrega</option>
-            <option value="PAC-<?php echo $calcular04510[0]; ?>">PAC: R$<?php echo $calcular04510[0]; ?> - <?php echo $calcular04510[1]; ?> dias para entrega</option>
-            <option value="SEDEX-<?php echo $calcular04014[0]; ?>">SEDEX: R$<?php echo $calcular04014[0]; ?> - <?php echo $calcular04014[1]; ?> dias para entrega</option>
+            <option value="PAC-<?php echo $calcular04510[0]; ?>-<?php echo $calcular04510[1] + $dias_entrega; ?>">PAC: R$<?php echo $calcular04510[0]; ?> - <?php echo $calcular04510[1] + $dias_entrega; ?> dias úteis para entrega</option>
+            <option value="SEDEX-<?php echo $calcular04014[0]; ?>-<?php echo $calcular04014[1] + $dias_entrega; ?>">SEDEX: R$<?php echo $calcular04014[0]; ?> - <?php echo $calcular04014[1] + $dias_entrega; ?> dias úteis para entrega</option>
 
             </select>
 
-            <br><br><b>PAC:</b> R$<?php echo $calcular04510[0]; ?> - <?php echo $calcular04510[1]; ?> dias para entrega<br>
-            <b>SEDEX:</b> R$<?php echo $calcular04014[0]; ?> - <?php echo $calcular04014[1]; ?> dias para entrega
+            <br><br><b>PAC:</b> R$<?php echo $calcular04510[0]; ?> - <?php echo $calcular04510[1] + $dias_entrega; ?> dias úteis para entrega<br>
+            <b>SEDEX:</b> R$<?php echo $calcular04014[0]; ?> - <?php echo $calcular04014[1] + $dias_entrega; ?> dias úteis para entrega
 
         <?php
 

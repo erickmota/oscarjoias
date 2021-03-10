@@ -1081,7 +1081,7 @@
 
                 <script type="text/javascript">
                                                                                 
-                    function calcular_frete(cep, peso, altura, largura, comprimento) {
+                    function calcular_frete(cep, peso, altura, largura, comprimento, dias_entrega) {
 
                         $.ajax({
 
@@ -1097,7 +1097,7 @@
 
                             },
 
-                            data: {cep: cep, peso: peso, altura: altura, largura: largura, comprimento: comprimento},
+                            data: {cep: cep, peso: peso, altura: altura, largura: largura, comprimento: comprimento, dias_entrega: dias_entrega},
 
                             success: function (msg) {
 
@@ -1124,6 +1124,7 @@
                         var altura = "<?php echo $arrProduto['altura']; ?>";
                         var largura = "<?php echo $arrProduto['largura']; ?>";
                         var comprimento = "<?php echo $arrProduto['comprimento']; ?>";
+                        var dias_entrega = "<?php echo $arrProduto['dias_entrega']; ?>";
 
                         if ( event.which == 13) {
                             if(cep == ""){
@@ -1132,7 +1133,7 @@
 
                             }else{
 
-                                calcular_frete(cep, peso, altura, largura, comprimento);
+                                calcular_frete(cep, peso, altura, largura, comprimento, dias_entrega);
 
                             }
                         }

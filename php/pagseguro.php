@@ -5,6 +5,7 @@ $classeCompra = new compra();
 
 $frete = str_replace(",", ".", $_POST["frete"]);
 $tipo = $_POST["tipo"];
+$dias = $_POST["dias"];
 
 /* $classeCompra->idCliente = 1; */
 $classeCompra->idCliente = str_replace(array(";", "'", "--", "/", "*", "xp_", "XP_", "SELECT" , "INSERT" , "UPDATE" , "DELETE" , "DROP", "select" , "insert" , "update" , "delete" , "drop"), "", base64_decode($_COOKIE["iu_oj"]));
@@ -32,13 +33,20 @@ if(isset($_COOKIE["iu_oj"]) && isset($_COOKIE["eu_oj"]) && isset($_COOKIE["su_oj
 
 foreach($classeCompra->retorna_dados_carrinho() as $arrCarrinho){
 
-    $produto[] = ["nome" => $arrCarrinho["nome_produto"], "preco" => floatval($arrCarrinho["preco"]), "qtd" => $arrCarrinho["qtd_pedido"], "id_produtos" => $arrCarrinho["id_produto"]];
+    $str1 = preg_replace('/[áàãâä]/ui', 'a', $arrCarrinho["nome_produto"]);
+    $str2 = preg_replace('/[éèêë]/ui', 'e', $str1);
+    $str3 = preg_replace('/[íìîï]/ui', 'i', $str2);
+    $str4 = preg_replace('/[óòõôö]/ui', 'o', $str3);
+    $str5 = preg_replace('/[úùûü]/ui', 'u', $str4);
+    $str6 = preg_replace('/[ç]/ui', 'c', $str5);
+
+    $produto[] = ["nome" => $str6, "preco" => floatval($arrCarrinho["preco"]), "qtd" => $arrCarrinho["qtd_pedido"], "id_produtos" => $arrCarrinho["id_produto"]];
 
 }
 
 if($frete > 0){
 
-    @$produto[] = ["nome" => "Frete - {$tipo}", "preco" => floatval($frete), "qtd" => "1", "id_produtos" => "0"];
+    @$produto[] = ["nome" => "Frete - {$tipo} - {$dias} dias", "preco" => floatval($frete), "qtd" => "1", "id_produtos" => "0"];
 
 }
 

@@ -221,6 +221,7 @@
         $larguraTotal = 0;
         $alturaInd = [];
         $comprimentoInd = [];
+        $dias_entrega_ind = [];
 
         if($classeCompra->retorna_dados_carrinho() == false){
 
@@ -389,9 +390,11 @@
 
         array_push($alturaInd, $arrCompra["altura"]);
         array_push($comprimentoInd, $arrCompra["comprimento"]);
+        array_push($dias_entrega_ind, $arrCompra["dias_entrega"]);
 
         $maiorAltura =  max($alturaInd);
         $maiorComprimento =  max($comprimentoInd);
+        $maiorDiaEntrega = max($dias_entrega_ind);
 
         }
 
@@ -470,7 +473,7 @@
 
                         <script type="text/javascript">
                                                                                 
-                            function calcular_frete(cep, peso, altura, largura, comprimento) {
+                            function calcular_frete(cep, peso, altura, largura, comprimento, dias_entrega) {
         
                                 $.ajax({
         
@@ -485,7 +488,7 @@
         
                                     },
         
-                                    data: {cep: cep, peso: peso, altura: altura, largura: largura, comprimento: comprimento},
+                                    data: {cep: cep, peso: peso, altura: altura, largura: largura, comprimento: comprimento, dias_entrega: dias_entrega},
         
                                     success: function (msg) {
         
@@ -512,6 +515,7 @@
                                 var altura = "<?php echo $maiorAltura; ?>";
                                 var largura = "<?php echo $larguraTotal; ?>";
                                 var comprimento = "<?php echo $maiorComprimento; ?>";
+                                var dias_entrega = "<?php echo $maiorDiaEntrega; ?>";
 
                                 if ( event.which == 13) {
                                     if(cep == ""){
@@ -520,7 +524,7 @@
 
                                     }else{
 
-                                        calcular_frete(cep, peso, altura, largura, comprimento);
+                                        calcular_frete(cep, peso, altura, largura, comprimento, dias_entrega);
 
                                     }
                                 }
@@ -761,7 +765,7 @@
                 
                                             },
                 
-                                            data: {frete: freteSplit[1], tipo: freteSplit[0]},
+                                            data: {frete: freteSplit[1], tipo: freteSplit[0], dias: freteSplit[2]},
                 
                                             success: function (msg) {
                 
