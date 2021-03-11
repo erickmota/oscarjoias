@@ -194,11 +194,37 @@ if(!isset($classeClientes)){
 
                                 <div class="col-10 col-sm-7 text-white text-center">
 
-                                    Ou
+                                    <span id="botaoEsqueciSenha" style="cursor: pointer;">Esqueci a senha</span>
 
                                 </div>
 
                             </div>
+
+                            <div class="row justify-content-center mt-3" style="display: none;" id="areaEsquci">
+
+                                <div class="col-10 col-sm-7 text-white text-center">
+
+                                    <form method="POST" action="php/esqueciSenha.php">
+
+                                        <input type="email" class="form-control" placeholder="E-mail cadastrado" name="esqueci-email" required>
+
+                                        <input type="submit" class="btn btn-success form-control mt-2" value="Lembrar Senha">
+
+                                    </form>
+
+                                </div>
+
+                            </div>
+
+                            <script>
+
+                            $("#botaoEsqueciSenha").click(function(){
+
+                                $("#areaEsquci").slideToggle("fast");
+
+                            })
+
+                            </script>
 
                             <div class="row justify-content-center mt-3">
 
@@ -383,15 +409,8 @@ if(!isset($classeClientes)){
                 <div id="menu-pessoa" class="text-center bg-dark" style="display: none">
 
                     <a href="pedidos" class="text-decoration-none text-secondary"><p class="border-bottom pb-3 pt-3 pr-3 pl-3"><img id="iconesPessoa" src="img/check.png" width="25px"> Meus Pedidos</p></a>
-                    <a href="#" class="text-decoration-none text-secondary"><p class="border-bottom pb-3 pr-3 pl-3"><img id="iconesPessoa" src="img/config.png" height="20px"> Ajustes</p></a>
+                    <a href="ajustes" class="text-decoration-none text-secondary"><p class="border-bottom pb-3 pr-3 pl-3"><img id="iconesPessoa" src="img/config.png" height="20px"> Ajustes</p></a>
                     <a href="php/deslogar.php" class="text-decoration-none text-secondary"><p class="pr-3 pl-3"><img id="iconesPessoa" src="img/sair.png" width="25px"> Sair</p></a>
-
-                    <!-- <ul id="listaPessoa" class="text-center">
-                    
-                        <li class="border-bottom pb-3 pt-3 pr-3 pl-3"><img id="iconesPessoa" src="img/check.png" width="25px"> Meus Pedidos</li>
-                        <li class="pr-3 pl-3 mt-3"><img id="iconesPessoa" src="img/sair.png" width="25px"> Sair</li>
-                    
-                    </ul> -->
             
                 </div>
 

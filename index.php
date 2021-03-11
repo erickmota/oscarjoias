@@ -82,6 +82,10 @@ if(isset($_GET["url"])){
 
     include "paginas/contato.php";
 
+  }else if($explode[0] == "ajustes"){
+
+    include "paginas/ajustes.php";
+
   }
 
 }else{

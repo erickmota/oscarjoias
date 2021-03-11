@@ -1,5 +1,20 @@
 #fundoFooter{
 
-    background-color: #efe07b;
+    background-color: #3d3d3d;
+    border-top: 5px solid #efe07b;
+
+}
+
+#imgPagseguro{
+
+    border: 2px solid #efe07b;
+    padding: 15px;
+    border-radius: 20px;
+
+}
+
+#fundoListraFooter{
+
+    background-color: #2e2d2d;
 
 }

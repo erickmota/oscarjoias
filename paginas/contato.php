@@ -50,22 +50,22 @@
 
             <div class="col-12 col-md-5 text-secondary">
 
-                <form>
+                <form method="POST" action="php/contato.php">
                     <div class="mb-3">
                       <label for="exampleInputEmail1" class="form-label">Seu nome</label>
-                      <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                      <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="nome" required>
                     </div>
                     <div class="mb-3">
                       <label for="exampleInputPassword1" class="form-label">Seu e-mail</label>
-                      <input type="email" class="form-control" id="exampleInputPassword1">
+                      <input type="email" class="form-control" id="exampleInputPassword1" name="email" required>
                     </div>
                     <div class="mb-3">
                         <label for="exampleInputPassword1" class="form-label">Assunto</label>
-                        <input type="text" class="form-control" id="exampleInputPassword1">
+                        <input type="text" class="form-control" id="exampleInputPassword1" name="assunto" required>
                     </div>
                     <div class="mb-3">
                         <label for="exampleInputPassword1" class="form-label">Texto</label>
-                        <textarea class="form-control" rows="4"></textarea>
+                        <textarea class="form-control" rows="4" name="texto" required></textarea>
                     </div>
                     <button type="submit" class="btn btn-success float-end">Enviar</button>
                 </form>
