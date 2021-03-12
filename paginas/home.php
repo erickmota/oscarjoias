@@ -149,13 +149,13 @@ Desenvolvido por: Erick Mota (erickmota.com) -->
                   </ol>
                   <div class="carousel-inner">
                     <div class="carousel-item active">
-                      <img id="imgSlide" src="img/slides/slide1.jpg" class="d-block w-100" alt="...">
+                      <a href="#"><img id="imgSlide" src="img/slides/slide1.jpg" class="d-block w-100" alt="..."></a>
                     </div>
                     <div class="carousel-item">
-                      <img id="imgSlide" src="img/slides/slide2.jpg" class="d-block w-100" alt="...">
+                      <a href="#"><img id="imgSlide" src="img/slides/slide2.jpg" class="d-block w-100" alt="..."></a>
                     </div>
                     <div class="carousel-item">
-                      <img id="imgSlide" src="img/slides/slide3.jpg" class="d-block w-100" alt="...">
+                      <a href="#"><img id="imgSlide" src="img/slides/slide3.jpg" class="d-block w-100" alt="..."></a>
                     </div>
                   </div>
                   <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-bs-slide="prev">

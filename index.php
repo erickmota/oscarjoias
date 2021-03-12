@@ -48,7 +48,19 @@ if(isset($_GET["url"])){
 
   }else if($explode[0] == "adm"){
 
-    include "paginas/adm.php";
+    if(isset($explode[1])){
+
+      if($explode[1] == "novo-produto"){
+
+        include "paginas/adm_novo_produto.php";
+
+      }
+
+    }else{
+
+      include "paginas/adm.php";
+
+    }
 
   }else if($explode[0] == "sacola"){
 
