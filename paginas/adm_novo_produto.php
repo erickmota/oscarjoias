@@ -2,6 +2,13 @@
 
 <head>
 
+    <?php
+    
+    include "./classes/produtos.class.php";
+    $classeProdutos = new produtos();
+    
+    ?>
+
     <title>Painel administrador - Oscar Jóias e Acessórios</title>
 
     <meta charset="UTF-8">
@@ -32,21 +39,29 @@
         function aparecerVariacoes(op){
 
             var nomeVariacao = document.getElementById("campoVariacao");
+            var textoClienteVariacao = document.getElementById("textoClienteVariacao");
             var opVariacao = document.getElementById("opVariacao");
             var botaoAddVariacao = document.getElementById("botaoAddVariacao");
             var botaoRemoveVariacao = document.getElementById("botaoRemoveVariacao");
 
             if(op == true){
 
-                nomeVariacao.classList.remove("d-none");
-                opVariacao.classList.remove("d-none");
+                $("#fundoVariacoesCinza").slideDown("fast");
+
                 botaoAddVariacao.classList.add("d-none");
                 botaoRemoveVariacao.classList.remove("d-none");
 
             }else{
 
-                nomeVariacao.classList.add("d-none");
-                opVariacao.classList.add("d-none");
+                nomeVariacao.value = "";
+                textoClienteVariacao.value = "";
+                $('#opVariacao').flexdatalist('disabled', false);
+                $('#opVariacao').flexdatalist('value', '');
+                $('#opVariacao').flexdatalist('disabled', true);
+                textoClienteVariacao.setAttribute("disabled", "disabled");
+
+                $("#fundoVariacoesCinza").slideUp("fast");
+
                 botaoAddVariacao.classList.remove("d-none");
                 botaoRemoveVariacao.classList.add("d-none");
 
@@ -55,7 +70,7 @@
         }
 
         $('.flexdatalist').flexdatalist({
-            minLength: 1
+            minLength: 1,
         });
         
         $(document).ready(function () {
@@ -140,14 +155,14 @@
 
                     <div class="col text-secondary">
 
-                        <form>
+                        <form enctype="multipart/form-data" action="php/adm.php" method="POST">
 
                             <div class="row mt-4">
 
                                 <div class="col-9">
 
-                                    <label class="form-label">Nome do produto</label>
-                                    <input class="form-control" type="text" name="nome" maxlength="47">
+                                    <label class="form-label">Nome do produto <span class="text-danger">*</span></label>
+                                    <input class="form-control" type="text" name="nome" maxlength="47" required>
                                     <div class="form-text">Máximo de 47 caracteres</div>
 
                                 </div>
@@ -214,11 +229,11 @@
 
                                 <div class="col">
 
-                                    <label class="form-label" for="input-img1">Imagem da capa</label>
+                                    <label class="form-label" for="input-img1">Imagem da capa  <span class="text-danger">*</span> / Galeria</label>
                                     <div class="form-text text-info">*Essa prévia das imagens não correspondem ao modo como elas irão aparecer na galeria!</div><br>
 
                                     <label class="form-label" for="input-capa"><img src="img/selecionar-capa.png" id="escolher-img-capa" width="150px"></label>
-                                    <input id="input-capa" class="form-control d-none" accept="image/*" onchange="mudar_img(event, 'capa')" type="file" name="capa">
+                                    <input id="input-capa" class="form-control d-none" accept="image/*" onchange="mudar_img(event, 'capa')" type="file" name="capa" required>
 
                                     <?php
                                     
@@ -239,7 +254,7 @@
                                     
                                     ?>
 
-                                    <input type="hidden" id="hiddenQtdImg">
+                                    <input type="hidden" id="hiddenQtdImg" name="qtd-galeria">
 
                                     <img onclick="remover_img()" src="img/remover.png" width="25px" style="cursor: pointer;">
 
@@ -253,9 +268,9 @@
 
                                 <div class="col-9">
 
-                                    <label class="form-label" for="input-img1">Descrição do produto</label>
+                                    <label class="form-label" for="input-img1">Descrição do produto <span class="text-danger">*</span></label>
 
-                                    <textarea class="form-control" rows="5" cols="80" name="descricao"></textarea>
+                                    <textarea class="form-control" rows="5" cols="80" name="descricao" required></textarea>
 
                                 </div>
 
@@ -265,9 +280,9 @@
 
                                 <div class="col-5">
 
-                                    <label class="form-label" for="input-img1">Preço</label>
+                                    <label class="form-label" for="input-img1">Preço <span class="text-danger">*</span></label>
 
-                                    <input class="form-control" type="number" name="preco" step=".01">
+                                    <input class="form-control" type="number" name="preco" step=".01" required>
 
                                     <div class="form-text">Preço para venda</div>
 
@@ -290,9 +305,9 @@
 
                                 <div class="col-5">
 
-                                    <label class="form-label" for="input-img1">Quantidade no estoque</label>
+                                    <label class="form-label" for="input-img1">Quantidade no estoque <span class="text-danger">*</span></label>
 
-                                    <input class="form-control" type="number" name="qtd">
+                                    <input class="form-control" type="number" name="qtd" required>
 
                                     <div class="form-text">Dica: se estiver vendendo esse produto sob encomenda, defina uma quantidade alta</div>
 
@@ -300,9 +315,9 @@
 
                                 <div class="col-4">
 
-                                    <label class="form-label" for="input-img1">Estado do produto</label>
+                                    <label class="form-label" for="input-img1">Estado do produto <span class="text-danger">*</span></label>
 
-                                    <select class="form-select" name="estado">
+                                    <select class="form-select" name="estado" required>
 
                                         <option disabled selected hidden>Difina o estado</option>
                                         <option value="publicado-disponivel">Publicado - disponível</option>
@@ -319,10 +334,11 @@
 
                                 <div class="col-9">
 
-                                    <label class="form-label" for="input-img1">Variação padrão</label>
+                                    <label class="form-label" for="input-img1">Variação padrão <span class="text-danger">*</span></label>
 
-                                    <select class="form-select" name="variacao">
+                                    <select class="form-select" name="variacao" required>
 
+                                        <option disabled selected hidden>Difina um padrão</option>
                                         <option value="nenhum">Nenhum padrão</option>
                                         <option value="unico">Anel único</option>
                                         <option value="casal">Anel casal</option>
@@ -345,8 +361,153 @@
 
                                 <div class="col-9">
 
-                                    <a onclick="aparecerVariacoes(true)" id="botaoAddVariacao" class="">Adicionar variação complementar</a>
-                                    <a onclick="aparecerVariacoes(false)" class="d-none" id="botaoRemoveVariacao">Remover variação complementar</a>
+                                    <a onclick="aparecerVariacoes(true)" id="botaoAddVariacao" class="" style="cursor: pointer;">Adicionar variação complementar</a>
+                                    <a onclick="aparecerVariacoes(false)" class="d-none" id="botaoRemoveVariacao" style="cursor: pointer;">Remover variação complementar</a>
+
+                                </div>
+
+                            </div>
+
+                            <div class="row mt-4" id="fundoVariacoesCinza" style="display: none;">
+
+                                <div class="col-9 p-3 bg-light">
+
+                                    <div class="row">
+
+                                        <div class="col">
+
+                                            <label class="form-label" for="input-img1">Nome da variação</label>
+
+                                            <input style="text-transform:lowercase;" list="variacoesDisponiveis" autocomplete="off" id="campoVariacao" type="text" class="form-control" name="novaVariacao">
+
+                                            <div class="form-text">Selecione uma variacao já existente ou crie uma nova</div>
+
+                                            <datalist id="variacoesDisponiveis">
+
+                                                <?php
+                                                
+                                                foreach($classeProdutos->retorna_variacoes() as $arrVariacoes){
+                                                
+                                                ?>
+
+                                                <option value="<?php echo $arrVariacoes["nome"]; ?>">
+
+                                                <?php
+                                                
+                                                }
+                                                
+                                                ?>
+
+                                            </datalist>
+
+                                        </div>
+
+                                    </div>
+
+                                    <div class="row mt-4">
+
+                                        <div class="col">
+
+                                            <label class="form-label" for="input-img1">Texto para o cliente</label>
+
+                                            <div id="areaInputVariacaoTexto" class="text-center">
+
+                                                <input autocomplete="off" id="textoClienteVariacao" type="text" class="form-control" name="texto-variacao" disabled>
+
+                                            </div>
+
+                                            <div class="form-text"><b>Exemplo:</b> Escolha a cor da pedra</div>
+
+                                        </div>
+
+                                    </div>
+
+                                    <div class="row mt-4 mb-2">
+
+                                        <div class="col">
+
+                                            <label class="form-label" for="input-img1">Opções da variação</label>
+
+                                            <!-- <input class="form-control" autocomplete="off" id="opVariacao" type="text" placeholder="separe cada opção com uma vírgula" name="opNovaVariacao"> -->
+
+                                            <div id="areaInputVariacao" class="text-center">
+
+                                                <input id="opVariacao" type='text' class='flexdatalist  form-control' data-min-length='1' multiple='multiple' name="opNovaVariacao" disabled>
+
+                                            </div>
+
+                                            <div class="form-text text-warning">Digite o nome da opção e pressione <b>ENTER</b> para confirmar e pular para a próxima opção</div>
+
+                                        </div>
+
+                                    </div>
+
+                                    <script type="text/javascript">
+                                                                                
+                                        function retornar_op_variacoes(nome_variacao) {
+                    
+                                            $.ajax({
+                    
+                                                type: "POST",
+                                                dataType: "html",
+                    
+                                                url: "ajax/retorna_op_variacao.php",
+                    
+                                                beforeSend: function () {
+                    
+                                                    $("#areaInputVariacao").html("<img src='img/loading.gif' width='60px'>");
+                    
+                                                },
+                    
+                                                data: {nome_variacao: nome_variacao},
+                    
+                                                success: function (msg) {
+                    
+                                                    $("#areaInputVariacao").html(msg);
+                    
+                                                }
+                    
+                                            });
+                    
+                                        }
+
+                                        function retornar_texto_variacoes(nome_variacao) {
+                    
+                                            $.ajax({
+
+                                                type: "POST",
+                                                dataType: "html",
+
+                                                url: "ajax/retorna_texto_variacao.php",
+
+                                                beforeSend: function () {
+
+                                                    $("#areaInputVariacaoTexto").html("<img src='img/loading.gif' width='60px'>");
+
+                                                },
+
+                                                data: {nome_variacao: nome_variacao},
+
+                                                success: function (msg) {
+
+                                                    $("#areaInputVariacaoTexto").html(msg);
+
+                                                }
+
+                                            });
+
+                                        }
+
+                                        $("#campoVariacao").keyup(function(){
+
+                                            var campoVariacao = document.getElementById("campoVariacao").value;
+
+                                            retornar_op_variacoes(campoVariacao);
+                                            retornar_texto_variacoes(campoVariacao);
+
+                                        });
+                
+                                    </script>
 
                                 </div>
 
@@ -356,18 +517,150 @@
 
                                 <div class="col-9">
 
-                                    <label class="form-label" for="input-img1">Nome da variação</label>
+                                    <label class="form-label" for="input-img1">Categoria <span class="text-danger">*</span></label>
 
-                                    <input list="variacoesDisponiveis" autocomplete="off" id="campoVariacao" type="text" class="form-control" name="novaVariacao">
+                                    <input type='text' autocomplete="off" class='flexdatalist form-control' data-min-length='0' multiple='multiple' list='categorias' name='categoria' required>
 
-                                    <datalist id="variacoesDisponiveis">
-                                        <option value="Edge">
-                                        <option value="Firefox">
-                                        <option value="Chrome">
-                                        <option value="Opera">
-                                        <option value="Safari">
+                                    <div class="form-text text-warning">Selecione categorias existentes, ou crie uma nova e pressione <b>ENTER</b> para confirmar</div>
+                                    <div class="form-text">Você pode selecionar mais de uma categoria; é necessário pelo menos 1 categoria</div>
+
+                                    <datalist id="categorias">
+
+                                        <?php
+                                        
+                                        foreach($classeProdutos->retorna_categorias() as $arrCategoria){
+                                        
+                                        ?>
+
+                                        <option value="<?php echo $arrCategoria["nome"]; ?>"><?php echo $arrCategoria["nome"]; ?></option>
+
+                                        <?php
+                                        
+                                        }
+                                        
+                                        ?>
+
                                     </datalist>
 
+                                </div>
+
+                            </div>
+
+                            <div class="row mt-4">
+
+                                <div class="col-5">
+
+                                    <label class="form-label" for="input-img1">Qtd máxima de caracteres</label>
+
+                                    <input class="form-control" type="number" name="maximo_caracteres">
+
+                                    <div class="form-text">Define a quantidade de caracteres que o cliente poderá digitar, quando escolhendo a gravação no produto</div>
+                                    <div class="form-text">*Deixe em branco para não limitar quantidade de caracteres ou se o produto não vai permitir gravação</div>
+                                    
+                                </div>
+
+                                <div class="col-4">
+
+                                    <label class="form-label" for="input-img1">Tipo do produto <span class="text-danger">*</span></label>
+
+                                    <select name="tipo" class="form-select" required>
+
+                                        <option disabled selected hidden>Defina o tipo</option>
+                                        <option value="ouro">Ouro</option>
+                                        <option value="prata">Prata</option>
+
+                                    </select>
+
+                                    <div class="form-text">Defina se o produto é do tipo ouro ou prata</div>
+
+                                </div>
+
+                            </div>
+
+                            <div class="row mt-5">
+
+                                <div class="col-9">
+
+                                    <h2>Correios / Frete <span class="text-danger">*</span></h2>
+
+                                    <p class="text-info">Dados para calculo do frete. Preencher corretamente de acordo com as especificações dos campos!</p>
+                                    
+                                </div>
+
+                            </div>
+
+                            <div class="row mt-4">
+
+                                <div class="col-5">
+
+                                    <label class="form-label" for="input-img1">Peso do produto <span class="text-danger">*</span></label>
+
+                                    <input class="form-control" type="number" name="peso" step=".01" required>
+
+                                    <div class="form-text">Em Kg, onde 500g é equivalente a <b>0.5</b></div>
+                                    
+                                </div>
+
+                                <div class="col-4">
+
+                                    <label class="form-label" for="input-img1">Altura do produto <span class="text-danger">*</span></label>
+
+                                    <input class="form-control" type="number" min="1" name="altura" required>
+
+                                    <div class="form-text">Em centímetros (cm), mínimo 1cm</div>
+
+                                </div>
+
+                            </div>
+
+                            <div class="row mt-4">
+
+                                <div class="col-5">
+
+                                    <label class="form-label" for="input-img1">Largura do produto <span class="text-danger">*</span></label>
+
+                                    <input class="form-control" type="number" min="10" name="largura" required>
+
+                                    <div class="form-text">Em centímetros (cm), mínimo 10cm</div>
+                                    
+                                </div>
+
+                                <div class="col-4">
+
+                                    <label class="form-label" for="input-img1">Comprimento do produto <span class="text-danger">*</span></label>
+
+                                    <input class="form-control" type="number" min="15" name="comprimento" required>
+
+                                    <div class="form-text">Em centímetros (cm), mínimo 15cm</div>
+
+                                </div>
+
+                            </div>
+
+                            <div class="row mt-4">
+
+                                <div class="col-9">
+
+                                    <label class="form-label" for="input-img1">Dias para entrega</label>
+
+                                    <input class="form-control" type="number" name="dias-entrega">
+
+                                    <div class="form-text">*Deixe em branco para desconsiderar.</div>
+                                    <div class="form-text">Esse valor será somado a quantidade de dias que o correios levará para entregar o produto,
+                                    por exemplo, se os correios levará 5 dias, e você definir esse valor como 20, o cliente será informado que a encomenda
+                                    levará 25 dias para entrega.
+                                    </div>
+                                    
+                                </div>
+
+                            </div>
+
+                            <div class="row mt-4">
+
+                                <div class="col-9">
+
+                                    <button type="submit" class="btn btn-success float-end">CADASTRAR</button>
+                                    
                                 </div>
 
                             </div>

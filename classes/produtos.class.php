@@ -11,6 +11,11 @@ class produtos{
     public $maximo_caracteres;
     public $promocao;
     public $tipo;
+    public $peso;
+    public $altura;
+    public $largura;
+    public $comprimento;
+    public $dias_entrega;
 
     /* Tratar imagem do produto e enviar a pasta de destino */
     public function tratar_img($id_produto, $img, $ordemEnvio, $capaGaleria){
@@ -71,7 +76,7 @@ class produtos{
 
         include 'conexao.class.php';
 
-        $sql = mysqli_query($conn, "INSERT INTO produtos (nome, foto, descricao, preco, qtd_estoque, estado, id_variacao_produto, variacao_padrao, qtd_caracteres, preco_promocao, tipo) VALUES ('$this->nome', NULL, '$this->descricao', $this->preco, $this->qtd, '$this->estado', $variacaoAdicional, '$this->variacaoPadrao', $this->maximo_caracteres, $this->promocao, '$this->tipo')") or die("Erro ao cadastrar o produto");
+        $sql = mysqli_query($conn, "INSERT INTO produtos (nome, foto, descricao, preco, qtd_estoque, estado, id_variacao_produto, variacao_padrao, qtd_caracteres, preco_promocao, tipo, peso, altura, largura, comprimento, dias_entrega) VALUES ('$this->nome', NULL, '$this->descricao', $this->preco, $this->qtd, '$this->estado', $variacaoAdicional, '$this->variacaoPadrao', $this->maximo_caracteres, $this->promocao, '$this->tipo', '$this->peso', '$this->altura', '$this->largura', '$this->comprimento', '$this->dias_entrega')") or die("Erro ao cadastrar o produto");
 
     }
 
@@ -88,14 +93,31 @@ class produtos{
     }
 
     /* Cadastrar variações adicionais */
-    public function cadastrar_variacao_personalizada($nomeVariacao, $opVariacao){
+    public function cadastrar_variacao_personalizada($nomeVariacao, $opVariacao, $texto_cliente){
 
         include 'conexao.class.php';
 
-        $tirarEspacos = str_replace(", ", ",", $opVariacao);
-        $tirarEspacos2 = str_replace(", ", ",", $tirarEspacos);
+        $sql1 = mysqli_query($conn, "SELECT id FROM variacao_produtos WHERE nome='$nomeVariacao'") or die("Erro verificar se existe variação personalizada");
+        $qtd1 = mysqli_num_rows($sql1);
+        $linha1 = mysqli_fetch_assoc($sql1);
 
-        $sql = mysqli_query($conn, "INSERT INTO variacao_produtos (nome, opcoes) VALUES ('$nomeVariacao', '$tirarEspacos2')") or die("Erro variação personalizada");
+        if($qtd1 < 1){
+
+            $tirarEspacos = str_replace(", ", ",", $opVariacao);
+            $tirarEspacos2 = str_replace(", ", ",", $tirarEspacos);
+
+            $sql = mysqli_query($conn, "INSERT INTO variacao_produtos (nome, opcoes, texto_cliente) VALUES ('$nomeVariacao', '$tirarEspacos2', '$texto_cliente')") or die("Erro variação personalizada");
+
+            $sql2 = mysqli_query($conn, "SELECT id FROM variacao_produtos ORDER BY id DESC") or die("Erro ao retornar ultimo ID");
+            $linha2 = mysqli_fetch_array($sql2);
+
+            return $linha2["id"];
+
+        }else{
+
+            return $linha1["id"];
+
+        }
 
     }
 
@@ -188,13 +210,22 @@ class produtos{
         include 'conexao.class.php';
 
         $sql = mysqli_query($conn, "SELECT * FROM galeria INNER JOIN produtos ON galeria.id_produtos=produtos.id WHERE produtos.id=$idProduto ORDER BY galeria.caminho ASC") or die("Erro retornar galeria");
+        $qtd = mysqli_num_rows($sql);
         while($linha = mysqli_fetch_assoc($sql)){
             
             $array[] = $linha;
             
         }
 
-        return $array;
+        if($qtd < 1){
+
+            return false;
+
+        }else{
+
+            return $array;
+
+        }
 
     }
 
@@ -432,6 +463,34 @@ class produtos{
         }
 
         return $array;
+
+    }
+
+    public function retorna_variacoes(){
+
+        include 'conexao.class.php';
+
+        $sql = mysqli_query($conn, "SELECT nome FROM variacao_produtos") or die("Erro retorna_variacoes");
+        while($linha = mysqli_fetch_assoc($sql)){
+
+            $array[] = $linha;
+
+        }
+
+        return $array;
+
+    }
+
+    public function retorna_op_variacoes($nome, $propriedade){
+
+        include 'conexao.class.php';
+
+        $sql = mysqli_query($conn, "SELECT $propriedade FROM variacao_produtos WHERE nome='$nome'") or die("Erro retorna_variacoes");
+        $linha = mysqli_fetch_assoc($sql);
+
+        $retorno = $linha["$propriedade"];
+
+        return $retorno;
 
     }
 

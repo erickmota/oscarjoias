@@ -598,6 +598,8 @@
                     </li>
 
                     <?php
+
+                    if($classeProdutos->retorna_img_galeria($arrProduto["id"]) != false){
                     
                     foreach($classeProdutos->retorna_img_galeria($arrProduto["id"]) as $arrGaleria){
                     
@@ -610,6 +612,8 @@
                     <?php
                     
                     }
+
+                    }   
                     
                     ?>
 
@@ -645,7 +649,7 @@
                                     
                             $i_select = 1;
 
-                            while($i_select <= $arrGaleria["qtd_estoque"]){
+                            while($i_select <= $arrProduto["qtd_estoque"]){
                             
                             ?>
 

@@ -2,7 +2,7 @@
 
     include "../classes/produtos.class.php";
 
-    $qtdGaleria = 3;
+    /* $qtdGaleria = 3;
     $nome = $_POST["nome"];
     $capa = $_FILES["capa"];
     $galeria[1] = $_FILES["galeria1"];
@@ -18,7 +18,55 @@
     $categoria = $_POST["categoria"];
     $maximo_caracteres = $_POST["maximo_caracteres"];
     $promocao = $_POST["promocao"];
+    $tipo = $_POST["tipo"]; */
+
+    $qtdGaleria = $_POST["qtd-galeria"];
+
+    if($qtdGaleria == ""){
+
+        $qtdGaleria = 0;
+
+    }
+
+    $nome = $_POST["nome"];
+    $capa = $_FILES["capa"];
+
+    $i = 0;
+
+    while($i < $qtdGaleria){
+
+        $i_plus = $i + 1;
+
+        $galeria[$i] = $_FILES["img-{$i_plus}"];
+
+        $i++;
+
+    }
+
+    /* $galeria[1] = $_FILES["galeria1"];
+    $galeria[2] = $_FILES["galeria2"];
+    $galeria[3] = $_FILES["galeria3"]; */
+    $descricao = $_POST["descricao"];
+    $preco = $_POST["preco"];
+    $qtd = $_POST["qtd"];
+    $estado = $_POST["estado"];
+    $variacao = $_POST["variacao"];
+
+    @$novaVariacao = $_POST["novaVariacao"];
+    @$textoVariacao = $_POST["texto-variacao"];
+    @$opNovaVariacao = $_POST["opNovaVariacao"];
+
+    $categoria = mb_strtolower($_POST["categoria"], "UTF-8");
+    $maximo_caracteres = $_POST["maximo_caracteres"];
+    $promocao = $_POST["promocao"];
     $tipo = $_POST["tipo"];
+
+    $peso = $_POST["peso"];
+    $altura = $_POST["altura"];
+    $largura = $_POST["largura"];
+    $comprimento = $_POST["comprimento"];
+
+    $dias_entrega = $_POST["dias-entrega"];
 
     $classeImg = new produtos();
 
@@ -31,14 +79,19 @@
     $classeImg->maximo_caracteres = $maximo_caracteres;
     $classeImg->promocao = $promocao;
     $classeImg->tipo = $tipo;
+    $classeImg->peso = $peso;
+    $classeImg->altura = $altura;
+    $classeImg->largura = $largura;
+    $classeImg->comprimento = $comprimento;
+    $classeImg->dias_entrega = $dias_entrega;
 
     if($novaVariacao != ""){
 
-        $classeImg->cadastrar_variacao_personalizada($novaVariacao, $opNovaVariacao);
+        $funcVariacao = $classeImg->cadastrar_variacao_personalizada($novaVariacao, $opNovaVariacao, $textoVariacao);
 
-        $ultimoIdVariacao = $classeImg->retorna_ultimo_id("variacao_produtos");
+        /* $ultimoIdVariacao = $classeImg->retorna_ultimo_id("variacao_produtos"); */
 
-        $classeImg->cadastrar_produto_bd($ultimoIdVariacao);
+        $classeImg->cadastrar_produto_bd($funcVariacao);
 
     }else{
 
@@ -54,11 +107,11 @@
 
     $classeImg->tratar_img($ultimoId, $capa, 1, 1);
 
-    $i_img = 1;
+    $i_img = 0;
 
-    while($i_img <= $qtdGaleria){
+    while($i_img < $qtdGaleria){
 
-        $classeImg->tratar_img($ultimoId, $galeria[$i_img], $i_img + 1, 2);
+        $classeImg->tratar_img($ultimoId, $galeria[$i_img], $i_img + 2, 2);
 
         $i_img++;
 
