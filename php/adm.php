@@ -58,7 +58,21 @@
 
     $categoria = mb_strtolower($_POST["categoria"], "UTF-8");
     $maximo_caracteres = $_POST["maximo_caracteres"];
+
+    if($maximo_caracteres == ""){
+
+        $maximo_caracteres = 'null';
+
+    }
+
     $promocao = $_POST["promocao"];
+
+    if($promocao == ""){
+
+        $promocao = 'null';
+
+    }
+
     $tipo = $_POST["tipo"];
 
     $peso = $_POST["peso"];
@@ -67,6 +81,14 @@
     $comprimento = $_POST["comprimento"];
 
     $dias_entrega = $_POST["dias-entrega"];
+
+    if($dias_entrega == ""){
+
+        $dias_entrega = 0;
+
+    }
+
+    /* echo "{$maximo_caracteres} {$promocao} {$dias_entrega}"; */
 
     $classeImg = new produtos();
 
@@ -88,8 +110,6 @@
     if($novaVariacao != ""){
 
         $funcVariacao = $classeImg->cadastrar_variacao_personalizada($novaVariacao, $opNovaVariacao, $textoVariacao);
-
-        /* $ultimoIdVariacao = $classeImg->retorna_ultimo_id("variacao_produtos"); */
 
         $classeImg->cadastrar_produto_bd($funcVariacao);
 

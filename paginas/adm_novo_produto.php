@@ -162,10 +162,50 @@
                                 <div class="col-9">
 
                                     <label class="form-label">Nome do produto <span class="text-danger">*</span></label>
-                                    <input class="form-control" type="text" name="nome" maxlength="47" required>
+                                    <input id="campoNomeProduto" class="form-control" type="text" name="nome" maxlength="47" autocomplete="off" required>
+                                    <div id="avisoNome" class="form-text text-danger"></div>
                                     <div class="form-text">Máximo de 47 caracteres</div>
 
                                 </div>
+
+                                <script>
+
+                                    function verifica_nome_produto(nome_produto) {
+                                                        
+                                        $.ajax({
+
+                                            type: "POST",
+                                            dataType: "html",
+
+                                            url: "ajax/verifica_nome_produto.php",
+
+                                            /* beforeSend: function () {
+
+                                                $("#areaInputVariacaoTexto").html("<img src='img/loading.gif' width='60px'>");
+
+                                            }, */
+
+                                            data: {nome_produto: nome_produto},
+
+                                            success: function (msg) {
+
+                                                $("#avisoNome").html(msg);
+
+                                            }
+
+                                        });
+
+                                    }
+
+                                    $("#campoNomeProduto").keyup(function(){
+
+                                        var campoNomeProduto = document.getElementById("campoNomeProduto").value;
+
+                                        verifica_nome_produto(campoNomeProduto);
+
+                                    });
+
+                                </script>
 
                             </div>
 
@@ -294,8 +334,8 @@
 
                                     <input class="form-control" type="number" step=".01" name="promocao">
 
+                                    <div class="form-text text-info">*Deixe em branco, se não quiser mostrar nenhuma promoção</div>
                                     <div class="form-text">Irá aparecer assim <span class="text-decoration-line-through">R$1000,00</span></div>
-                                    <div class="form-text text-info">Deixe em branco, se não quiser mostrar nenhuma promoção</div>
 
                                 </div>
 
@@ -554,8 +594,8 @@
 
                                     <input class="form-control" type="number" name="maximo_caracteres">
 
+                                    <div class="form-text text-info">*Deixe em branco para não limitar quantidade de caracteres ou se o produto não vai permitir gravação</div>
                                     <div class="form-text">Define a quantidade de caracteres que o cliente poderá digitar, quando escolhendo a gravação no produto</div>
-                                    <div class="form-text">*Deixe em branco para não limitar quantidade de caracteres ou se o produto não vai permitir gravação</div>
                                     
                                 </div>
 
@@ -645,7 +685,7 @@
 
                                     <input class="form-control" type="number" name="dias-entrega">
 
-                                    <div class="form-text">*Deixe em branco para desconsiderar.</div>
+                                    <div class="form-text text-info">*Deixe em branco para desconsiderar.</div>
                                     <div class="form-text">Esse valor será somado a quantidade de dias que o correios levará para entregar o produto,
                                     por exemplo, se os correios levará 5 dias, e você definir esse valor como 20, o cliente será informado que a encomenda
                                     levará 25 dias para entrega.
@@ -659,7 +699,7 @@
 
                                 <div class="col-9">
 
-                                    <button type="submit" class="btn btn-success float-end">CADASTRAR</button>
+                                    <button id="botaoEnviar" type="submit" class="btn btn-success float-end">CADASTRAR</button>
                                     
                                 </div>
 

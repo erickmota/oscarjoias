@@ -76,7 +76,7 @@ class produtos{
 
         include 'conexao.class.php';
 
-        $sql = mysqli_query($conn, "INSERT INTO produtos (nome, foto, descricao, preco, qtd_estoque, estado, id_variacao_produto, variacao_padrao, qtd_caracteres, preco_promocao, tipo, peso, altura, largura, comprimento, dias_entrega) VALUES ('$this->nome', NULL, '$this->descricao', $this->preco, $this->qtd, '$this->estado', $variacaoAdicional, '$this->variacaoPadrao', $this->maximo_caracteres, $this->promocao, '$this->tipo', '$this->peso', '$this->altura', '$this->largura', '$this->comprimento', '$this->dias_entrega')") or die("Erro ao cadastrar o produto");
+        $sql = mysqli_query($conn, "INSERT INTO produtos (nome, foto, descricao, preco, qtd_estoque, estado, id_variacao_produto, variacao_padrao, qtd_caracteres, preco_promocao, tipo, peso, altura, largura, comprimento, dias_entrega) VALUES ('$this->nome', NULL, '$this->descricao', $this->preco, $this->qtd, '$this->estado', $variacaoAdicional, '$this->variacaoPadrao', $this->maximo_caracteres, $this->promocao, '$this->tipo', '$this->peso', '$this->altura', '$this->largura', '$this->comprimento', $this->dias_entrega)") or die("Erro ao cadastrar o produto");
 
     }
 
@@ -491,6 +491,17 @@ class produtos{
         $retorno = $linha["$propriedade"];
 
         return $retorno;
+
+    }
+
+    public function verifica_nome_produto(){
+
+        include 'conexao.class.php';
+
+        $sql = mysqli_query($conn, "SELECT id FROM produtos WHERE nome='$this->nome' collate utf8_general_ci") or die("Erro verifica_nome_produto");
+        $qtd = mysqli_num_rows($sql);
+
+        return $qtd;
 
     }
 
