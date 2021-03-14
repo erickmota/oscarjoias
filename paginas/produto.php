@@ -460,6 +460,33 @@
 
                 }
 
+            }else if(variacao_padrao == "nenhum" && variacao_complementar > 0){
+
+                var hiddenVariacaoAdicional = document.getElementById("hiddenVariacaoAdicional").value;
+                var boxVariacaoAdicional = document.getElementById("boxVariacaoAdicional");
+                var botaoAdicionarCarrinho = document.getElementById("botaoAddCarrinho");
+
+                if(hiddenVariacaoAdicional == ""){
+
+                boxVariacaoAdicional.classList.add("border");
+                boxVariacaoAdicional.classList.add("border-danger");
+                botaoAdicionarCarrinho.classList.add("bg-danger");
+                botaoAdicionarCarrinho.innerHTML = "Informações faltando";
+
+                setTimeout(function(){ 
+                    boxVariacaoAdicional.classList.remove("border");
+                    boxVariacaoAdicional.classList.remove("border-danger");
+                    botaoAdicionarCarrinho.classList.remove("bg-danger");
+                    botaoAdicionarCarrinho.innerHTML = "ADICIONAR À SACOLA";
+                }, 3000);
+
+                }else{
+
+                    /* window.location = "php/adicinarSacola.php?aroFeminino="+hiddenFeminino+"&gravacaoFeminino="+gravacaoFeminino+"&aroMasculino="+hiddenMasculino+"&gravacaoMasculino="+gravacaoMasculino+"&variacaoAdicional="+hiddenVariacaoAdicional; */
+                    window.location = "php/adicionarSacola.php?anelUnico=SE&gravacaoAnelUnico=SE&anelCasal=SE&gravacaoAnelCasal=SE&apenasAro=SE&apenasGravacao=SE&variacaoComplementar="+hiddenVariacaoAdicional+"&quantidade="+qtdCarrinho+"&idProduto=<?php echo $arrProduto['id'] ?>";
+
+                }
+
             }else if(variacao_padrao == "aro" && variacao_complementar < 1){
 
                 var hiddenApenasAro = document.getElementById("hiddenApenasAro").value;
@@ -567,6 +594,13 @@
 
                 /* window.location = "php/adicinarSacola.php?aroFeminino="+hiddenFeminino+"&gravacaoFeminino="+gravacaoFeminino+"&aroMasculino="+hiddenMasculino+"&gravacaoMasculino="+gravacaoMasculino+"&variacaoAdicional="+hiddenVariacaoAdicional; */
                 window.location = "php/adicionarSacola.php?anelUnico=SE&gravacaoAnelUnico=SE&anelCasal=SE&gravacaoAnelCasal=SE&apenasAro=SE&apenasGravacao="+gravacaoApenasGravacao+"&variacaoComplementar=SE&quantidade="+qtdCarrinho+"&idProduto=<?php echo $arrProduto['id'] ?>";
+
+            }else if(variacao_padrao == "nenhum" && variacao_complementar < 1){
+
+                var botaoAdicionarCarrinho = document.getElementById("botaoAddCarrinho");
+
+                /* window.location = "php/adicinarSacola.php?aroFeminino="+hiddenFeminino+"&gravacaoFeminino="+gravacaoFeminino+"&aroMasculino="+hiddenMasculino+"&gravacaoMasculino="+gravacaoMasculino+"&variacaoAdicional="+hiddenVariacaoAdicional; */
+                window.location = "php/adicionarSacola.php?anelUnico=SE&gravacaoAnelUnico=SE&anelCasal=SE&gravacaoAnelCasal=SE&apenasAro=SE&apenasGravacao=SE&variacaoComplementar=SE&quantidade="+qtdCarrinho+"&idProduto=<?php echo $arrProduto['id'] ?>";
 
             }
 

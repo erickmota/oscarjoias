@@ -91,7 +91,7 @@
 
         <div class="row">
 
-            <div class="col-3" id="fundoMenuPrincipal">
+            <div class="col-3 d-none d-md-block" id="fundoMenuPrincipal">
 
                 <div class="row mt-3">
 
@@ -139,7 +139,7 @@
 
             </div>
 
-            <div class="col-9 offset-md-3">
+            <div class="col-12 col-md-9 offset-md-3">
 
                 <div class="row mt-3">
 
@@ -159,7 +159,7 @@
 
                             <div class="row mt-4">
 
-                                <div class="col-9">
+                                <div class="col-12 col-md-9">
 
                                     <label class="form-label">Nome do produto <span class="text-danger">*</span></label>
                                     <input id="campoNomeProduto" class="form-control" type="text" name="nome" maxlength="47" autocomplete="off" required>
@@ -217,17 +217,83 @@
 
                                         if(tipo == "capa"){
 
-                                            var output = document.getElementById('escolher-img-capa');
-                                            output.src = URL.createObjectURL(event.target.files[0]);
-                                            output.onload = function() {
-                                            URL.revokeObjectURL(output.src)
-                                            }
+                                            var formatoArquivo = document.getElementById("input-capa").value.split('.').pop();
+                                            var campoArquivo = document.getElementById("input-capa");
 
-                                            $("#label-img-1").removeClass("d-none");
+                                            if(formatoArquivo != "jpg" && formatoArquivo != "jpeg"){
+
+                                                campoArquivo.value = "";
+                                                var output = document.getElementById('escolher-img-capa');
+                                                output.src = "img/selecionar-capa.png";
+                                                alert("Por favor, selecione uma imagem no formato JPG");
+
+                                            }else{
+
+                                                var output = document.getElementById('escolher-img-capa');
+                                                output.src = URL.createObjectURL(event.target.files[0]);
+                                                output.onload = function() {
+                                                URL.revokeObjectURL(output.src)
+                                                }
+
+                                                $("#label-img-1").removeClass("d-none");
+
+                                            }                                      
 
                                         }else{
 
-                                            var output = document.getElementById("escolher-img-"+tipo);
+                                            var formatoArquivo = document.getElementById("input-img-"+tipo).value.split('.').pop();
+                                            var campoArquivo = document.getElementById("input-img-"+tipo);
+
+                                            if(formatoArquivo != "jpg" && formatoArquivo != "jpeg"){
+
+                                                var i = 9;
+
+                                                while(i > tipo){
+
+                                                    var formatoArquivoS = document.getElementById("input-img-"+i).value.split('.').pop();
+                                                    var campoArquivoS = document.getElementById("input-img-"+i);
+
+                                                    campoArquivoS.value = "";
+                                                    var outputS = document.getElementById("escolher-img-"+i);
+                                                    outputS.src = "img/selecionar-galeria.png";
+                                                    $("#label-img-"+i).addClass("d-none");
+
+                                                    i--;
+
+                                                }
+
+                                                $("#hiddenQtdImg").val(tipo - 1);
+
+                                                campoArquivo.value = "";
+                                                var output = document.getElementById("escolher-img-"+tipo);
+                                                output.src = "img/selecionar-galeria.png";
+                                                alert("Por favor, selecione uma imagem no formato JPG");
+
+                                            }else{
+
+                                                var output = document.getElementById("escolher-img-"+tipo);
+                                                output.src = URL.createObjectURL(event.target.files[0]);
+                                                output.onload = function() {
+                                                URL.revokeObjectURL(output.src)
+                                                }
+
+                                                var somaTipo = tipo + 1;
+
+                                                if($("#hiddenQtdImg").val() < somaTipo){
+
+                                                    $("#hiddenQtdImg").val(tipo);
+
+                                                }else{
+
+                                                    
+
+                                                }
+
+                                                $("#label-img-"+somaTipo).removeClass("d-none");
+
+                                            }
+
+                                            /* var output = document.getElementById("escolher-img-"+tipo);
                                             output.src = URL.createObjectURL(event.target.files[0]);
                                             output.onload = function() {
                                             URL.revokeObjectURL(output.src)
@@ -245,7 +311,7 @@
 
                                             }
 
-                                            $("#label-img-"+somaTipo).removeClass("d-none");
+                                            $("#label-img-"+somaTipo).removeClass("d-none"); */
 
                                         }
 
@@ -273,7 +339,7 @@
                                     <div class="form-text text-info">*Essa prévia das imagens não correspondem ao modo como elas irão aparecer na galeria!</div><br>
 
                                     <label class="form-label" for="input-capa"><img src="img/selecionar-capa.png" id="escolher-img-capa" width="150px"></label>
-                                    <input id="input-capa" class="form-control d-none" accept="image/*" onchange="mudar_img(event, 'capa')" type="file" name="capa" required>
+                                    <input id="input-capa" class="form-control d-none" accept=".jpg, .jpeg" onchange="mudar_img(event, 'capa')" type="file" name="capa" required>
 
                                     <?php
                                     
@@ -284,7 +350,7 @@
                                     ?>
 
                                     <label id="label-img-<?php echo $i; ?>" class="form-label d-none" for="input-img-<?php echo $i; ?>"><img src="img/selecionar-galeria.png" id="escolher-img-<?php echo $i; ?>" width="150px"></label>
-                                    <input id="input-img-<?php echo $i; ?>" class="form-control d-none" accept="image/*" onchange="mudar_img(event, <?php echo $i; ?>)" type="file" name="img-<?php echo $i; ?>">
+                                    <input id="input-img-<?php echo $i; ?>" class="form-control d-none" accept=".jpg, .jpeg" onchange="mudar_img(event, <?php echo $i; ?>)" type="file" name="img-<?php echo $i; ?>">
 
                                     <?php
                                     
@@ -306,7 +372,7 @@
 
                             <div class="row mt-4">
 
-                                <div class="col-9">
+                                <div class="col-12 col-md-9">
 
                                     <label class="form-label" for="input-img1">Descrição do produto <span class="text-danger">*</span></label>
 
@@ -318,7 +384,7 @@
 
                             <div class="row mt-4">
 
-                                <div class="col-5">
+                                <div class="col-12 col-sm-6 col-md-5 pb-3">
 
                                     <label class="form-label" for="input-img1">Preço <span class="text-danger">*</span></label>
 
@@ -328,7 +394,7 @@
 
                                 </div>
 
-                                <div class="col-4">
+                                <div class="col-12 col-sm-6 col-md-4">
 
                                     <label class="form-label" for="input-img1">Preço antigo</label>
 
@@ -343,7 +409,7 @@
 
                             <div class="row mt-4">
 
-                                <div class="col-5">
+                                <div class="col-12 col-sm-6 col-md-5 pb-3">
 
                                     <label class="form-label" for="input-img1">Quantidade no estoque <span class="text-danger">*</span></label>
 
@@ -353,7 +419,7 @@
 
                                 </div>
 
-                                <div class="col-4">
+                                <div class="col-12 col-sm-6 col-md-4">
 
                                     <label class="form-label" for="input-img1">Estado do produto <span class="text-danger">*</span></label>
 
@@ -372,7 +438,7 @@
 
                             <div class="row mt-4">
 
-                                <div class="col-9">
+                                <div class="col-12 col-md-9">
 
                                     <label class="form-label" for="input-img1">Variação padrão <span class="text-danger">*</span></label>
 
@@ -399,7 +465,7 @@
 
                             <div class="row mt-4">
 
-                                <div class="col-9">
+                                <div class="col-12 col-md-9">
 
                                     <a onclick="aparecerVariacoes(true)" id="botaoAddVariacao" class="" style="cursor: pointer;">Adicionar variação complementar</a>
                                     <a onclick="aparecerVariacoes(false)" class="d-none" id="botaoRemoveVariacao" style="cursor: pointer;">Remover variação complementar</a>
@@ -410,7 +476,7 @@
 
                             <div class="row mt-4" id="fundoVariacoesCinza" style="display: none;">
 
-                                <div class="col-9 p-3 bg-light">
+                                <div class="col-12 col-md-9 p-3 bg-light">
 
                                     <div class="row">
 
@@ -555,7 +621,7 @@
 
                             <div class="row mt-4">
 
-                                <div class="col-9">
+                                <div class="col-12 col-md-9">
 
                                     <label class="form-label" for="input-img1">Categoria <span class="text-danger">*</span></label>
 
@@ -588,7 +654,7 @@
 
                             <div class="row mt-4">
 
-                                <div class="col-5">
+                                <div class="col-12 col-sm-6 col-md-5 pb-3">
 
                                     <label class="form-label" for="input-img1">Qtd máxima de caracteres</label>
 
@@ -599,7 +665,7 @@
                                     
                                 </div>
 
-                                <div class="col-4">
+                                <div class="col-12 col-sm-6 col-md-4">
 
                                     <label class="form-label" for="input-img1">Tipo do produto <span class="text-danger">*</span></label>
 
@@ -619,7 +685,7 @@
 
                             <div class="row mt-5">
 
-                                <div class="col-9">
+                                <div class="col-12 col-md-9">
 
                                     <h2>Correios / Frete <span class="text-danger">*</span></h2>
 
@@ -631,7 +697,7 @@
 
                             <div class="row mt-4">
 
-                                <div class="col-5">
+                                <div class="col-12 col-sm-6 col-md-5 pb-3">
 
                                     <label class="form-label" for="input-img1">Peso do produto <span class="text-danger">*</span></label>
 
@@ -641,7 +707,7 @@
                                     
                                 </div>
 
-                                <div class="col-4">
+                                <div class="col-12 col-sm-6 col-md-4">
 
                                     <label class="form-label" for="input-img1">Altura do produto <span class="text-danger">*</span></label>
 
@@ -655,7 +721,7 @@
 
                             <div class="row mt-4">
 
-                                <div class="col-5">
+                                <div class="col-12 col-sm-6 col-md-5 pb-3">
 
                                     <label class="form-label" for="input-img1">Largura do produto <span class="text-danger">*</span></label>
 
@@ -665,7 +731,7 @@
                                     
                                 </div>
 
-                                <div class="col-4">
+                                <div class="col-12 col-sm-6 col-md-4">
 
                                     <label class="form-label" for="input-img1">Comprimento do produto <span class="text-danger">*</span></label>
 
@@ -679,7 +745,7 @@
 
                             <div class="row mt-4">
 
-                                <div class="col-9">
+                                <div class="col-12 col-md-9">
 
                                     <label class="form-label" for="input-img1">Dias para entrega</label>
 
@@ -697,7 +763,7 @@
 
                             <div class="row mt-4">
 
-                                <div class="col-9">
+                                <div class="col-12 col-md-9">
 
                                     <button id="botaoEnviar" type="submit" class="btn btn-success float-end">CADASTRAR</button>
                                     

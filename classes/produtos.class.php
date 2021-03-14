@@ -455,7 +455,7 @@ class produtos{
 
         include 'conexao.class.php';
 
-        $sql = mysqli_query($conn, "SELECT * FROM  produtos WHERE preco_promocao!='' AND estado='publicado-disponivel' AND qtd_estoque > 0 ORDER BY id DESC LIMIT 20") or die("Erro ao retornar produtos promocionais");
+        $sql = mysqli_query($conn, "SELECT * FROM  produtos WHERE preco_promocao!='' AND estado='publicado-disponivel' AND qtd_estoque > 0 ORDER BY id DESC LIMIT 16") or die("Erro ao retornar produtos promocionais");
         while($linha = mysqli_fetch_assoc($sql)){
             
             $array[] = $linha;
