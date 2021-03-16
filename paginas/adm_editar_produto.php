@@ -6,6 +6,10 @@
     
     include "./classes/produtos.class.php";
     $classeProdutos = new produtos();
+
+    $idProduto = $_GET["produto"];
+
+    $classeProdutos->id = str_replace(array(";", "'", "--", "/", "*", "xp_", "XP_", "SELECT" , "INSERT" , "UPDATE" , "DELETE" , "DROP", "select" , "insert" , "update" , "delete" , "drop"), "", $idProduto);
     
     ?>
 
@@ -32,7 +36,13 @@
     <link href="jquery-flexdatalist-2.3.0/jquery.flexdatalist.min.css" rel="stylesheet" type="text/css">
     <script src="jquery-flexdatalist-2.3.0/jquery.flexdatalist.min.js"></script>
 
-    <link rel="stylesheet" href="css/adm_novo_produto.css">
+    <link rel="stylesheet" href="css/adm_editar_produto.css">
+
+    <?php
+    
+    foreach($classeProdutos->retorna_dados_produto_pelo_id() as $arrProduto){
+    
+    ?>
 
     <script>
         
@@ -145,7 +155,7 @@
 
                     <div class="col text-secondary">
 
-                        <h1>Novo Produto</h1>
+                        <h1>Editar Produto - ID: <?php echo $idProduto; ?></h1>
 
                     </div>
 
@@ -162,7 +172,7 @@
                                 <div class="col-12 col-md-9">
 
                                     <label class="form-label">Nome do produto <span class="text-danger">*</span></label>
-                                    <input id="campoNomeProduto" class="form-control" type="text" name="nome" maxlength="47" autocomplete="off" required>
+                                    <input id="campoNomeProduto" class="form-control" type="text" name="nome" maxlength="47" autocomplete="off" required value="<?php echo $arrProduto["nome"]; ?>">
                                     <div id="avisoNome" class="form-text text-danger"></div>
                                     <div class="form-text">Máximo de 47 caracteres</div>
 
@@ -237,7 +247,10 @@
 
                                                 $("#label-img-1").removeClass("d-none");
 
-                                            }                                      
+                                            }
+                                            
+                                            $("#hidden-input-capa").val(0);
+                                            $("#input-capa").attr("required", "required");
 
                                         }else{
 
@@ -258,9 +271,15 @@
                                                     outputS.src = "img/selecionar-galeria.png";
                                                     $("#label-img-"+i).addClass("d-none");
 
+                                                    i_less = i - 1;
+
+                                                    $("#hidden-input-img-"+i_less).val(0);
+
                                                     i--;
 
                                                 }
+
+                                                $("#hidden-input-img-9").val(0);
 
                                                 $("#hiddenQtdImg").val(tipo - 1);
 
@@ -290,6 +309,8 @@
                                                 }
 
                                                 $("#label-img-"+somaTipo).removeClass("d-none");
+
+                                                $("#hidden-input-img-"+tipo).val(0);
 
                                             }
 
@@ -328,6 +349,7 @@
                                         $("#label-img-"+somaImg).addClass("d-none");
 
                                         $("#hiddenQtdImg").val(numeroImg - 1);
+                                        $("#hidden-input-img-"+numeroImg).val(0);
 
                                     }
 
@@ -338,21 +360,65 @@
                                     <label class="form-label" for="input-img1">Imagem da capa  <span class="text-danger">*</span> / Galeria</label>
                                     <div class="form-text text-info">*Essa prévia das imagens não correspondem ao modo como elas irão aparecer na galeria!</div><br>
 
-                                    <label class="form-label" for="input-capa"><img src="img/selecionar-capa.png" id="escolher-img-capa" width="150px"></label>
-                                    <input id="input-capa" class="form-control d-none" accept=".jpg, .jpeg" onchange="mudar_img(event, 'capa')" type="file" name="capa" required>
+                                    <label class="form-label" for="input-capa"><img src="img/produtos/<?php echo $arrProduto["foto"]; ?>" id="escolher-img-capa" width="150px"></label>
+                                    <input id="input-capa" class="form-control d-none" accept=".jpg, .jpeg" onchange="mudar_img(event, 'capa')" type="file" name="capa">
+                                    <input type="hidden" id="hidden-input-capa" value="1">
 
                                     <?php
+
+                                    $funcRetornarDados = $classeProdutos->retorna_dados_galeria();
+
+                                    $qtdGaleriaAtual = $funcRetornarDados["qtd"];
+
+                                    if($qtdGaleriaAtual > 0){
+
+                                        foreach($funcRetornarDados["dados"] as $arrDados){
+
+                                            $img[] = $arrDados["caminho"];
+    
+                                        }
+
+                                    }
                                     
                                     $i = 1;
 
                                     while($i <= 9){
-                                    
-                                    ?>
 
-                                    <label id="label-img-<?php echo $i; ?>" class="form-label d-none" for="input-img-<?php echo $i; ?>"><img src="img/selecionar-galeria.png" id="escolher-img-<?php echo $i; ?>" width="150px"></label>
-                                    <input id="input-img-<?php echo $i; ?>" class="form-control d-none" accept=".jpg, .jpeg" onchange="mudar_img(event, <?php echo $i; ?>)" type="file" name="img-<?php echo $i; ?>">
+                                        if($i <= $qtdGaleriaAtual){
 
-                                    <?php
+                                            ?>
+
+                                            <label id="label-img-<?php echo $i; ?>" class="form-label" for="input-img-<?php echo $i; ?>"><img src="img/produtos/<?php echo $img[$i - 1]; ?>" id="escolher-img-<?php echo $i; ?>" width="150px"></label>
+                                            <input id="input-img-<?php echo $i; ?>" class="form-control d-none" accept=".jpg, .jpeg" onchange="mudar_img(event, <?php echo $i; ?>)" type="file" name="img-<?php echo $i; ?>">
+                                            <input type="hidden" id="hidden-input-img-<?php echo $i; ?>" value="1">
+
+                                            <?php
+
+                                        }else{
+
+                                            if($i == $qtdGaleriaAtual + 1){
+
+                                                ?>
+
+                                                <label id="label-img-<?php echo $i; ?>" class="form-label" for="input-img-<?php echo $i; ?>"><img src="img/selecionar-galeria.png" id="escolher-img-<?php echo $i; ?>" width="150px"></label>
+                                                <input id="input-img-<?php echo $i; ?>" class="form-control d-none" accept=".jpg, .jpeg" onchange="mudar_img(event, <?php echo $i; ?>)" type="file" name="img-<?php echo $i; ?>">
+                                                <input type="hidden" id="hidden-input-img-<?php echo $i; ?>" value="0">
+
+                                                <?php
+
+                                            }else{
+
+                                                ?>
+
+                                                <label id="label-img-<?php echo $i; ?>" class="form-label d-none" for="input-img-<?php echo $i; ?>"><img src="img/selecionar-galeria.png" id="escolher-img-<?php echo $i; ?>" width="150px"></label>
+                                                <input id="input-img-<?php echo $i; ?>" class="form-control d-none" accept=".jpg, .jpeg" onchange="mudar_img(event, <?php echo $i; ?>)" type="file" name="img-<?php echo $i; ?>">
+                                                <input type="hidden" id="hidden-input-img-<?php echo $i; ?>" value="0">
+
+                                                <?php
+
+                                            }
+
+                                        }
                                     
                                     $i++;
 
@@ -360,7 +426,7 @@
                                     
                                     ?>
 
-                                    <input type="hidden" id="hiddenQtdImg" name="qtd-galeria">
+                                    <input type="hidden" id="hiddenQtdImg" name="qtd-galeria" value="<?php echo $qtdGaleriaAtual; ?>">
 
                                     <img onclick="remover_img()" src="img/remover.png" width="25px" style="cursor: pointer;">
 
@@ -376,7 +442,7 @@
 
                                     <label class="form-label" for="input-img1">Descrição do produto <span class="text-danger">*</span></label>
 
-                                    <textarea class="form-control" rows="10" cols="80" name="descricao" required></textarea>
+                                    <textarea class="form-control" rows="10" cols="80" name="descricao" required><?php echo $arrProduto["descricao"]; ?></textarea>
 
                                 </div>
 
@@ -388,7 +454,7 @@
 
                                     <label class="form-label" for="input-img1">Preço <span class="text-danger">*</span></label>
 
-                                    <input class="form-control" type="number" name="preco" step=".01" required>
+                                    <input class="form-control" type="number" name="preco" step=".01" required value="<?php echo $arrProduto["preco"]; ?>">
 
                                     <div class="form-text">Preço para venda</div>
 
@@ -398,7 +464,7 @@
 
                                     <label class="form-label" for="input-img1">Preço antigo</label>
 
-                                    <input class="form-control" type="number" step=".01" name="promocao">
+                                    <input class="form-control" type="number" step=".01" name="promocao" value="<?php echo $arrProduto["preco_promocao"]; ?>">
 
                                     <div class="form-text text-info">*Deixe em branco, se não quiser mostrar nenhuma promoção</div>
                                     <div class="form-text">Irá aparecer assim <span class="text-decoration-line-through">R$1000,00</span></div>
@@ -413,7 +479,7 @@
 
                                     <label class="form-label" for="input-img1">Quantidade no estoque <span class="text-danger">*</span></label>
 
-                                    <input class="form-control" type="number" name="qtd" required>
+                                    <input class="form-control" type="number" name="qtd" required value="<?php echo $arrProduto["qtd_estoque"]; ?>">
 
                                     <div class="form-text">Dica: se estiver vendendo esse produto sob encomenda, defina uma quantidade alta</div>
 
@@ -426,9 +492,33 @@
                                     <select class="form-select" name="estado" required>
 
                                         <option disabled selected hidden>Difina o estado</option>
-                                        <option value="publicado-disponivel">Publicado - disponível</option>
-                                        <option value="publicado-nao-disponivel">Publicado - Não disponível</option>
-                                        <option value="rascunho">Rascunho</option>
+                                        <option value="publicado-disponivel" <?php
+                                        
+                                        if($arrProduto["estado"] == "publicado-disponivel"){
+
+                                            echo "selected";
+
+                                        }
+                                        
+                                        ?>>Publicado - disponível</option>
+                                        <option value="publicado-nao-disponivel" <?php
+                                        
+                                        if($arrProduto["estado"] == "publicado-nao-disponivel"){
+
+                                            echo "selected";
+
+                                        }
+                                        
+                                        ?>>Publicado - Não disponível</option>
+                                        <option value="rascunho" <?php
+                                        
+                                        if($arrProduto["estado"] == "rascunho"){
+
+                                            echo "selected";
+
+                                        }
+                                        
+                                        ?>>Rascunho</option>
             
                                     </select>
 
@@ -445,11 +535,51 @@
                                     <select class="form-select" name="variacao" required>
 
                                         <option disabled selected hidden>Difina um padrão</option>
-                                        <option value="nenhum">Nenhum padrão</option>
-                                        <option value="unico">Anel único</option>
-                                        <option value="casal">Anel casal</option>
-                                        <option value="aro">Apenas aro</option>
-                                        <option value="gravacao">Apenas gravação</option>
+                                        <option value="nenhum" <?php
+                                        
+                                        if($arrProduto["variacao_padrao"] == "nenhum"){
+
+                                            echo "selected";
+
+                                        }
+                                        
+                                        ?>>Nenhum padrão</option>
+                                        <option value="unico" <?php
+                                        
+                                        if($arrProduto["variacao_padrao"] == "unico"){
+
+                                            echo "selected";
+
+                                        }
+                                        
+                                        ?>>Anel único</option>
+                                        <option value="casal" <?php
+                                        
+                                        if($arrProduto["variacao_padrao"] == "casal"){
+
+                                            echo "selected";
+
+                                        }
+                                        
+                                        ?>>Anel casal</option>
+                                        <option value="aro" <?php
+                                        
+                                        if($arrProduto["variacao_padrao"] == "aro"){
+
+                                            echo "selected";
+
+                                        }
+                                        
+                                        ?>>Apenas aro</option>
+                                        <option value="gravacao" <?php
+                                        
+                                        if($arrProduto["variacao_padrao"] == "gravacao"){
+
+                                            echo "selected";
+
+                                        }
+                                        
+                                        ?>>Apenas gravação</option>
             
                                     </select>
 
@@ -467,16 +597,22 @@
 
                                 <div class="col-12 col-md-9">
 
-                                    <a onclick="aparecerVariacoes(true)" id="botaoAddVariacao" class="" style="cursor: pointer;">Adicionar variação complementar</a>
-                                    <a onclick="aparecerVariacoes(false)" class="d-none" id="botaoRemoveVariacao" style="cursor: pointer;">Remover variação complementar</a>
+                                    <a onclick="aparecerVariacoes(true)" id="botaoAddVariacao" class="d-none" style="cursor: pointer;">Adicionar variação complementar</a>
+                                    <a onclick="aparecerVariacoes(false)" class="" id="botaoRemoveVariacao" style="cursor: pointer;">Remover variação complementar</a>
 
                                 </div>
 
                             </div>
 
-                            <div class="row mt-4" id="fundoVariacoesCinza" style="display: none;">
+                            <div class="row mt-4" id="fundoVariacoesCinza">
 
                                 <div class="col-12 col-md-9 p-3 bg-light">
+
+                                    <?php
+                                    
+                                    $funcRetornaVariacaoComplementar = $classeProdutos->retorna_variacao_complementar_pelo_id($arrProduto["id_variacao_produto"]);
+
+                                    ?>
 
                                     <div class="row">
 
@@ -484,7 +620,7 @@
 
                                             <label class="form-label" for="input-img1">Nome da variação</label>
 
-                                            <input style="text-transform:lowercase;" list="variacoesDisponiveis" autocomplete="off" id="campoVariacao" type="text" class="form-control" name="novaVariacao">
+                                            <input style="text-transform:lowercase;" list="variacoesDisponiveis" autocomplete="off" id="campoVariacao" type="text" class="form-control" name="novaVariacao" value="<?php echo $funcRetornaVariacaoComplementar["nome"]; ?>">
 
                                             <div class="form-text">Selecione uma variacao já existente ou crie uma nova</div>
 
@@ -518,7 +654,7 @@
 
                                             <div id="areaInputVariacaoTexto" class="text-center">
 
-                                                <input autocomplete="off" id="textoClienteVariacao" type="text" class="form-control" name="texto-variacao" disabled>
+                                                <input autocomplete="off" id="textoClienteVariacao" type="text" class="form-control" name="texto-variacao" disabled value="<?php echo $funcRetornaVariacaoComplementar["texto_cliente"]; ?>">
 
                                             </div>
 
@@ -538,7 +674,7 @@
 
                                             <div id="areaInputVariacao" class="text-center">
 
-                                                <input id="opVariacao" type='text' class='flexdatalist  form-control' data-min-length='1' multiple='multiple' name="opNovaVariacao" disabled>
+                                                <input id="opVariacao" type='text' class='flexdatalist  form-control' data-min-length='1' multiple='multiple' name="opNovaVariacao" disabled value="<?php echo $funcRetornaVariacaoComplementar["opcoes"]; ?>">
 
                                             </div>
 
@@ -625,7 +761,17 @@
 
                                     <label class="form-label" for="input-img1">Categoria <span class="text-danger">*</span></label>
 
-                                    <input type='text' autocomplete="off" class='flexdatalist form-control' data-min-length='0' multiple='multiple' list='categorias' name='categoria' required>
+                                    <input type='text' autocomplete="off" class='flexdatalist form-control' data-min-length='0' multiple='multiple' list='categorias' name='categoria' required value="<?php
+                                    
+                                    $funcRetornaCategoria = $classeProdutos->retorna_categorias_pelo_id_do_produto();
+
+                                    foreach($funcRetornaCategoria as $arrRetornaCategorias){
+
+                                        echo $arrRetornaCategorias["nome"].", ";
+
+                                    }
+                                    
+                                    ?>">
 
                                     <div class="form-text text-warning">Selecione categorias existentes, ou crie uma nova e pressione <b>ENTER</b> para confirmar</div>
                                     <div class="form-text">Você pode selecionar mais de uma categoria; é necessário pelo menos 1 categoria</div>
@@ -658,7 +804,7 @@
 
                                     <label class="form-label" for="input-img1">Qtd máxima de caracteres</label>
 
-                                    <input class="form-control" type="number" name="maximo_caracteres">
+                                    <input class="form-control" type="number" name="maximo_caracteres" value="<?php echo $arrProduto["qtd_caracteres"] ?>">
 
                                     <div class="form-text text-info">*Deixe em branco para não limitar quantidade de caracteres ou se o produto não vai permitir gravação</div>
                                     <div class="form-text">Define a quantidade de caracteres que o cliente poderá digitar, quando escolhendo a gravação no produto</div>
@@ -672,8 +818,24 @@
                                     <select name="tipo" class="form-select" required>
 
                                         <option disabled selected hidden>Defina o tipo</option>
-                                        <option value="ouro">Ouro</option>
-                                        <option value="prata">Prata</option>
+                                        <option value="ouro" <?php
+                                        
+                                        if($arrProduto["tipo"] == "ouro"){
+
+                                            echo "selected";
+
+                                        }
+                                        
+                                        ?>>Ouro</option>
+                                        <option value="prata" <?php
+                                        
+                                        if($arrProduto["tipo"] == "prata"){
+
+                                            echo "selected";
+
+                                        }
+                                        
+                                        ?>>Prata</option>
 
                                     </select>
 
@@ -701,7 +863,7 @@
 
                                     <label class="form-label" for="input-img1">Peso do produto <span class="text-danger">*</span></label>
 
-                                    <input class="form-control" type="number" name="peso" step=".01" required>
+                                    <input class="form-control" type="number" name="peso" step=".01" required value="<?php echo $arrProduto["peso"]; ?>">
 
                                     <div class="form-text">Em Kg, onde 500g é equivalente a <b>0.5</b></div>
                                     
@@ -711,7 +873,7 @@
 
                                     <label class="form-label" for="input-img1">Altura do produto <span class="text-danger">*</span></label>
 
-                                    <input class="form-control" type="number" min="1" name="altura" required>
+                                    <input class="form-control" type="number" min="1" name="altura" required value="<?php echo $arrProduto["altura"]; ?>">
 
                                     <div class="form-text">Em centímetros (cm), mínimo 1cm</div>
 
@@ -725,7 +887,7 @@
 
                                     <label class="form-label" for="input-img1">Largura do produto <span class="text-danger">*</span></label>
 
-                                    <input class="form-control" type="number" min="10" name="largura" required>
+                                    <input class="form-control" type="number" min="10" name="largura" required value="<?php echo $arrProduto["largura"]; ?>">
 
                                     <div class="form-text">Em centímetros (cm), mínimo 10cm</div>
                                     
@@ -735,7 +897,7 @@
 
                                     <label class="form-label" for="input-img1">Comprimento do produto <span class="text-danger">*</span></label>
 
-                                    <input class="form-control" type="number" min="15" name="comprimento" required>
+                                    <input class="form-control" type="number" min="15" name="comprimento" required value="<?php echo $arrProduto["comprimento"]; ?>">
 
                                     <div class="form-text">Em centímetros (cm), mínimo 15cm</div>
 
@@ -749,7 +911,7 @@
 
                                     <label class="form-label" for="input-img1">Dias para entrega</label>
 
-                                    <input class="form-control" type="number" name="dias-entrega">
+                                    <input class="form-control" type="number" name="dias-entrega" value="<?php echo $arrProduto["dias_entrega"]; ?>">
 
                                     <div class="form-text text-info">*Deixe em branco para desconsiderar.</div>
                                     <div class="form-text">Esse valor será somado a quantidade de dias que o correios levará para entregar o produto,
@@ -864,5 +1026,11 @@
     </div>
 
 </body>
+
+<?php
+    
+}
+
+?>
 
 </html>

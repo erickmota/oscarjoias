@@ -2,6 +2,7 @@
 
 class produtos{
 
+    public $id;
     public $nome;
     public $descricao;
     public $preco;
@@ -502,6 +503,135 @@ class produtos{
         $qtd = mysqli_num_rows($sql);
 
         return $qtd;
+
+    }
+
+    public function retorna_produtos_adm($busca, $estado, $organizar){
+
+        include 'conexao.class.php';
+
+        if($busca != "SE"){
+
+            $retirarTracoBusca = str_replace("-", " ", $busca);
+
+        }
+
+        if($busca == "SE" && $estado == "SE"){
+
+            $sql = mysqli_query($conn, "SELECT * FROM produtos ORDER BY id $organizar") or die("Erro retorna_produtos_adm");
+
+        }else if($busca != "SE" && $estado == "SE"){
+
+            $sql = mysqli_query($conn, "SELECT * FROM produtos WHERE nome LIKE '%{$retirarTracoBusca}%' collate utf8_general_ci ORDER BY id $organizar") or die("Erro retorna_produtos_adm");
+
+        }else if($busca == "SE" && $estado != "SE"){
+
+            $sql = mysqli_query($conn, "SELECT * FROM produtos WHERE estado='$estado' ORDER BY id $organizar") or die("Erro retorna_produtos_adm");
+
+        }else if($busca != "SE" && $estado != "SE"){
+
+            $sql = mysqli_query($conn, "SELECT * FROM produtos WHERE estado='$estado' AND nome LIKE '%{$retirarTracoBusca}%' collate utf8_general_ci ORDER BY id $organizar") or die("Erro retorna_produtos_adm");
+
+        }
+
+        $qtd = mysqli_num_rows($sql);
+        while($linha = mysqli_fetch_array($sql)){
+
+            $array[] = $linha;
+
+        }
+
+        if($qtd < 1){
+
+            return false;
+
+        }else{
+
+            return $array;
+
+        }
+
+    }
+
+    public function retorna_dados_produto_pelo_id(){
+
+        include 'conexao.class.php';
+
+        $sql = mysqli_query($conn, "SELECT * FROM produtos WHERE id=$this->id") or die("Erro retorna_dados_produto_pelo_id");
+        while($linha = mysqli_fetch_assoc($sql)){
+
+            $array[] = $linha;
+
+        }
+
+        return $array;
+
+    }
+
+    public function retorna_dados_galeria(){
+
+        include 'conexao.class.php';
+
+        $sql = mysqli_query($conn, "SELECT * FROM galeria WHERE id_produtos=$this->id ORDER BY id ASC") or die("Erro retorna_qtd_imagem_galeria");
+        $qtd = mysqli_num_rows($sql);
+        while($linha = mysqli_fetch_assoc($sql)){
+
+            $array[] = $linha;
+
+        }
+
+        if($qtd > 0){
+
+            $retorno = ["qtd" => $qtd, "dados" => $array];
+
+        }else{
+
+            $retorno = ["qtd" => $qtd, "dados" => false];
+
+        }
+
+        return $retorno;
+
+    }
+
+    public function retorna_variacao_complementar_pelo_id($id_variacao){
+
+        include 'conexao.class.php';
+
+        $sql = mysqli_query($conn, "SELECT * FROM variacao_produtos WHERE id=$id_variacao") or die("Erro retorna_variacao_complementar_pelo_id");
+        $linha = mysqli_fetch_assoc($sql);
+
+        $nome = $linha["nome"];
+        $opcoes = $linha["opcoes"];
+        $texto_cliente = $linha["texto_cliente"];
+
+        $retorno = ["nome" => $nome, "opcoes" => $opcoes, "texto_cliente" => $texto_cliente];
+
+        return $retorno;
+
+    }
+
+    public function retorna_categorias_pelo_id_do_produto(){
+
+        include 'conexao.class.php';
+
+        $sql = mysqli_query($conn, "SELECT * FROM categoria INNER JOIN categoria_produto ON categoria.id=categoria_produto.id_categoria WHERE categoria_produto.id_produtos=$this->id ORDER BY categoria_produto.id ASC") or die("Erro retorna_categorias_pelo_id_do_produto");
+        $qtd = mysqli_num_rows($sql);
+        while($linha = mysqli_fetch_assoc($sql)){
+
+            $array[] = $linha;
+
+        }
+
+        if($qtd < 1){
+
+            return false;
+
+        }else{
+
+            return $array;
+
+        }
 
     }
 

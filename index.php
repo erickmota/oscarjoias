@@ -58,6 +58,10 @@ if(isset($_GET["url"])){
 
         include "paginas/adm_produtos_cadastrados.php";
 
+      }else if($explode[1] == "editar-produto"){
+
+        include "paginas/adm_editar_produto.php";
+
       }
 
     }else{
