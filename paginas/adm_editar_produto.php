@@ -156,6 +156,7 @@
                     <div class="col text-secondary">
 
                         <h1>Editar Produto - ID: <?php echo $idProduto; ?></h1>
+                        <small class="text-danger">Nenhum dado será alterado, até você clicar no botão "ATUALIZAR"</small>
 
                     </div>
 
@@ -165,7 +166,7 @@
 
                     <div class="col text-secondary">
 
-                        <form enctype="multipart/form-data" action="php/adm.php" method="POST">
+                        <form enctype="multipart/form-data" action="php/editar_produto.php" method="POST">
 
                             <div class="row mt-4">
 
@@ -176,18 +177,20 @@
                                     <div id="avisoNome" class="form-text text-danger"></div>
                                     <div class="form-text">Máximo de 47 caracteres</div>
 
+                                    <input type="hidden" value="<?php echo $idProduto; ?>" name="id_produto">
+
                                 </div>
 
                                 <script>
 
-                                    function verifica_nome_produto(nome_produto) {
+                                    function verifica_nome_produto(nome_produto, nomeAtual) {
                                                         
                                         $.ajax({
 
                                             type: "POST",
                                             dataType: "html",
 
-                                            url: "ajax/verifica_nome_produto.php",
+                                            url: "ajax/verifica_nome_produto_editar.php",
 
                                             /* beforeSend: function () {
 
@@ -195,7 +198,7 @@
 
                                             }, */
 
-                                            data: {nome_produto: nome_produto},
+                                            data: {nome_produto: nome_produto, nomeAtual: nomeAtual},
 
                                             success: function (msg) {
 
@@ -210,8 +213,9 @@
                                     $("#campoNomeProduto").keyup(function(){
 
                                         var campoNomeProduto = document.getElementById("campoNomeProduto").value;
+                                        var nomeAtual = "<?php echo $arrProduto['nome']; ?>";
 
-                                        verifica_nome_produto(campoNomeProduto);
+                                        verifica_nome_produto(campoNomeProduto, nomeAtual);
 
                                     });
 
@@ -362,7 +366,8 @@
 
                                     <label class="form-label" for="input-capa"><img src="img/produtos/<?php echo $arrProduto["foto"]; ?>" id="escolher-img-capa" width="150px"></label>
                                     <input id="input-capa" class="form-control d-none" accept=".jpg, .jpeg" onchange="mudar_img(event, 'capa')" type="file" name="capa">
-                                    <input type="hidden" id="hidden-input-capa" value="1">
+                                    <input type="hidden" id="hidden-input-capa" value="1" name="hidden-capa">
+                                    <input type="hidden" id="hidden-caminho-input-capa" value="<?php echo $arrProduto["foto"]; ?>" name="hidden-caminho-capa">
 
                                     <?php
 
@@ -390,7 +395,8 @@
 
                                             <label id="label-img-<?php echo $i; ?>" class="form-label" for="input-img-<?php echo $i; ?>"><img src="img/produtos/<?php echo $img[$i - 1]; ?>" id="escolher-img-<?php echo $i; ?>" width="150px"></label>
                                             <input id="input-img-<?php echo $i; ?>" class="form-control d-none" accept=".jpg, .jpeg" onchange="mudar_img(event, <?php echo $i; ?>)" type="file" name="img-<?php echo $i; ?>">
-                                            <input type="hidden" id="hidden-input-img-<?php echo $i; ?>" value="1">
+                                            <input type="hidden" id="hidden-input-img-<?php echo $i; ?>" value="1" name="hidden-<?php echo $i; ?>">
+                                            <input type="hidden" id="hidden-caminho-input-img-<?php echo $i; ?>" value="<?php echo $img[$i - 1]; ?>" name="hidden-caminho-<?php echo $i; ?>">
 
                                             <?php
 
@@ -402,7 +408,7 @@
 
                                                 <label id="label-img-<?php echo $i; ?>" class="form-label" for="input-img-<?php echo $i; ?>"><img src="img/selecionar-galeria.png" id="escolher-img-<?php echo $i; ?>" width="150px"></label>
                                                 <input id="input-img-<?php echo $i; ?>" class="form-control d-none" accept=".jpg, .jpeg" onchange="mudar_img(event, <?php echo $i; ?>)" type="file" name="img-<?php echo $i; ?>">
-                                                <input type="hidden" id="hidden-input-img-<?php echo $i; ?>" value="0">
+                                                <input type="hidden" id="hidden-input-img-<?php echo $i; ?>" value="0" name="hidden-<?php echo $i; ?>">
 
                                                 <?php
 
@@ -412,7 +418,7 @@
 
                                                 <label id="label-img-<?php echo $i; ?>" class="form-label d-none" for="input-img-<?php echo $i; ?>"><img src="img/selecionar-galeria.png" id="escolher-img-<?php echo $i; ?>" width="150px"></label>
                                                 <input id="input-img-<?php echo $i; ?>" class="form-control d-none" accept=".jpg, .jpeg" onchange="mudar_img(event, <?php echo $i; ?>)" type="file" name="img-<?php echo $i; ?>">
-                                                <input type="hidden" id="hidden-input-img-<?php echo $i; ?>" value="0">
+                                                <input type="hidden" id="hidden-input-img-<?php echo $i; ?>" value="0" name="hidden-<?php echo $i; ?>">
 
                                                 <?php
 
@@ -427,6 +433,8 @@
                                     ?>
 
                                     <input type="hidden" id="hiddenQtdImg" name="qtd-galeria" value="<?php echo $qtdGaleriaAtual; ?>">
+
+                                    <input type="hidden" name="qtd-galeria_atual" value="<?php echo $qtdGaleriaAtual; ?>">
 
                                     <img onclick="remover_img()" src="img/remover.png" width="25px" style="cursor: pointer;">
 
@@ -767,7 +775,7 @@
 
                                     foreach($funcRetornaCategoria as $arrRetornaCategorias){
 
-                                        echo $arrRetornaCategorias["nome"].", ";
+                                        echo $arrRetornaCategorias["nome"].",";
 
                                     }
                                     
@@ -927,7 +935,7 @@
 
                                 <div class="col-12 col-md-9">
 
-                                    <button id="botaoEnviar" type="submit" class="btn btn-success float-end">CADASTRAR</button>
+                                    <button id="botaoEnviar" type="submit" class="btn btn-success float-end">ATUALIZAR</button>
                                     
                                 </div>
 
