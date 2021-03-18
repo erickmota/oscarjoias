@@ -660,6 +660,47 @@ class produtos{
 
     }
 
+    public function zerar_produtos_categoria(){
+
+        include 'conexao.class.php';
+        
+        $sql = mysqli_query($conn, "DELETE FROM categoria_produto WHERE id_produtos=$this->id") or die("Erro zerar_produtos_categoria");
+
+    }
+
+    public function verificar_se_existe_pedido_para_o_produto(){
+
+        include 'conexao.class.php';
+        
+        $sql = mysqli_query($conn, "SELECT id FROM item_pedido WHERE id_produtos=$this->id") or die("Erro verificar_se_existe_pedido_para_o_produto");
+        $qtd = mysqli_num_rows($sql);
+
+        if($qtd > 0){
+
+            return true;
+
+        }else{
+
+            return false;
+
+        }
+
+    }
+
+    public function apagar_produto(){
+
+        include 'conexao.class.php';
+        
+        $sql = mysqli_query($conn, "DELETE FROM produtos WHERE id=$this->id") or die("Erro apagar_produto");
+
+        $sql2 = mysqli_query($conn, "DELETE FROM categoria_produto WHERE id_produtos=$this->id") or die("Erro apagar_produto");
+
+        $sql3 = mysqli_query($conn, "DELETE FROM galeria WHERE id_produtos=$this->id") or die("Erro apagar_produto");
+
+        $sql4 = mysqli_query($conn, "DELETE FROM sacola WHERE id_produto=$this->id") or die("Erro apagar_produto");
+
+    }
+
 }
 
 ?>

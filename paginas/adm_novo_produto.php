@@ -425,7 +425,7 @@
 
                                     <select class="form-select" name="estado" required>
 
-                                        <option disabled selected hidden>Difina o estado</option>
+                                        <option disabled selected hidden value="">Difina o estado</option>
                                         <option value="publicado-disponivel">Publicado - disponível</option>
                                         <option value="publicado-nao-disponivel">Publicado - Não disponível</option>
                                         <option value="rascunho">Rascunho</option>
@@ -444,7 +444,7 @@
 
                                     <select class="form-select" name="variacao" required>
 
-                                        <option disabled selected hidden>Difina um padrão</option>
+                                        <option disabled selected hidden value="">Difina um padrão</option>
                                         <option value="nenhum">Nenhum padrão</option>
                                         <option value="unico">Anel único</option>
                                         <option value="casal">Anel casal</option>
@@ -671,7 +671,7 @@
 
                                     <select name="tipo" class="form-select" required>
 
-                                        <option disabled selected hidden>Defina o tipo</option>
+                                        <option disabled selected hidden value="">Defina o tipo</option>
                                         <option value="ouro">Ouro</option>
                                         <option value="prata">Prata</option>
 

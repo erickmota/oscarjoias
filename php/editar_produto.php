@@ -83,9 +83,7 @@
 
     }
 
-    echo $categoria;
-
-    /* $classeImg = new produtos();
+    $classeImg = new produtos();
 
     $classeImg->id = $idProduto;
     $classeImg->nome = $nome;
@@ -131,6 +129,8 @@
 
     }
 
+    $classeImg->zerar_produtos_categoria();
+
     $ultimoId = $idProduto;
 
     $ultimoIdCategoria = $classeImg->retorna_ultimo_id("categoria");
@@ -153,16 +153,28 @@
 
             $classeImg->tratar_img($ultimoId, $galeria[$i_img], $i_img + 2, 2);
 
-            $classeImg->apagar_img_galeria_bd($caminhoAtual[$i_img]);
-
-            $caminho = $caminhoAtual[$i_img];
-
-            unlink("img/produtos/$caminho");
-
         }
 
         $i_img++;
 
-    } */
+    }
+
+    $i_img2 = 0;
+
+    while($i_img2 < 9){
+
+        if(@$hiddenGaleria[$i_img2] != 1){
+
+            @$classeImg->apagar_img_galeria_bd($caminhoAtual[$i_img2]);
+
+            @$caminho = $caminhoAtual[$i_img2];
+
+            @unlink("../img/produtos/$caminho");
+
+        }
+
+        $i_img2++;
+
+    }
 
 ?>

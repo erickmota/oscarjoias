@@ -1047,7 +1047,7 @@
                                 
                                 ?>
 
-                                <span class="text-secondary"><?php echo $arrVariacao["nome"]; ?></span>
+                                <span class="text-secondary"><?php echo $arrVariacao["texto_cliente"]; ?></span>
 
                             </div>
 

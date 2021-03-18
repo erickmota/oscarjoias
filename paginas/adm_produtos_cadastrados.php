@@ -361,6 +361,7 @@
                                     <th scope="col">Estado</th>
                                     <th scope="col"></th>
                                     <th scope="col"></th>
+                                    <th scope="col"></th>
                                 </tr>
                                 </thead>
                                 <tbody>
@@ -377,6 +378,8 @@
                                         $str4 = preg_replace('/[óòõôö]/ui', 'o', $str3);
                                         $str5 = preg_replace('/[úùûü]/ui', 'u', $str4);
                                         $nomeProduto = preg_replace('/[ç]/ui', 'c', $str5);
+
+                                        $idProduto = $arrProdutos['id'];
                                     
                                     ?>
 
@@ -393,12 +396,18 @@
                                         <td class="align-middle"><?php echo $arrProdutos["estado"]; ?></td>
                                         <td class="align-middle">
 
-                                            <a href="produto/<?php echo $nomeProduto; ?>" target="_blank"><button type="button" class="btn btn-secondary">Visualizar</button></a>
+                                            <!-- <a href="php/apagarProduto.php?id_produto=<?php echo $arrProdutos['id']; ?>"><img src="img/remover.png" width="25px"></a> -->
+                                            <img style="cursor:pointer;" onclick="if(window.confirm('Essa ação não poderá ser desfeita. Tem certeza que deseja excluir esse produto?')){window.location='php/apagarProduto.php?id_produto=<?php echo $idProduto; ?>'}else{}" src="img/remover.png" width="25px">
 
                                         </td>
                                         <td class="align-middle">
 
-                                        <a href="adm/editar-produto?produto=<?php echo $arrProdutos["id"]; ?>"><button type="button" class="btn btn-primary">Editar</button></a>
+                                            <a href="produto/<?php echo $nomeProduto; ?>" target="_blank"><button type="button" class="btn btn-secondary btn-sm">Visualizar</button></a>
+
+                                        </td>
+                                        <td class="align-middle">
+
+                                            <a href="adm/editar-produto?produto=<?php echo $arrProdutos["id"]; ?>"><button type="button" class="btn btn-primary btn-sm">Editar</button></a>
 
                                         </td>
                                     </tr>

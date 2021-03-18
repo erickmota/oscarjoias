@@ -175,6 +175,7 @@
                                     <label class="form-label">Nome do produto <span class="text-danger">*</span></label>
                                     <input id="campoNomeProduto" class="form-control" type="text" name="nome" maxlength="47" autocomplete="off" required value="<?php echo $arrProduto["nome"]; ?>">
                                     <div id="avisoNome" class="form-text text-danger"></div>
+                                    <div class="form-text text-warning">*Atenção, ao alterar o nome do produto, será modificada também a URL do mesmo.</div>
                                     <div class="form-text">Máximo de 47 caracteres</div>
 
                                     <input type="hidden" value="<?php echo $idProduto; ?>" name="id_produto">
@@ -775,7 +776,25 @@
 
                                     foreach($funcRetornaCategoria as $arrRetornaCategorias){
 
-                                        echo $arrRetornaCategorias["nome"].",";
+                                        $result[] =  $arrRetornaCategorias["nome"];
+
+                                    }
+
+                                    $i = 0;
+
+                                    while($i < count($result)){
+                                        
+                                        if($i == count($result) - 1){
+
+                                            echo $result[$i];
+
+                                        }else{
+
+                                            echo $result[$i].",";
+
+                                        }
+
+                                        $i++;
 
                                     }
                                     
