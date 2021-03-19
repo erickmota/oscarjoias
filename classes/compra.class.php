@@ -422,16 +422,6 @@ class compra{
 
         include 'conexao.class.php';
 
-        /* $sql = mysqli_query($conn, "SELECT qtd_estoque FROM produtos WHERE id=$idProduto") or die("Erro comparar_qtd_carrinho_qtd_produto");
-        $linha = mysqli_fetch_assoc($sql);
-
-        $qtd_produto = $linha["qtd_estoque"];
-
-        $sql2 = mysqli_query($conn, "SELECT quantidade FROM sacola WHERE id_produto=$idProduto AND id_cliente=$this->idCliente") or die("Erro retornar qtd produto carrinho");
-        $linha2 = mysqli_fetch_assoc($sql2);
-
-        $qtd_produto_carrinho = $linha2["quantidade"]; */
-
         $sql = mysqli_query($conn, "SELECT produtos.qtd_estoque AS qtd_estoque, sacola.quantidade AS quantidade, sacola.id AS id_sacola FROM sacola INNER JOIN produtos ON sacola.id_produto=produtos.id WHERE sacola.id_cliente=$this->idCliente AND sacola.id_produto=$idProduto") or die("Erro comparar_qtd_carrinho_qtd_produto");
         $linha = mysqli_fetch_assoc($sql);
 
@@ -449,18 +439,46 @@ class compra{
 
     }
 
-    /* public function retorna_qtd_dias_entrega_produto($id_produto){
+    public function retorna_pedido_adm($busca){
 
         include 'conexao.class.php';
 
-        $sql = mysqli_query($conn, "SELECT dias_entrega FROM produtos WHERE id=$id_produto") or die("Erro ao retornar qtd dias entrega");
-        $linha = mysqli_fetch_assoc($sql);
+        if($busca == "SE"){
 
-        $dias = $linha["dias_entrega"];
+            $sql = mysqli_query($conn, "SELECT pedido.id AS id_pedido, pedido.id_cliente AS id_cliente, pedido.data_hora AS data_hora, pedido.status_entrega AS status_entrega, cliente.id AS id_cliente, cliente.nome AS nome FROM pedido INNER JOIN cliente ON pedido.id_cliente=cliente.id ORDER BY pedido.data_hora DESC") or die("Erro retorna_pedido_adm");
 
-        return $dias;
+        }else{
 
-    } */
+            $sql = mysqli_query($conn, "SELECT pedido.id AS id_pedido, pedido.id_cliente AS id_cliente, pedido.data_hora AS data_hora, pedido.status_entrega AS status_entrega, cliente.id AS id_cliente, cliente.nome AS nome FROM pedido INNER JOIN cliente ON pedido.id_cliente=cliente.id WHERE pedido.id LIKE '%$busca%' OR cliente.nome LIKE '%$busca%' collate utf8_general_ci ORDER BY pedido.data_hora DESC") or die("Erro retorna_pedido_adm");
+
+        }
+
+        $qtd = mysqli_num_rows($sql);
+        while($linha = mysqli_fetch_assoc($sql)){
+
+            $array[] = $linha;
+
+        }
+
+        if($qtd < 1){
+
+            return false;
+
+        }else{
+
+            return $array;
+
+        }
+
+    }
+
+    public function alterar_status_entrega($status, $idPedido){
+
+        include 'conexao.class.php';
+
+        $sql = mysqli_query($conn, "UPDATE pedido SET status_entrega='$status' WHERE id=$idPedido") or die("Erro alterar_status_entrega");
+
+    }
 
 }
 

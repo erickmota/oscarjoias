@@ -13,7 +13,7 @@ class clientes{
     
         $senhaEncode = base64_encode($this->senhaUsuario);
     
-        $sql = mysqli_query($conn, "SELECT * FROM cliente WHERE email='$this->emailUsuario' and senha='$senhaEncode'"); /* Precisa mudar depois */
+        $sql = mysqli_query($conn, "SELECT * FROM cliente WHERE email='$this->emailUsuario' and senha='$senhaEncode'");
         $qtd = mysqli_num_rows($sql);
         while($linha = mysqli_fetch_array($sql)) {
         
@@ -207,7 +207,7 @@ class clientes{
 
         include 'conexao.class.php';
 
-        $sql = mysqli_query($conn, "UPDATE cliente SET $atributo='$novoDado'") or die("Erro atualiza_dado_individual_cliente");
+        $sql = mysqli_query($conn, "UPDATE cliente SET $atributo='$novoDado' WHERE id=$this->idUsuario") or die("Erro atualiza_dado_individual_cliente");
 
     }
 

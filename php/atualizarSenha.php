@@ -45,6 +45,8 @@ if($novaSenha != $repetirNovaSenha){
 
 $novaSenhaCompactada = base64_encode($novaSenha);
 
+$classeClientes->idUsuario = str_replace(array(";", "'", "--", "/", "*", "xp_", "XP_", "SELECT" , "INSERT" , "UPDATE" , "DELETE" , "DROP", "select" , "insert" , "update" , "delete" , "drop"), "", base64_decode($_COOKIE["iu_oj"]));
+
 $classeClientes->atualiza_dado_individual_cliente("senha", $novaSenhaCompactada);
 
 $classeClientes->deslogar();

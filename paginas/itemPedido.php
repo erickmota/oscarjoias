@@ -13,6 +13,9 @@
     include "classes/clientes.class.php";
     $classeClientes = new clientes();
 
+    include "classes/adm.class.php";
+    $classeAdm = new adm();
+
     @$idCliente = str_replace(array(";", "'", "--", "/", "*", "xp_", "XP_", "SELECT" , "INSERT" , "UPDATE" , "DELETE" , "DROP", "select" , "insert" , "update" , "delete" , "drop"), "", base64_decode($_COOKIE["iu_oj"]));
 
     $classeCompra->idCliente = $idCliente;
@@ -25,7 +28,16 @@
 
     }else{
 
-        die("<script>window.location='./'</script>");
+        if(isset($_COOKIE["aiu_oj"]) && isset($_COOKIE["aeu_oj"]) && isset($_COOKIE["asu_oj"]) && $classeAdm->verifica_existencia_adm($_COOKIE["aiu_oj"], $_COOKIE["aeu_oj"], $_COOKIE["asu_oj"]) == true){
+
+
+
+        }else{
+
+            die("<script>window.location='./'</script>");
+
+        }
+
 
     }
     
@@ -353,9 +365,23 @@
     
                             </div>
 
-                            <div id="espacoImgProduto" class="col-md-6 col-lg-2 fs-4 mt-3 text-secondary">
+                            <div id="espacoImgProduto" class="col-md-6 col-lg-2 mt-3">
 
-                                R$<?php echo number_format($arrReferencia["preco"], 2, ",", "."); ?>
+                                <div class="row">
+
+                                    <div class="col fs-4 text-secondary">
+
+                                        R$<?php echo number_format($arrReferencia["preco"], 2, ",", "."); ?>
+
+                                    </div>
+
+                                    <div class="col text-black-50">
+
+                                        <small>(cada)</small>
+
+                                    </div>
+
+                                </div>
 
                             </div>
 

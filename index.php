@@ -62,6 +62,14 @@ if(isset($_GET["url"])){
 
         include "paginas/adm_editar_produto.php";
 
+      }else if($explode[1] == "pedidos"){
+
+        include "paginas/adm_pedidos.php";
+
+      }else if($explode[1] == "login"){
+
+        include "paginas/adm_login.php";
+
       }
 
     }else{

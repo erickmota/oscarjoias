@@ -16,6 +16,22 @@ if($funcVerificaPedido == true){
 
 }
 
+foreach($classeProdutos->retorna_dados_produto_pelo_id() as $arrProduto){
+
+    $capa = $arrProduto["foto"];
+
+}
+
+foreach($classeProdutos->retorna_dados_galeria()["dados"] as $arrGaleria){
+
+    $caminho = $arrGaleria["caminho"];
+
+    unlink("../img/produtos/$caminho");
+
+}
+
+unlink("../img/produtos/$capa");
+
 $classeProdutos->apagar_produto();
 
 ?>
