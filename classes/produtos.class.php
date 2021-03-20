@@ -701,7 +701,47 @@ class produtos{
 
     }
 
-    
+    public function retorna_qtd_produtos_por_categoria($id_categoria){
+
+        include 'conexao.class.php';
+
+        $sql = mysqli_query($conn, "SELECT id FROM categoria_produto WHERE id_categoria=$id_categoria") or die("Erro retorna_qtd_produtos_por_categoria");
+        $qtd = mysqli_num_rows($sql);
+
+        return $qtd;
+
+    }
+
+    public function apagar_categoria($id_categoria){
+
+        include 'conexao.class.php';
+
+        $sql = mysqli_query($conn, "DELETE FROM categoria WHERE id=$id_categoria") or die("Erro apagar_categoria");
+
+    }
+
+    public function adicionar_categoria_adm($nomeCategoria){
+
+        include 'conexao.class.php';
+
+        $transformarEmMinuscula = mb_strtolower($nomeCategoria, "UTF-8");
+
+        $sql = mysqli_query($conn, "SELECT nome FROM categoria WHERE nome='$transformarEmMinuscula'") or die("Erro adicionar_categoria_adm");
+        $qtd = mysqli_num_rows($sql);
+
+        if($qtd < 1){
+
+            $sql2 = mysqli_query($conn, "INSERT INTO categoria (nome) VALUES ('$transformarEmMinuscula')") or die("Erro adicionar_categoria_adm2");
+
+            return true;
+
+        }else{
+
+            return false;
+
+        }
+
+    }
 
 }
 

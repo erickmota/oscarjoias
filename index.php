@@ -70,6 +70,10 @@ if(isset($_GET["url"])){
 
         include "paginas/adm_login.php";
 
+      }else if($explode[1] == "configuracoes"){
+
+        include "paginas/adm_configuracoes.php";
+
       }
 
     }else{

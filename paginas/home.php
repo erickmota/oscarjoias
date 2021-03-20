@@ -16,6 +16,9 @@ Desenvolvido por: Erick Mota (erickmota.com) -->
     /* Iniciando classe */
     include "classes/produtos.class.php";
     $classeProdutos = new produtos();
+
+    include "classes/adm.class.php";
+    $classeAdm = new adm();
     
     ?>
 
@@ -148,15 +151,57 @@ Desenvolvido por: Erick Mota (erickmota.com) -->
                     <li data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2"></li>
                   </ol>
                   <div class="carousel-inner">
+
+                    <?php
+                    
+                    foreach($classeAdm->retorna_slide_link() as $arrAdm){
+
+                      $link[0] = $arrAdm['link_slide_1'];
+                      $link[1] = $arrAdm['link_slide_2'];
+                      $link[2] = $arrAdm['link_slide_3'];
+                    
+                    ?>
+
                     <div class="carousel-item active">
-                      <a href="#"><img id="imgSlide" src="img/slides/slide1.jpg" class="d-block w-100" alt="..."></a>
+                      <a <?php
+                      
+                      if($link[0] != NULL){
+
+                        echo "href='$link[0]'";
+
+                      }
+                      
+                      ?>><img id="imgSlide" src="img/slides/<?php echo $arrAdm['img_slide_1'] ?>" class="d-block w-100" alt="..."></a>
                     </div>
                     <div class="carousel-item">
-                      <a href="#"><img id="imgSlide" src="img/slides/slide2.jpg" class="d-block w-100" alt="..."></a>
+                      <a <?php
+                      
+                      if($link[1] != NULL){
+
+                        echo "href='$link[1]'";
+
+                      }
+                      
+                      ?>><img id="imgSlide" src="img/slides/<?php echo $arrAdm['img_slide_2'] ?>" class="d-block w-100" alt="..."></a>
                     </div>
                     <div class="carousel-item">
-                      <a href="#"><img id="imgSlide" src="img/slides/slide3.jpg" class="d-block w-100" alt="..."></a>
+                      <a <?php
+                      
+                      if($link[2] != NULL){
+
+                        echo "href='$link[2]'";
+
+                      }
+                      
+                      ?>><img id="imgSlide" src="img/slides/<?php echo $arrAdm['img_slide_3'] ?>" class="d-block w-100" alt="..."></a>
                     </div>
+
+                    <?php
+                    
+                    }
+                    
+                    ?>
+
                   </div>
                   <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-bs-slide="prev">
                     <span class="carousel-control-prev-icon" aria-hidden="true"></span>

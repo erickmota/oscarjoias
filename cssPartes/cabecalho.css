@@ -241,5 +241,8 @@
     right: 15px;
     z-index: 99;
     cursor: pointer;
+    
+    -webkit-filter: drop-shadow(4px 4px 4px rgb(122, 122, 122));
+    filter: drop-shadow(4px 4px 4px rgb(122, 122, 122));
 
 }
