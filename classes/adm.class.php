@@ -59,7 +59,7 @@ class adm{
         $emailDecode = str_replace(array(";", "'", "--", "/", "*", "xp_", "XP_", "SELECT" , "INSERT" , "UPDATE" , "DELETE" , "DROP", "select" , "insert" , "update" , "delete" , "drop"), "", base64_decode($emailUsuario));
         $senhaDecode = str_replace(array(";", "'", "--", "/", "*", "xp_", "XP_", "SELECT" , "INSERT" , "UPDATE" , "DELETE" , "DROP", "select" , "insert" , "update" , "delete" , "drop"), "", base64_decode($senhaUsuario));
     
-        $sql = mysqli_query($conn, "SELECT * FROM adm WHERE email='$emailDecode' AND senha='$senhaDecode' AND id='$idDecode'") or die("erro verifica_existencia_adm");;
+        $sql = mysqli_query($conn, "SELECT * FROM adm WHERE email='$emailDecode' AND senha='$senhaDecode' AND id=$idDecode") or die("<script>window.location='php/adm_deslogar.php';</script>");;
         $qtd = mysqli_num_rows($sql);
     
         if($qtd < 1){
@@ -132,6 +132,79 @@ class adm{
         include 'conexao.class.php';
 
         $sql = mysqli_query($conn, "UPDATE configuracao SET link_slide_{$posicao}='$link'") or die("atualizar_link_slide");
+
+    }
+
+    public function retorna_dados_adm_id(){
+
+        include 'conexao.class.php';
+
+        $sql = mysqli_query($conn, "SELECT * FROM adm WHERE id=$this->id") or die("Erro retorna_dados_adm_id");
+        $linha = mysqli_fetch_array($sql);
+
+        $nome = $linha["nome"];
+
+        return $nome;
+
+    }
+
+    public function sitemap($file){
+
+        include 'conexao.class.php';
+
+        $sql = mysqli_query($conn, "SELECT * FROM produtos WHERE estado != 'rascunho' ORDER BY id ASC") or die("Erro sitemap");
+
+        $arquivo = fopen($file, 'w');
+
+        $texto = '<?xml version="1.0" encoding="UTF-8"?>'."\n"
+        .'<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">'."\n"
+            ."\t<url>\n"
+                ."\t\t<loc>https://oscarjoias.com</loc>\n"
+                ."\t\t<changefreq>weekly</changefreq>\n"
+                ."\t\t<priority>0.8</priority>\n"
+            ."\t</url>\n"
+            ."\t<url>\n"
+                ."\t\t<loc>https://oscarjoias.com/loja?pg=1</loc>\n"
+                ."\t\t<changefreq>weekly</changefreq>\n"
+                ."\t\t<priority>0.5</priority>\n"
+            ."\t</url>\n"
+            ."\t<url>\n"
+                ."\t\t<loc>https://oscarjoias.com/quem-somos</loc>\n"
+                ."\t\t<changefreq>weekly</changefreq>\n"
+                ."\t\t<priority>0.5</priority>\n"
+            ."\t</url>\n"
+            ."\t<url>\n"
+                ."\t\t<loc>https://oscarjoias.com/contato</loc>\n"
+                ."\t\t<changefreq>weekly</changefreq>\n"
+                ."\t\t<priority>0.5</priority>\n"
+            ."\t</url>\n";
+
+        while($linha = mysqli_fetch_assoc($sql)){
+
+            $nome = $linha["nome"];
+
+            $nomeComTraco = str_replace(" ", "-", $nome);
+            $transformarEmMinuscula = mb_strtolower($nomeComTraco, "UTF-8");
+            $str1 = preg_replace('/[áàãâä]/ui', 'a', $transformarEmMinuscula);
+            $str2 = preg_replace('/[éèêë]/ui', 'e', $str1);
+            $str3 = preg_replace('/[íìîï]/ui', 'i', $str2);
+            $str4 = preg_replace('/[óòõôö]/ui', 'o', $str3);
+            $str5 = preg_replace('/[úùûü]/ui', 'u', $str4);
+            $str6 = preg_replace('/[ç]/ui', 'c', $str5);
+
+            $texto .= "\t<url>\n"
+                        ."\t\t<loc>https://oscarjoias.com/produto/{$str6}</loc>\n"
+                        ."\t\t<changefreq>weekly</changefreq>\n"
+                        ."\t\t<priority>0.9</priority>\n"
+                    ."\t</url>\n";
+
+        }
+
+        $texto .= "</urlset> ";
+
+        fwrite($arquivo, $texto);
+
+        fclose($arquivo);
 
     }
 

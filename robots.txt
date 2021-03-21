@@ -1,0 +1,8 @@
+User-agent: *
+
+Disallow: /sacola
+Disallow: /pedidos
+Disallow: /ajustes
+Disallow: /adm/
+
+Sitemap: https://oscarjoias.com/sitemap.xml

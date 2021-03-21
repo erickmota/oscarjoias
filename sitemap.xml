@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+	<url>
+		<loc>https://oscarjoias.com</loc>
+		<changefreq>weekly</changefreq>
+		<priority>0.8</priority>
+	</url>
+	<url>
+		<loc>https://oscarjoias.com/loja?pg=1</loc>
+		<changefreq>weekly</changefreq>
+		<priority>0.5</priority>
+	</url>
+	<url>
+		<loc>https://oscarjoias.com/quem-somos</loc>
+		<changefreq>weekly</changefreq>
+		<priority>0.5</priority>
+	</url>
+	<url>
+		<loc>https://oscarjoias.com/contato</loc>
+		<changefreq>weekly</changefreq>
+		<priority>0.5</priority>
+	</url>
+	<url>
+		<loc>https://oscarjoias.com/produto/anel-coracao-ouro-18k</loc>
+		<changefreq>weekly</changefreq>
+		<priority>0.9</priority>
+	</url>
+	<url>
+		<loc>https://oscarjoias.com/produto/anel-de-prata</loc>
+		<changefreq>weekly</changefreq>
+		<priority>0.9</priority>
+	</url>
+</urlset> 

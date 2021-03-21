@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html>
 
 <head>
@@ -25,7 +26,7 @@
 
 </head>
 
-<body>
+<body class="bg-dark">
 
     <div class="container-fluid">
 
@@ -45,7 +46,7 @@
 
                 <div class="row justify-content-center mt-4">
 
-                    <div class="col-3 text-center">
+                    <div class="col-10 col-sm-7 col-md-5 col-lg-3 text-center">
 
                         <form method="POST" action="php/login_adm.php">
         
@@ -57,7 +58,7 @@
 
                 <div class="row justify-content-center mt-2">
 
-                    <div class="col-3 text-center">
+                    <div class="col-10 col-sm-7 col-md-5 col-lg-3 text-center">
         
                         <input type="password" class="form-control" placeholder="Senha" name="senha" required>
         
@@ -67,7 +68,7 @@
 
                 <div class="row justify-content-center mt-2">
 
-                    <div class="col-3 text-center">
+                    <div class="col-10 col-sm-7 col-md-5 col-lg-3 text-center">
         
                         <button type="submit" class="form-control btn btn-primary">ENTRAR</button>
 
@@ -81,7 +82,7 @@
 
                     <div class="col text-center">
         
-                        <span class="text-black-50 fs-4">ADM</span>
+                        <span class="text-white fs-4">ADM</span>
         
                     </div>
         

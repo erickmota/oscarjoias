@@ -78,7 +78,8 @@ if(isset($_GET["url"])){
 
     }else{
 
-      include "paginas/adm.php";
+      /* include "paginas/adm.php"; */
+      header("Location: adm/novo-produto");
 
     }
 

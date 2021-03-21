@@ -167,7 +167,7 @@ if(!isset($classeClientes)){
 
                             </div>
 
-                            <div class="row justify-content-center">
+                            <div class="row justify-content-center mt-3">
 
                                 <div class="col-10 col-sm-7">
 

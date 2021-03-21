@@ -56,17 +56,13 @@ class clientes{
 
         include 'conexao.class.php';
     
-        /* $idDecode = base64_decode($idUsuario);
-        $emailDecode = base64_decode($emailUsuario); */
         $idDecode = str_replace(array(";", "'", "--", "/", "*", "xp_", "XP_", "SELECT" , "INSERT" , "UPDATE" , "DELETE" , "DROP", "select" , "insert" , "update" , "delete" , "drop"), "", base64_decode($idUsuario));
         $emailDecode = str_replace(array(";", "'", "--", "/", "*", "xp_", "XP_", "SELECT" , "INSERT" , "UPDATE" , "DELETE" , "DROP", "select" , "insert" , "update" , "delete" , "drop"), "", base64_decode($emailUsuario));
     
-        $sql = mysqli_query($conn, "SELECT * FROM cliente WHERE email='$emailDecode' AND senha='$senhaUsuario' AND id='$idDecode'") or die("erro ao verificar existencia Usuario");;
+        $sql = mysqli_query($conn, "SELECT * FROM cliente WHERE email='$emailDecode' AND senha='$senhaUsuario' AND id='$idDecode'") or die("<script>window.location='php/deslogar.php';</script>");;
         $qtd = mysqli_num_rows($sql);
     
         if($qtd < 1){
-    
-            /* die("<script>window.location='./php/deslogar.php'</script>"); */
 
             return false;
     

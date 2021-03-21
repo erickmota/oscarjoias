@@ -13,7 +13,7 @@ $funcLogin = $classeAdm->login();
 
 if($funcLogin == 1){
 
-    echo "<script>alert ('Login efetuado com sucesso!'); window.location='../adm'</script>";
+    echo "<script>alert ('Login efetuado com sucesso!'); window.location='../adm/novo-produto'</script>";
 
 }else{
 

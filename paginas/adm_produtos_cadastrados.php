@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html>
 
 <head>
@@ -225,11 +226,11 @@
 
         <div class="row">
 
-            <div class="col-3 d-none d-md-block">
-
-                <!-- Menu -->
-
-            </div>
+            <?php
+            
+            include "phpPartes/menu_adm.php";
+            
+            ?>
 
             <div class="col-12 col-md-9 offset-md-3">
 
@@ -237,11 +238,13 @@
 
                     <div class="col text-secondary">
 
-                        <h1>Produtos Cadastrados</h1>
+                        <img id="iconeMenu" class="float-start mt-1 me-3 d-block d-md-none" src="img/iconeMenu2.png" width="30px"><h1>Produtos Cadastrados</h1>
 
                     </div>
 
                 </div>
+
+                <script src="jsPartes/adm_menu_mobile.js"></script>
 
                 <div class="row mt-4">
 

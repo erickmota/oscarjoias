@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html>
 
 <head>
@@ -91,53 +92,11 @@
 
         <div class="row">
 
-            <div class="col-3 d-none d-md-block" id="fundoMenuPrincipal">
-
-                <div class="row mt-3">
-
-                    <div class="col text-center">
-
-                        <img src="img/logo.png" width="50%">
-
-                    </div>
-
-                </div>
-
-                <div class="row mt-3 border-bottom border-secondary pb-4">
-
-                    <div class="col text-center text-white">
-
-                        <span>Bem vindo <b>Erick Mota</b></span><br>
-                        <span>Você é um adm nível 1</span>
-
-                    </div>
-
-                </div>
-
-                <div class="row mt-3">
-
-                    <div class="col text-white">
-
-                        <nav>
-
-                            <ul id="listaMenu">
-
-                                <li>INICIO</li>
-                                <li>NOVO PRODUTO</li>
-                                <li>PRODUTOS CADASTRADOS</li>
-                                <li>PEDIDOS</li>
-                                <li>CONFIGURAÇÕES DO SITE</li>
-                                <li>PAGSEGURO</li>
-
-                            </ul>
-
-                        </nav>
-
-                    </div>
-
-                </div>
-
-            </div>
+            <?php
+            
+            include "phpPartes/menu_adm.php";
+            
+            ?>
 
             <div class="col-12 col-md-9 offset-md-3">
 
@@ -145,11 +104,13 @@
 
                     <div class="col text-secondary">
 
-                        <h1>Novo Produto</h1>
+                        <img id="iconeMenu" class="float-start mt-1 me-3 d-block d-md-none" src="img/iconeMenu2.png" width="30px"><h1>Novo Produto</h1>
 
                     </div>
 
                 </div>
+
+                <script src="jsPartes/adm_menu_mobile.js"></script>
 
                 <div class="row">
 
@@ -761,7 +722,7 @@
 
                             </div>
 
-                            <div class="row mt-4">
+                            <div class="row mt-4 mb-4">
 
                                 <div class="col-12 col-md-9">
 

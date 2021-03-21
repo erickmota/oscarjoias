@@ -2,6 +2,27 @@
 
     include "../classes/produtos.class.php";
 
+    /* Verificando existencia do ADM */
+
+    if(!isset($classeAdm)){
+
+        include "../classes/adm.class.php";
+        $classeAdm = new adm();
+
+    }
+
+    if(isset($_COOKIE["aiu_oj"]) && isset($_COOKIE["aeu_oj"]) && isset($_COOKIE["asu_oj"]) && $classeAdm->verifica_existencia_adm($_COOKIE["aiu_oj"], $_COOKIE["aeu_oj"], $_COOKIE["asu_oj"]) == true){
+
+        
+
+    }else{
+
+        die("<script>window.location='../php/adm_deslogar.php'</script>");
+
+    }
+
+    /* // Verificando existencia do ADM */
+
     /* $qtdGaleria = 3;
     $nome = $_POST["nome"];
     $capa = $_FILES["capa"];
@@ -137,4 +158,13 @@
 
     }
 
+    $classeAdm->sitemap("../sitemap.xml");
+
 ?>
+
+<script>
+
+    window.alert("Produto cadastrado com sucesso!");
+    window.location="../adm/novo-produto";
+
+</script>
