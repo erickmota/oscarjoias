@@ -36,7 +36,8 @@ if(isset($_GET["url"])){
 
       }else{
 
-
+        /* Página 404 */
+        include "paginas/404.php";
 
       }
 
@@ -73,6 +74,11 @@ if(isset($_GET["url"])){
       }else if($explode[1] == "configuracoes"){
 
         include "paginas/adm_configuracoes.php";
+
+      }else{
+
+        /* Página 404 */
+        include "paginas/404.php";
 
       }
 
@@ -118,6 +124,11 @@ if(isset($_GET["url"])){
   }else if($explode[0] == "ajustes"){
 
     include "paginas/ajustes.php";
+
+  }else{
+
+    /* Página 404 */
+    include "paginas/404.php";
 
   }
 

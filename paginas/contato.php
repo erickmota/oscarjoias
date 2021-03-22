@@ -3,10 +3,33 @@
 
 <head>
 
-    <title>Contato - Oscar Jóias e Acessórios</title>
+    <title>Contato - Oscar Jóias</title>
 
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- SEO Geral -->
+    <meta name="description" content="Entre em contato com a equipe Oscar Jóias.">
+    <meta name="author" content="erickmota.com">
+    <meta name="robots" content="index">
+
+    <!-- Google+ / Schema.org -->
+    <meta itemprop="name" content="Oscar Jóias">
+    <meta itemprop="description" content="Entre em contato com a equipe Oscar Jóias.">
+    <meta itemprop="image" content="img/apresentacao.jpg">
+
+    <!-- Open Graph Facebook -->
+    <meta property="og:title" content="Contato - Oscar Jóias">
+    <meta property="og:description" content="Entre em contato com a equipe Oscar Jóias."/>
+    <meta property="og:site_name" content="Oscar Jóias"/>
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="img/apresentacao.jpg">
+
+    <!-- Twitter -->
+    <meta name="twitter:title" content="Oscar Jóias">
+    <meta name="twitter:description" content="Entre em contato com a equipe Oscar Jóias.">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:image" content="img/apresentacao.jpg">
 
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js" integrity="sha384-q2kxQ16AaE6UbzuKqyBE9/u/KzioAlnx2maXQHiDX9d4/zp8Ok3f+M7DPm+Ib6IU" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.min.js" integrity="sha384-pQQkAEnwaBkjpqZ8RU1fF1AKtTcHJwFl3pblpTlHXybJjHpMYo79HY3hIi4NKxyj" crossorigin="anonymous"></script>

@@ -146,8 +146,8 @@ class compra{
 
     public function pagseguro($produtos, $codReferencia){
 
-        $data["token"] = "5CF4F8DF64774D95BA43EAAFF1E704F8";
-        /* $data["token"] = "f518ba01-dc67-49ee-815d-ec60447e713b6d8e65be47c981d54911676cca79ea4abef3-5d78-4585-913f-bea31b930745"; */
+        /* $data["token"] = "5CF4F8DF64774D95BA43EAAFF1E704F8"; */
+        $data["token"] = "f518ba01-dc67-49ee-815d-ec60447e713b6d8e65be47c981d54911676cca79ea4abef3-5d78-4585-913f-bea31b930745";
         $data["email"] = "erick_fcsaopaulo@hotmail.com";
         $data["currency"] = "BRL";
         $data["shippingAddressRequired"] = "false";
@@ -179,8 +179,8 @@ class compra{
         $data["itemDescription1"] = "Produto teste";
         $data["itemAmount1"] = "299.00"; */
 
-        $url = "https://ws.sandbox.pagseguro.uol.com.br/v2/checkout";
-        /* $url = "https://ws.pagseguro.uol.com.br/v2/checkout"; */
+        /* $url = "https://ws.sandbox.pagseguro.uol.com.br/v2/checkout"; */
+        $url = "https://ws.pagseguro.uol.com.br/v2/checkout";
 
         $data = http_build_query($data);
 
@@ -263,11 +263,11 @@ class compra{
     public function retornar_status_compra_pagseguro($referencia){
 
         $email = "erick_fcsaopaulo@hotmail.com";
-        $token = "5CF4F8DF64774D95BA43EAAFF1E704F8";
-        /* $token = "f518ba01-dc67-49ee-815d-ec60447e713b6d8e65be47c981d54911676cca79ea4abef3-5d78-4585-913f-bea31b930745"; */
+        /* $token = "5CF4F8DF64774D95BA43EAAFF1E704F8"; */
+        $token = "f518ba01-dc67-49ee-815d-ec60447e713b6d8e65be47c981d54911676cca79ea4abef3-5d78-4585-913f-bea31b930745";
 
-        $url = "https://ws.sandbox.pagseguro.uol.com.br/v2/transactions?email={$email}&token={$token}&reference={$referencia}";
-        /* $url = "https://ws.pagseguro.uol.com.br/v2/transactions?email={$email}&token={$token}&reference={$referencia}"; */
+        /* $url = "https://ws.sandbox.pagseguro.uol.com.br/v2/transactions?email={$email}&token={$token}&reference={$referencia}"; */
+        $url = "https://ws.pagseguro.uol.com.br/v2/transactions?email={$email}&token={$token}&reference={$referencia}";
 
         $curl = curl_init($url);
 

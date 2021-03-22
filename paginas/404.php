@@ -3,7 +3,7 @@
 
 <head>
 
-    <title>Login - adm - Oscar Jóias</title>
+    <title>404 - Oscar Jóias</title>
 
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -45,75 +45,55 @@
     
     ?>
 
-    <link rel="stylesheet" href="css/adm_login.css">
-
 </head>
 
-<body class="bg-dark">
+<body>
 
     <div class="container-fluid">
 
-        <div class="row" id="fundo">
+        <?php
+      
+        /* Cabeçalho */
+        include "phpPartes/cabecalho.php";
+        
+        ?>
 
-            <div class="col" id="conteudo">
+        <div class="row justify-content-center mt-5">
 
-                <div class="row">
+            <div class="col text-center fw-bold">
 
-                    <div class="col text-center">
-        
-                        <img src="img/logo.png" id="logo" width="100%">
-        
-                    </div>
-        
-                </div>
-
-                <div class="row justify-content-center mt-4">
-
-                    <div class="col-10 col-sm-7 col-md-5 col-lg-3 text-center">
-
-                        <form method="POST" action="php/login_adm.php">
-        
-                        <input type="email" class="form-control" placeholder="E-mail" name="email" required>
-        
-                    </div>
-        
-                </div>
-
-                <div class="row justify-content-center mt-2">
-
-                    <div class="col-10 col-sm-7 col-md-5 col-lg-3 text-center">
-        
-                        <input type="password" class="form-control" placeholder="Senha" name="senha" required>
-        
-                    </div>
-        
-                </div>
-
-                <div class="row justify-content-center mt-2">
-
-                    <div class="col-10 col-sm-7 col-md-5 col-lg-3 text-center">
-        
-                        <button type="submit" class="form-control btn btn-primary">ENTRAR</button>
-
-                        </form>
-        
-                    </div>
-        
-                </div>
-
-                <div class="row mt-5">
-
-                    <div class="col text-center">
-        
-                        <span class="text-white fs-4">ADM</span>
-        
-                    </div>
-        
-                </div>
+                <span style="font-size: 120px; color: rgb(216, 216, 216);">404</span>
 
             </div>
 
         </div>
+
+        <div class="row justify-content-center">
+
+            <div class="col text-center text-danger">
+
+                <span class="fs-2">OOPS! A PÁGINA NÃO FOI ENCONTRADA :/</span>
+
+            </div>
+
+        </div>
+
+        <div class="row justify-content-center mt-3 pb-5">
+
+            <div class="col text-center text-secondary">
+
+                <p>Algo errado? Nos deixe saber! contato@oscarjoias.com</p>
+
+            </div>
+
+        </div>
+
+        <?php
+      
+        /* Rodapé */
+        include "phpPartes/rodape.php";
+        
+        ?>
 
     </div>
 
