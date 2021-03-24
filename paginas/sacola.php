@@ -93,6 +93,24 @@
 
         });
 
+        var options =  {
+            onKeyPress: function(cep, e, field, options) {
+                var masks = ['000.000.000-00#', '00.000.000/0000-00'];
+                var mask = (cep.length>14) ? masks[1] : masks[0];
+                $('.maskCpf').mask(mask, options);
+        }};
+
+        $('.maskCpf').mask('000.000.000-00#', options);
+
+        var options2 =  {
+            onKeyPress: function(cep, e, field, options) {
+                var masks = ['(00) 0000-0000#', '(00) 00000-0000'];
+                var mask = (cep.length>14) ? masks[1] : masks[0];
+                $('.maskCelular').mask(mask, options);
+        }};
+
+        $('.maskCelular').mask('(00) 0000-0000#', options2);
+
         function mudar_qtd_produto(qtd, id_sacola){
 
             window.location="php/mudarQtdProdutoCarrinho.php?id_sacola="+id_sacola+"&nova_qtd="+qtd;
@@ -145,8 +163,11 @@
                     var campoBairro = document.getElementById("inputBairro");
                     var campoRua = document.getElementById("inputEndereco");
                     var campoNumero = document.getElementById("inputNumero");
+                    var campoDetalhes = document.getElementById("detalhesAdicionais");
+                    var campoCpf = document.getElementById("cpf");
+                    var campoCelular = document.getElementById("celular");
 
-                    if(campoCidade.value == "" || campoEstado == "" || campoBairro.value == "" || campoRua.value == "" || campoNumero.value == ""){
+                    if(campoCidade.value == "" || campoEstado == "" || campoBairro.value == "" || campoRua.value == "" || campoNumero.value == "" || campoCpf.value == "" || campoCelular.value == ""){
 
                         botaoFinalizar.classList.add("bg-danger");
                         botaoFinalizar.innerHTML = "Preencha os campos *";
@@ -160,6 +181,10 @@
                         campoCidade.classList.add("border-danger");
                         campoEstado.classList.add("border");
                         campoEstado.classList.add("border-danger");
+                        campoCpf.classList.add("border");
+                        campoCpf.classList.add("border-danger");
+                        campoCelular.classList.add("border");
+                        campoCelular.classList.add("border-danger");
 
                         setTimeout(function(){ 
                             botaoFinalizar.classList.remove("bg-danger");
@@ -174,6 +199,10 @@
                             campoCidade.classList.remove("border-danger");
                             campoEstado.classList.remove("border");
                             campoEstado.classList.remove("border-danger");
+                            campoCpf.classList.remove("border");
+                            campoCpf.classList.remove("border-danger");
+                            campoCelular.classList.remove("border");
+                            campoCelular.classList.remove("border-danger");
                         }, 3000);
 
                     }else{
@@ -587,7 +616,7 @@
 
                                             <div class="col fs-4">
 
-                                                Endereço para entrega
+                                                Dados para entrega
 
                                             </div>
 
@@ -598,14 +627,14 @@
                                             <div class="col-8">
 
                                                 <label for="basic-url" class="form-label">Cidade <span class="text-danger">*</span></label>
-                                                <input id="inputCidade" type="text" class="form-control form-control-sm">
+                                                <input id="inputCidade" type="text" class="form-control">
 
                                             </div>
 
                                             <div class="col-4">
 
                                                 <label for="basic-url" class="form-label">UF <span class="text-danger">*</span></label>
-                                                <input id="inputEstado" type="text" class="form-control form-control-sm">
+                                                <input style="text-transform: uppercase;" id="inputEstado" type="text" class="form-control" maxlength="5">
 
                                             </div>
 
@@ -616,7 +645,7 @@
                                             <div class="col">
 
                                                 <label for="basic-url" class="form-label">Bairro <span class="text-danger">*</span></label>
-                                                <input id="inputBairro" type="text" class="form-control form-control-sm">
+                                                <input id="inputBairro" type="text" class="form-control">
 
                                             </div>
 
@@ -627,7 +656,48 @@
                                             <div class="col">
 
                                                 <label for="basic-url" class="form-label">Rua <span class="text-danger">*</span></label>
-                                                <input id="inputEndereco" type="text" class="form-control form-control-sm">
+                                                <input id="inputEndereco" type="text" class="form-control">
+
+                                            </div>
+
+                                        </div>
+
+                                        <div class="row mt-2">
+
+                                            <div class="col-8">
+
+                                                <label for="basic-url" class="form-label">Complemento</label>
+                                                <input id="inputComplemento" type="text" class="form-control">
+
+                                            </div>
+
+                                            <div class="col-4">
+
+                                                <label for="basic-url" class="form-label">Nº <span class="text-danger">*</span></label>
+                                                <input id="inputNumero" type="number" class="form-control">
+
+                                            </div>
+
+                                        </div>
+
+                                        <div class="row mt-2">
+
+                                            <div class="col">
+
+                                                <label for="basic-url" class="form-label">Detalhes adicionais</label>
+                                                <textarea class="form-control" rows="3" id="detalhesAdicionais" name="detalhesAdicionais" maxlength="120"></textarea>
+                                                <div class="form-text">Se necessário, use esse campo para informar detalhes adicionais da entrega</div>
+
+                                            </div>
+
+                                        </div>
+
+                                        <div class="row mt-2">
+
+                                            <div class="col">
+
+                                                <label for="basic-url" class="form-label">CPF/CNPJ <span class="text-danger">*</span></label>
+                                                <input class="form-control maskCpf" id="cpf" name="cpf">
 
                                             </div>
 
@@ -635,17 +705,11 @@
 
                                         <div class="row mt-2 mb-4">
 
-                                            <div class="col-8">
+                                            <div class="col">
 
-                                                <label for="basic-url" class="form-label">Complemento</label>
-                                                <input id="inputComplemento" type="text" class="form-control form-control-sm">
-
-                                            </div>
-
-                                            <div class="col-4">
-
-                                                <label for="basic-url" class="form-label">Nº <span class="text-danger">*</span></label>
-                                                <input id="inputNumero" type="number" class="form-control form-control-sm">
+                                                <label for="basic-url" class="form-label">Número para contato <span class="text-danger">*</span></label>
+                                                <input class="form-control maskCelular" id="celular" name="celular">
+                                                <div class="form-text">Preferencialmente WhatsApp</div>
 
                                             </div>
 
@@ -822,6 +886,9 @@
                                         var numero = document.getElementById("inputNumero").value;
                                         var referencia = document.getElementById("hiddenReferencia").value;
                                         var cep = document.getElementById("inputCalculaFrete").value;
+                                        var detalhes = document.getElementById("detalhesAdicionais").value;
+                                        var cpf = document.getElementById("cpf").value;
+                                        var celular = document.getElementById("celular").value;
 
                                         $.ajax({
 
@@ -836,7 +903,7 @@
 
                                             }, */
 
-                                            data: {cidade: cidade, estado: estado, bairro: bairro, rua: rua, complemento: complemento, numero: numero, referencia: referencia, cep: cep},
+                                            data: {cidade: cidade, estado: estado, bairro: bairro, rua: rua, complemento: complemento, numero: numero, referencia: referencia, cep: cep, detalhes: detalhes, cpf: cpf, celular: celular},
 
                                             success: function (msg) {
 
@@ -863,8 +930,8 @@
 
                                 </script>
 
-                                <!-- <script type="text/javascript" src="https://stc.sandbox.pagseguro.uol.com.br/pagseguro/api/v2/checkout/pagseguro.lightbox.js"></script> -->
-                                <script type="text/javascript" src="https://stc.pagseguro.uol.com.br/pagseguro/api/v2/checkout/pagseguro.lightbox.js"></script>
+                                <script type="text/javascript" src="https://stc.sandbox.pagseguro.uol.com.br/pagseguro/api/v2/checkout/pagseguro.lightbox.js"></script>
+                                <!-- <script type="text/javascript" src="https://stc.pagseguro.uol.com.br/pagseguro/api/v2/checkout/pagseguro.lightbox.js"></script> -->
 
                                 <script type="text/javascript">
                                 

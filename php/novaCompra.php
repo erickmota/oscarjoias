@@ -16,6 +16,9 @@ $complemento = str_replace(array(";", "'", "--", "/", "*", "xp_", "XP_", "SELECT
 $numero = str_replace(array(";", "'", "--", "/", "*", "xp_", "XP_", "SELECT" , "INSERT" , "UPDATE" , "DELETE" , "DROP", "select" , "insert" , "update" , "delete" , "drop"), "", $_POST["numero"]);
 $referenciaPS = str_replace(array(";", "'", "--", "/", "*", "xp_", "XP_", "SELECT" , "INSERT" , "UPDATE" , "DELETE" , "DROP", "select" , "insert" , "update" , "delete" , "drop"), "", $_POST["referencia"]);
 $cep = str_replace(array(";", "'", "--", "/", "*", "xp_", "XP_", "SELECT" , "INSERT" , "UPDATE" , "DELETE" , "DROP", "select" , "insert" , "update" , "delete" , "drop"), "", $_POST["cep"]);
+$detalhes = str_replace(array(";", "'", "--", "/", "*", "xp_", "XP_", "SELECT" , "INSERT" , "UPDATE" , "DELETE" , "DROP", "select" , "insert" , "update" , "delete" , "drop"), "", $_POST["detalhes"]);
+$cpf = str_replace(array(";", "'", "--", "/", "*", "xp_", "XP_", "SELECT" , "INSERT" , "UPDATE" , "DELETE" , "DROP", "select" , "insert" , "update" , "delete" , "drop"), "", $_POST["cpf"]);
+$celular = str_replace(array(";", "'", "--", "/", "*", "xp_", "XP_", "SELECT" , "INSERT" , "UPDATE" , "DELETE" , "DROP", "select" , "insert" , "update" , "delete" , "drop"), "", $_POST["celular"]);
 
 include "../classes/compra.class.php";
 $classeCompra = new compra();
@@ -46,7 +49,7 @@ if(isset($_COOKIE["iu_oj"]) && isset($_COOKIE["eu_oj"]) && isset($_COOKIE["su_oj
 
 $dataHora = date("Y-m-d H:i:s");
 
-$classeCompra->adicionar_nova_compra($referenciaPS, $cidade, $estado, $bairro, $rua, $complemento, $numero, $cep, $dataHora, "Em processamento");
+$classeCompra->adicionar_nova_compra($referenciaPS, $cidade, $estado, $bairro, $rua, $complemento, $numero, $cep, $dataHora, "Em processamento", $detalhes, $cpf, $celular);
 
 /* echo "{$referenciaPS}, {$cidade}, {$estado}, {$bairro}, {$rua}, {$complemento}, {$numero}, {$cep}"; */
 

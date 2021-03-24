@@ -304,6 +304,28 @@
                     
                     ?>
 
+                    <?php
+                    
+                    if($arrRef["detalhes_entrega"] != ""){
+                    
+                    ?>
+
+                    / <b>Detalhes adicionais:</b> <?php echo $arrRef["detalhes_entrega"]; ?>
+
+                    <?php
+                    
+                    }
+                    
+                    ?>
+
+                </p>
+
+                <h5 class="text-secondary mt-2">Dados:</h5>
+
+                <p class="text-secondary">
+
+                    <b>CPF/CNPJ:</b> <?php echo $arrRef["cpf"]; ?> / <b>Número para contato:</b> <?php echo $arrRef["celular"]; ?>
+
                 </p>
 
             </div>

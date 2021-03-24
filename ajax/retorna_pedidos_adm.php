@@ -122,7 +122,7 @@ foreach($funcRetornaPedido as $arrPedido){
         </select>
 
     </td>
-    <td><?php
+    <td class="align-middle"><?php
     
     if($classeCompra->organizar_status_pagseguro($status) == "Não finalizada"){
 
@@ -132,10 +132,18 @@ foreach($funcRetornaPedido as $arrPedido){
 
     <?php
 
+    }else if($classeCompra->organizar_status_pagseguro($status) == "Paga"){
+
+    ?>
+
+        <button onclick="window.location='php/adm_gerar_declaracao_conteudo.php?ip=<?php echo $referencia; ?>'" type="button" class="btn btn-success btn-sm">Etiquetas</button>
+
+    <?php
+
     }
     
     ?></td>
-    <td><?php
+    <td class="align-middle"><?php
     
     if($classeCompra->organizar_status_pagseguro($status) == "Não finalizada"){
 

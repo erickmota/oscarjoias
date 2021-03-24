@@ -1154,6 +1154,7 @@
 
                             beforeSend: function () {
 
+                                $("#areaFrete").removeClass("d-none");
                                 $("#areaFrete").html("<img class='imgLoading' src='img/loading2.gif'>");
                                 /* $("#areaFrete").html("Carregando"); */
 
@@ -1164,7 +1165,7 @@
                             success: function (msg) {
 
                                 $("#areaFrete").html(msg);
-                                $("#areaFrete").removeClass("d-none");
+                                /* $("#areaFrete").removeClass("d-none"); */
 
                                 /* setTimeout(function() {
                                     $("#areaIconeOk").html("");
