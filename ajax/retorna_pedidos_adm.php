@@ -136,7 +136,7 @@ foreach($funcRetornaPedido as $arrPedido){
 
     ?>
 
-        <button onclick="window.location='php/adm_gerar_declaracao_conteudo.php?ip=<?php echo $referencia; ?>'" type="button" class="btn btn-success btn-sm">Etiquetas</button>
+        <a href="php/adm_gerar_declaracao_conteudo.php?ip=<?php echo $referencia; ?>" target="_blank" onclick="window.open('php/adm_gerar_etiqueta_correios.php?ip=<?php echo $referencia; ?>')"><button type="button" class="btn btn-success btn-sm">Etiquetas</button></a>
 
     <?php
 
