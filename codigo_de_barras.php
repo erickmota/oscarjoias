@@ -3,7 +3,7 @@
 <style>
 div.b128{
  border-left: 1px black solid;
- height: 100px;
+ height: 70px;
 } 
 </style>
 <?php
