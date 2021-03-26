@@ -635,18 +635,18 @@ class produtos{
 
     }
 
-    public function atualizar_produto($capa, $variacaoAdicional){
+    public function atualizar_produto($capa, $variacaoAdicional1, $variacaoAdicional2, $variacaoAdicional3){
 
         include 'conexao.class.php';
 
         /* $sql = mysqli_query($conn, "INSERT INTO produtos (nome, foto, descricao, preco, qtd_estoque, estado, id_variacao_produto, variacao_padrao, qtd_caracteres, preco_promocao, tipo, peso, altura, largura, comprimento, dias_entrega) VALUES ('$this->nome', NULL, '$this->descricao', $this->preco, $this->qtd, '$this->estado', $variacaoAdicional, '$this->variacaoPadrao', $this->maximo_caracteres, $this->promocao, '$this->tipo', '$this->peso', '$this->altura', '$this->largura', '$this->comprimento', $this->dias_entrega)") or die("Erro ao cadastrar o produto"); */
         if($capa == 1){
 
-            $sql = mysqli_query($conn, "UPDATE produtos SET nome='$this->nome', descricao='$this->descricao', preco=$this->preco, qtd_estoque=$this->qtd, estado='$this->estado', id_variacao_produto=$variacaoAdicional, variacao_padrao='$this->variacaoPadrao', qtd_caracteres=$this->maximo_caracteres, preco_promocao=$this->promocao, tipo='$this->tipo', peso='$this->peso', altura='$this->altura', largura='$this->largura', comprimento='$this->comprimento', dias_entrega=$this->dias_entrega WHERE id=$this->id") or die("Erro atualizar_produto");
+            $sql = mysqli_query($conn, "UPDATE produtos SET nome='$this->nome', descricao='$this->descricao', preco=$this->preco, qtd_estoque=$this->qtd, estado='$this->estado', id_variacao_produto=$variacaoAdicional1, id_variacao_produto2=$variacaoAdicional2, id_variacao_produto3=$variacaoAdicional3, variacao_padrao='$this->variacaoPadrao', qtd_caracteres=$this->maximo_caracteres, preco_promocao=$this->promocao, tipo='$this->tipo', peso='$this->peso', altura='$this->altura', largura='$this->largura', comprimento='$this->comprimento', dias_entrega=$this->dias_entrega WHERE id=$this->id") or die("Erro atualizar_produto");
 
         }else{
 
-            $sql = mysqli_query($conn, "UPDATE produtos SET nome='$this->nome', foto=NULL, descricao='$this->descricao', preco=$this->preco, qtd_estoque=$this->qtd, estado='$this->estado', id_variacao_produto=$variacaoAdicional, variacao_padrao='$this->variacaoPadrao', qtd_caracteres=$this->maximo_caracteres, preco_promocao=$this->promocao, tipo='$this->tipo', peso='$this->peso', altura='$this->altura', largura='$this->largura', comprimento='$this->comprimento', dias_entrega=$this->dias_entrega WHERE id=$this->id") or die("Erro atualizar_produto");
+            $sql = mysqli_query($conn, "UPDATE produtos SET nome='$this->nome', foto=NULL, descricao='$this->descricao', preco=$this->preco, qtd_estoque=$this->qtd, estado='$this->estado', id_variacao_produto=$variacaoAdicional1, id_variacao_produto2=$variacaoAdicional2, id_variacao_produto3=$variacaoAdicional3, variacao_padrao='$this->variacaoPadrao', qtd_caracteres=$this->maximo_caracteres, preco_promocao=$this->promocao, tipo='$this->tipo', peso='$this->peso', altura='$this->altura', largura='$this->largura', comprimento='$this->comprimento', dias_entrega=$this->dias_entrega WHERE id=$this->id") or die("Erro atualizar_produto");
 
         }
 

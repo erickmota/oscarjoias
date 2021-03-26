@@ -196,7 +196,7 @@ $corpo = "<html>
 
             <td style='width:20%'>
 
-                {$precoProduto}
+                ".number_format($precoProduto, 2, ",", ".")."
 
             </td>
 
@@ -262,7 +262,7 @@ $corpo = "<html>
 
             <td style='width:20%'>
 
-                {$totalValor}
+                ".number_format($totalValor, 2, ",", ".")."
 
             </td>
 

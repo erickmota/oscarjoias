@@ -70,34 +70,111 @@
 
     <script>
         
-        function aparecerVariacoes(op){
+        function aparecerVariacoes1(op){
 
-            var nomeVariacao = document.getElementById("campoVariacao");
-            var textoClienteVariacao = document.getElementById("textoClienteVariacao");
-            var opVariacao = document.getElementById("opVariacao");
-            var botaoAddVariacao = document.getElementById("botaoAddVariacao");
-            var botaoRemoveVariacao = document.getElementById("botaoRemoveVariacao");
+            var nomeVariacao1 = document.getElementById("campoVariacao1");
+            var textoClienteVariacao1 = document.getElementById("textoClienteVariacao1");
+            var opVariacao1 = document.getElementById("opVariacao1");
+            var botaoAddVariacao1 = document.getElementById("botaoAddVariacao1");
+            var botaoRemoveVariacao1 = document.getElementById("botaoRemoveVariacao1");
 
             if(op == true){
 
-                $("#fundoVariacoesCinza").slideDown("fast");
+                $("#fundoVariacoesCinza1").slideDown("fast");
+                $("#botaoAddVariacao2").removeClass("d-none");
 
-                botaoAddVariacao.classList.add("d-none");
-                botaoRemoveVariacao.classList.remove("d-none");
+                botaoAddVariacao1.classList.add("d-none");
+                botaoRemoveVariacao1.classList.remove("d-none");
 
             }else{
 
-                nomeVariacao.value = "";
-                textoClienteVariacao.value = "";
-                $('#opVariacao').flexdatalist('disabled', false);
-                $('#opVariacao').flexdatalist('value', '');
-                $('#opVariacao').flexdatalist('disabled', true);
-                textoClienteVariacao.setAttribute("disabled", "disabled");
+                aparecerVariacoes3(false);
+                $("#botaoAddVariacao3").addClass("d-none");
+                aparecerVariacoes2(false);
+                $("#botaoAddVariacao2").addClass("d-none");
 
-                $("#fundoVariacoesCinza").slideUp("fast");
+                nomeVariacao1.value = "";
+                textoClienteVariacao1.value = "";
+                $('#opVariacao1').flexdatalist('disabled', false);
+                $('#opVariacao1').flexdatalist('value', '');
+                $('#opVariacao1').flexdatalist('disabled', true);
+                textoClienteVariacao1.setAttribute("disabled", "disabled");
 
-                botaoAddVariacao.classList.remove("d-none");
-                botaoRemoveVariacao.classList.add("d-none");
+                $("#fundoVariacoesCinza1").slideUp("fast");
+
+                botaoAddVariacao1.classList.remove("d-none");
+                botaoRemoveVariacao1.classList.add("d-none");
+
+            }
+
+        }
+
+        function aparecerVariacoes2(op){
+
+            var nomeVariacao2 = document.getElementById("campoVariacao2");
+            var textoClienteVariacao2 = document.getElementById("textoClienteVariacao2");
+            var opVariacao2 = document.getElementById("opVariacao2");
+            var botaoAddVariacao2 = document.getElementById("botaoAddVariacao2");
+            var botaoRemoveVariacao2 = document.getElementById("botaoRemoveVariacao2");
+
+            if(op == true){
+
+                $("#fundoVariacoesCinza2").slideDown("fast");
+                $("#botaoAddVariacao3").removeClass("d-none");
+
+                botaoAddVariacao2.classList.add("d-none");
+                botaoRemoveVariacao2.classList.remove("d-none");
+
+            }else{
+
+                aparecerVariacoes3(false);
+                $("#botaoAddVariacao3").addClass("d-none");
+
+                nomeVariacao2.value = "";
+                textoClienteVariacao2.value = "";
+                $('#opVariacao2').flexdatalist('disabled', false);
+                $('#opVariacao2').flexdatalist('value', '');
+                $('#opVariacao2').flexdatalist('disabled', true);
+                textoClienteVariacao2.setAttribute("disabled", "disabled");
+
+                $("#fundoVariacoesCinza2").slideUp("fast");
+
+                botaoAddVariacao2.classList.remove("d-none");
+                botaoRemoveVariacao2.classList.add("d-none");
+
+            }
+
+        }
+
+        function aparecerVariacoes3(op){
+
+            var nomeVariacao3 = document.getElementById("campoVariacao3");
+            var textoClienteVariacao3 = document.getElementById("textoClienteVariacao3");
+            var opVariacao3 = document.getElementById("opVariacao3");
+            var botaoAddVariacao3 = document.getElementById("botaoAddVariacao3");
+            var botaoRemoveVariacao3 = document.getElementById("botaoRemoveVariacao3");
+
+            if(op == true){
+
+                $("#fundoVariacoesCinza3").slideDown("fast");
+                /* $("#botaoAddVariacao3").removeClass("d-none"); */
+
+                botaoAddVariacao3.classList.add("d-none");
+                botaoRemoveVariacao3.classList.remove("d-none");
+
+            }else{
+
+                nomeVariacao3.value = "";
+                textoClienteVariacao3.value = "";
+                $('#opVariacao3').flexdatalist('disabled', false);
+                $('#opVariacao3').flexdatalist('value', '');
+                $('#opVariacao3').flexdatalist('disabled', true);
+                textoClienteVariacao3.setAttribute("disabled", "disabled");
+
+                $("#fundoVariacoesCinza3").slideUp("fast");
+
+                botaoAddVariacao3.classList.remove("d-none");
+                botaoRemoveVariacao3.classList.add("d-none");
 
             }
 
@@ -586,18 +663,21 @@
 
                             </div>
 
-                            <div class="row mt-4">
+                            <div class="row">
 
-                                <div class="col-12 col-md-9">
+                                <div class="col-12 col-md-9 text-center">
 
-                                    <a onclick="aparecerVariacoes(true)" id="botaoAddVariacao" class="d-none" style="cursor: pointer;">Adicionar variação complementar</a>
-                                    <a onclick="aparecerVariacoes(false)" class="" id="botaoRemoveVariacao" style="cursor: pointer;">Remover variação complementar</a>
+                                    <!-- <a onclick="aparecerVariacoes(true)" id="botaoAddVariacao" class="" style="cursor: pointer;">Adicionar variação complementar</a>
+                                    <a onclick="aparecerVariacoes(false)" class="d-none" id="botaoRemoveVariacao" style="cursor: pointer;">Remover variação complementar</a> -->
+
+                                    <button onclick="aparecerVariacoes1(true)" id="botaoAddVariacao1" type="button" class="form-control btn-outline-primary d-none mt-4">+ VARIAÇÃO COMPLEMENTAR</button>
+                                    <button onclick="aparecerVariacoes1(false)" id="botaoRemoveVariacao1" type="button" class="form-control btn-outline-secondary mt-4">- VARIAÇÃO COMPLEMENTAR</button>
 
                                 </div>
 
                             </div>
 
-                            <div class="row mt-4" id="fundoVariacoesCinza">
+                            <div class="row mt-4" id="fundoVariacoesCinza1" style="display: block;">
 
                                 <div class="col-12 col-md-9 p-3 bg-light">
 
@@ -613,7 +693,7 @@
 
                                             <label class="form-label" for="input-img1">Nome da variação</label>
 
-                                            <input style="text-transform:lowercase;" list="variacoesDisponiveis" autocomplete="off" id="campoVariacao" type="text" class="form-control" name="novaVariacao" value="<?php echo $funcRetornaVariacaoComplementar["nome"]; ?>">
+                                            <input style="text-transform:lowercase;" list="variacoesDisponiveis" autocomplete="off" id="campoVariacao1" type="text" class="form-control" name="novaVariacao1" value="<?php echo $funcRetornaVariacaoComplementar["nome"]; ?>">
 
                                             <div class="form-text">Selecione uma variacao já existente ou crie uma nova</div>
 
@@ -645,9 +725,9 @@
 
                                             <label class="form-label" for="input-img1">Texto para o cliente</label>
 
-                                            <div id="areaInputVariacaoTexto" class="text-center">
+                                            <div id="areaInputVariacaoTexto1" class="text-center">
 
-                                                <input autocomplete="off" id="textoClienteVariacao" type="text" class="form-control" name="texto-variacao" disabled value="<?php echo $funcRetornaVariacaoComplementar["texto_cliente"]; ?>">
+                                                <input autocomplete="off" id="textoClienteVariacao1" type="text" class="form-control" name="texto-variacao1" disabled value="<?php echo $funcRetornaVariacaoComplementar["texto_cliente"]; ?>">
 
                                             </div>
 
@@ -665,9 +745,9 @@
 
                                             <!-- <input class="form-control" autocomplete="off" id="opVariacao" type="text" placeholder="separe cada opção com uma vírgula" name="opNovaVariacao"> -->
 
-                                            <div id="areaInputVariacao" class="text-center">
+                                            <div id="areaInputVariacao1" class="text-center">
 
-                                                <input id="opVariacao" type='text' class='flexdatalist  form-control' data-min-length='1' multiple='multiple' name="opNovaVariacao" disabled value="<?php echo $funcRetornaVariacaoComplementar["opcoes"]; ?>">
+                                                <input id="opVariacao1" type='text' class='flexdatalist flex1 form-control' data-min-length='1' multiple='multiple' name="opNovaVariacao1" disabled value="<?php echo $funcRetornaVariacaoComplementar["opcoes"]; ?>">
 
                                             </div>
 
@@ -679,7 +759,7 @@
 
                                     <script type="text/javascript">
                                                                                 
-                                        function retornar_op_variacoes(nome_variacao) {
+                                        function retornar_op_variacoes1(nome_variacao) {
                     
                                             $.ajax({
                     
@@ -690,15 +770,15 @@
                     
                                                 beforeSend: function () {
                     
-                                                    $("#areaInputVariacao").html("<img src='img/loading.gif' width='60px'>");
+                                                    $("#areaInputVariacao1").html("<img src='img/loading.gif' width='60px'>");
                     
                                                 },
                     
-                                                data: {nome_variacao: nome_variacao},
+                                                data: {nome_variacao: nome_variacao, posicao: 1},
                     
                                                 success: function (msg) {
                     
-                                                    $("#areaInputVariacao").html(msg);
+                                                    $("#areaInputVariacao1").html(msg);
                     
                                                 }
                     
@@ -706,7 +786,7 @@
                     
                                         }
 
-                                        function retornar_texto_variacoes(nome_variacao) {
+                                        function retornar_texto_variacoes1(nome_variacao) {
                     
                                             $.ajax({
 
@@ -717,15 +797,15 @@
 
                                                 beforeSend: function () {
 
-                                                    $("#areaInputVariacaoTexto").html("<img src='img/loading.gif' width='60px'>");
+                                                    $("#areaInputVariacaoTexto1").html("<img src='img/loading.gif' width='60px'>");
 
                                                 },
 
-                                                data: {nome_variacao: nome_variacao},
+                                                data: {nome_variacao: nome_variacao, posicao: 1},
 
                                                 success: function (msg) {
 
-                                                    $("#areaInputVariacaoTexto").html(msg);
+                                                    $("#areaInputVariacaoTexto1").html(msg);
 
                                                 }
 
@@ -733,12 +813,341 @@
 
                                         }
 
-                                        $("#campoVariacao").keyup(function(){
+                                        $("#campoVariacao1").keyup(function(){
 
-                                            var campoVariacao = document.getElementById("campoVariacao").value;
+                                            var campoVariacao1 = document.getElementById("campoVariacao1").value;
 
-                                            retornar_op_variacoes(campoVariacao);
-                                            retornar_texto_variacoes(campoVariacao);
+                                            retornar_op_variacoes1(campoVariacao1);
+                                            retornar_texto_variacoes1(campoVariacao1);
+
+                                        });
+                
+                                    </script>
+
+                                </div>
+
+                            </div>
+                            <div class="row">
+
+                                <div class="col-12 col-md-9 text-center">
+
+                                    <!-- <a onclick="aparecerVariacoes(true)" id="botaoAddVariacao" class="" style="cursor: pointer;">Adicionar variação complementar</a>
+                                    <a onclick="aparecerVariacoes(false)" class="d-none" id="botaoRemoveVariacao" style="cursor: pointer;">Remover variação complementar</a> -->
+
+                                    <button onclick="aparecerVariacoes2(true)" id="botaoAddVariacao2" type="button" class="form-control btn-outline-primary d-none mt-4">+ VARIAÇÃO COMPLEMENTAR</button>
+                                    <button onclick="aparecerVariacoes2(false)" id="botaoRemoveVariacao2" type="button" class="form-control btn-outline-secondary mt-4">- VARIAÇÃO COMPLEMENTAR</button>
+
+                                </div>
+
+                            </div>
+
+                            <div class="row mt-4" id="fundoVariacoesCinza2" style="display: block;">
+
+                                <div class="col-12 col-md-9 p-3 bg-light">
+
+                                    <?php
+                                    
+                                    $funcRetornaVariacaoComplementar = $classeProdutos->retorna_variacao_complementar_pelo_id($arrProduto["id_variacao_produto2"]);
+
+                                    ?>
+
+                                    <div class="row">
+
+                                        <div class="col">
+
+                                            <label class="form-label" for="input-img1">Nome da variação</label>
+
+                                            <input style="text-transform:lowercase;" list="variacoesDisponiveis" autocomplete="off" id="campoVariacao2" type="text" class="form-control" name="novaVariacao2" value="<?php echo $funcRetornaVariacaoComplementar["nome"]; ?>">
+
+                                            <div class="form-text">Selecione uma variacao já existente ou crie uma nova</div>
+
+                                            <datalist id="variacoesDisponiveis">
+
+                                                <?php
+                                                
+                                                foreach($classeProdutos->retorna_variacoes() as $arrVariacoes){
+                                                
+                                                ?>
+
+                                                <option value="<?php echo $arrVariacoes["nome"]; ?>">
+
+                                                <?php
+                                                
+                                                }
+                                                
+                                                ?>
+
+                                            </datalist>
+
+                                        </div>
+
+                                    </div>
+
+                                    <div class="row mt-4">
+
+                                        <div class="col">
+
+                                            <label class="form-label" for="input-img1">Texto para o cliente</label>
+
+                                            <div id="areaInputVariacaoTexto2" class="text-center">
+
+                                                <input autocomplete="off" id="textoClienteVariacao2" type="text" class="form-control" name="texto-variacao2" disabled value="<?php echo $funcRetornaVariacaoComplementar["texto_cliente"]; ?>">
+
+                                            </div>
+
+                                            <div class="form-text"><b>Exemplo:</b> Escolha a cor da pedra</div>
+
+                                        </div>
+
+                                    </div>
+
+                                    <div class="row mt-4 mb-2">
+
+                                        <div class="col">
+
+                                            <label class="form-label" for="input-img1">Opções da variação</label>
+
+                                            <!-- <input class="form-control" autocomplete="off" id="opVariacao" type="text" placeholder="separe cada opção com uma vírgula" name="opNovaVariacao"> -->
+
+                                            <div id="areaInputVariacao2" class="text-center">
+
+                                                <input id="opVariacao2" type='text' class='flexdatalist flex2 form-control' data-min-length='1' multiple='multiple' name="opNovaVariacao2" disabled value="<?php echo $funcRetornaVariacaoComplementar["opcoes"]; ?>">
+
+                                            </div>
+
+                                            <div class="form-text text-warning">Digite o nome da opção e pressione <b>ENTER</b> para confirmar e pular para a próxima opção</div>
+
+                                        </div>
+
+                                    </div>
+
+                                    <script type="text/javascript">
+                                                                                
+                                        function retornar_op_variacoes2(nome_variacao) {
+                    
+                                            $.ajax({
+                    
+                                                type: "POST",
+                                                dataType: "html",
+                    
+                                                url: "ajax/retorna_op_variacao.php",
+                    
+                                                beforeSend: function () {
+                    
+                                                    $("#areaInputVariacao2").html("<img src='img/loading.gif' width='60px'>");
+                    
+                                                },
+                    
+                                                data: {nome_variacao: nome_variacao, posicao: 2},
+                    
+                                                success: function (msg) {
+                    
+                                                    $("#areaInputVariacao2").html(msg);
+                    
+                                                }
+                    
+                                            });
+                    
+                                        }
+
+                                        function retornar_texto_variacoes2(nome_variacao) {
+                    
+                                            $.ajax({
+
+                                                type: "POST",
+                                                dataType: "html",
+
+                                                url: "ajax/retorna_texto_variacao.php",
+
+                                                beforeSend: function () {
+
+                                                    $("#areaInputVariacaoTexto2").html("<img src='img/loading.gif' width='60px'>");
+
+                                                },
+
+                                                data: {nome_variacao: nome_variacao, posicao: 2},
+
+                                                success: function (msg) {
+
+                                                    $("#areaInputVariacaoTexto2").html(msg);
+
+                                                }
+
+                                            });
+
+                                        }
+
+                                        $("#campoVariacao2").keyup(function(){
+
+                                            var campoVariacao2 = document.getElementById("campoVariacao2").value;
+
+                                            retornar_op_variacoes2(campoVariacao2);
+                                            retornar_texto_variacoes2(campoVariacao2);
+
+                                        });
+                
+                                    </script>
+
+                                </div>
+
+                            </div>
+
+                            <div class="row">
+
+                                <div class="col-12 col-md-9 text-center">
+
+                                    <!-- <a onclick="aparecerVariacoes(true)" id="botaoAddVariacao" class="" style="cursor: pointer;">Adicionar variação complementar</a>
+                                    <a onclick="aparecerVariacoes(false)" class="d-none" id="botaoRemoveVariacao" style="cursor: pointer;">Remover variação complementar</a> -->
+
+                                    <button onclick="aparecerVariacoes3(true)" id="botaoAddVariacao3" type="button" class="form-control btn-outline-primary d-none mt-4">+ VARIAÇÃO COMPLEMENTAR</button>
+                                    <button onclick="aparecerVariacoes3(false)" id="botaoRemoveVariacao3" type="button" class="form-control btn-outline-secondary mt-4">- VARIAÇÃO COMPLEMENTAR</button>
+
+                                </div>
+
+                            </div>
+
+                            <div class="row mt-4" id="fundoVariacoesCinza3" style="display: block;">
+
+                                <div class="col-12 col-md-9 p-3 bg-light">
+
+                                    <?php
+                                    
+                                    $funcRetornaVariacaoComplementar = $classeProdutos->retorna_variacao_complementar_pelo_id($arrProduto["id_variacao_produto3"]);
+
+                                    ?>
+
+                                    <div class="row">
+
+                                        <div class="col">
+
+                                            <label class="form-label" for="input-img1">Nome da variação</label>
+
+                                            <input style="text-transform:lowercase;" list="variacoesDisponiveis" autocomplete="off" id="campoVariacao3" type="text" class="form-control" name="novaVariacao3" value="<?php echo $funcRetornaVariacaoComplementar["nome"]; ?>">
+
+                                            <div class="form-text">Selecione uma variacao já existente ou crie uma nova</div>
+
+                                            <datalist id="variacoesDisponiveis">
+
+                                                <?php
+                                                
+                                                foreach($classeProdutos->retorna_variacoes() as $arrVariacoes){
+                                                
+                                                ?>
+
+                                                <option value="<?php echo $arrVariacoes["nome"]; ?>">
+
+                                                <?php
+                                                
+                                                }
+                                                
+                                                ?>
+
+                                            </datalist>
+
+                                        </div>
+
+                                    </div>
+
+                                    <div class="row mt-4">
+
+                                        <div class="col">
+
+                                            <label class="form-label" for="input-img1">Texto para o cliente</label>
+
+                                            <div id="areaInputVariacaoTexto3" class="text-center">
+
+                                                <input autocomplete="off" id="textoClienteVariacao3" type="text" class="form-control" name="texto-variacao3" disabled value="<?php echo $funcRetornaVariacaoComplementar["texto_cliente"]; ?>">
+
+                                            </div>
+
+                                            <div class="form-text"><b>Exemplo:</b> Escolha a cor da pedra</div>
+
+                                        </div>
+
+                                    </div>
+
+                                    <div class="row mt-4 mb-2">
+
+                                        <div class="col">
+
+                                            <label class="form-label" for="input-img1">Opções da variação</label>
+
+                                            <!-- <input class="form-control" autocomplete="off" id="opVariacao" type="text" placeholder="separe cada opção com uma vírgula" name="opNovaVariacao"> -->
+
+                                            <div id="areaInputVariacao3" class="text-center">
+
+                                                <input id="opVariacao3" type='text' class='flexdatalist flex3 form-control' data-min-length='1' multiple='multiple' name="opNovaVariacao3" disabled value="<?php echo $funcRetornaVariacaoComplementar["opcoes"]; ?>">
+
+                                            </div>
+
+                                            <div class="form-text text-warning">Digite o nome da opção e pressione <b>ENTER</b> para confirmar e pular para a próxima opção</div>
+
+                                        </div>
+
+                                    </div>
+
+                                    <script type="text/javascript">
+                                                                                
+                                        function retornar_op_variacoes3(nome_variacao) {
+                    
+                                            $.ajax({
+                    
+                                                type: "POST",
+                                                dataType: "html",
+                    
+                                                url: "ajax/retorna_op_variacao.php",
+                    
+                                                beforeSend: function () {
+                    
+                                                    $("#areaInputVariacao3").html("<img src='img/loading.gif' width='60px'>");
+                    
+                                                },
+                    
+                                                data: {nome_variacao: nome_variacao, posicao: 3},
+                    
+                                                success: function (msg) {
+                    
+                                                    $("#areaInputVariacao3").html(msg);
+                    
+                                                }
+                    
+                                            });
+                    
+                                        }
+
+                                        function retornar_texto_variacoes3(nome_variacao) {
+                    
+                                            $.ajax({
+
+                                                type: "POST",
+                                                dataType: "html",
+
+                                                url: "ajax/retorna_texto_variacao.php",
+
+                                                beforeSend: function () {
+
+                                                    $("#areaInputVariacaoTexto3").html("<img src='img/loading.gif' width='60px'>");
+
+                                                },
+
+                                                data: {nome_variacao: nome_variacao, posicao: 3},
+
+                                                success: function (msg) {
+
+                                                    $("#areaInputVariacaoTexto3").html(msg);
+
+                                                }
+
+                                            });
+
+                                        }
+
+                                        $("#campoVariacao3").keyup(function(){
+
+                                            var campoVariacao3 = document.getElementById("campoVariacao3").value;
+
+                                            retornar_op_variacoes3(campoVariacao3);
+                                            retornar_texto_variacoes3(campoVariacao3);
 
                                         });
                 
