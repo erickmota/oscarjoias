@@ -73,9 +73,15 @@
     $estado = $_POST["estado"];
     $variacao = $_POST["variacao"];
 
-    @$novaVariacao = $_POST["novaVariacao"];
-    @$textoVariacao = $_POST["texto-variacao"];
-    @$opNovaVariacao = $_POST["opNovaVariacao"];
+    @$novaVariacao1 = $_POST["novaVariacao1"];
+    @$textoVariacao1 = $_POST["texto-variacao1"];
+    @$opNovaVariacao1 = $_POST["opNovaVariacao1"];
+    @$novaVariacao2 = $_POST["novaVariacao2"];
+    @$textoVariacao2 = $_POST["texto-variacao2"];
+    @$opNovaVariacao2 = $_POST["opNovaVariacao2"];
+    @$novaVariacao3 = $_POST["novaVariacao3"];
+    @$textoVariacao3 = $_POST["texto-variacao3"];
+    @$opNovaVariacao3 = $_POST["opNovaVariacao3"];
 
     $categoria = mb_strtolower($_POST["categoria"], "UTF-8");
     $maximo_caracteres = $_POST["maximo_caracteres"];
@@ -128,15 +134,49 @@
     $classeImg->comprimento = $comprimento;
     $classeImg->dias_entrega = $dias_entrega;
 
-    if($novaVariacao != ""){
+    if($novaVariacao1 != "" || $novaVariacao2 != "" || $novaVariacao3 != ""){
 
-        $funcVariacao = $classeImg->cadastrar_variacao_personalizada($novaVariacao, $opNovaVariacao, $textoVariacao);
+        if($novaVariacao1 != ""){
 
-        $classeImg->cadastrar_produto_bd($funcVariacao);
+            $funcVariacao1 = $classeImg->cadastrar_variacao_personalizada($novaVariacao1, $opNovaVariacao1, $textoVariacao1);
+
+            $varia1 = $funcVariacao1;
+
+        }else{
+
+            $varia1 = 0;
+
+        }
+
+        if($novaVariacao2 != ""){
+
+            $funcVariacao2 = $classeImg->cadastrar_variacao_personalizada($novaVariacao2, $opNovaVariacao2, $textoVariacao2);
+
+            $varia2 = $funcVariacao2;
+
+        }else{
+
+            $varia2 = 0;
+
+        }
+
+        if($novaVariacao3 != ""){
+
+            $funcVariacao3 = $classeImg->cadastrar_variacao_personalizada($novaVariacao3, $opNovaVariacao3, $textoVariacao3);
+
+            $varia3 = $funcVariacao3;
+
+        }else{
+
+            $varia3 = 0;
+
+        }
+
+        $classeImg->cadastrar_produto_bd($varia1, $varia2, $varia3);
 
     }else{
 
-        $classeImg->cadastrar_produto_bd(0);
+        $classeImg->cadastrar_produto_bd(0, 0, 0);
 
     }
 

@@ -15,12 +15,14 @@ foreach($functPedido as $arrPedido){
     $destiNomeCliente = mb_strtoupper($arrPedido["nome_cliente"], "UTF-8");
     $destRua = mb_strtoupper($arrPedido["rua"], "UTF-8");
     $destNumero = $arrPedido["numero"];
-    $destCidade = $arrPedido["cidade"];
+    $destCidade =  mb_strtoupper($arrPedido["cidade"], "UTF-8");
     $destUf = $arrPedido["uf"];
     $destCep = str_replace("-", "", $arrPedido["cep"]);
     $destCpf = $arrPedido["cpf"];
     $destCelular = $arrPedido["celular"];
     $destBairro = mb_strtoupper($arrPedido["bairro"], "UTF-8");
+    $destComplemento = mb_strtoupper($arrPedido["complemento"], "UTF-8");
+    $destDetalhes = $arrPedido["detalhes"];
 
 }
 
@@ -112,14 +114,24 @@ $corpo = "<html>
                 {$destiNomeCliente}<br>
                 FONE {$destCelular}<br>
                 {$destRua} Nº {$destNumero}<br>
-                {$destBairro}<br>
-                SOROCABA/SP<br>
-                18066315<br><br>
-                <b>Observação:</b> Esse é apenas um teste pa
-                ra ver onde isso vai fica
-                r
+                {$destBairro}<br>";
 
-            </p>
+                if($destComplemento != ""){
+
+                    $corpo .= "{$destComplemento}<br>";
+
+                }
+
+                $corpo .="{$destCidade}/{$destUf}<br>
+                {$destCep}<br>";
+
+                if($destDetalhes != ""){
+
+                    $corpo .= "<br><b>Observação:</b> {$destDetalhes}<br>";
+
+                }
+
+            $corpo .="</p>
 
         </div>
 
@@ -128,7 +140,7 @@ $corpo = "<html>
             <div style='margin-left: auto;
             margin-right: auto;
             width: 10em'>{$barcode}</div>
-            <span style='font-size: 13px; color: rgb(65, 65, 65)'>18066315</span>
+            <span style='font-size: 13px; color: rgb(65, 65, 65)'>{$destCep}</span>
 
         </div>
 

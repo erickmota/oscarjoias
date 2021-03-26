@@ -210,7 +210,25 @@ class compra{
 
         $sql = mysqli_query($conn, "INSERT INTO pedido (id, id_cliente, cidade_entrega, estado_entrega, bairro_entrega, rua_entrega, complemento_entrega, numero_entrega, cep_entrega, data_hora, status_entrega, detalhes_entrega, cpf, celular) VALUES ($idReferencia, $this->idCliente, '$cidade', '$estado', '$bairro', '$rua', '$complemento', $numero, '$cep', '$dataHora', '$statusEntrega', '$detalhes', '$cpf', '$celular')") or die("Erro cadastrar nova compra");
 
-        $sql2 = mysqli_query($conn, "INSERT INTO item_pedido (id_produtos, id_pedido, anel_unico, gravacao_anel_unico, anel_casal, gravacao_anel_casal, apenas_aro, apenas_gravacao, variacao_complementar, quantidade) SELECT id_produto, '$idReferencia', anel_unico, gravacao_anel_unico, anel_casal, gravacao_anel_casal, apenas_aro, apenas_gravacao, variacao_complementar, quantidade FROM sacola WHERE id_cliente=$this->idCliente") or die("Erro ao cadastrar novos itens a compra");
+        /* $sql2 = mysqli_query($conn, "INSERT INTO item_pedido (id_produtos, id_pedido, anel_unico, gravacao_anel_unico, anel_casal, gravacao_anel_casal, apenas_aro, apenas_gravacao, variacao_complementar, quantidade) SELECT id_produto, '$idReferencia', anel_unico, gravacao_anel_unico, anel_casal, gravacao_anel_casal, apenas_aro, apenas_gravacao, variacao_complementar, quantidade FROM sacola WHERE id_cliente=$this->idCliente") or die("Erro ao cadastrar novos itens a compra"); */
+
+        $sql2 = mysqli_query($conn, "SELECT * FROM sacola INNER JOIN produtos ON sacola.id_produto=produtos.id WHERE sacola.id_cliente=$this->idCliente") or die("Erro puxar os dados da sacola");
+        while($linha = mysqli_fetch_assoc($sql2)){
+
+            $idProduto = $linha["id_produto"];
+            $anelUnico = $linha["anel_unico"];
+            $gravacaoAnelUnico = $linha["gravacao_anel_unico"];
+            $anelCasal = $linha["anel_casal"];
+            $gravacaoAnelCasal = $linha["gravacao_anel_casal"];
+            $apenasAro = $linha["apenas_aro"];
+            $apenasGravacao = $linha["apenas_gravacao"];
+            $variacaoComplementar = $linha["variacao_complementar"];
+            $quantidade = $linha["quantidade"];
+            $preco = $linha["preco"];
+
+            $sql7 = mysqli_query($conn, "INSERT INTO item_pedido (id_produtos, id_pedido, anel_unico, gravacao_anel_unico, anel_casal, gravacao_anel_casal, apenas_aro, apenas_gravacao, variacao_complementar, quantidade, preco_produto_pedido) VALUES ('$idProduto', '$idReferencia', '$anelUnico', '$gravacaoAnelUnico', '$anelCasal', '$gravacaoAnelCasal', '$apenasAro', '$apenasGravacao', '$variacaoComplementar', '$quantidade', '$preco')") or die("Erro ao add produtos");
+
+        }
 
         /* -1 produto no estoque */
 

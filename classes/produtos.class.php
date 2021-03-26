@@ -73,11 +73,11 @@ class produtos{
     }
 
     /* Enviar produto para o BD */
-    public function cadastrar_produto_bd($variacaoAdicional){
+    public function cadastrar_produto_bd($variacaoAdicional1, $variacaoAdicional2, $variacaoAdicional3){
 
         include 'conexao.class.php';
 
-        $sql = mysqli_query($conn, "INSERT INTO produtos (nome, foto, descricao, preco, qtd_estoque, estado, id_variacao_produto, variacao_padrao, qtd_caracteres, preco_promocao, tipo, peso, altura, largura, comprimento, dias_entrega) VALUES ('$this->nome', NULL, '$this->descricao', $this->preco, $this->qtd, '$this->estado', $variacaoAdicional, '$this->variacaoPadrao', $this->maximo_caracteres, $this->promocao, '$this->tipo', '$this->peso', '$this->altura', '$this->largura', '$this->comprimento', $this->dias_entrega)") or die("Erro ao cadastrar o produto");
+        $sql = mysqli_query($conn, "INSERT INTO produtos (nome, foto, descricao, preco, qtd_estoque, estado, id_variacao_produto, id_variacao_produto2, id_variacao_produto3, variacao_padrao, qtd_caracteres, preco_promocao, tipo, peso, altura, largura, comprimento, dias_entrega) VALUES ('$this->nome', NULL, '$this->descricao', $this->preco, $this->qtd, '$this->estado', $variacaoAdicional1, $variacaoAdicional2, $variacaoAdicional3, '$this->variacaoPadrao', $this->maximo_caracteres, $this->promocao, '$this->tipo', '$this->peso', '$this->altura', '$this->largura', '$this->comprimento', $this->dias_entrega)") or die("Erro ao cadastrar o produto");
 
     }
 

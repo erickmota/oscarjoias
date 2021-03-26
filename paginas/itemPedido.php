@@ -394,7 +394,7 @@
 
                                     <div class="col fs-4 text-secondary">
 
-                                        R$<?php echo number_format($arrReferencia["preco"], 2, ",", "."); ?>
+                                        R$<?php echo number_format($arrReferencia["preco_produto_pedido"], 2, ",", "."); ?>
 
                                     </div>
 

@@ -8,6 +8,7 @@ include "../classes/produtos.class.php";
 $classeProdutos = new produtos();
 
 $nome_variacao = str_replace(array(";", "'", "/", "*", "xp_", "XP_", "SELECT" , "INSERT" , "UPDATE" , "DELETE" , "DROP", "select" , "insert" , "update" , "delete" , "drop"), "", $_POST["nome_variacao"]);
+$posicao = $_POST["posicao"];
 
 $variacoes = $classeProdutos->retorna_op_variacoes($nome_variacao, "opcoes");
 
@@ -17,7 +18,7 @@ if($variacoes == ""){
 
         ?>
 
-            <input id="opVariacao" type='text' class='flexdatalist form-control' data-min-length='1' multiple='multiple' name="opNovaVariacao" disabled>
+            <input id="opVariacao<?php echo $posicao; ?>" type='text' class='flexdatalist flex<?php echo $posicao; ?> form-control' data-min-length='1' multiple='multiple' name="opNovaVariacao<?php echo $posicao; ?>" disabled>
 
             <!-- <script>
 
@@ -31,7 +32,7 @@ if($variacoes == ""){
 
         ?>
 
-            <input id="opVariacao" type='text' class='flexdatalist form-control' data-min-length='1' multiple='multiple' name="opNovaVariacao">
+            <input id="opVariacao<?php echo $posicao; ?>" type='text' class='flexdatalist flex<?php echo $posicao; ?> form-control' data-min-length='1' multiple='multiple' name="opNovaVariacao<?php echo $posicao; ?>">
 
         <?php
 
@@ -41,11 +42,11 @@ if($variacoes == ""){
 
 ?>
 
-    <input id="opVariacao" type='text' class='flexdatalist form-control' data-min-length='1' multiple='multiple' name="opNovaVariacao" value="<?php echo $variacoes; ?>">
+    <input id="opVariacao<?php echo $posicao; ?>" type='text' class='flexdatalist flex<?php echo $posicao; ?> form-control' data-min-length='1' multiple='multiple' name="opNovaVariacao<?php echo $posicao; ?>" value="<?php echo $variacoes; ?>">
 
     <script>
 
-        $('.flexdatalist').flexdatalist('disabled', true);
+        $('.flex<?php echo $posicao; ?>').flexdatalist('disabled', true);
 
     </script>
 

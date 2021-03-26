@@ -55,4 +55,14 @@
 		<changefreq>weekly</changefreq>
 		<priority>0.9</priority>
 	</url>
+	<url>
+		<loc>https://oscarjoias.com/produto/produto-teste</loc>
+		<changefreq>weekly</changefreq>
+		<priority>0.9</priority>
+	</url>
+	<url>
+		<loc>https://oscarjoias.com/produto/produto-teste-2</loc>
+		<changefreq>weekly</changefreq>
+		<priority>0.9</priority>
+	</url>
 </urlset> 
