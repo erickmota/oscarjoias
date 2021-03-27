@@ -27,6 +27,8 @@
     /* $apenasGravacao = $_GET["apenasGravacao"]; */
     $apenasGravacao = str_replace(array(";", "'", "--", "/", "*", "xp_", "XP_", "SELECT" , "INSERT" , "UPDATE" , "DELETE" , "DROP", "select" , "insert" , "update" , "delete" , "drop"), "", $_GET["apenasGravacao"]);
     $variacaoComplementar = $_GET["variacaoComplementar"];
+    $variacaoComplementar2 = $_GET["variacaoComplementar2"];
+    $variacaoComplementar3 = $_GET["variacaoComplementar3"];
     $quantidade = $_GET["quantidade"];
     $idProduto = $_GET["idProduto"];
 
@@ -60,6 +62,8 @@
     $classeCompra->apenasAro = $apenasAro;
     $classeCompra->apenasGravacao = $apenasGravacao;
     $classeCompra->variacaoComplementar = $variacaoComplementar;
+    $classeCompra->variacaoComplementar2 = $variacaoComplementar2;
+    $classeCompra->variacaoComplementar3 = $variacaoComplementar3;
     $classeCompra->quantidade = $quantidade;
     $classeCompra->idProduto = $idProduto;
 

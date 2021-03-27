@@ -305,6 +305,9 @@
         foreach($classeCompra->retorna_dados_carrinho() as $arrCompra){
 
             $classeCompra->comparar_qtd_carrinho_qtd_produto($arrCompra["id_produto"]);
+            $nome_variacao1 = $classeCompra->retorna_dados_variacao_complementar_por_id($arrCompra["id_variacao_produto"]);
+            $nome_variacao2 = $classeCompra->retorna_dados_variacao_complementar_por_id($arrCompra["id_variacao_produto2"]);
+            $nome_variacao3 = $classeCompra->retorna_dados_variacao_complementar_por_id($arrCompra["id_variacao_produto3"]);
         
         ?>
 
@@ -336,7 +339,9 @@
                                     <li class="<?php if($arrCompra["gravacao_anel_casal"] == "SE"){ echo "d-none";} ?>"><b>Gravação masculina:</b> <?php if($arrCompra["gravacao_anel_casal"] == ""){ echo "(SEM GRAVAÇÃO)"; }else{ echo $arrCompra["gravacao_anel_casal"]; } ?></li>
                                     <li class="<?php if($arrCompra["apenas_aro"] == "SE"){ echo "d-none";} ?>"><b>Aro:</b> <?php echo $arrCompra["apenas_aro"]; ?></li>
                                     <li class="<?php if($arrCompra["apenas_gravacao"] == "SE"){ echo "d-none";} ?>"><b>Gravação:</b> <?php if($arrCompra["apenas_gravacao"] == ""){ echo "(SEM GRAVAÇÃO)"; }else{ echo $arrCompra["apenas_gravacao"]; } ?></li>
-                                    <li class="<?php if($arrCompra["variacao_complementar"] == "SE"){ echo "d-none";} ?>"><b>Informação adicional:</b> <?php echo $arrCompra["variacao_complementar"]; ?></li>
+                                    <li class="<?php if($arrCompra["variacao_complementar"] == "SE"){ echo "d-none";} ?>"><b><?php echo $nome_variacao1; ?>:</b> <?php echo $arrCompra["variacao_complementar"]; ?></li>
+                                    <li class="<?php if($arrCompra["variacao_complementar2"] == "SE"){ echo "d-none";} ?>"><b><?php echo $nome_variacao2; ?>:</b> <?php echo $arrCompra["variacao_complementar2"]; ?></li>
+                                    <li class="<?php if($arrCompra["variacao_complementar3"] == "SE"){ echo "d-none";} ?>"><b><?php echo $nome_variacao3; ?>:</b> <?php echo $arrCompra["variacao_complementar3"]; ?></li>
 
                                 </ul>
 

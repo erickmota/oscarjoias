@@ -304,11 +304,220 @@
 
         }
 
-        function cadastrarProdutoCarrinho(variacao_padrao, variacao_complementar){
+        function mudarResultadoVariacaoAdicional2(op){
+
+        var hiddenVariacaoAdicional2 = document.getElementById("hiddenVariacaoAdicional2");
+
+        hiddenVariacaoAdicional2.value = op;
+
+        }
+
+        function mudarResultadoVariacaoAdicional3(op){
+
+        var hiddenVariacaoAdicional3 = document.getElementById("hiddenVariacaoAdicional3");
+
+        hiddenVariacaoAdicional3.value = op;
+
+        }
+
+        function cadastrarProdutoCarrinho(variacao_padrao, variacao_complementar, variacao_complementar2, variacao_complementar3){
 
             var qtdCarrinho = document.getElementById("selectQtd").value;
 
-            if(variacao_padrao == "aro" && variacao_complementar > 0){
+            if(variacao_padrao == "aro" && variacao_complementar > 0 && variacao_complementar2 > 0 && variacao_complementar3 > 0){
+
+                var hiddenApenasAro = document.getElementById("hiddenApenasAro").value;
+                var boxApenasAro = document.getElementById("boxApenasAro");
+                var hiddenVariacaoAdicional = document.getElementById("hiddenVariacaoAdicional").value;
+                var boxVariacaoAdicional = document.getElementById("boxVariacaoAdicional");
+                var hiddenVariacaoAdicional2 = document.getElementById("hiddenVariacaoAdicional2").value;
+                var boxVariacaoAdicional2 = document.getElementById("boxVariacaoAdicional2");
+                var hiddenVariacaoAdicional3 = document.getElementById("hiddenVariacaoAdicional3").value;
+                var boxVariacaoAdicional3 = document.getElementById("boxVariacaoAdicional3");
+                var botaoAdicionarCarrinho = document.getElementById("botaoAddCarrinho");
+
+                if(hiddenApenasAro == ""){
+
+                    boxApenasAro.classList.add("border");
+                    boxApenasAro.classList.add("border-danger");
+                    botaoAdicionarCarrinho.classList.add("bg-danger");
+                    botaoAdicionarCarrinho.innerHTML = "Escolha tamanho aro";
+
+                    setTimeout(function(){ 
+                        boxApenasAro.classList.remove("border");
+                        boxApenasAro.classList.remove("border-danger");
+                        botaoAdicionarCarrinho.classList.remove("bg-danger");
+                        botaoAdicionarCarrinho.innerHTML = "ADICIONAR À SACOLA";
+                    }, 3000);
+
+                }else if(hiddenVariacaoAdicional == ""){
+
+                    boxVariacaoAdicional.classList.add("border");
+                    boxVariacaoAdicional.classList.add("border-danger");
+                    botaoAdicionarCarrinho.classList.add("bg-danger");
+                    botaoAdicionarCarrinho.innerHTML = "Informações faltando";
+
+                    setTimeout(function(){ 
+                        boxVariacaoAdicional.classList.remove("border");
+                        boxVariacaoAdicional.classList.remove("border-danger");
+                        botaoAdicionarCarrinho.classList.remove("bg-danger");
+                        botaoAdicionarCarrinho.innerHTML = "ADICIONAR À SACOLA";
+                    }, 3000);
+
+                }else if(hiddenVariacaoAdicional2 == ""){
+
+                    boxVariacaoAdicional2.classList.add("border");
+                    boxVariacaoAdicional2.classList.add("border-danger");
+                    botaoAdicionarCarrinho.classList.add("bg-danger");
+                    botaoAdicionarCarrinho.innerHTML = "Informações faltando";
+
+                    setTimeout(function(){ 
+                        boxVariacaoAdicional2.classList.remove("border");
+                        boxVariacaoAdicional2.classList.remove("border-danger");
+                        botaoAdicionarCarrinho.classList.remove("bg-danger");
+                        botaoAdicionarCarrinho.innerHTML = "ADICIONAR À SACOLA";
+                    }, 3000);
+
+                }else if(hiddenVariacaoAdicional3 == ""){
+
+                    boxVariacaoAdicional3.classList.add("border");
+                    boxVariacaoAdicional3.classList.add("border-danger");
+                    botaoAdicionarCarrinho.classList.add("bg-danger");
+                    botaoAdicionarCarrinho.innerHTML = "Informações faltando";
+
+                    setTimeout(function(){ 
+                        boxVariacaoAdicional3.classList.remove("border");
+                        boxVariacaoAdicional3.classList.remove("border-danger");
+                        botaoAdicionarCarrinho.classList.remove("bg-danger");
+                        botaoAdicionarCarrinho.innerHTML = "ADICIONAR À SACOLA";
+                    }, 3000);
+
+                }else{
+
+                    /* window.location = "php/adicinarSacola.php?apenasAro="+hiddenApenasAro+"&variacaoAdicional="+hiddenVariacaoAdicional; */
+                    window.location = "php/adicionarSacola.php?anelUnico=SE&gravacaoAnelUnico=SE&anelCasal=SE&gravacaoAnelCasal=SE&apenasAro="+hiddenApenasAro+"&apenasGravacao=SE&variacaoComplementar="+hiddenVariacaoAdicional+"&variacaoComplementar2="+hiddenVariacaoAdicional2+"&variacaoComplementar3="+hiddenVariacaoAdicional3+"&quantidade="+qtdCarrinho+"&idProduto=<?php echo $arrProduto['id'] ?>";
+
+                }
+
+            }else if(variacao_padrao == "aro" && variacao_complementar > 0 && variacao_complementar2 > 0 && variacao_complementar3 < 1){
+
+                var hiddenApenasAro = document.getElementById("hiddenApenasAro").value;
+                var boxApenasAro = document.getElementById("boxApenasAro");
+                var hiddenVariacaoAdicional = document.getElementById("hiddenVariacaoAdicional").value;
+                var boxVariacaoAdicional = document.getElementById("boxVariacaoAdicional");
+                var hiddenVariacaoAdicional2 = document.getElementById("hiddenVariacaoAdicional2").value;
+                var boxVariacaoAdicional2 = document.getElementById("boxVariacaoAdicional2");
+                var botaoAdicionarCarrinho = document.getElementById("botaoAddCarrinho");
+
+                if(hiddenApenasAro == ""){
+
+                    boxApenasAro.classList.add("border");
+                    boxApenasAro.classList.add("border-danger");
+                    botaoAdicionarCarrinho.classList.add("bg-danger");
+                    botaoAdicionarCarrinho.innerHTML = "Escolha tamanho aro";
+
+                    setTimeout(function(){ 
+                        boxApenasAro.classList.remove("border");
+                        boxApenasAro.classList.remove("border-danger");
+                        botaoAdicionarCarrinho.classList.remove("bg-danger");
+                        botaoAdicionarCarrinho.innerHTML = "ADICIONAR À SACOLA";
+                    }, 3000);
+
+                }else if(hiddenVariacaoAdicional == ""){
+
+                    boxVariacaoAdicional.classList.add("border");
+                    boxVariacaoAdicional.classList.add("border-danger");
+                    botaoAdicionarCarrinho.classList.add("bg-danger");
+                    botaoAdicionarCarrinho.innerHTML = "Informações faltando";
+
+                    setTimeout(function(){ 
+                        boxVariacaoAdicional.classList.remove("border");
+                        boxVariacaoAdicional.classList.remove("border-danger");
+                        botaoAdicionarCarrinho.classList.remove("bg-danger");
+                        botaoAdicionarCarrinho.innerHTML = "ADICIONAR À SACOLA";
+                    }, 3000);
+
+                }else if(hiddenVariacaoAdicional2 == ""){
+
+                    boxVariacaoAdicional2.classList.add("border");
+                    boxVariacaoAdicional2.classList.add("border-danger");
+                    botaoAdicionarCarrinho.classList.add("bg-danger");
+                    botaoAdicionarCarrinho.innerHTML = "Informações faltando";
+
+                    setTimeout(function(){ 
+                        boxVariacaoAdicional2.classList.remove("border");
+                        boxVariacaoAdicional2.classList.remove("border-danger");
+                        botaoAdicionarCarrinho.classList.remove("bg-danger");
+                        botaoAdicionarCarrinho.innerHTML = "ADICIONAR À SACOLA";
+                    }, 3000);
+
+                }else{
+
+                    /* window.location = "php/adicinarSacola.php?apenasAro="+hiddenApenasAro+"&variacaoAdicional="+hiddenVariacaoAdicional; */
+                    window.location = "php/adicionarSacola.php?anelUnico=SE&gravacaoAnelUnico=SE&anelCasal=SE&gravacaoAnelCasal=SE&apenasAro="+hiddenApenasAro+"&apenasGravacao=SE&variacaoComplementar="+hiddenVariacaoAdicional+"&variacaoComplementar2="+hiddenVariacaoAdicional2+"&variacaoComplementar3=SE&quantidade="+qtdCarrinho+"&idProduto=<?php echo $arrProduto['id'] ?>";
+
+                }
+
+            }else if(variacao_padrao == "aro" && variacao_complementar > 0 && variacao_complementar2 < 1 && variacao_complementar3 > 0){
+
+                var hiddenApenasAro = document.getElementById("hiddenApenasAro").value;
+                var boxApenasAro = document.getElementById("boxApenasAro");
+                var hiddenVariacaoAdicional = document.getElementById("hiddenVariacaoAdicional").value;
+                var boxVariacaoAdicional = document.getElementById("boxVariacaoAdicional");
+                var hiddenVariacaoAdicional3 = document.getElementById("hiddenVariacaoAdicional3").value;
+                var boxVariacaoAdicional3 = document.getElementById("boxVariacaoAdicional3");
+                var botaoAdicionarCarrinho = document.getElementById("botaoAddCarrinho");
+
+                if(hiddenApenasAro == ""){
+
+                    boxApenasAro.classList.add("border");
+                    boxApenasAro.classList.add("border-danger");
+                    botaoAdicionarCarrinho.classList.add("bg-danger");
+                    botaoAdicionarCarrinho.innerHTML = "Escolha tamanho aro";
+
+                    setTimeout(function(){ 
+                        boxApenasAro.classList.remove("border");
+                        boxApenasAro.classList.remove("border-danger");
+                        botaoAdicionarCarrinho.classList.remove("bg-danger");
+                        botaoAdicionarCarrinho.innerHTML = "ADICIONAR À SACOLA";
+                    }, 3000);
+
+                }else if(hiddenVariacaoAdicional == ""){
+
+                    boxVariacaoAdicional.classList.add("border");
+                    boxVariacaoAdicional.classList.add("border-danger");
+                    botaoAdicionarCarrinho.classList.add("bg-danger");
+                    botaoAdicionarCarrinho.innerHTML = "Informações faltando";
+
+                    setTimeout(function(){ 
+                        boxVariacaoAdicional.classList.remove("border");
+                        boxVariacaoAdicional.classList.remove("border-danger");
+                        botaoAdicionarCarrinho.classList.remove("bg-danger");
+                        botaoAdicionarCarrinho.innerHTML = "ADICIONAR À SACOLA";
+                    }, 3000);
+
+                }else if(hiddenVariacaoAdicional3 == ""){
+
+                    boxVariacaoAdicional3.classList.add("border");
+                    boxVariacaoAdicional3.classList.add("border-danger");
+                    botaoAdicionarCarrinho.classList.add("bg-danger");
+                    botaoAdicionarCarrinho.innerHTML = "Informações faltando";
+
+                    setTimeout(function(){ 
+                        boxVariacaoAdicional3.classList.remove("border");
+                        boxVariacaoAdicional3.classList.remove("border-danger");
+                        botaoAdicionarCarrinho.classList.remove("bg-danger");
+                        botaoAdicionarCarrinho.innerHTML = "ADICIONAR À SACOLA";
+                    }, 3000);
+
+                }else{
+
+                    /* window.location = "php/adicinarSacola.php?apenasAro="+hiddenApenasAro+"&variacaoAdicional="+hiddenVariacaoAdicional; */
+                    window.location = "php/adicionarSacola.php?anelUnico=SE&gravacaoAnelUnico=SE&anelCasal=SE&gravacaoAnelCasal=SE&apenasAro="+hiddenApenasAro+"&apenasGravacao=SE&variacaoComplementar="+hiddenVariacaoAdicional+"&variacaoComplementar2=SE&variacaoComplementar3="+hiddenVariacaoAdicional3+"&quantidade="+qtdCarrinho+"&idProduto=<?php echo $arrProduto['id'] ?>";
+
+                }
+
+            }else if(variacao_padrao == "aro" && variacao_complementar > 0 && variacao_complementar2 < 1 && variacao_complementar3 < 1){
 
                 var hiddenApenasAro = document.getElementById("hiddenApenasAro").value;
                 var boxApenasAro = document.getElementById("boxApenasAro");
@@ -347,17 +556,166 @@
                 }else{
 
                     /* window.location = "php/adicinarSacola.php?apenasAro="+hiddenApenasAro+"&variacaoAdicional="+hiddenVariacaoAdicional; */
-                    window.location = "php/adicionarSacola.php?anelUnico=SE&gravacaoAnelUnico=SE&anelCasal=SE&gravacaoAnelCasal=SE&apenasAro="+hiddenApenasAro+"&apenasGravacao=SE&variacaoComplementar="+hiddenVariacaoAdicional+"&quantidade="+qtdCarrinho+"&idProduto=<?php echo $arrProduto['id'] ?>";
+                    window.location = "php/adicionarSacola.php?anelUnico=SE&gravacaoAnelUnico=SE&anelCasal=SE&gravacaoAnelCasal=SE&apenasAro="+hiddenApenasAro+"&apenasGravacao=SE&variacaoComplementar="+hiddenVariacaoAdicional+"&variacaoComplementar2=SE&variacaoComplementar3=SE&quantidade="+qtdCarrinho+"&idProduto=<?php echo $arrProduto['id'] ?>";
 
                 }
 
-            }else if(variacao_padrao == "unico" && variacao_complementar > 0){
+            }else if(variacao_padrao == "aro" && variacao_complementar < 1 && variacao_complementar2 > 0 && variacao_complementar3 > 0){
+
+                var hiddenApenasAro = document.getElementById("hiddenApenasAro").value;
+                var boxApenasAro = document.getElementById("boxApenasAro");
+                var hiddenVariacaoAdicional2 = document.getElementById("hiddenVariacaoAdicional2").value;
+                var boxVariacaoAdicional2 = document.getElementById("boxVariacaoAdicional2");
+                var hiddenVariacaoAdicional3 = document.getElementById("hiddenVariacaoAdicional3").value;
+                var boxVariacaoAdicional3 = document.getElementById("boxVariacaoAdicional3");
+                var botaoAdicionarCarrinho = document.getElementById("botaoAddCarrinho");
+
+                if(hiddenApenasAro == ""){
+
+                    boxApenasAro.classList.add("border");
+                    boxApenasAro.classList.add("border-danger");
+                    botaoAdicionarCarrinho.classList.add("bg-danger");
+                    botaoAdicionarCarrinho.innerHTML = "Escolha tamanho aro";
+
+                    setTimeout(function(){ 
+                        boxApenasAro.classList.remove("border");
+                        boxApenasAro.classList.remove("border-danger");
+                        botaoAdicionarCarrinho.classList.remove("bg-danger");
+                        botaoAdicionarCarrinho.innerHTML = "ADICIONAR À SACOLA";
+                    }, 3000);
+
+                }else if(hiddenVariacaoAdicional2 == ""){
+
+                    boxVariacaoAdicional2.classList.add("border");
+                    boxVariacaoAdicional2.classList.add("border-danger");
+                    botaoAdicionarCarrinho.classList.add("bg-danger");
+                    botaoAdicionarCarrinho.innerHTML = "Informações faltando";
+
+                    setTimeout(function(){ 
+                        boxVariacaoAdicional2.classList.remove("border");
+                        boxVariacaoAdicional2.classList.remove("border-danger");
+                        botaoAdicionarCarrinho.classList.remove("bg-danger");
+                        botaoAdicionarCarrinho.innerHTML = "ADICIONAR À SACOLA";
+                    }, 3000);
+
+                }else if(hiddenVariacaoAdicional3 == ""){
+
+                    boxVariacaoAdicional3.classList.add("border");
+                    boxVariacaoAdicional3.classList.add("border-danger");
+                    botaoAdicionarCarrinho.classList.add("bg-danger");
+                    botaoAdicionarCarrinho.innerHTML = "Informações faltando";
+
+                    setTimeout(function(){ 
+                        boxVariacaoAdicional3.classList.remove("border");
+                        boxVariacaoAdicional3.classList.remove("border-danger");
+                        botaoAdicionarCarrinho.classList.remove("bg-danger");
+                        botaoAdicionarCarrinho.innerHTML = "ADICIONAR À SACOLA";
+                    }, 3000);
+
+                }else{
+
+                    /* window.location = "php/adicinarSacola.php?apenasAro="+hiddenApenasAro+"&variacaoAdicional="+hiddenVariacaoAdicional; */
+                    window.location = "php/adicionarSacola.php?anelUnico=SE&gravacaoAnelUnico=SE&anelCasal=SE&gravacaoAnelCasal=SE&apenasAro="+hiddenApenasAro+"&apenasGravacao=SE&variacaoComplementar=SE&variacaoComplementar2="+hiddenVariacaoAdicional2+"&variacaoComplementar3="+hiddenVariacaoAdicional3+"&quantidade="+qtdCarrinho+"&idProduto=<?php echo $arrProduto['id'] ?>";
+
+                }
+
+            }else if(variacao_padrao == "aro" && variacao_complementar < 1 && variacao_complementar2 > 0 && variacao_complementar3 < 1){
+
+                var hiddenApenasAro = document.getElementById("hiddenApenasAro").value;
+                var boxApenasAro = document.getElementById("boxApenasAro");
+                var hiddenVariacaoAdicional2 = document.getElementById("hiddenVariacaoAdicional2").value;
+                var boxVariacaoAdicional2 = document.getElementById("boxVariacaoAdicional2");
+                var botaoAdicionarCarrinho = document.getElementById("botaoAddCarrinho");
+
+                if(hiddenApenasAro == ""){
+
+                    boxApenasAro.classList.add("border");
+                    boxApenasAro.classList.add("border-danger");
+                    botaoAdicionarCarrinho.classList.add("bg-danger");
+                    botaoAdicionarCarrinho.innerHTML = "Escolha tamanho aro";
+
+                    setTimeout(function(){ 
+                        boxApenasAro.classList.remove("border");
+                        boxApenasAro.classList.remove("border-danger");
+                        botaoAdicionarCarrinho.classList.remove("bg-danger");
+                        botaoAdicionarCarrinho.innerHTML = "ADICIONAR À SACOLA";
+                    }, 3000);
+
+                }else if(hiddenVariacaoAdicional2 == ""){
+
+                    boxVariacaoAdicional2.classList.add("border");
+                    boxVariacaoAdicional2.classList.add("border-danger");
+                    botaoAdicionarCarrinho.classList.add("bg-danger");
+                    botaoAdicionarCarrinho.innerHTML = "Informações faltando";
+
+                    setTimeout(function(){ 
+                        boxVariacaoAdicional2.classList.remove("border");
+                        boxVariacaoAdicional2.classList.remove("border-danger");
+                        botaoAdicionarCarrinho.classList.remove("bg-danger");
+                        botaoAdicionarCarrinho.innerHTML = "ADICIONAR À SACOLA";
+                    }, 3000);
+
+                }else{
+
+                    /* window.location = "php/adicinarSacola.php?apenasAro="+hiddenApenasAro+"&variacaoAdicional="+hiddenVariacaoAdicional; */
+                    window.location = "php/adicionarSacola.php?anelUnico=SE&gravacaoAnelUnico=SE&anelCasal=SE&gravacaoAnelCasal=SE&apenasAro="+hiddenApenasAro+"&apenasGravacao=SE&variacaoComplementar=SE&variacaoComplementar2="+hiddenVariacaoAdicional2+"&variacaoComplementar3=SE&quantidade="+qtdCarrinho+"&idProduto=<?php echo $arrProduto['id'] ?>";
+
+                }
+
+            }else if(variacao_padrao == "aro" && variacao_complementar < 1 && variacao_complementar2 < 1 && variacao_complementar3 > 0){
+
+                var hiddenApenasAro = document.getElementById("hiddenApenasAro").value;
+                var boxApenasAro = document.getElementById("boxApenasAro");
+                var hiddenVariacaoAdicional3 = document.getElementById("hiddenVariacaoAdicional3").value;
+                var boxVariacaoAdicional3 = document.getElementById("boxVariacaoAdicional3");
+                var botaoAdicionarCarrinho = document.getElementById("botaoAddCarrinho");
+
+                if(hiddenApenasAro == ""){
+
+                    boxApenasAro.classList.add("border");
+                    boxApenasAro.classList.add("border-danger");
+                    botaoAdicionarCarrinho.classList.add("bg-danger");
+                    botaoAdicionarCarrinho.innerHTML = "Escolha tamanho aro";
+
+                    setTimeout(function(){ 
+                        boxApenasAro.classList.remove("border");
+                        boxApenasAro.classList.remove("border-danger");
+                        botaoAdicionarCarrinho.classList.remove("bg-danger");
+                        botaoAdicionarCarrinho.innerHTML = "ADICIONAR À SACOLA";
+                    }, 3000);
+
+                }else if(hiddenVariacaoAdicional3 == ""){
+
+                    boxVariacaoAdicional3.classList.add("border");
+                    boxVariacaoAdicional3.classList.add("border-danger");
+                    botaoAdicionarCarrinho.classList.add("bg-danger");
+                    botaoAdicionarCarrinho.innerHTML = "Informações faltando";
+
+                    setTimeout(function(){ 
+                        boxVariacaoAdicional3.classList.remove("border");
+                        boxVariacaoAdicional3.classList.remove("border-danger");
+                        botaoAdicionarCarrinho.classList.remove("bg-danger");
+                        botaoAdicionarCarrinho.innerHTML = "ADICIONAR À SACOLA";
+                    }, 3000);
+
+                }else{
+
+                    /* window.location = "php/adicinarSacola.php?apenasAro="+hiddenApenasAro+"&variacaoAdicional="+hiddenVariacaoAdicional; */
+                    window.location = "php/adicionarSacola.php?anelUnico=SE&gravacaoAnelUnico=SE&anelCasal=SE&gravacaoAnelCasal=SE&apenasAro="+hiddenApenasAro+"&apenasGravacao=SE&variacaoComplementar=SE&variacaoComplementar2=SE&variacaoComplementar3="+hiddenVariacaoAdicional3+"&quantidade="+qtdCarrinho+"&idProduto=<?php echo $arrProduto['id'] ?>";
+
+                }
+
+            }else if(variacao_padrao == "unico" && variacao_complementar > 0 && variacao_complementar2 > 0 && variacao_complementar3 > 0){
 
                 var hiddenFeminino = document.getElementById("hiddenFeminino").value;
                 var boxFeminino = document.getElementById("boxAroFeminino");
                 var gravacaoFeminino = document.getElementById("campoGravacaoFeminino").value;
                 var hiddenVariacaoAdicional = document.getElementById("hiddenVariacaoAdicional").value;
                 var boxVariacaoAdicional = document.getElementById("boxVariacaoAdicional");
+                var hiddenVariacaoAdicional2 = document.getElementById("hiddenVariacaoAdicional2").value;
+                var boxVariacaoAdicional2 = document.getElementById("boxVariacaoAdicional2");
+                var hiddenVariacaoAdicional3 = document.getElementById("hiddenVariacaoAdicional3").value;
+                var boxVariacaoAdicional3 = document.getElementById("boxVariacaoAdicional3");
                 var botaoAdicionarCarrinho = document.getElementById("botaoAddCarrinho");
                 
                 if(hiddenFeminino == ""){
@@ -388,14 +746,601 @@
                         botaoAdicionarCarrinho.innerHTML = "ADICIONAR À SACOLA";
                     }, 3000);
 
+                }else if(hiddenVariacaoAdicional2 == ""){
+
+                    boxVariacaoAdicional2.classList.add("border");
+                    boxVariacaoAdicional2.classList.add("border-danger");
+                    botaoAdicionarCarrinho.classList.add("bg-danger");
+                    botaoAdicionarCarrinho.innerHTML = "Informações faltando";
+
+                    setTimeout(function(){ 
+                        boxVariacaoAdicional2.classList.remove("border");
+                        boxVariacaoAdicional2.classList.remove("border-danger");
+                        botaoAdicionarCarrinho.classList.remove("bg-danger");
+                        botaoAdicionarCarrinho.innerHTML = "ADICIONAR À SACOLA";
+                    }, 3000);
+
+                }else if(hiddenVariacaoAdicional3 == ""){
+
+                    boxVariacaoAdicional3.classList.add("border");
+                    boxVariacaoAdicional3.classList.add("border-danger");
+                    botaoAdicionarCarrinho.classList.add("bg-danger");
+                    botaoAdicionarCarrinho.innerHTML = "Informações faltando";
+
+                    setTimeout(function(){ 
+                        boxVariacaoAdicional3.classList.remove("border");
+                        boxVariacaoAdicional3.classList.remove("border-danger");
+                        botaoAdicionarCarrinho.classList.remove("bg-danger");
+                        botaoAdicionarCarrinho.innerHTML = "ADICIONAR À SACOLA";
+                    }, 3000);
+
                 }else{
 
                     /* window.location = "php/adicinarSacola.php?aroFeminino="+hiddenFeminino+"&gravacaoFeminino="+gravacaoFeminino+"&variacaoAdicional="+hiddenVariacaoAdicional; */
-                    window.location = "php/adicionarSacola.php?anelUnico="+hiddenFeminino+"&gravacaoAnelUnico="+gravacaoFeminino+"&anelCasal=SE&gravacaoAnelCasal=SE&apenasAro=SE&apenasGravacao=SE&variacaoComplementar="+hiddenVariacaoAdicional+"&quantidade="+qtdCarrinho+"&idProduto=<?php echo $arrProduto['id'] ?>";
+                    window.location = "php/adicionarSacola.php?anelUnico="+hiddenFeminino+"&gravacaoAnelUnico="+gravacaoFeminino+"&anelCasal=SE&gravacaoAnelCasal=SE&apenasAro=SE&apenasGravacao=SE&variacaoComplementar="+hiddenVariacaoAdicional+"&variacaoComplementar2="+hiddenVariacaoAdicional2+"&variacaoComplementar3="+hiddenVariacaoAdicional3+"&quantidade="+qtdCarrinho+"&idProduto=<?php echo $arrProduto['id'] ?>";
 
                 }
 
-            }else if(variacao_padrao == "casal" && variacao_complementar > 0){
+            }else if(variacao_padrao == "unico" && variacao_complementar > 0 && variacao_complementar2 > 0 && variacao_complementar3 < 1){
+
+                var hiddenFeminino = document.getElementById("hiddenFeminino").value;
+                var boxFeminino = document.getElementById("boxAroFeminino");
+                var gravacaoFeminino = document.getElementById("campoGravacaoFeminino").value;
+                var hiddenVariacaoAdicional = document.getElementById("hiddenVariacaoAdicional").value;
+                var boxVariacaoAdicional = document.getElementById("boxVariacaoAdicional");
+                var hiddenVariacaoAdicional2 = document.getElementById("hiddenVariacaoAdicional2").value;
+                var boxVariacaoAdicional2 = document.getElementById("boxVariacaoAdicional2");
+                var botaoAdicionarCarrinho = document.getElementById("botaoAddCarrinho");
+
+                if(hiddenFeminino == ""){
+
+                    boxFeminino.classList.add("border");
+                    boxFeminino.classList.add("border-danger");
+                    botaoAdicionarCarrinho.classList.add("bg-danger");
+                    botaoAdicionarCarrinho.innerHTML = "Escolha tamanho aro";
+
+                    setTimeout(function(){ 
+                        boxFeminino.classList.remove("border");
+                        boxFeminino.classList.remove("border-danger");
+                        botaoAdicionarCarrinho.classList.remove("bg-danger");
+                        botaoAdicionarCarrinho.innerHTML = "ADICIONAR À SACOLA";
+                    }, 3000);
+
+                }else if(hiddenVariacaoAdicional == ""){
+
+                    boxVariacaoAdicional.classList.add("border");
+                    boxVariacaoAdicional.classList.add("border-danger");
+                    botaoAdicionarCarrinho.classList.add("bg-danger");
+                    botaoAdicionarCarrinho.innerHTML = "Informações faltando";
+
+                    setTimeout(function(){ 
+                        boxVariacaoAdicional.classList.remove("border");
+                        boxVariacaoAdicional.classList.remove("border-danger");
+                        botaoAdicionarCarrinho.classList.remove("bg-danger");
+                        botaoAdicionarCarrinho.innerHTML = "ADICIONAR À SACOLA";
+                    }, 3000);
+
+                }else if(hiddenVariacaoAdicional2 == ""){
+
+                    boxVariacaoAdicional2.classList.add("border");
+                    boxVariacaoAdicional2.classList.add("border-danger");
+                    botaoAdicionarCarrinho.classList.add("bg-danger");
+                    botaoAdicionarCarrinho.innerHTML = "Informações faltando";
+
+                    setTimeout(function(){ 
+                        boxVariacaoAdicional2.classList.remove("border");
+                        boxVariacaoAdicional2.classList.remove("border-danger");
+                        botaoAdicionarCarrinho.classList.remove("bg-danger");
+                        botaoAdicionarCarrinho.innerHTML = "ADICIONAR À SACOLA";
+                    }, 3000);
+
+                }else{
+
+                    /* window.location = "php/adicinarSacola.php?aroFeminino="+hiddenFeminino+"&gravacaoFeminino="+gravacaoFeminino+"&variacaoAdicional="+hiddenVariacaoAdicional; */
+                    window.location = "php/adicionarSacola.php?anelUnico="+hiddenFeminino+"&gravacaoAnelUnico="+gravacaoFeminino+"&anelCasal=SE&gravacaoAnelCasal=SE&apenasAro=SE&apenasGravacao=SE&variacaoComplementar="+hiddenVariacaoAdicional+"&variacaoComplementar2="+hiddenVariacaoAdicional2+"&variacaoComplementar3=SE&quantidade="+qtdCarrinho+"&idProduto=<?php echo $arrProduto['id'] ?>";
+
+                }
+
+            }else if(variacao_padrao == "unico" && variacao_complementar > 0 && variacao_complementar2 < 1 && variacao_complementar3 > 0){
+
+                var hiddenFeminino = document.getElementById("hiddenFeminino").value;
+                var boxFeminino = document.getElementById("boxAroFeminino");
+                var gravacaoFeminino = document.getElementById("campoGravacaoFeminino").value;
+                var hiddenVariacaoAdicional = document.getElementById("hiddenVariacaoAdicional").value;
+                var boxVariacaoAdicional = document.getElementById("boxVariacaoAdicional");
+                var hiddenVariacaoAdicional3 = document.getElementById("hiddenVariacaoAdicional3").value;
+                var boxVariacaoAdicional3 = document.getElementById("boxVariacaoAdicional3");
+                var botaoAdicionarCarrinho = document.getElementById("botaoAddCarrinho");
+
+                if(hiddenFeminino == ""){
+
+                    boxFeminino.classList.add("border");
+                    boxFeminino.classList.add("border-danger");
+                    botaoAdicionarCarrinho.classList.add("bg-danger");
+                    botaoAdicionarCarrinho.innerHTML = "Escolha tamanho aro";
+
+                    setTimeout(function(){ 
+                        boxFeminino.classList.remove("border");
+                        boxFeminino.classList.remove("border-danger");
+                        botaoAdicionarCarrinho.classList.remove("bg-danger");
+                        botaoAdicionarCarrinho.innerHTML = "ADICIONAR À SACOLA";
+                    }, 3000);
+
+                }else if(hiddenVariacaoAdicional == ""){
+
+                    boxVariacaoAdicional.classList.add("border");
+                    boxVariacaoAdicional.classList.add("border-danger");
+                    botaoAdicionarCarrinho.classList.add("bg-danger");
+                    botaoAdicionarCarrinho.innerHTML = "Informações faltando";
+
+                    setTimeout(function(){ 
+                        boxVariacaoAdicional.classList.remove("border");
+                        boxVariacaoAdicional.classList.remove("border-danger");
+                        botaoAdicionarCarrinho.classList.remove("bg-danger");
+                        botaoAdicionarCarrinho.innerHTML = "ADICIONAR À SACOLA";
+                    }, 3000);
+
+                }else if(hiddenVariacaoAdicional3 == ""){
+
+                    boxVariacaoAdicional3.classList.add("border");
+                    boxVariacaoAdicional3.classList.add("border-danger");
+                    botaoAdicionarCarrinho.classList.add("bg-danger");
+                    botaoAdicionarCarrinho.innerHTML = "Informações faltando";
+
+                    setTimeout(function(){ 
+                        boxVariacaoAdicional3.classList.remove("border");
+                        boxVariacaoAdicional3.classList.remove("border-danger");
+                        botaoAdicionarCarrinho.classList.remove("bg-danger");
+                        botaoAdicionarCarrinho.innerHTML = "ADICIONAR À SACOLA";
+                    }, 3000);
+
+                }else{
+
+                    /* window.location = "php/adicinarSacola.php?aroFeminino="+hiddenFeminino+"&gravacaoFeminino="+gravacaoFeminino+"&variacaoAdicional="+hiddenVariacaoAdicional; */
+                    window.location = "php/adicionarSacola.php?anelUnico="+hiddenFeminino+"&gravacaoAnelUnico="+gravacaoFeminino+"&anelCasal=SE&gravacaoAnelCasal=SE&apenasAro=SE&apenasGravacao=SE&variacaoComplementar="+hiddenVariacaoAdicional+"&variacaoComplementar2=SE&variacaoComplementar3="+hiddenVariacaoAdicional3+"&quantidade="+qtdCarrinho+"&idProduto=<?php echo $arrProduto['id'] ?>";
+
+                }
+
+            }else if(variacao_padrao == "unico" && variacao_complementar > 0 && variacao_complementar2 < 1 && variacao_complementar3 < 1){
+
+                var hiddenFeminino = document.getElementById("hiddenFeminino").value;
+                var boxFeminino = document.getElementById("boxAroFeminino");
+                var gravacaoFeminino = document.getElementById("campoGravacaoFeminino").value;
+                var hiddenVariacaoAdicional = document.getElementById("hiddenVariacaoAdicional").value;
+                var boxVariacaoAdicional = document.getElementById("boxVariacaoAdicional");
+                var botaoAdicionarCarrinho = document.getElementById("botaoAddCarrinho");
+
+                if(hiddenFeminino == ""){
+
+                    boxFeminino.classList.add("border");
+                    boxFeminino.classList.add("border-danger");
+                    botaoAdicionarCarrinho.classList.add("bg-danger");
+                    botaoAdicionarCarrinho.innerHTML = "Escolha tamanho aro";
+
+                    setTimeout(function(){ 
+                        boxFeminino.classList.remove("border");
+                        boxFeminino.classList.remove("border-danger");
+                        botaoAdicionarCarrinho.classList.remove("bg-danger");
+                        botaoAdicionarCarrinho.innerHTML = "ADICIONAR À SACOLA";
+                    }, 3000);
+
+                }else if(hiddenVariacaoAdicional == ""){
+
+                    boxVariacaoAdicional.classList.add("border");
+                    boxVariacaoAdicional.classList.add("border-danger");
+                    botaoAdicionarCarrinho.classList.add("bg-danger");
+                    botaoAdicionarCarrinho.innerHTML = "Informações faltando";
+
+                    setTimeout(function(){ 
+                        boxVariacaoAdicional.classList.remove("border");
+                        boxVariacaoAdicional.classList.remove("border-danger");
+                        botaoAdicionarCarrinho.classList.remove("bg-danger");
+                        botaoAdicionarCarrinho.innerHTML = "ADICIONAR À SACOLA";
+                    }, 3000);
+
+                }else{
+
+                    /* window.location = "php/adicinarSacola.php?aroFeminino="+hiddenFeminino+"&gravacaoFeminino="+gravacaoFeminino+"&variacaoAdicional="+hiddenVariacaoAdicional; */
+                    window.location = "php/adicionarSacola.php?anelUnico="+hiddenFeminino+"&gravacaoAnelUnico="+gravacaoFeminino+"&anelCasal=SE&gravacaoAnelCasal=SE&apenasAro=SE&apenasGravacao=SE&variacaoComplementar="+hiddenVariacaoAdicional+"&variacaoComplementar2=SE&variacaoComplementar3=SE&quantidade="+qtdCarrinho+"&idProduto=<?php echo $arrProduto['id'] ?>";
+
+                }
+
+            }else if(variacao_padrao == "unico" && variacao_complementar < 1 && variacao_complementar2 > 0 && variacao_complementar3 > 0){
+
+                var hiddenFeminino = document.getElementById("hiddenFeminino").value;
+                var boxFeminino = document.getElementById("boxAroFeminino");
+                var gravacaoFeminino = document.getElementById("campoGravacaoFeminino").value;
+                var hiddenVariacaoAdicional2 = document.getElementById("hiddenVariacaoAdicional2").value;
+                var boxVariacaoAdicional2 = document.getElementById("boxVariacaoAdicional2");
+                var hiddenVariacaoAdicional3 = document.getElementById("hiddenVariacaoAdicional3").value;
+                var boxVariacaoAdicional3 = document.getElementById("boxVariacaoAdicional3");
+                var botaoAdicionarCarrinho = document.getElementById("botaoAddCarrinho");
+
+                if(hiddenFeminino == ""){
+
+                    boxFeminino.classList.add("border");
+                    boxFeminino.classList.add("border-danger");
+                    botaoAdicionarCarrinho.classList.add("bg-danger");
+                    botaoAdicionarCarrinho.innerHTML = "Escolha tamanho aro";
+
+                    setTimeout(function(){ 
+                        boxFeminino.classList.remove("border");
+                        boxFeminino.classList.remove("border-danger");
+                        botaoAdicionarCarrinho.classList.remove("bg-danger");
+                        botaoAdicionarCarrinho.innerHTML = "ADICIONAR À SACOLA";
+                    }, 3000);
+
+                }else if(hiddenVariacaoAdicional2 == ""){
+
+                    boxVariacaoAdicional2.classList.add("border");
+                    boxVariacaoAdicional2.classList.add("border-danger");
+                    botaoAdicionarCarrinho.classList.add("bg-danger");
+                    botaoAdicionarCarrinho.innerHTML = "Informações faltando";
+
+                    setTimeout(function(){ 
+                        boxVariacaoAdicional2.classList.remove("border");
+                        boxVariacaoAdicional2.classList.remove("border-danger");
+                        botaoAdicionarCarrinho.classList.remove("bg-danger");
+                        botaoAdicionarCarrinho.innerHTML = "ADICIONAR À SACOLA";
+                    }, 3000);
+
+                }else if(hiddenVariacaoAdicional3 == ""){
+
+                    boxVariacaoAdicional3.classList.add("border");
+                    boxVariacaoAdicional3.classList.add("border-danger");
+                    botaoAdicionarCarrinho.classList.add("bg-danger");
+                    botaoAdicionarCarrinho.innerHTML = "Informações faltando";
+
+                    setTimeout(function(){ 
+                        boxVariacaoAdicional3.classList.remove("border");
+                        boxVariacaoAdicional3.classList.remove("border-danger");
+                        botaoAdicionarCarrinho.classList.remove("bg-danger");
+                        botaoAdicionarCarrinho.innerHTML = "ADICIONAR À SACOLA";
+                    }, 3000);
+
+                }else{
+
+                    /* window.location = "php/adicinarSacola.php?aroFeminino="+hiddenFeminino+"&gravacaoFeminino="+gravacaoFeminino+"&variacaoAdicional="+hiddenVariacaoAdicional; */
+                    window.location = "php/adicionarSacola.php?anelUnico="+hiddenFeminino+"&gravacaoAnelUnico="+gravacaoFeminino+"&anelCasal=SE&gravacaoAnelCasal=SE&apenasAro=SE&apenasGravacao=SE&variacaoComplementar=SE&variacaoComplementar2="+hiddenVariacaoAdicional2+"&variacaoComplementar3="+hiddenVariacaoAdicional3+"&quantidade="+qtdCarrinho+"&idProduto=<?php echo $arrProduto['id'] ?>";
+
+                }
+
+            }else if(variacao_padrao == "unico" && variacao_complementar < 1 && variacao_complementar2 > 0 && variacao_complementar3 < 1){
+
+                var hiddenFeminino = document.getElementById("hiddenFeminino").value;
+                var boxFeminino = document.getElementById("boxAroFeminino");
+                var gravacaoFeminino = document.getElementById("campoGravacaoFeminino").value;
+                var hiddenVariacaoAdicional2 = document.getElementById("hiddenVariacaoAdicional2").value;
+                var boxVariacaoAdicional2 = document.getElementById("boxVariacaoAdicional2");
+                var botaoAdicionarCarrinho = document.getElementById("botaoAddCarrinho");
+
+                if(hiddenFeminino == ""){
+
+                    boxFeminino.classList.add("border");
+                    boxFeminino.classList.add("border-danger");
+                    botaoAdicionarCarrinho.classList.add("bg-danger");
+                    botaoAdicionarCarrinho.innerHTML = "Escolha tamanho aro";
+
+                    setTimeout(function(){ 
+                        boxFeminino.classList.remove("border");
+                        boxFeminino.classList.remove("border-danger");
+                        botaoAdicionarCarrinho.classList.remove("bg-danger");
+                        botaoAdicionarCarrinho.innerHTML = "ADICIONAR À SACOLA";
+                    }, 3000);
+
+                }else if(hiddenVariacaoAdicional2 == ""){
+
+                    boxVariacaoAdicional2.classList.add("border");
+                    boxVariacaoAdicional2.classList.add("border-danger");
+                    botaoAdicionarCarrinho.classList.add("bg-danger");
+                    botaoAdicionarCarrinho.innerHTML = "Informações faltando";
+
+                    setTimeout(function(){ 
+                        boxVariacaoAdicional2.classList.remove("border");
+                        boxVariacaoAdicional2.classList.remove("border-danger");
+                        botaoAdicionarCarrinho.classList.remove("bg-danger");
+                        botaoAdicionarCarrinho.innerHTML = "ADICIONAR À SACOLA";
+                    }, 3000);
+
+                }else{
+
+                    /* window.location = "php/adicinarSacola.php?aroFeminino="+hiddenFeminino+"&gravacaoFeminino="+gravacaoFeminino+"&variacaoAdicional="+hiddenVariacaoAdicional; */
+                    window.location = "php/adicionarSacola.php?anelUnico="+hiddenFeminino+"&gravacaoAnelUnico="+gravacaoFeminino+"&anelCasal=SE&gravacaoAnelCasal=SE&apenasAro=SE&apenasGravacao=SE&variacaoComplementar=SE&variacaoComplementar2="+hiddenVariacaoAdicional2+"&variacaoComplementar3=SE&quantidade="+qtdCarrinho+"&idProduto=<?php echo $arrProduto['id'] ?>";
+
+                }
+
+            }else if(variacao_padrao == "unico" && variacao_complementar < 1 && variacao_complementar2 < 1 && variacao_complementar3 > 0){
+
+                var hiddenFeminino = document.getElementById("hiddenFeminino").value;
+                var boxFeminino = document.getElementById("boxAroFeminino");
+                var gravacaoFeminino = document.getElementById("campoGravacaoFeminino").value;
+                var hiddenVariacaoAdicional3 = document.getElementById("hiddenVariacaoAdicional3").value;
+                var boxVariacaoAdicional3 = document.getElementById("boxVariacaoAdicional3");
+                var botaoAdicionarCarrinho = document.getElementById("botaoAddCarrinho");
+
+                if(hiddenFeminino == ""){
+
+                    boxFeminino.classList.add("border");
+                    boxFeminino.classList.add("border-danger");
+                    botaoAdicionarCarrinho.classList.add("bg-danger");
+                    botaoAdicionarCarrinho.innerHTML = "Escolha tamanho aro";
+
+                    setTimeout(function(){ 
+                        boxFeminino.classList.remove("border");
+                        boxFeminino.classList.remove("border-danger");
+                        botaoAdicionarCarrinho.classList.remove("bg-danger");
+                        botaoAdicionarCarrinho.innerHTML = "ADICIONAR À SACOLA";
+                    }, 3000);
+
+                }else if(hiddenVariacaoAdicional3 == ""){
+
+                    boxVariacaoAdicional3.classList.add("border");
+                    boxVariacaoAdicional3.classList.add("border-danger");
+                    botaoAdicionarCarrinho.classList.add("bg-danger");
+                    botaoAdicionarCarrinho.innerHTML = "Informações faltando";
+
+                    setTimeout(function(){ 
+                        boxVariacaoAdicional3.classList.remove("border");
+                        boxVariacaoAdicional3.classList.remove("border-danger");
+                        botaoAdicionarCarrinho.classList.remove("bg-danger");
+                        botaoAdicionarCarrinho.innerHTML = "ADICIONAR À SACOLA";
+                    }, 3000);
+
+                }else{
+
+                    /* window.location = "php/adicinarSacola.php?aroFeminino="+hiddenFeminino+"&gravacaoFeminino="+gravacaoFeminino+"&variacaoAdicional="+hiddenVariacaoAdicional; */
+                    window.location = "php/adicionarSacola.php?anelUnico="+hiddenFeminino+"&gravacaoAnelUnico="+gravacaoFeminino+"&anelCasal=SE&gravacaoAnelCasal=SE&apenasAro=SE&apenasGravacao=SE&variacaoComplementar=SE&variacaoComplementar2=SE&variacaoComplementar3="+hiddenVariacaoAdicional3+"&quantidade="+qtdCarrinho+"&idProduto=<?php echo $arrProduto['id'] ?>";
+
+                }
+
+            }else if(variacao_padrao == "casal" && variacao_complementar > 0 && variacao_complementar2 > 0 && variacao_complementar3 > 0){
+
+                var hiddenFeminino = document.getElementById("hiddenFeminino").value;
+                var boxFeminino = document.getElementById("boxAroFeminino");
+                var gravacaoFeminino = document.getElementById("campoGravacaoFeminino").value;
+                var hiddenMasculino = document.getElementById("hiddenMasculino").value;
+                var boxMasculino = document.getElementById("boxAroMasculino");
+                var gravacaoMasculino = document.getElementById("campoGravacaoMasculino").value;
+                var hiddenVariacaoAdicional = document.getElementById("hiddenVariacaoAdicional").value;
+                var boxVariacaoAdicional = document.getElementById("boxVariacaoAdicional");
+                var hiddenVariacaoAdicional2 = document.getElementById("hiddenVariacaoAdicional2").value;
+                var boxVariacaoAdicional2 = document.getElementById("boxVariacaoAdicional2");
+                var hiddenVariacaoAdicional3 = document.getElementById("hiddenVariacaoAdicional3").value;
+                var boxVariacaoAdicional3 = document.getElementById("boxVariacaoAdicional3");
+                var botaoAdicionarCarrinho = document.getElementById("botaoAddCarrinho");
+
+                if(hiddenFeminino == ""){
+
+                    boxFeminino.classList.add("border");
+                    boxFeminino.classList.add("border-danger");
+                    botaoAdicionarCarrinho.classList.add("bg-danger");
+                    botaoAdicionarCarrinho.innerHTML = "Escolha tamanho aro";
+
+                    setTimeout(function(){ 
+                        boxFeminino.classList.remove("border");
+                        boxFeminino.classList.remove("border-danger");
+                        botaoAdicionarCarrinho.classList.remove("bg-danger");
+                        botaoAdicionarCarrinho.innerHTML = "ADICIONAR À SACOLA";
+                    }, 3000);
+
+                }else if(hiddenMasculino == ""){
+
+                    boxMasculino.classList.add("border");
+                    boxMasculino.classList.add("border-danger");
+                    botaoAdicionarCarrinho.classList.add("bg-danger");
+                    botaoAdicionarCarrinho.innerHTML = "Escolha tamanho aro";
+
+                    setTimeout(function(){ 
+                        boxMasculino.classList.remove("border");
+                        boxMasculino.classList.remove("border-danger");
+                        botaoAdicionarCarrinho.classList.remove("bg-danger");
+                        botaoAdicionarCarrinho.innerHTML = "ADICIONAR À SACOLA";
+                    }, 3000);
+
+                }else if(hiddenVariacaoAdicional == ""){
+
+                    boxVariacaoAdicional.classList.add("border");
+                    boxVariacaoAdicional.classList.add("border-danger");
+                    botaoAdicionarCarrinho.classList.add("bg-danger");
+                    botaoAdicionarCarrinho.innerHTML = "Informações faltando";
+
+                    setTimeout(function(){ 
+                        boxVariacaoAdicional.classList.remove("border");
+                        boxVariacaoAdicional.classList.remove("border-danger");
+                        botaoAdicionarCarrinho.classList.remove("bg-danger");
+                        botaoAdicionarCarrinho.innerHTML = "ADICIONAR À SACOLA";
+                    }, 3000);
+
+                }else if(hiddenVariacaoAdicional2 == ""){
+
+                    boxVariacaoAdicional2.classList.add("border");
+                    boxVariacaoAdicional2.classList.add("border-danger");
+                    botaoAdicionarCarrinho.classList.add("bg-danger");
+                    botaoAdicionarCarrinho.innerHTML = "Informações faltando";
+
+                    setTimeout(function(){ 
+                        boxVariacaoAdicional2.classList.remove("border");
+                        boxVariacaoAdicional2.classList.remove("border-danger");
+                        botaoAdicionarCarrinho.classList.remove("bg-danger");
+                        botaoAdicionarCarrinho.innerHTML = "ADICIONAR À SACOLA";
+                    }, 3000);
+
+                }else if(hiddenVariacaoAdicional3 == ""){
+
+                    boxVariacaoAdicional3.classList.add("border");
+                    boxVariacaoAdicional3.classList.add("border-danger");
+                    botaoAdicionarCarrinho.classList.add("bg-danger");
+                    botaoAdicionarCarrinho.innerHTML = "Informações faltando";
+
+                    setTimeout(function(){ 
+                        boxVariacaoAdicional3.classList.remove("border");
+                        boxVariacaoAdicional3.classList.remove("border-danger");
+                        botaoAdicionarCarrinho.classList.remove("bg-danger");
+                        botaoAdicionarCarrinho.innerHTML = "ADICIONAR À SACOLA";
+                    }, 3000);
+
+                }else{
+
+                    /* window.location = "php/adicinarSacola.php?aroFeminino="+hiddenFeminino+"&gravacaoFeminino="+gravacaoFeminino+"&aroMasculino="+hiddenMasculino+"&gravacaoMasculino="+gravacaoMasculino+"&variacaoAdicional="+hiddenVariacaoAdicional; */
+                    window.location = "php/adicionarSacola.php?anelUnico="+hiddenFeminino+"&gravacaoAnelUnico="+gravacaoFeminino+"&anelCasal="+hiddenMasculino+"&gravacaoAnelCasal="+gravacaoMasculino+"&apenasAro=SE&apenasGravacao=SE&variacaoComplementar="+hiddenVariacaoAdicional+"&variacaoComplementar2="+hiddenVariacaoAdicional2+"&variacaoComplementar3="+hiddenVariacaoAdicional3+"&quantidade="+qtdCarrinho+"&idProduto=<?php echo $arrProduto['id'] ?>";
+
+                }
+
+            }else if(variacao_padrao == "casal" && variacao_complementar > 0 && variacao_complementar2 > 0 && variacao_complementar3 < 1){
+
+                var hiddenFeminino = document.getElementById("hiddenFeminino").value;
+                var boxFeminino = document.getElementById("boxAroFeminino");
+                var gravacaoFeminino = document.getElementById("campoGravacaoFeminino").value;
+                var hiddenMasculino = document.getElementById("hiddenMasculino").value;
+                var boxMasculino = document.getElementById("boxAroMasculino");
+                var gravacaoMasculino = document.getElementById("campoGravacaoMasculino").value;
+                var hiddenVariacaoAdicional = document.getElementById("hiddenVariacaoAdicional").value;
+                var boxVariacaoAdicional = document.getElementById("boxVariacaoAdicional");
+                var hiddenVariacaoAdicional2 = document.getElementById("hiddenVariacaoAdicional2").value;
+                var boxVariacaoAdicional2 = document.getElementById("boxVariacaoAdicional2");
+                var botaoAdicionarCarrinho = document.getElementById("botaoAddCarrinho");
+
+                if(hiddenFeminino == ""){
+
+                    boxFeminino.classList.add("border");
+                    boxFeminino.classList.add("border-danger");
+                    botaoAdicionarCarrinho.classList.add("bg-danger");
+                    botaoAdicionarCarrinho.innerHTML = "Escolha tamanho aro";
+
+                    setTimeout(function(){ 
+                        boxFeminino.classList.remove("border");
+                        boxFeminino.classList.remove("border-danger");
+                        botaoAdicionarCarrinho.classList.remove("bg-danger");
+                        botaoAdicionarCarrinho.innerHTML = "ADICIONAR À SACOLA";
+                    }, 3000);
+
+                }else if(hiddenMasculino == ""){
+
+                    boxMasculino.classList.add("border");
+                    boxMasculino.classList.add("border-danger");
+                    botaoAdicionarCarrinho.classList.add("bg-danger");
+                    botaoAdicionarCarrinho.innerHTML = "Escolha tamanho aro";
+
+                    setTimeout(function(){ 
+                        boxMasculino.classList.remove("border");
+                        boxMasculino.classList.remove("border-danger");
+                        botaoAdicionarCarrinho.classList.remove("bg-danger");
+                        botaoAdicionarCarrinho.innerHTML = "ADICIONAR À SACOLA";
+                    }, 3000);
+
+                }else if(hiddenVariacaoAdicional == ""){
+
+                    boxVariacaoAdicional.classList.add("border");
+                    boxVariacaoAdicional.classList.add("border-danger");
+                    botaoAdicionarCarrinho.classList.add("bg-danger");
+                    botaoAdicionarCarrinho.innerHTML = "Informações faltando";
+
+                    setTimeout(function(){ 
+                        boxVariacaoAdicional.classList.remove("border");
+                        boxVariacaoAdicional.classList.remove("border-danger");
+                        botaoAdicionarCarrinho.classList.remove("bg-danger");
+                        botaoAdicionarCarrinho.innerHTML = "ADICIONAR À SACOLA";
+                    }, 3000);
+
+                }else if(hiddenVariacaoAdicional2 == ""){
+
+                    boxVariacaoAdicional2.classList.add("border");
+                    boxVariacaoAdicional2.classList.add("border-danger");
+                    botaoAdicionarCarrinho.classList.add("bg-danger");
+                    botaoAdicionarCarrinho.innerHTML = "Informações faltando";
+
+                    setTimeout(function(){ 
+                        boxVariacaoAdicional2.classList.remove("border");
+                        boxVariacaoAdicional2.classList.remove("border-danger");
+                        botaoAdicionarCarrinho.classList.remove("bg-danger");
+                        botaoAdicionarCarrinho.innerHTML = "ADICIONAR À SACOLA";
+                    }, 3000);
+
+                }else{
+
+                    /* window.location = "php/adicinarSacola.php?aroFeminino="+hiddenFeminino+"&gravacaoFeminino="+gravacaoFeminino+"&aroMasculino="+hiddenMasculino+"&gravacaoMasculino="+gravacaoMasculino+"&variacaoAdicional="+hiddenVariacaoAdicional; */
+                    window.location = "php/adicionarSacola.php?anelUnico="+hiddenFeminino+"&gravacaoAnelUnico="+gravacaoFeminino+"&anelCasal="+hiddenMasculino+"&gravacaoAnelCasal="+gravacaoMasculino+"&apenasAro=SE&apenasGravacao=SE&variacaoComplementar="+hiddenVariacaoAdicional+"&variacaoComplementar2="+hiddenVariacaoAdicional2+"&variacaoComplementar3=SE&quantidade="+qtdCarrinho+"&idProduto=<?php echo $arrProduto['id'] ?>";
+
+                }
+
+            }else if(variacao_padrao == "casal" && variacao_complementar > 0 && variacao_complementar2 < 1 && variacao_complementar3 > 0){
+
+                var hiddenFeminino = document.getElementById("hiddenFeminino").value;
+                var boxFeminino = document.getElementById("boxAroFeminino");
+                var gravacaoFeminino = document.getElementById("campoGravacaoFeminino").value;
+                var hiddenMasculino = document.getElementById("hiddenMasculino").value;
+                var boxMasculino = document.getElementById("boxAroMasculino");
+                var gravacaoMasculino = document.getElementById("campoGravacaoMasculino").value;
+                var hiddenVariacaoAdicional = document.getElementById("hiddenVariacaoAdicional").value;
+                var boxVariacaoAdicional = document.getElementById("boxVariacaoAdicional");
+                var hiddenVariacaoAdicional3 = document.getElementById("hiddenVariacaoAdicional3").value;
+                var boxVariacaoAdicional3 = document.getElementById("boxVariacaoAdicional3");
+                var botaoAdicionarCarrinho = document.getElementById("botaoAddCarrinho");
+
+                if(hiddenFeminino == ""){
+
+                    boxFeminino.classList.add("border");
+                    boxFeminino.classList.add("border-danger");
+                    botaoAdicionarCarrinho.classList.add("bg-danger");
+                    botaoAdicionarCarrinho.innerHTML = "Escolha tamanho aro";
+
+                    setTimeout(function(){ 
+                        boxFeminino.classList.remove("border");
+                        boxFeminino.classList.remove("border-danger");
+                        botaoAdicionarCarrinho.classList.remove("bg-danger");
+                        botaoAdicionarCarrinho.innerHTML = "ADICIONAR À SACOLA";
+                    }, 3000);
+
+                }else if(hiddenMasculino == ""){
+
+                    boxMasculino.classList.add("border");
+                    boxMasculino.classList.add("border-danger");
+                    botaoAdicionarCarrinho.classList.add("bg-danger");
+                    botaoAdicionarCarrinho.innerHTML = "Escolha tamanho aro";
+
+                    setTimeout(function(){ 
+                        boxMasculino.classList.remove("border");
+                        boxMasculino.classList.remove("border-danger");
+                        botaoAdicionarCarrinho.classList.remove("bg-danger");
+                        botaoAdicionarCarrinho.innerHTML = "ADICIONAR À SACOLA";
+                    }, 3000);
+
+                }else if(hiddenVariacaoAdicional == ""){
+
+                    boxVariacaoAdicional.classList.add("border");
+                    boxVariacaoAdicional.classList.add("border-danger");
+                    botaoAdicionarCarrinho.classList.add("bg-danger");
+                    botaoAdicionarCarrinho.innerHTML = "Informações faltando";
+
+                    setTimeout(function(){ 
+                        boxVariacaoAdicional.classList.remove("border");
+                        boxVariacaoAdicional.classList.remove("border-danger");
+                        botaoAdicionarCarrinho.classList.remove("bg-danger");
+                        botaoAdicionarCarrinho.innerHTML = "ADICIONAR À SACOLA";
+                    }, 3000);
+
+                }else if(hiddenVariacaoAdicional3 == ""){
+
+                    boxVariacaoAdicional3.classList.add("border");
+                    boxVariacaoAdicional3.classList.add("border-danger");
+                    botaoAdicionarCarrinho.classList.add("bg-danger");
+                    botaoAdicionarCarrinho.innerHTML = "Informações faltando";
+
+                    setTimeout(function(){ 
+                        boxVariacaoAdicional3.classList.remove("border");
+                        boxVariacaoAdicional3.classList.remove("border-danger");
+                        botaoAdicionarCarrinho.classList.remove("bg-danger");
+                        botaoAdicionarCarrinho.innerHTML = "ADICIONAR À SACOLA";
+                    }, 3000);
+
+                }else{
+
+                    /* window.location = "php/adicinarSacola.php?aroFeminino="+hiddenFeminino+"&gravacaoFeminino="+gravacaoFeminino+"&aroMasculino="+hiddenMasculino+"&gravacaoMasculino="+gravacaoMasculino+"&variacaoAdicional="+hiddenVariacaoAdicional; */
+                    window.location = "php/adicionarSacola.php?anelUnico="+hiddenFeminino+"&gravacaoAnelUnico="+gravacaoFeminino+"&anelCasal="+hiddenMasculino+"&gravacaoAnelCasal="+gravacaoMasculino+"&apenasAro=SE&apenasGravacao=SE&variacaoComplementar="+hiddenVariacaoAdicional+"&variacaoComplementar2=SE&variacaoComplementar3="+hiddenVariacaoAdicional3+"&quantidade="+qtdCarrinho+"&idProduto=<?php echo $arrProduto['id'] ?>";
+
+                }
+
+            }else if(variacao_padrao == "casal" && variacao_complementar > 0 && variacao_complementar2 < 1 && variacao_complementar3 < 1){
 
                 var hiddenFeminino = document.getElementById("hiddenFeminino").value;
                 var boxFeminino = document.getElementById("boxAroFeminino");
@@ -452,11 +1397,358 @@
                 }else{
 
                     /* window.location = "php/adicinarSacola.php?aroFeminino="+hiddenFeminino+"&gravacaoFeminino="+gravacaoFeminino+"&aroMasculino="+hiddenMasculino+"&gravacaoMasculino="+gravacaoMasculino+"&variacaoAdicional="+hiddenVariacaoAdicional; */
-                    window.location = "php/adicionarSacola.php?anelUnico="+hiddenFeminino+"&gravacaoAnelUnico="+gravacaoFeminino+"&anelCasal="+hiddenMasculino+"&gravacaoAnelCasal="+gravacaoMasculino+"&apenasAro=SE&apenasGravacao=SE&variacaoComplementar="+hiddenVariacaoAdicional+"&quantidade="+qtdCarrinho+"&idProduto=<?php echo $arrProduto['id'] ?>";
+                    window.location = "php/adicionarSacola.php?anelUnico="+hiddenFeminino+"&gravacaoAnelUnico="+gravacaoFeminino+"&anelCasal="+hiddenMasculino+"&gravacaoAnelCasal="+gravacaoMasculino+"&apenasAro=SE&apenasGravacao=SE&variacaoComplementar="+hiddenVariacaoAdicional+"&variacaoComplementar2=SE&variacaoComplementar3=SE&quantidade="+qtdCarrinho+"&idProduto=<?php echo $arrProduto['id'] ?>";
 
                 }
 
-            }else if(variacao_padrao == "gravacao" && variacao_complementar > 0){
+            }else if(variacao_padrao == "casal" && variacao_complementar < 1 && variacao_complementar2 > 0 && variacao_complementar3 > 0){
+
+                var hiddenFeminino = document.getElementById("hiddenFeminino").value;
+                var boxFeminino = document.getElementById("boxAroFeminino");
+                var gravacaoFeminino = document.getElementById("campoGravacaoFeminino").value;
+                var hiddenMasculino = document.getElementById("hiddenMasculino").value;
+                var boxMasculino = document.getElementById("boxAroMasculino");
+                var gravacaoMasculino = document.getElementById("campoGravacaoMasculino").value;
+                var hiddenVariacaoAdicional2 = document.getElementById("hiddenVariacaoAdicional2").value;
+                var boxVariacaoAdicional2 = document.getElementById("boxVariacaoAdicional2");
+                var hiddenVariacaoAdicional3 = document.getElementById("hiddenVariacaoAdicional3").value;
+                var boxVariacaoAdicional3 = document.getElementById("boxVariacaoAdicional3");
+                var botaoAdicionarCarrinho = document.getElementById("botaoAddCarrinho");
+
+                if(hiddenFeminino == ""){
+
+                    boxFeminino.classList.add("border");
+                    boxFeminino.classList.add("border-danger");
+                    botaoAdicionarCarrinho.classList.add("bg-danger");
+                    botaoAdicionarCarrinho.innerHTML = "Escolha tamanho aro";
+
+                    setTimeout(function(){ 
+                        boxFeminino.classList.remove("border");
+                        boxFeminino.classList.remove("border-danger");
+                        botaoAdicionarCarrinho.classList.remove("bg-danger");
+                        botaoAdicionarCarrinho.innerHTML = "ADICIONAR À SACOLA";
+                    }, 3000);
+
+                }else if(hiddenMasculino == ""){
+
+                    boxMasculino.classList.add("border");
+                    boxMasculino.classList.add("border-danger");
+                    botaoAdicionarCarrinho.classList.add("bg-danger");
+                    botaoAdicionarCarrinho.innerHTML = "Escolha tamanho aro";
+
+                    setTimeout(function(){ 
+                        boxMasculino.classList.remove("border");
+                        boxMasculino.classList.remove("border-danger");
+                        botaoAdicionarCarrinho.classList.remove("bg-danger");
+                        botaoAdicionarCarrinho.innerHTML = "ADICIONAR À SACOLA";
+                    }, 3000);
+
+                }else if(hiddenVariacaoAdicional2 == ""){
+
+                    boxVariacaoAdicional2.classList.add("border");
+                    boxVariacaoAdicional2.classList.add("border-danger");
+                    botaoAdicionarCarrinho.classList.add("bg-danger");
+                    botaoAdicionarCarrinho.innerHTML = "Informações faltando";
+
+                    setTimeout(function(){ 
+                        boxVariacaoAdicional2.classList.remove("border");
+                        boxVariacaoAdicional2.classList.remove("border-danger");
+                        botaoAdicionarCarrinho.classList.remove("bg-danger");
+                        botaoAdicionarCarrinho.innerHTML = "ADICIONAR À SACOLA";
+                    }, 3000);
+
+                }else if(hiddenVariacaoAdicional3 == ""){
+
+                    boxVariacaoAdicional3.classList.add("border");
+                    boxVariacaoAdicional3.classList.add("border-danger");
+                    botaoAdicionarCarrinho.classList.add("bg-danger");
+                    botaoAdicionarCarrinho.innerHTML = "Informações faltando";
+
+                    setTimeout(function(){ 
+                        boxVariacaoAdicional3.classList.remove("border");
+                        boxVariacaoAdicional3.classList.remove("border-danger");
+                        botaoAdicionarCarrinho.classList.remove("bg-danger");
+                        botaoAdicionarCarrinho.innerHTML = "ADICIONAR À SACOLA";
+                    }, 3000);
+
+                }else{
+
+                    /* window.location = "php/adicinarSacola.php?aroFeminino="+hiddenFeminino+"&gravacaoFeminino="+gravacaoFeminino+"&aroMasculino="+hiddenMasculino+"&gravacaoMasculino="+gravacaoMasculino+"&variacaoAdicional="+hiddenVariacaoAdicional; */
+                    window.location = "php/adicionarSacola.php?anelUnico="+hiddenFeminino+"&gravacaoAnelUnico="+gravacaoFeminino+"&anelCasal="+hiddenMasculino+"&gravacaoAnelCasal="+gravacaoMasculino+"&apenasAro=SE&apenasGravacao=SE&variacaoComplementar=SE&variacaoComplementar2="+hiddenVariacaoAdicional2+"&variacaoComplementar3="+hiddenVariacaoAdicional3+"&quantidade="+qtdCarrinho+"&idProduto=<?php echo $arrProduto['id'] ?>";
+
+                }
+
+            }else if(variacao_padrao == "casal" && variacao_complementar < 1 && variacao_complementar2 > 0 && variacao_complementar3 < 1){
+
+                var hiddenFeminino = document.getElementById("hiddenFeminino").value;
+                var boxFeminino = document.getElementById("boxAroFeminino");
+                var gravacaoFeminino = document.getElementById("campoGravacaoFeminino").value;
+                var hiddenMasculino = document.getElementById("hiddenMasculino").value;
+                var boxMasculino = document.getElementById("boxAroMasculino");
+                var gravacaoMasculino = document.getElementById("campoGravacaoMasculino").value;
+                var hiddenVariacaoAdicional2 = document.getElementById("hiddenVariacaoAdicional2").value;
+                var boxVariacaoAdicional2 = document.getElementById("boxVariacaoAdicional2");
+                var botaoAdicionarCarrinho = document.getElementById("botaoAddCarrinho");
+
+                if(hiddenFeminino == ""){
+
+                    boxFeminino.classList.add("border");
+                    boxFeminino.classList.add("border-danger");
+                    botaoAdicionarCarrinho.classList.add("bg-danger");
+                    botaoAdicionarCarrinho.innerHTML = "Escolha tamanho aro";
+
+                    setTimeout(function(){ 
+                        boxFeminino.classList.remove("border");
+                        boxFeminino.classList.remove("border-danger");
+                        botaoAdicionarCarrinho.classList.remove("bg-danger");
+                        botaoAdicionarCarrinho.innerHTML = "ADICIONAR À SACOLA";
+                    }, 3000);
+
+                }else if(hiddenMasculino == ""){
+
+                    boxMasculino.classList.add("border");
+                    boxMasculino.classList.add("border-danger");
+                    botaoAdicionarCarrinho.classList.add("bg-danger");
+                    botaoAdicionarCarrinho.innerHTML = "Escolha tamanho aro";
+
+                    setTimeout(function(){ 
+                        boxMasculino.classList.remove("border");
+                        boxMasculino.classList.remove("border-danger");
+                        botaoAdicionarCarrinho.classList.remove("bg-danger");
+                        botaoAdicionarCarrinho.innerHTML = "ADICIONAR À SACOLA";
+                    }, 3000);
+
+                }else if(hiddenVariacaoAdicional2 == ""){
+
+                    boxVariacaoAdicional2.classList.add("border");
+                    boxVariacaoAdicional2.classList.add("border-danger");
+                    botaoAdicionarCarrinho.classList.add("bg-danger");
+                    botaoAdicionarCarrinho.innerHTML = "Informações faltando";
+
+                    setTimeout(function(){ 
+                        boxVariacaoAdicional2.classList.remove("border");
+                        boxVariacaoAdicional2.classList.remove("border-danger");
+                        botaoAdicionarCarrinho.classList.remove("bg-danger");
+                        botaoAdicionarCarrinho.innerHTML = "ADICIONAR À SACOLA";
+                    }, 3000);
+
+                }else{
+
+                    /* window.location = "php/adicinarSacola.php?aroFeminino="+hiddenFeminino+"&gravacaoFeminino="+gravacaoFeminino+"&aroMasculino="+hiddenMasculino+"&gravacaoMasculino="+gravacaoMasculino+"&variacaoAdicional="+hiddenVariacaoAdicional; */
+                    window.location = "php/adicionarSacola.php?anelUnico="+hiddenFeminino+"&gravacaoAnelUnico="+gravacaoFeminino+"&anelCasal="+hiddenMasculino+"&gravacaoAnelCasal="+gravacaoMasculino+"&apenasAro=SE&apenasGravacao=SE&variacaoComplementar=SE&variacaoComplementar2="+hiddenVariacaoAdicional2+"&variacaoComplementar3=SE&quantidade="+qtdCarrinho+"&idProduto=<?php echo $arrProduto['id'] ?>";
+
+                }
+
+            }else if(variacao_padrao == "casal" && variacao_complementar < 1 && variacao_complementar2 < 1 && variacao_complementar3 > 0){
+
+                var hiddenFeminino = document.getElementById("hiddenFeminino").value;
+                var boxFeminino = document.getElementById("boxAroFeminino");
+                var gravacaoFeminino = document.getElementById("campoGravacaoFeminino").value;
+                var hiddenMasculino = document.getElementById("hiddenMasculino").value;
+                var boxMasculino = document.getElementById("boxAroMasculino");
+                var gravacaoMasculino = document.getElementById("campoGravacaoMasculino").value;
+                var hiddenVariacaoAdicional3 = document.getElementById("hiddenVariacaoAdicional3").value;
+                var boxVariacaoAdicional3 = document.getElementById("boxVariacaoAdicional3");
+                var botaoAdicionarCarrinho = document.getElementById("botaoAddCarrinho");
+
+                if(hiddenFeminino == ""){
+
+                    boxFeminino.classList.add("border");
+                    boxFeminino.classList.add("border-danger");
+                    botaoAdicionarCarrinho.classList.add("bg-danger");
+                    botaoAdicionarCarrinho.innerHTML = "Escolha tamanho aro";
+
+                    setTimeout(function(){ 
+                        boxFeminino.classList.remove("border");
+                        boxFeminino.classList.remove("border-danger");
+                        botaoAdicionarCarrinho.classList.remove("bg-danger");
+                        botaoAdicionarCarrinho.innerHTML = "ADICIONAR À SACOLA";
+                    }, 3000);
+
+                }else if(hiddenMasculino == ""){
+
+                    boxMasculino.classList.add("border");
+                    boxMasculino.classList.add("border-danger");
+                    botaoAdicionarCarrinho.classList.add("bg-danger");
+                    botaoAdicionarCarrinho.innerHTML = "Escolha tamanho aro";
+
+                    setTimeout(function(){ 
+                        boxMasculino.classList.remove("border");
+                        boxMasculino.classList.remove("border-danger");
+                        botaoAdicionarCarrinho.classList.remove("bg-danger");
+                        botaoAdicionarCarrinho.innerHTML = "ADICIONAR À SACOLA";
+                    }, 3000);
+
+                }else if(hiddenVariacaoAdicional3 == ""){
+
+                    boxVariacaoAdicional3.classList.add("border");
+                    boxVariacaoAdicional3.classList.add("border-danger");
+                    botaoAdicionarCarrinho.classList.add("bg-danger");
+                    botaoAdicionarCarrinho.innerHTML = "Informações faltando";
+
+                    setTimeout(function(){ 
+                        boxVariacaoAdicional3.classList.remove("border");
+                        boxVariacaoAdicional3.classList.remove("border-danger");
+                        botaoAdicionarCarrinho.classList.remove("bg-danger");
+                        botaoAdicionarCarrinho.innerHTML = "ADICIONAR À SACOLA";
+                    }, 3000);
+
+                }else{
+
+                    /* window.location = "php/adicinarSacola.php?aroFeminino="+hiddenFeminino+"&gravacaoFeminino="+gravacaoFeminino+"&aroMasculino="+hiddenMasculino+"&gravacaoMasculino="+gravacaoMasculino+"&variacaoAdicional="+hiddenVariacaoAdicional; */
+                    window.location = "php/adicionarSacola.php?anelUnico="+hiddenFeminino+"&gravacaoAnelUnico="+gravacaoFeminino+"&anelCasal="+hiddenMasculino+"&gravacaoAnelCasal="+gravacaoMasculino+"&apenasAro=SE&apenasGravacao=SE&variacaoComplementar=SE&variacaoComplementar2=SE&variacaoComplementar3="+hiddenVariacaoAdicional3+"&quantidade="+qtdCarrinho+"&idProduto=<?php echo $arrProduto['id'] ?>";
+
+                }
+
+            }else if(variacao_padrao == "gravacao" && variacao_complementar > 0 && variacao_complementar2 > 0 && variacao_complementar3 > 0){
+
+                var gravacaoApenasGravacao = document.getElementById("campoGravacaoApenasGravacao").value;
+                var hiddenVariacaoAdicional = document.getElementById("hiddenVariacaoAdicional").value;
+                var boxVariacaoAdicional = document.getElementById("boxVariacaoAdicional");
+                var hiddenVariacaoAdicional2 = document.getElementById("hiddenVariacaoAdicional2").value;
+                var boxVariacaoAdicional2 = document.getElementById("boxVariacaoAdicional2");
+                var hiddenVariacaoAdicional3 = document.getElementById("hiddenVariacaoAdicional3").value;
+                var boxVariacaoAdicional3 = document.getElementById("boxVariacaoAdicional3");
+                var botaoAdicionarCarrinho = document.getElementById("botaoAddCarrinho");
+
+                if(hiddenVariacaoAdicional == ""){
+
+                boxVariacaoAdicional.classList.add("border");
+                boxVariacaoAdicional.classList.add("border-danger");
+                botaoAdicionarCarrinho.classList.add("bg-danger");
+                botaoAdicionarCarrinho.innerHTML = "Informações faltando";
+
+                setTimeout(function(){ 
+                    boxVariacaoAdicional.classList.remove("border");
+                    boxVariacaoAdicional.classList.remove("border-danger");
+                    botaoAdicionarCarrinho.classList.remove("bg-danger");
+                    botaoAdicionarCarrinho.innerHTML = "ADICIONAR À SACOLA";
+                }, 3000);
+
+                }else if(hiddenVariacaoAdicional2 == ""){
+
+                    boxVariacaoAdicional2.classList.add("border");
+                    boxVariacaoAdicional2.classList.add("border-danger");
+                    botaoAdicionarCarrinho.classList.add("bg-danger");
+                    botaoAdicionarCarrinho.innerHTML = "Informações faltando";
+
+                    setTimeout(function(){ 
+                        boxVariacaoAdicional2.classList.remove("border");
+                        boxVariacaoAdicional2.classList.remove("border-danger");
+                        botaoAdicionarCarrinho.classList.remove("bg-danger");
+                        botaoAdicionarCarrinho.innerHTML = "ADICIONAR À SACOLA";
+                    }, 3000);
+
+                }else if(hiddenVariacaoAdicional3 == ""){
+
+                    boxVariacaoAdicional3.classList.add("border");
+                    boxVariacaoAdicional3.classList.add("border-danger");
+                    botaoAdicionarCarrinho.classList.add("bg-danger");
+                    botaoAdicionarCarrinho.innerHTML = "Informações faltando";
+
+                    setTimeout(function(){ 
+                        boxVariacaoAdicional3.classList.remove("border");
+                        boxVariacaoAdicional3.classList.remove("border-danger");
+                        botaoAdicionarCarrinho.classList.remove("bg-danger");
+                        botaoAdicionarCarrinho.innerHTML = "ADICIONAR À SACOLA";
+                    }, 3000);
+
+                }else{
+
+                    /* window.location = "php/adicinarSacola.php?aroFeminino="+hiddenFeminino+"&gravacaoFeminino="+gravacaoFeminino+"&aroMasculino="+hiddenMasculino+"&gravacaoMasculino="+gravacaoMasculino+"&variacaoAdicional="+hiddenVariacaoAdicional; */
+                    window.location = "php/adicionarSacola.php?anelUnico=SE&gravacaoAnelUnico=SE&anelCasal=SE&gravacaoAnelCasal=SE&apenasAro=SE&apenasGravacao="+gravacaoApenasGravacao+"&variacaoComplementar="+hiddenVariacaoAdicional+"&variacaoComplementar2="+hiddenVariacaoAdicional2+"&variacaoComplementar3="+hiddenVariacaoAdicional3+"&quantidade="+qtdCarrinho+"&idProduto=<?php echo $arrProduto['id'] ?>";
+
+                }
+
+            }else if(variacao_padrao == "gravacao" && variacao_complementar > 0 && variacao_complementar2 > 0 && variacao_complementar3 < 1){
+
+                var gravacaoApenasGravacao = document.getElementById("campoGravacaoApenasGravacao").value;
+                var hiddenVariacaoAdicional = document.getElementById("hiddenVariacaoAdicional").value;
+                var boxVariacaoAdicional = document.getElementById("boxVariacaoAdicional");
+                var hiddenVariacaoAdicional2 = document.getElementById("hiddenVariacaoAdicional2").value;
+                var boxVariacaoAdicional2 = document.getElementById("boxVariacaoAdicional2");
+                var botaoAdicionarCarrinho = document.getElementById("botaoAddCarrinho");
+
+                if(hiddenVariacaoAdicional == ""){
+
+                boxVariacaoAdicional.classList.add("border");
+                boxVariacaoAdicional.classList.add("border-danger");
+                botaoAdicionarCarrinho.classList.add("bg-danger");
+                botaoAdicionarCarrinho.innerHTML = "Informações faltando";
+
+                setTimeout(function(){ 
+                    boxVariacaoAdicional.classList.remove("border");
+                    boxVariacaoAdicional.classList.remove("border-danger");
+                    botaoAdicionarCarrinho.classList.remove("bg-danger");
+                    botaoAdicionarCarrinho.innerHTML = "ADICIONAR À SACOLA";
+                }, 3000);
+
+                }else if(hiddenVariacaoAdicional2 == ""){
+
+                    boxVariacaoAdicional2.classList.add("border");
+                    boxVariacaoAdicional2.classList.add("border-danger");
+                    botaoAdicionarCarrinho.classList.add("bg-danger");
+                    botaoAdicionarCarrinho.innerHTML = "Informações faltando";
+
+                    setTimeout(function(){ 
+                        boxVariacaoAdicional2.classList.remove("border");
+                        boxVariacaoAdicional2.classList.remove("border-danger");
+                        botaoAdicionarCarrinho.classList.remove("bg-danger");
+                        botaoAdicionarCarrinho.innerHTML = "ADICIONAR À SACOLA";
+                    }, 3000);
+
+                }else{
+
+                    /* window.location = "php/adicinarSacola.php?aroFeminino="+hiddenFeminino+"&gravacaoFeminino="+gravacaoFeminino+"&aroMasculino="+hiddenMasculino+"&gravacaoMasculino="+gravacaoMasculino+"&variacaoAdicional="+hiddenVariacaoAdicional; */
+                    window.location = "php/adicionarSacola.php?anelUnico=SE&gravacaoAnelUnico=SE&anelCasal=SE&gravacaoAnelCasal=SE&apenasAro=SE&apenasGravacao="+gravacaoApenasGravacao+"&variacaoComplementar="+hiddenVariacaoAdicional+"&variacaoComplementar2="+hiddenVariacaoAdicional2+"&variacaoComplementar3=SE&quantidade="+qtdCarrinho+"&idProduto=<?php echo $arrProduto['id'] ?>";
+
+                }
+
+            }else if(variacao_padrao == "gravacao" && variacao_complementar > 0 && variacao_complementar2 < 1 && variacao_complementar3 > 0){
+
+                var gravacaoApenasGravacao = document.getElementById("campoGravacaoApenasGravacao").value;
+                var hiddenVariacaoAdicional = document.getElementById("hiddenVariacaoAdicional").value;
+                var boxVariacaoAdicional = document.getElementById("boxVariacaoAdicional");
+                var hiddenVariacaoAdicional3 = document.getElementById("hiddenVariacaoAdicional3").value;
+                var boxVariacaoAdicional3 = document.getElementById("boxVariacaoAdicional3");
+                var botaoAdicionarCarrinho = document.getElementById("botaoAddCarrinho");
+
+                if(hiddenVariacaoAdicional == ""){
+
+                boxVariacaoAdicional.classList.add("border");
+                boxVariacaoAdicional.classList.add("border-danger");
+                botaoAdicionarCarrinho.classList.add("bg-danger");
+                botaoAdicionarCarrinho.innerHTML = "Informações faltando";
+
+                setTimeout(function(){ 
+                    boxVariacaoAdicional.classList.remove("border");
+                    boxVariacaoAdicional.classList.remove("border-danger");
+                    botaoAdicionarCarrinho.classList.remove("bg-danger");
+                    botaoAdicionarCarrinho.innerHTML = "ADICIONAR À SACOLA";
+                }, 3000);
+
+                }else if(hiddenVariacaoAdicional3 == ""){
+
+                    boxVariacaoAdicional3.classList.add("border");
+                    boxVariacaoAdicional3.classList.add("border-danger");
+                    botaoAdicionarCarrinho.classList.add("bg-danger");
+                    botaoAdicionarCarrinho.innerHTML = "Informações faltando";
+
+                    setTimeout(function(){ 
+                        boxVariacaoAdicional3.classList.remove("border");
+                        boxVariacaoAdicional3.classList.remove("border-danger");
+                        botaoAdicionarCarrinho.classList.remove("bg-danger");
+                        botaoAdicionarCarrinho.innerHTML = "ADICIONAR À SACOLA";
+                    }, 3000);
+
+                }else{
+
+                    /* window.location = "php/adicinarSacola.php?aroFeminino="+hiddenFeminino+"&gravacaoFeminino="+gravacaoFeminino+"&aroMasculino="+hiddenMasculino+"&gravacaoMasculino="+gravacaoMasculino+"&variacaoAdicional="+hiddenVariacaoAdicional; */
+                    window.location = "php/adicionarSacola.php?anelUnico=SE&gravacaoAnelUnico=SE&anelCasal=SE&gravacaoAnelCasal=SE&apenasAro=SE&apenasGravacao="+gravacaoApenasGravacao+"&variacaoComplementar="+hiddenVariacaoAdicional+"&variacaoComplementar2=SE&variacaoComplementar3="+hiddenVariacaoAdicional3+"&quantidade="+qtdCarrinho+"&idProduto=<?php echo $arrProduto['id'] ?>";
+
+                }
+
+            }else if(variacao_padrao == "gravacao" && variacao_complementar > 0 && variacao_complementar2 < 1 && variacao_complementar3 < 1){
 
                 var gravacaoApenasGravacao = document.getElementById("campoGravacaoApenasGravacao").value;
                 var hiddenVariacaoAdicional = document.getElementById("hiddenVariacaoAdicional").value;
@@ -480,11 +1772,256 @@
                 }else{
 
                     /* window.location = "php/adicinarSacola.php?aroFeminino="+hiddenFeminino+"&gravacaoFeminino="+gravacaoFeminino+"&aroMasculino="+hiddenMasculino+"&gravacaoMasculino="+gravacaoMasculino+"&variacaoAdicional="+hiddenVariacaoAdicional; */
-                    window.location = "php/adicionarSacola.php?anelUnico=SE&gravacaoAnelUnico=SE&anelCasal=SE&gravacaoAnelCasal=SE&apenasAro=SE&apenasGravacao="+gravacaoApenasGravacao+"&variacaoComplementar="+hiddenVariacaoAdicional+"&quantidade="+qtdCarrinho+"&idProduto=<?php echo $arrProduto['id'] ?>";
+                    window.location = "php/adicionarSacola.php?anelUnico=SE&gravacaoAnelUnico=SE&anelCasal=SE&gravacaoAnelCasal=SE&apenasAro=SE&apenasGravacao="+gravacaoApenasGravacao+"&variacaoComplementar="+hiddenVariacaoAdicional+"&variacaoComplementar2=SE&variacaoComplementar3=SE&quantidade="+qtdCarrinho+"&idProduto=<?php echo $arrProduto['id'] ?>";
 
                 }
 
-            }else if(variacao_padrao == "nenhum" && variacao_complementar > 0){
+            }else if(variacao_padrao == "gravacao" && variacao_complementar < 1 && variacao_complementar2 > 0 && variacao_complementar3 > 0){
+
+                var gravacaoApenasGravacao = document.getElementById("campoGravacaoApenasGravacao").value;
+                var hiddenVariacaoAdicional2 = document.getElementById("hiddenVariacaoAdicional2").value;
+                var boxVariacaoAdicional2 = document.getElementById("boxVariacaoAdicional2");
+                var hiddenVariacaoAdicional3 = document.getElementById("hiddenVariacaoAdicional3").value;
+                var boxVariacaoAdicional3 = document.getElementById("boxVariacaoAdicional3");
+                var botaoAdicionarCarrinho = document.getElementById("botaoAddCarrinho");
+
+                if(hiddenVariacaoAdicional2 == ""){
+
+                    boxVariacaoAdicional2.classList.add("border");
+                    boxVariacaoAdicional2.classList.add("border-danger");
+                    botaoAdicionarCarrinho.classList.add("bg-danger");
+                    botaoAdicionarCarrinho.innerHTML = "Informações faltando";
+
+                    setTimeout(function(){ 
+                        boxVariacaoAdicional2.classList.remove("border");
+                        boxVariacaoAdicional2.classList.remove("border-danger");
+                        botaoAdicionarCarrinho.classList.remove("bg-danger");
+                        botaoAdicionarCarrinho.innerHTML = "ADICIONAR À SACOLA";
+                    }, 3000);
+
+                }else if(hiddenVariacaoAdicional3 == ""){
+
+                    boxVariacaoAdicional3.classList.add("border");
+                    boxVariacaoAdicional3.classList.add("border-danger");
+                    botaoAdicionarCarrinho.classList.add("bg-danger");
+                    botaoAdicionarCarrinho.innerHTML = "Informações faltando";
+
+                    setTimeout(function(){ 
+                        boxVariacaoAdicional3.classList.remove("border");
+                        boxVariacaoAdicional3.classList.remove("border-danger");
+                        botaoAdicionarCarrinho.classList.remove("bg-danger");
+                        botaoAdicionarCarrinho.innerHTML = "ADICIONAR À SACOLA";
+                    }, 3000);
+
+                }else{
+
+                    /* window.location = "php/adicinarSacola.php?aroFeminino="+hiddenFeminino+"&gravacaoFeminino="+gravacaoFeminino+"&aroMasculino="+hiddenMasculino+"&gravacaoMasculino="+gravacaoMasculino+"&variacaoAdicional="+hiddenVariacaoAdicional; */
+                    window.location = "php/adicionarSacola.php?anelUnico=SE&gravacaoAnelUnico=SE&anelCasal=SE&gravacaoAnelCasal=SE&apenasAro=SE&apenasGravacao="+gravacaoApenasGravacao+"&variacaoComplementar=SE&variacaoComplementar2="+hiddenVariacaoAdicional2+"&variacaoComplementar3="+hiddenVariacaoAdicional3+"&quantidade="+qtdCarrinho+"&idProduto=<?php echo $arrProduto['id'] ?>";
+
+                }
+
+            }else if(variacao_padrao == "gravacao" && variacao_complementar < 1 && variacao_complementar2 > 0 && variacao_complementar3 < 1){
+
+                var gravacaoApenasGravacao = document.getElementById("campoGravacaoApenasGravacao").value;
+                var hiddenVariacaoAdicional2 = document.getElementById("hiddenVariacaoAdicional2").value;
+                var boxVariacaoAdicional2 = document.getElementById("boxVariacaoAdicional2");
+                var botaoAdicionarCarrinho = document.getElementById("botaoAddCarrinho");
+
+                if(hiddenVariacaoAdicional2 == ""){
+
+                    boxVariacaoAdicional2.classList.add("border");
+                    boxVariacaoAdicional2.classList.add("border-danger");
+                    botaoAdicionarCarrinho.classList.add("bg-danger");
+                    botaoAdicionarCarrinho.innerHTML = "Informações faltando";
+
+                    setTimeout(function(){ 
+                        boxVariacaoAdicional2.classList.remove("border");
+                        boxVariacaoAdicional2.classList.remove("border-danger");
+                        botaoAdicionarCarrinho.classList.remove("bg-danger");
+                        botaoAdicionarCarrinho.innerHTML = "ADICIONAR À SACOLA";
+                    }, 3000);
+
+                }else{
+
+                    /* window.location = "php/adicinarSacola.php?aroFeminino="+hiddenFeminino+"&gravacaoFeminino="+gravacaoFeminino+"&aroMasculino="+hiddenMasculino+"&gravacaoMasculino="+gravacaoMasculino+"&variacaoAdicional="+hiddenVariacaoAdicional; */
+                    window.location = "php/adicionarSacola.php?anelUnico=SE&gravacaoAnelUnico=SE&anelCasal=SE&gravacaoAnelCasal=SE&apenasAro=SE&apenasGravacao="+gravacaoApenasGravacao+"&variacaoComplementar=SE&variacaoComplementar2="+hiddenVariacaoAdicional2+"&variacaoComplementar3=SE&quantidade="+qtdCarrinho+"&idProduto=<?php echo $arrProduto['id'] ?>";
+
+                }
+
+            }else if(variacao_padrao == "gravacao" && variacao_complementar < 1 && variacao_complementar2 < 1 && variacao_complementar3 > 0){
+
+                var gravacaoApenasGravacao = document.getElementById("campoGravacaoApenasGravacao").value;
+                var hiddenVariacaoAdicional3 = document.getElementById("hiddenVariacaoAdicional3").value;
+                var boxVariacaoAdicional3 = document.getElementById("boxVariacaoAdicional3");
+                var botaoAdicionarCarrinho = document.getElementById("botaoAddCarrinho");
+
+                if(hiddenVariacaoAdicional3 == ""){
+
+                    boxVariacaoAdicional3.classList.add("border");
+                    boxVariacaoAdicional3.classList.add("border-danger");
+                    botaoAdicionarCarrinho.classList.add("bg-danger");
+                    botaoAdicionarCarrinho.innerHTML = "Informações faltando";
+
+                    setTimeout(function(){ 
+                        boxVariacaoAdicional3.classList.remove("border");
+                        boxVariacaoAdicional3.classList.remove("border-danger");
+                        botaoAdicionarCarrinho.classList.remove("bg-danger");
+                        botaoAdicionarCarrinho.innerHTML = "ADICIONAR À SACOLA";
+                    }, 3000);
+
+                }else{
+
+                    /* window.location = "php/adicinarSacola.php?aroFeminino="+hiddenFeminino+"&gravacaoFeminino="+gravacaoFeminino+"&aroMasculino="+hiddenMasculino+"&gravacaoMasculino="+gravacaoMasculino+"&variacaoAdicional="+hiddenVariacaoAdicional; */
+                    window.location = "php/adicionarSacola.php?anelUnico=SE&gravacaoAnelUnico=SE&anelCasal=SE&gravacaoAnelCasal=SE&apenasAro=SE&apenasGravacao="+gravacaoApenasGravacao+"&variacaoComplementar=SE&variacaoComplementar2=SE&variacaoComplementar3="+hiddenVariacaoAdicional3+"&quantidade="+qtdCarrinho+"&idProduto=<?php echo $arrProduto['id'] ?>";
+
+                }
+
+            }else if(variacao_padrao == "nenhum" && variacao_complementar > 0 && variacao_complementar2 > 0 && variacao_complementar3 > 0){
+
+                var hiddenVariacaoAdicional = document.getElementById("hiddenVariacaoAdicional").value;
+                var boxVariacaoAdicional = document.getElementById("boxVariacaoAdicional");
+                var hiddenVariacaoAdicional2 = document.getElementById("hiddenVariacaoAdicional2").value;
+                var boxVariacaoAdicional2 = document.getElementById("boxVariacaoAdicional2");
+                var hiddenVariacaoAdicional3 = document.getElementById("hiddenVariacaoAdicional3").value;
+                var boxVariacaoAdicional3 = document.getElementById("boxVariacaoAdicional3");
+                var botaoAdicionarCarrinho = document.getElementById("botaoAddCarrinho");
+
+                if(hiddenVariacaoAdicional == ""){
+
+                    boxVariacaoAdicional.classList.add("border");
+                    boxVariacaoAdicional.classList.add("border-danger");
+                    botaoAdicionarCarrinho.classList.add("bg-danger");
+                    botaoAdicionarCarrinho.innerHTML = "Informações faltando";
+
+                    setTimeout(function(){ 
+                        boxVariacaoAdicional.classList.remove("border");
+                        boxVariacaoAdicional.classList.remove("border-danger");
+                        botaoAdicionarCarrinho.classList.remove("bg-danger");
+                        botaoAdicionarCarrinho.innerHTML = "ADICIONAR À SACOLA";
+                    }, 3000);
+
+                }else if(hiddenVariacaoAdicional2 == ""){
+
+                    boxVariacaoAdicional2.classList.add("border");
+                    boxVariacaoAdicional2.classList.add("border-danger");
+                    botaoAdicionarCarrinho.classList.add("bg-danger");
+                    botaoAdicionarCarrinho.innerHTML = "Informações faltando";
+
+                    setTimeout(function(){ 
+                        boxVariacaoAdicional2.classList.remove("border");
+                        boxVariacaoAdicional2.classList.remove("border-danger");
+                        botaoAdicionarCarrinho.classList.remove("bg-danger");
+                        botaoAdicionarCarrinho.innerHTML = "ADICIONAR À SACOLA";
+                    }, 3000);
+
+                }else if(hiddenVariacaoAdicional3 == ""){
+
+                    boxVariacaoAdicional3.classList.add("border");
+                    boxVariacaoAdicional3.classList.add("border-danger");
+                    botaoAdicionarCarrinho.classList.add("bg-danger");
+                    botaoAdicionarCarrinho.innerHTML = "Informações faltando";
+
+                    setTimeout(function(){ 
+                        boxVariacaoAdicional3.classList.remove("border");
+                        boxVariacaoAdicional3.classList.remove("border-danger");
+                        botaoAdicionarCarrinho.classList.remove("bg-danger");
+                        botaoAdicionarCarrinho.innerHTML = "ADICIONAR À SACOLA";
+                    }, 3000);
+
+                }else{
+
+                    /* window.location = "php/adicinarSacola.php?aroFeminino="+hiddenFeminino+"&gravacaoFeminino="+gravacaoFeminino+"&aroMasculino="+hiddenMasculino+"&gravacaoMasculino="+gravacaoMasculino+"&variacaoAdicional="+hiddenVariacaoAdicional; */
+                    window.location = "php/adicionarSacola.php?anelUnico=SE&gravacaoAnelUnico=SE&anelCasal=SE&gravacaoAnelCasal=SE&apenasAro=SE&apenasGravacao=SE&variacaoComplementar="+hiddenVariacaoAdicional+"&variacaoComplementar2="+hiddenVariacaoAdicional2+"&variacaoComplementar3="+hiddenVariacaoAdicional3+"&quantidade="+qtdCarrinho+"&idProduto=<?php echo $arrProduto['id'] ?>";
+
+                }
+
+            }else if(variacao_padrao == "nenhum" && variacao_complementar > 0 && variacao_complementar2 > 0 && variacao_complementar3 < 1){
+
+                var hiddenVariacaoAdicional = document.getElementById("hiddenVariacaoAdicional").value;
+                var boxVariacaoAdicional = document.getElementById("boxVariacaoAdicional");
+                var hiddenVariacaoAdicional2 = document.getElementById("hiddenVariacaoAdicional2").value;
+                var boxVariacaoAdicional2 = document.getElementById("boxVariacaoAdicional2");
+                var botaoAdicionarCarrinho = document.getElementById("botaoAddCarrinho");
+
+                if(hiddenVariacaoAdicional == ""){
+
+                    boxVariacaoAdicional.classList.add("border");
+                    boxVariacaoAdicional.classList.add("border-danger");
+                    botaoAdicionarCarrinho.classList.add("bg-danger");
+                    botaoAdicionarCarrinho.innerHTML = "Informações faltando";
+
+                    setTimeout(function(){ 
+                        boxVariacaoAdicional.classList.remove("border");
+                        boxVariacaoAdicional.classList.remove("border-danger");
+                        botaoAdicionarCarrinho.classList.remove("bg-danger");
+                        botaoAdicionarCarrinho.innerHTML = "ADICIONAR À SACOLA";
+                    }, 3000);
+
+                }else if(hiddenVariacaoAdicional2 == ""){
+
+                    boxVariacaoAdicional2.classList.add("border");
+                    boxVariacaoAdicional2.classList.add("border-danger");
+                    botaoAdicionarCarrinho.classList.add("bg-danger");
+                    botaoAdicionarCarrinho.innerHTML = "Informações faltando";
+
+                    setTimeout(function(){ 
+                        boxVariacaoAdicional2.classList.remove("border");
+                        boxVariacaoAdicional2.classList.remove("border-danger");
+                        botaoAdicionarCarrinho.classList.remove("bg-danger");
+                        botaoAdicionarCarrinho.innerHTML = "ADICIONAR À SACOLA";
+                    }, 3000);
+
+                }else{
+
+                    /* window.location = "php/adicinarSacola.php?aroFeminino="+hiddenFeminino+"&gravacaoFeminino="+gravacaoFeminino+"&aroMasculino="+hiddenMasculino+"&gravacaoMasculino="+gravacaoMasculino+"&variacaoAdicional="+hiddenVariacaoAdicional; */
+                    window.location = "php/adicionarSacola.php?anelUnico=SE&gravacaoAnelUnico=SE&anelCasal=SE&gravacaoAnelCasal=SE&apenasAro=SE&apenasGravacao=SE&variacaoComplementar="+hiddenVariacaoAdicional+"&variacaoComplementar2="+hiddenVariacaoAdicional2+"&variacaoComplementar3=SE&quantidade="+qtdCarrinho+"&idProduto=<?php echo $arrProduto['id'] ?>";
+
+                }
+
+            }else if(variacao_padrao == "nenhum" && variacao_complementar > 0 && variacao_complementar2 < 1 && variacao_complementar3 > 0){
+
+                var hiddenVariacaoAdicional = document.getElementById("hiddenVariacaoAdicional").value;
+                var boxVariacaoAdicional = document.getElementById("boxVariacaoAdicional");
+                var hiddenVariacaoAdicional3 = document.getElementById("hiddenVariacaoAdicional3").value;
+                var boxVariacaoAdicional3 = document.getElementById("boxVariacaoAdicional3");
+                var botaoAdicionarCarrinho = document.getElementById("botaoAddCarrinho");
+
+                if(hiddenVariacaoAdicional == ""){
+
+                    boxVariacaoAdicional.classList.add("border");
+                    boxVariacaoAdicional.classList.add("border-danger");
+                    botaoAdicionarCarrinho.classList.add("bg-danger");
+                    botaoAdicionarCarrinho.innerHTML = "Informações faltando";
+
+                    setTimeout(function(){ 
+                        boxVariacaoAdicional.classList.remove("border");
+                        boxVariacaoAdicional.classList.remove("border-danger");
+                        botaoAdicionarCarrinho.classList.remove("bg-danger");
+                        botaoAdicionarCarrinho.innerHTML = "ADICIONAR À SACOLA";
+                    }, 3000);
+
+                }else if(hiddenVariacaoAdicional3 == ""){
+
+                    boxVariacaoAdicional3.classList.add("border");
+                    boxVariacaoAdicional3.classList.add("border-danger");
+                    botaoAdicionarCarrinho.classList.add("bg-danger");
+                    botaoAdicionarCarrinho.innerHTML = "Informações faltando";
+
+                    setTimeout(function(){ 
+                        boxVariacaoAdicional3.classList.remove("border");
+                        boxVariacaoAdicional3.classList.remove("border-danger");
+                        botaoAdicionarCarrinho.classList.remove("bg-danger");
+                        botaoAdicionarCarrinho.innerHTML = "ADICIONAR À SACOLA";
+                    }, 3000);
+
+                }else{
+
+                    /* window.location = "php/adicinarSacola.php?aroFeminino="+hiddenFeminino+"&gravacaoFeminino="+gravacaoFeminino+"&aroMasculino="+hiddenMasculino+"&gravacaoMasculino="+gravacaoMasculino+"&variacaoAdicional="+hiddenVariacaoAdicional; */
+                    window.location = "php/adicionarSacola.php?anelUnico=SE&gravacaoAnelUnico=SE&anelCasal=SE&gravacaoAnelCasal=SE&apenasAro=SE&apenasGravacao=SE&variacaoComplementar="+hiddenVariacaoAdicional+"&variacaoComplementar2=SE&variacaoComplementar3="+hiddenVariacaoAdicional3+"&quantidade="+qtdCarrinho+"&idProduto=<?php echo $arrProduto['id'] ?>";
+
+                }
+
+            }else if(variacao_padrao == "nenhum" && variacao_complementar > 0 && variacao_complementar2 < 1 && variacao_complementar3 < 1){
 
                 var hiddenVariacaoAdicional = document.getElementById("hiddenVariacaoAdicional").value;
                 var boxVariacaoAdicional = document.getElementById("boxVariacaoAdicional");
@@ -492,26 +2029,123 @@
 
                 if(hiddenVariacaoAdicional == ""){
 
-                boxVariacaoAdicional.classList.add("border");
-                boxVariacaoAdicional.classList.add("border-danger");
-                botaoAdicionarCarrinho.classList.add("bg-danger");
-                botaoAdicionarCarrinho.innerHTML = "Informações faltando";
+                    boxVariacaoAdicional.classList.add("border");
+                    boxVariacaoAdicional.classList.add("border-danger");
+                    botaoAdicionarCarrinho.classList.add("bg-danger");
+                    botaoAdicionarCarrinho.innerHTML = "Informações faltando";
 
-                setTimeout(function(){ 
-                    boxVariacaoAdicional.classList.remove("border");
-                    boxVariacaoAdicional.classList.remove("border-danger");
-                    botaoAdicionarCarrinho.classList.remove("bg-danger");
-                    botaoAdicionarCarrinho.innerHTML = "ADICIONAR À SACOLA";
-                }, 3000);
+                    setTimeout(function(){ 
+                        boxVariacaoAdicional.classList.remove("border");
+                        boxVariacaoAdicional.classList.remove("border-danger");
+                        botaoAdicionarCarrinho.classList.remove("bg-danger");
+                        botaoAdicionarCarrinho.innerHTML = "ADICIONAR À SACOLA";
+                    }, 3000);
 
                 }else{
 
                     /* window.location = "php/adicinarSacola.php?aroFeminino="+hiddenFeminino+"&gravacaoFeminino="+gravacaoFeminino+"&aroMasculino="+hiddenMasculino+"&gravacaoMasculino="+gravacaoMasculino+"&variacaoAdicional="+hiddenVariacaoAdicional; */
-                    window.location = "php/adicionarSacola.php?anelUnico=SE&gravacaoAnelUnico=SE&anelCasal=SE&gravacaoAnelCasal=SE&apenasAro=SE&apenasGravacao=SE&variacaoComplementar="+hiddenVariacaoAdicional+"&quantidade="+qtdCarrinho+"&idProduto=<?php echo $arrProduto['id'] ?>";
+                    window.location = "php/adicionarSacola.php?anelUnico=SE&gravacaoAnelUnico=SE&anelCasal=SE&gravacaoAnelCasal=SE&apenasAro=SE&apenasGravacao=SE&variacaoComplementar="+hiddenVariacaoAdicional+"&variacaoComplementar2=SE&variacaoComplementar3=SE&quantidade="+qtdCarrinho+"&idProduto=<?php echo $arrProduto['id'] ?>";
 
                 }
 
-            }else if(variacao_padrao == "aro" && variacao_complementar < 1){
+            }else if(variacao_padrao == "nenhum" && variacao_complementar < 1 && variacao_complementar2 > 0 && variacao_complementar3 > 0){
+
+                var hiddenVariacaoAdicional2 = document.getElementById("hiddenVariacaoAdicional2").value;
+                var boxVariacaoAdicional2 = document.getElementById("boxVariacaoAdicional2");
+                var hiddenVariacaoAdicional3 = document.getElementById("hiddenVariacaoAdicional3").value;
+                var boxVariacaoAdicional3 = document.getElementById("boxVariacaoAdicional3");
+                var botaoAdicionarCarrinho = document.getElementById("botaoAddCarrinho");
+
+                if(hiddenVariacaoAdicional2 == ""){
+
+                    boxVariacaoAdicional2.classList.add("border");
+                    boxVariacaoAdicional2.classList.add("border-danger");
+                    botaoAdicionarCarrinho.classList.add("bg-danger");
+                    botaoAdicionarCarrinho.innerHTML = "Informações faltando";
+
+                    setTimeout(function(){ 
+                        boxVariacaoAdicional2.classList.remove("border");
+                        boxVariacaoAdicional2.classList.remove("border-danger");
+                        botaoAdicionarCarrinho.classList.remove("bg-danger");
+                        botaoAdicionarCarrinho.innerHTML = "ADICIONAR À SACOLA";
+                    }, 3000);
+
+                }else if(hiddenVariacaoAdicional3 == ""){
+
+                    boxVariacaoAdicional3.classList.add("border");
+                    boxVariacaoAdicional3.classList.add("border-danger");
+                    botaoAdicionarCarrinho.classList.add("bg-danger");
+                    botaoAdicionarCarrinho.innerHTML = "Informações faltando";
+
+                    setTimeout(function(){ 
+                        boxVariacaoAdicional3.classList.remove("border");
+                        boxVariacaoAdicional3.classList.remove("border-danger");
+                        botaoAdicionarCarrinho.classList.remove("bg-danger");
+                        botaoAdicionarCarrinho.innerHTML = "ADICIONAR À SACOLA";
+                    }, 3000);
+
+                }else{
+
+                    /* window.location = "php/adicinarSacola.php?aroFeminino="+hiddenFeminino+"&gravacaoFeminino="+gravacaoFeminino+"&aroMasculino="+hiddenMasculino+"&gravacaoMasculino="+gravacaoMasculino+"&variacaoAdicional="+hiddenVariacaoAdicional; */
+                    window.location = "php/adicionarSacola.php?anelUnico=SE&gravacaoAnelUnico=SE&anelCasal=SE&gravacaoAnelCasal=SE&apenasAro=SE&apenasGravacao=SE&variacaoComplementar=SE&variacaoComplementar2="+hiddenVariacaoAdicional2+"&variacaoComplementar3="+hiddenVariacaoAdicional3+"&quantidade="+qtdCarrinho+"&idProduto=<?php echo $arrProduto['id'] ?>";
+
+                }
+
+            }else if(variacao_padrao == "nenhum" && variacao_complementar < 1 && variacao_complementar2 > 0 && variacao_complementar3 < 1){
+
+                var hiddenVariacaoAdicional2 = document.getElementById("hiddenVariacaoAdicional2").value;
+                var boxVariacaoAdicional2 = document.getElementById("boxVariacaoAdicional2");
+                var botaoAdicionarCarrinho = document.getElementById("botaoAddCarrinho");
+
+                if(hiddenVariacaoAdicional2 == ""){
+
+                    boxVariacaoAdicional2.classList.add("border");
+                    boxVariacaoAdicional2.classList.add("border-danger");
+                    botaoAdicionarCarrinho.classList.add("bg-danger");
+                    botaoAdicionarCarrinho.innerHTML = "Informações faltando";
+
+                    setTimeout(function(){ 
+                        boxVariacaoAdicional2.classList.remove("border");
+                        boxVariacaoAdicional2.classList.remove("border-danger");
+                        botaoAdicionarCarrinho.classList.remove("bg-danger");
+                        botaoAdicionarCarrinho.innerHTML = "ADICIONAR À SACOLA";
+                    }, 3000);
+
+                }else{
+
+                    /* window.location = "php/adicinarSacola.php?aroFeminino="+hiddenFeminino+"&gravacaoFeminino="+gravacaoFeminino+"&aroMasculino="+hiddenMasculino+"&gravacaoMasculino="+gravacaoMasculino+"&variacaoAdicional="+hiddenVariacaoAdicional; */
+                    window.location = "php/adicionarSacola.php?anelUnico=SE&gravacaoAnelUnico=SE&anelCasal=SE&gravacaoAnelCasal=SE&apenasAro=SE&apenasGravacao=SE&variacaoComplementar=SE&variacaoComplementar2="+hiddenVariacaoAdicional2+"&variacaoComplementar3=SE&quantidade="+qtdCarrinho+"&idProduto=<?php echo $arrProduto['id'] ?>";
+
+                }
+
+            }else if(variacao_padrao == "nenhum" && variacao_complementar < 1 && variacao_complementar2 < 1 && variacao_complementar3 > 0){
+
+                var hiddenVariacaoAdicional3 = document.getElementById("hiddenVariacaoAdicional3").value;
+                var boxVariacaoAdicional3 = document.getElementById("boxVariacaoAdicional3");
+                var botaoAdicionarCarrinho = document.getElementById("botaoAddCarrinho");
+
+                if(hiddenVariacaoAdicional3 == ""){
+
+                    boxVariacaoAdicional3.classList.add("border");
+                    boxVariacaoAdicional3.classList.add("border-danger");
+                    botaoAdicionarCarrinho.classList.add("bg-danger");
+                    botaoAdicionarCarrinho.innerHTML = "Informações faltando";
+
+                    setTimeout(function(){ 
+                        boxVariacaoAdicional3.classList.remove("border");
+                        boxVariacaoAdicional3.classList.remove("border-danger");
+                        botaoAdicionarCarrinho.classList.remove("bg-danger");
+                        botaoAdicionarCarrinho.innerHTML = "ADICIONAR À SACOLA";
+                    }, 3000);
+
+                }else{
+
+                    /* window.location = "php/adicinarSacola.php?aroFeminino="+hiddenFeminino+"&gravacaoFeminino="+gravacaoFeminino+"&aroMasculino="+hiddenMasculino+"&gravacaoMasculino="+gravacaoMasculino+"&variacaoAdicional="+hiddenVariacaoAdicional; */
+                    window.location = "php/adicionarSacola.php?anelUnico=SE&gravacaoAnelUnico=SE&anelCasal=SE&gravacaoAnelCasal=SE&apenasAro=SE&apenasGravacao=SE&variacaoComplementar=SE&variacaoComplementar2=SE&variacaoComplementar3="+hiddenVariacaoAdicional3+"&quantidade="+qtdCarrinho+"&idProduto=<?php echo $arrProduto['id'] ?>";
+
+                }
+
+            }else if(variacao_padrao == "aro" && variacao_complementar < 1 && variacao_complementar2 < 1 && variacao_complementar3 < 1){
 
                 var hiddenApenasAro = document.getElementById("hiddenApenasAro").value;
                 var boxApenasAro = document.getElementById("boxApenasAro");
@@ -534,11 +2168,11 @@
                 }else{
 
                     /* window.location = "php/adicinarSacola.php?apenasAro="+hiddenApenasAro+"&variacaoAdicional="+hiddenVariacaoAdicional; */
-                    window.location = "php/adicionarSacola.php?anelUnico=SE&gravacaoAnelUnico=SE&anelCasal=SE&gravacaoAnelCasal=SE&apenasAro="+hiddenApenasAro+"&apenasGravacao=SE&variacaoComplementar=SE&quantidade="+qtdCarrinho+"&idProduto=<?php echo $arrProduto['id'] ?>";
+                    window.location = "php/adicionarSacola.php?anelUnico=SE&gravacaoAnelUnico=SE&anelCasal=SE&gravacaoAnelCasal=SE&apenasAro="+hiddenApenasAro+"&apenasGravacao=SE&variacaoComplementar=SE&variacaoComplementar2=SE&variacaoComplementar3=SE&quantidade="+qtdCarrinho+"&idProduto=<?php echo $arrProduto['id'] ?>";
 
                 }
 
-            }else if(variacao_padrao == "unico" && variacao_complementar < 1){
+            }else if(variacao_padrao == "unico" && variacao_complementar < 1 && variacao_complementar2 < 1 && variacao_complementar3 < 1){
 
                 var hiddenFeminino = document.getElementById("hiddenFeminino").value;
                 var boxFeminino = document.getElementById("boxAroFeminino");
@@ -562,11 +2196,11 @@
                 }else{
 
                     /* window.location = "php/adicinarSacola.php?aroFeminino="+hiddenFeminino+"&gravacaoFeminino="+gravacaoFeminino+"&variacaoAdicional="+hiddenVariacaoAdicional; */
-                    window.location = "php/adicionarSacola.php?anelUnico="+hiddenFeminino+"&gravacaoAnelUnico="+gravacaoFeminino+"&anelCasal=SE&gravacaoAnelCasal=SE&apenasAro=SE&apenasGravacao=SE&variacaoComplementar=SE&quantidade="+qtdCarrinho+"&idProduto=<?php echo $arrProduto['id'] ?>";
+                    window.location = "php/adicionarSacola.php?anelUnico="+hiddenFeminino+"&gravacaoAnelUnico="+gravacaoFeminino+"&anelCasal=SE&gravacaoAnelCasal=SE&apenasAro=SE&apenasGravacao=SE&variacaoComplementar=SE&variacaoComplementar2=SE&variacaoComplementar3=SE&quantidade="+qtdCarrinho+"&idProduto=<?php echo $arrProduto['id'] ?>";
 
                 }
 
-            }else if(variacao_padrao == "casal" && variacao_complementar < 1){
+            }else if(variacao_padrao == "casal" && variacao_complementar < 1 && variacao_complementar2 < 1 && variacao_complementar3 < 1){
 
                 var hiddenFeminino = document.getElementById("hiddenFeminino").value;
                 var boxFeminino = document.getElementById("boxAroFeminino");
@@ -607,24 +2241,24 @@
                 }else{
 
                     /* window.location = "php/adicinarSacola.php?aroFeminino="+hiddenFeminino+"&gravacaoFeminino="+gravacaoFeminino+"&aroMasculino="+hiddenMasculino+"&gravacaoMasculino="+gravacaoMasculino+"&variacaoAdicional="+hiddenVariacaoAdicional; */
-                    window.location = "php/adicionarSacola.php?anelUnico="+hiddenFeminino+"&gravacaoAnelUnico="+gravacaoFeminino+"&anelCasal="+hiddenMasculino+"&gravacaoAnelCasal="+gravacaoMasculino+"&apenasAro=SE&apenasGravacao=SE&variacaoComplementar=SE&quantidade="+qtdCarrinho+"&idProduto=<?php echo $arrProduto['id'] ?>";
+                    window.location = "php/adicionarSacola.php?anelUnico="+hiddenFeminino+"&gravacaoAnelUnico="+gravacaoFeminino+"&anelCasal="+hiddenMasculino+"&gravacaoAnelCasal="+gravacaoMasculino+"&apenasAro=SE&apenasGravacao=SE&variacaoComplementar=SE&variacaoComplementar2=SE&variacaoComplementar3=SE&quantidade="+qtdCarrinho+"&idProduto=<?php echo $arrProduto['id'] ?>";
 
                 }
 
-            }else if(variacao_padrao == "gravacao" && variacao_complementar < 1){
+            }else if(variacao_padrao == "gravacao" && variacao_complementar < 1 && variacao_complementar2 < 1 && variacao_complementar3 < 1){
 
                 var gravacaoApenasGravacao = document.getElementById("campoGravacaoApenasGravacao").value;
                 var botaoAdicionarCarrinho = document.getElementById("botaoAddCarrinho");
 
                 /* window.location = "php/adicinarSacola.php?aroFeminino="+hiddenFeminino+"&gravacaoFeminino="+gravacaoFeminino+"&aroMasculino="+hiddenMasculino+"&gravacaoMasculino="+gravacaoMasculino+"&variacaoAdicional="+hiddenVariacaoAdicional; */
-                window.location = "php/adicionarSacola.php?anelUnico=SE&gravacaoAnelUnico=SE&anelCasal=SE&gravacaoAnelCasal=SE&apenasAro=SE&apenasGravacao="+gravacaoApenasGravacao+"&variacaoComplementar=SE&quantidade="+qtdCarrinho+"&idProduto=<?php echo $arrProduto['id'] ?>";
+                window.location = "php/adicionarSacola.php?anelUnico=SE&gravacaoAnelUnico=SE&anelCasal=SE&gravacaoAnelCasal=SE&apenasAro=SE&apenasGravacao="+gravacaoApenasGravacao+"&variacaoComplementar=SE&variacaoComplementar2=SE&variacaoComplementar3=SE&quantidade="+qtdCarrinho+"&idProduto=<?php echo $arrProduto['id'] ?>";
 
-            }else if(variacao_padrao == "nenhum" && variacao_complementar < 1){
+            }else if(variacao_padrao == "nenhum" && variacao_complementar < 1 && variacao_complementar2 < 1 && variacao_complementar3 < 1){
 
                 var botaoAdicionarCarrinho = document.getElementById("botaoAddCarrinho");
 
                 /* window.location = "php/adicinarSacola.php?aroFeminino="+hiddenFeminino+"&gravacaoFeminino="+gravacaoFeminino+"&aroMasculino="+hiddenMasculino+"&gravacaoMasculino="+gravacaoMasculino+"&variacaoAdicional="+hiddenVariacaoAdicional; */
-                window.location = "php/adicionarSacola.php?anelUnico=SE&gravacaoAnelUnico=SE&anelCasal=SE&gravacaoAnelCasal=SE&apenasAro=SE&apenasGravacao=SE&variacaoComplementar=SE&quantidade="+qtdCarrinho+"&idProduto=<?php echo $arrProduto['id'] ?>";
+                window.location = "php/adicionarSacola.php?anelUnico=SE&gravacaoAnelUnico=SE&anelCasal=SE&gravacaoAnelCasal=SE&apenasAro=SE&apenasGravacao=SE&variacaoComplementar=SE&variacaoComplementar2=SE&variacaoComplementar3=SE&quantidade="+qtdCarrinho+"&idProduto=<?php echo $arrProduto['id'] ?>";
 
             }
 
@@ -799,6 +2433,26 @@
                 }else{
 
                     $variacaoAdd = "";
+
+                }
+
+                if($arrProduto["id_variacao_produto2"] == 0){
+
+                    $variacaoAdd2 = "d-none";
+
+                }else{
+
+                    $variacaoAdd2 = "";
+
+                }
+
+                if($arrProduto["id_variacao_produto3"] == 0){
+
+                    $variacaoAdd3 = "d-none";
+
+                }else{
+
+                    $variacaoAdd3 = "";
 
                 }
                 
@@ -1118,6 +2772,130 @@
                 </div>
                 <!-- //Variação Adicional -->
 
+                <!-- Variação Adicional2 -->
+                <div class="row justify-content-center mt-4 <?php echo $variacaoAdd2; ?>">
+
+                    <div id="boxVariacaoAdicional2" class="boxAro col-11">
+
+                        <div class="row mt-2">
+
+                            <div>
+
+                                <?php
+                                
+                                foreach($classeProdutos->retorna_opcoes_variacoes($arrProduto["id_variacao_produto2"]) as $arrVariacao){
+                                
+                                ?>
+
+                                <span class="text-secondary"><?php echo $arrVariacao["texto_cliente"]; ?></span>
+
+                            </div>
+
+                        </div>
+
+                        <div class="row justify-content-center mt-2 mb-3">
+
+                            <div>
+
+                                <select class="text-secondary" id="selectVariacao" onchange="mudarResultadoVariacaoAdicional2(this.value)">
+
+                                    <option disabled selected hidden>Escolher</option>
+
+                                    <?php
+
+                                    foreach($classeProdutos->formatar_op_variacoes($arrVariacao["opcoes"]) as $arrVar){
+
+                                    ?>
+
+                                        <option value="<?php echo $arrVar ?>"><?php echo $arrVar ?></option>
+
+                                    <?php
+
+                                    }
+                                    
+                                    ?>
+        
+                                </select>
+
+                                <input type="hidden" id="hiddenVariacaoAdicional2">
+
+                                <?php
+                                
+                                }
+                                
+                                ?>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+                <!-- //Variação Adicional -->
+
+                <!-- Variação Adicional3 -->
+                <div class="row justify-content-center mt-4 <?php echo $variacaoAdd3; ?>">
+
+                    <div id="boxVariacaoAdicional3" class="boxAro col-11">
+
+                        <div class="row mt-2">
+
+                            <div>
+
+                                <?php
+                                
+                                foreach($classeProdutos->retorna_opcoes_variacoes($arrProduto["id_variacao_produto3"]) as $arrVariacao){
+                                
+                                ?>
+
+                                <span class="text-secondary"><?php echo $arrVariacao["texto_cliente"]; ?></span>
+
+                            </div>
+
+                        </div>
+
+                        <div class="row justify-content-center mt-2 mb-3">
+
+                            <div>
+
+                                <select class="text-secondary" id="selectVariacao" onchange="mudarResultadoVariacaoAdicional3(this.value)">
+
+                                    <option disabled selected hidden>Escolher</option>
+
+                                    <?php
+
+                                    foreach($classeProdutos->formatar_op_variacoes($arrVariacao["opcoes"]) as $arrVar){
+
+                                    ?>
+
+                                        <option value="<?php echo $arrVar ?>"><?php echo $arrVar ?></option>
+
+                                    <?php
+
+                                    }
+                                    
+                                    ?>
+        
+                                </select>
+
+                                <input type="hidden" id="hiddenVariacaoAdicional3">
+
+                                <?php
+                                
+                                }
+                                
+                                ?>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+                <!-- //Variação Adicional -->
+
                 <!-- Calculo do frete -->
                 <div class="row justify-content-center mt-4 pt-3">
 
@@ -1231,12 +3009,14 @@
                         
                         $variacao_padrao = $arrProduto['variacao_padrao'];
                         $variacao_complementar = $arrProduto['id_variacao_produto'];
+                        $variacao_complementar2 = $arrProduto['id_variacao_produto2'];
+                        $variacao_complementar3 = $arrProduto['id_variacao_produto3'];
 
                         if(isset($_COOKIE["iu_oj"]) && isset($_COOKIE["eu_oj"]) && isset($_COOKIE["su_oj"]) && $classeClientes->verificaExistenciaUsuario($_COOKIE["iu_oj"], $_COOKIE["eu_oj"], $_COOKIE["su_oj"]) == true){
                         
                         ?>
 
-                        <button onclick="cadastrarProdutoCarrinho('<?php echo $variacao_padrao ?>', <?php echo $variacao_complementar ?>)" id="botaoAddCarrinho">ADICIONAR À SACOLA</button>
+                        <button onclick="cadastrarProdutoCarrinho('<?php echo $variacao_padrao ?>', <?php echo $variacao_complementar ?>, <?php echo $variacao_complementar2 ?>, <?php echo $variacao_complementar3 ?>)" id="botaoAddCarrinho">ADICIONAR À SACOLA</button>
 
                         <?php
                         

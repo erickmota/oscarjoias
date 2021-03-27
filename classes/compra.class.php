@@ -10,6 +10,8 @@ class compra{
     public $apenasAro;
     public $apenasGravacao;
     public $variacaoComplementar;
+    public $variacaoComplementar2;
+    public $variacaoComplementar3;
     public $quantidade;
     public $idProduto;
 
@@ -17,7 +19,7 @@ class compra{
 
         include 'conexao.class.php';
 
-        $sql = mysqli_query($conn, "INSERT INTO sacola (id_produto, anel_unico, gravacao_anel_unico, anel_casal, gravacao_anel_casal, apenas_aro, apenas_gravacao, variacao_complementar, quantidade, id_cliente) VALUES ($this->idProduto, '$this->anelUnico', '$this->gravacaoAnelUnico', '$this->anelCasal', '$this->gravacaoAnelCasal', '$this->apenasAro', '$this->apenasGravacao', '$this->variacaoComplementar', $this->quantidade, $this->idCliente)") or die("Erro add ao carrinho");
+        $sql = mysqli_query($conn, "INSERT INTO sacola (id_produto, anel_unico, gravacao_anel_unico, anel_casal, gravacao_anel_casal, apenas_aro, apenas_gravacao, variacao_complementar, variacao_complementar2, variacao_complementar3, quantidade, id_cliente) VALUES ($this->idProduto, '$this->anelUnico', '$this->gravacaoAnelUnico', '$this->anelCasal', '$this->gravacaoAnelCasal', '$this->apenasAro', '$this->apenasGravacao', '$this->variacaoComplementar', '$this->variacaoComplementar2', '$this->variacaoComplementar3', $this->quantidade, $this->idCliente)") or die("Erro add ao carrinho");
         
     }
 
@@ -25,7 +27,7 @@ class compra{
 
         include 'conexao.class.php';
 
-        $sql = mysqli_query($conn, "SELECT produtos.foto AS foto, produtos.nome AS nome_produto, sacola.anel_unico AS anel_unico, sacola.gravacao_anel_unico AS gravacao_anel_unico, sacola.anel_casal AS anel_casal, sacola.gravacao_anel_casal AS gravacao_anel_casal, sacola.apenas_aro AS apenas_aro, sacola.apenas_gravacao AS apenas_gravacao, sacola.variacao_complementar AS variacao_complementar, produtos.qtd_estoque AS qtd_estoque, produtos.preco AS preco, sacola.quantidade AS qtd_pedido, sacola.id AS id_sacola, sacola.id_produto AS id_produto, produtos.estado AS estado, produtos.peso AS peso, produtos.largura AS largura, produtos.altura AS altura, produtos.comprimento AS comprimento, produtos.dias_entrega AS dias_entrega FROM sacola INNER JOIN produtos ON sacola.id_produto=produtos.id WHERE sacola.id_cliente=$this->idCliente ORDER BY sacola.id ASC") or die("Erro ao retornar dados do carrinho");
+        $sql = mysqli_query($conn, "SELECT produtos.foto AS foto, produtos.nome AS nome_produto, sacola.anel_unico AS anel_unico, sacola.gravacao_anel_unico AS gravacao_anel_unico, sacola.anel_casal AS anel_casal, sacola.gravacao_anel_casal AS gravacao_anel_casal, sacola.apenas_aro AS apenas_aro, sacola.apenas_gravacao AS apenas_gravacao, sacola.variacao_complementar AS variacao_complementar, sacola.variacao_complementar2 AS variacao_complementar2, sacola.variacao_complementar3 AS variacao_complementar3, produtos.qtd_estoque AS qtd_estoque, produtos.preco AS preco, sacola.quantidade AS qtd_pedido, sacola.id AS id_sacola, sacola.id_produto AS id_produto, produtos.estado AS estado, produtos.peso AS peso, produtos.largura AS largura, produtos.altura AS altura, produtos.comprimento AS comprimento, produtos.dias_entrega AS dias_entrega, produtos.id_variacao_produto AS id_variacao_produto, produtos.id_variacao_produto2 AS id_variacao_produto2, produtos.id_variacao_produto3 AS id_variacao_produto3 FROM sacola INNER JOIN produtos ON sacola.id_produto=produtos.id WHERE sacola.id_cliente=$this->idCliente ORDER BY sacola.id ASC") or die("Erro ao retornar dados do carrinho");
         $qtd_sql = mysqli_num_rows($sql);
         while($linha = mysqli_fetch_array($sql)){
 
@@ -42,6 +44,17 @@ class compra{
             return $array;
 
         }
+
+    }
+
+    public function retorna_dados_variacao_complementar_por_id($id_variacao){
+
+        include 'conexao.class.php';
+
+        $sql = mysqli_query($conn, "SELECT texto_cliente FROM variacao_produtos WHERE id=$id_variacao") or die("Erro retorna_variacao_complementar_por_id");
+        $linha = mysqli_fetch_array($sql);
+
+        return $linha["texto_cliente"];
 
     }
 
@@ -223,10 +236,12 @@ class compra{
             $apenasAro = $linha["apenas_aro"];
             $apenasGravacao = $linha["apenas_gravacao"];
             $variacaoComplementar = $linha["variacao_complementar"];
+            $variacaoComplementar2 = $linha["variacao_complementar2"];
+            $variacaoComplementar3 = $linha["variacao_complementar3"];
             $quantidade = $linha["quantidade"];
             $preco = $linha["preco"];
 
-            $sql7 = mysqli_query($conn, "INSERT INTO item_pedido (id_produtos, id_pedido, anel_unico, gravacao_anel_unico, anel_casal, gravacao_anel_casal, apenas_aro, apenas_gravacao, variacao_complementar, quantidade, preco_produto_pedido) VALUES ('$idProduto', '$idReferencia', '$anelUnico', '$gravacaoAnelUnico', '$anelCasal', '$gravacaoAnelCasal', '$apenasAro', '$apenasGravacao', '$variacaoComplementar', '$quantidade', '$preco')") or die("Erro ao add produtos");
+            $sql7 = mysqli_query($conn, "INSERT INTO item_pedido (id_produtos, id_pedido, anel_unico, gravacao_anel_unico, anel_casal, gravacao_anel_casal, apenas_aro, apenas_gravacao, variacao_complementar, variacao_complementar2, variacao_complementar3, quantidade, preco_produto_pedido) VALUES ('$idProduto', '$idReferencia', '$anelUnico', '$gravacaoAnelUnico', '$anelCasal', '$gravacaoAnelCasal', '$apenasAro', '$apenasGravacao', '$variacaoComplementar', '$variacaoComplementar2', '$variacaoComplementar3', '$quantidade', '$preco')") or die("Erro ao add produtos");
 
         }
 
@@ -410,7 +425,7 @@ class compra{
         include 'conexao.class.php';
 
         /* $sql = mysqli_query($conn, "SELECT * FROM item_pedido INNER JOIN pedido ON item_pedido.id_pedido=pedido.id WHERE pedido.id='$referencia' ORDER BY item_pedido.id ASC") or die("Erro ao retornar produtos do pedido"); */
-        $sql = mysqli_query($conn, "SELECT * FROM item_pedido INNER JOIN pedido ON item_pedido.id_pedido=pedido.id INNER JOIN produtos ON item_pedido.id_produtos=produtos.id WHERE pedido.id='$referencia' ORDER BY item_pedido.id ASC") or die("Erro ao retornar produtos do pedido");
+        $sql = mysqli_query($conn, "SELECT * FROM item_pedido INNER JOIN pedido ON item_pedido.id_pedido=pedido.id INNER JOIN produtos ON item_pedido.id_produtos=produtos.id WHERE pedido.id='$referencia' ORDER BY item_pedido.id DESC") or die("Erro ao retornar produtos do pedido");
         while($linha = mysqli_fetch_assoc($sql)){
 
             $array[] = $linha;

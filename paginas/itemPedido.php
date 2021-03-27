@@ -345,6 +345,10 @@
         <?php
         
         foreach($classeCompra->retorna_produtos_pedido($referencia) as $arrReferencia){
+
+            $nome_variacao1 = $classeCompra->retorna_dados_variacao_complementar_por_id($arrReferencia["id_variacao_produto"]);
+            $nome_variacao2 = $classeCompra->retorna_dados_variacao_complementar_por_id($arrReferencia["id_variacao_produto2"]);
+            $nome_variacao3 = $classeCompra->retorna_dados_variacao_complementar_por_id($arrReferencia["id_variacao_produto3"]);
         
         ?>
 
@@ -376,7 +380,9 @@
                                     <li class="<?php if($arrReferencia["gravacao_anel_casal"] == "SE"){ echo "d-none";} ?>"><b>Gravação masculina:</b> <?php if($arrReferencia["gravacao_anel_casal"] == ""){ echo "(SEM GRAVAÇÃO)"; }else{ echo $arrReferencia["gravacao_anel_casal"]; } ?></li>
                                     <li class="<?php if($arrReferencia["apenas_aro"] == "SE"){ echo "d-none";} ?>"><b>Aro:</b> <?php echo $arrReferencia["apenas_aro"]; ?></li>
                                     <li class="<?php if($arrReferencia["apenas_gravacao"] == "SE"){ echo "d-none";} ?>"><b>Gravação:</b> <?php if($arrReferencia["apenas_gravacao"] == ""){ echo "(SEM GRAVAÇÃO)"; }else{ echo $arrReferencia["apenas_gravacao"]; } ?></li>
-                                    <li class="<?php if($arrReferencia["variacao_complementar"] == "SE"){ echo "d-none";} ?>"><b>Informação adicional:</b> <?php echo $arrReferencia["variacao_complementar"]; ?></li>
+                                    <li class="<?php if($arrReferencia["variacao_complementar"] == "SE"){ echo "d-none";} ?>"><b><?php echo $nome_variacao1; ?>:</b> <?php echo $arrReferencia["variacao_complementar"]; ?></li>
+                                    <li class="<?php if($arrReferencia["variacao_complementar2"] == "SE"){ echo "d-none";} ?>"><b><?php echo $nome_variacao2; ?>:</b> <?php echo $arrReferencia["variacao_complementar2"]; ?></li>
+                                    <li class="<?php if($arrReferencia["variacao_complementar3"] == "SE"){ echo "d-none";} ?>"><b><?php echo $nome_variacao3; ?>:</b> <?php echo $arrReferencia["variacao_complementar3"]; ?></li>
 
                                 </ul>
 
