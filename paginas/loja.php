@@ -125,9 +125,9 @@
                 
                 if(isset($_GET["tipo"]) || isset($_GET["vma"]) || isset($_GET["cat"]) || isset($_GET["busca"])){
 
-                    $novaOrdenacao = str_replace($_GET["ordenacao"], "nome", $_SERVER["REQUEST_URI"]);
-                    $novaOrdem = str_replace($_GET["tipoord"], "cre", $novaOrdenacao);
-                    $novaPg = str_replace($_GET["pg"], 1, $novaOrdem);
+                    $novaOrdenacao = str_replace(htmlentities($_GET["ordenacao"]), "nome", $_SERVER["REQUEST_URI"]);
+                    $novaOrdem = str_replace(htmlentities($_GET["tipoord"]), "cre", $novaOrdenacao);
+                    $novaPg = str_replace(htmlentities($_GET["pg"]), 1, $novaOrdem);
 
                 ?>
 
@@ -153,9 +153,9 @@
                 
                 if(isset($_GET["tipo"]) || isset($_GET["vma"]) || isset($_GET["cat"]) || isset($_GET["busca"])){
 
-                    $novaOrdenacao = str_replace($_GET["ordenacao"], "adicionado", $_SERVER["REQUEST_URI"]);
-                    $novaOrdem = str_replace($_GET["tipoord"], "dec", $novaOrdenacao);
-                    $novaPg = str_replace($_GET["pg"], 1, $novaOrdem);
+                    $novaOrdenacao = str_replace(htmlentities($_GET["ordenacao"]), "adicionado", $_SERVER["REQUEST_URI"]);
+                    $novaOrdem = str_replace(htmlentities($_GET["tipoord"]), "dec", $novaOrdenacao);
+                    $novaPg = str_replace(htmlentities($_GET["pg"]), 1, $novaOrdem);
 
                 ?>
 
@@ -183,9 +183,9 @@
                 
                 if(isset($_GET["tipo"]) || isset($_GET["vma"]) || isset($_GET["cat"]) || isset($_GET["busca"])){
 
-                    $novaOrdenacao = str_replace($_GET["ordenacao"], "adicionado", $_SERVER["REQUEST_URI"]);
-                    $novaOrdem = str_replace($_GET["tipoord"], "cre", $novaOrdenacao);
-                    $novaPg = str_replace($_GET["pg"], 1, $novaOrdem);
+                    $novaOrdenacao = str_replace(htmlentities($_GET["ordenacao"]), "adicionado", $_SERVER["REQUEST_URI"]);
+                    $novaOrdem = str_replace(htmlentities($_GET["tipoord"]), "cre", $novaOrdenacao);
+                    $novaPg = str_replace(htmlentities($_GET["pg"]), 1, $novaOrdem);
 
                 ?>
 
@@ -213,9 +213,9 @@
                 
                 if(isset($_GET["tipo"]) || isset($_GET["vma"]) || isset($_GET["cat"]) || isset($_GET["busca"])){
 
-                    $novaOrdenacao = str_replace($_GET["ordenacao"], "preco", $_SERVER["REQUEST_URI"]);
-                    $novaOrdem = str_replace($_GET["tipoord"], "cre", $novaOrdenacao);
-                    $novaPg = str_replace($_GET["pg"], 1, $novaOrdem);
+                    $novaOrdenacao = str_replace(htmlentities($_GET["ordenacao"]), "preco", $_SERVER["REQUEST_URI"]);
+                    $novaOrdem = str_replace(htmlentities($_GET["tipoord"]), "cre", $novaOrdenacao);
+                    $novaPg = str_replace(htmlentities($_GET["pg"]), 1, $novaOrdem);
 
                 ?>
 
@@ -243,9 +243,9 @@
                 
                 if(isset($_GET["tipo"]) || isset($_GET["vma"]) || isset($_GET["cat"]) || isset($_GET["busca"])){
 
-                    $novaOrdenacao = str_replace($_GET["ordenacao"], "preco", $_SERVER["REQUEST_URI"]);
-                    $novaOrdem = str_replace($_GET["tipoord"], "dec", $novaOrdenacao);
-                    $novaPg = str_replace($_GET["pg"], 1, $novaOrdem);
+                    $novaOrdenacao = str_replace(htmlentities($_GET["ordenacao"]), "preco", $_SERVER["REQUEST_URI"]);
+                    $novaOrdem = str_replace(htmlentities($_GET["tipoord"]), "dec", $novaOrdenacao);
+                    $novaPg = str_replace(htmlentities($_GET["pg"]), 1, $novaOrdem);
 
                 ?>
 
@@ -293,8 +293,8 @@
 
             ?>
 
-            var ordenacao = "<?php echo $_GET["ordenacao"]; ?>";
-            var tipoOrdenacao = "<?php echo $_GET["tipoord"]; ?>";
+            var ordenacao = "<?php echo htmlentities($_GET["ordenacao"]); ?>";
+            var tipoOrdenacao = "<?php echo htmlentities($_GET["tipoord"]); ?>";
 
             <?php
 
@@ -327,7 +327,7 @@
                 
                 if(isset($_GET["cat"])){
 
-                    $cat = $_GET["cat"];
+                    $cat = htmlentities($_GET["cat"]);
 
                 ?>
 
@@ -337,7 +337,7 @@
     
                 }else if(isset($_GET["busca"])){
 
-                    $busca = $_GET["busca"];
+                    $busca = htmlentities($_GET["busca"]);
 
                 ?>
 
@@ -365,7 +365,7 @@
                 
                 if(isset($_GET["cat"])){
 
-                    $cat = $_GET["cat"];
+                    $cat = htmlentities($_GET["cat"]);
 
                 ?>
 
@@ -375,7 +375,7 @@
     
                 }else if(isset($_GET["busca"])){
 
-                    $busca = $_GET["busca"];
+                    $busca = htmlentities($_GET["busca"]);
 
                 ?>
 
@@ -403,7 +403,7 @@
                 
                 if(isset($_GET["cat"])){
 
-                    $cat = $_GET["cat"];
+                    $cat = htmlentities($_GET["cat"]);
 
                 ?>
 
@@ -413,7 +413,7 @@
     
                 }else if(isset($_GET["busca"])){
 
-                    $busca = $_GET["busca"];
+                    $busca = htmlentities($_GET["busca"]);
 
                 ?>
 
@@ -554,11 +554,11 @@
 
             <div class="col-md-9 mt-3 pt-3">
 
-                <small id="itemFiltro" class="<?php if(!isset($_GET["tipo"])){ echo "d-none"; } ?>"><?php echo $_GET["tipo"] ?></small>
+                <small id="itemFiltro" class="<?php if(!isset($_GET["tipo"])){ echo "d-none"; } ?>"><?php echo htmlentities($_GET["tipo"]) ?></small>
 
-                <small id="itemFiltro" class="<?php if(!isset($_GET["vmi"])){ echo "d-none"; } ?>">-R$<?php echo number_format($_GET["vmi"], 2, ",", ".") ?></small>
+                <small id="itemFiltro" class="<?php if(!isset($_GET["vmi"])){ echo "d-none"; } ?>">-R$<?php echo number_format(htmlentities($_GET["vmi"]), 2, ",", ".") ?></small>
 
-                <small id="itemFiltro" class="<?php if(!isset($_GET["vma"])){ echo "d-none"; } ?>">+R$<?php echo number_format($_GET["vma"], 2, ",", ".") ?></small>
+                <small id="itemFiltro" class="<?php if(!isset($_GET["vma"])){ echo "d-none"; } ?>">+R$<?php echo number_format(htmlentities($_GET["vma"]), 2, ",", ".") ?></small>
                 
                 <small class="ms-3"><a href="loja?pg=1" class="text-secondary">limpar filtro</a></small>
 
@@ -582,8 +582,8 @@
 
                             if(isset($_GET["ordenacao"])){
 
-                                $ordenacao = $_GET["ordenacao"];
-                                $tipoOrdenacao = $_GET["tipoord"];
+                                $ordenacao = htmlentities($_GET["ordenacao"]);
+                                $tipoOrdenacao = htmlentities($_GET["tipoord"]);
 
                                 /* Ordenação */
                                 if($ordenacao == "nome"){
@@ -614,7 +614,7 @@
                                 /* Tipo */
                                 if(isset($_GET["tipo"])){
 
-                                    $tipo = $_GET["tipo"];
+                                    $tipo = htmlentities($_GET["tipo"]);
 
                                     if($tipo == "ouro"){
 
@@ -636,8 +636,8 @@
 
                                     /* $vMinimo = $_GET["vmi"];
                                     $vMaximo = $_GET["vma"]; */
-                                    $vMinimo = str_replace(array(";", "'", "--", "/", "*", "xp_", "XP_", "SELECT" , "INSERT" , "UPDATE" , "DELETE" , "DROP", "select" , "insert" , "update" , "delete" , "drop"), "", $_GET["vmi"]);
-                                    $vMaximo = str_replace(array(";", "'", "--", "/", "*", "xp_", "XP_", "SELECT" , "INSERT" , "UPDATE" , "DELETE" , "DROP", "select" , "insert" , "update" , "delete" , "drop"), "", $_GET["vma"]);
+                                    $vMinimo = str_replace(array(";", "'", "--", "/", "*", "xp_", "XP_", "SELECT" , "INSERT" , "UPDATE" , "DELETE" , "DROP", "select" , "insert" , "update" , "delete" , "drop"), "", htmlentities($_GET["vmi"]));
+                                    $vMaximo = str_replace(array(";", "'", "--", "/", "*", "xp_", "XP_", "SELECT" , "INSERT" , "UPDATE" , "DELETE" , "DROP", "select" , "insert" , "update" , "delete" , "drop"), "", htmlentities($_GET["vma"]));
 
                                 }else{
 
@@ -650,7 +650,7 @@
 
                                     /* $categoria = $_GET["cat"]; */
 
-                                    $catComTraco = str_replace(" ", "-", $_GET["cat"]);
+                                    $catComTraco = str_replace(" ", "-", htmlentities($_GET["cat"]));
                                     $transformarEmMinuscula = mb_strtolower($catComTraco, "UTF-8");
                                     $trataInjection = str_replace(array(";", "'", "--", "/", "*", "xp_", "XP_", "SELECT" , "INSERT" , "UPDATE" , "DELETE" , "DROP", "select" , "insert" , "update" , "delete" , "drop"), "", $transformarEmMinuscula);
                                     $str1 = preg_replace('/[áàãâä]/ui', 'a', $trataInjection);
@@ -671,7 +671,7 @@
                                 if(isset($_GET["busca"])){
 
                                     $transformarEmMinuscula = mb_strtolower($_GET["busca"], "UTF-8");
-                                    $trataInjection = str_replace(array(";", "'", "--", "/", "*", "xp_", "XP_", "SELECT" , "INSERT" , "UPDATE" , "DELETE" , "DROP", "select" , "insert" , "update" , "delete" , "drop"), "", $transformarEmMinuscula);
+                                    $trataInjection = str_replace(array("<", ">",";", "'", "--", "/", "*", "xp_", "XP_", "SELECT" , "INSERT" , "UPDATE" , "DELETE" , "DROP", "select" , "insert" , "update" , "delete" , "drop"), "", $transformarEmMinuscula);
                                     $str1 = preg_replace('/[áàãâä]/ui', 'a', $trataInjection);
                                     $str2 = preg_replace('/[éèêë]/ui', 'e', $str1);
                                     $str3 = preg_replace('/[íìîï]/ui', 'i', $str2);
@@ -699,7 +699,7 @@
 
                             }
 
-                            $numeroPagina = str_replace(array(";", "'", "--", "/", "*", "xp_", "XP_", "SELECT" , "INSERT" , "UPDATE" , "DELETE" , "DROP", "select" , "insert" , "update" , "delete" , "drop"), "", $_GET["pg"]);
+                            $numeroPagina = str_replace(array(";", "'", "--", "/", "*", "xp_", "XP_", "SELECT" , "INSERT" , "UPDATE" , "DELETE" , "DROP", "select" , "insert" , "update" , "delete" , "drop"), "", htmlentities($_GET["pg"]));
 
                             if($classeProdutos->retorna_lsita_produtos($tipo2, $vMinimo, $vMaximo, $categoria, $numeroPagina, $ordenacao2, $tipoOrdenacao2, $busca)[0] == false){
 
@@ -782,23 +782,23 @@
 
         <?php
 
-        $pgAnterior = "pg=".$classeProdutos->organizar_paginacao($classeProdutos->retorna_lsita_produtos($tipo2, $vMinimo, $vMaximo, $categoria, $numeroPagina, $ordenacao2, $tipoOrdenacao2, $busca)[2], $_GET["pg"])[0];
-        $pgProximo = "pg=".$classeProdutos->organizar_paginacao($classeProdutos->retorna_lsita_produtos($tipo2, $vMinimo, $vMaximo, $categoria, $numeroPagina, $ordenacao2, $tipoOrdenacao2, $busca)[2], $_GET["pg"])[1];
-        $pgAtual = "pg=".$_GET["pg"];
+        $pgAnterior = "pg=".$classeProdutos->organizar_paginacao($classeProdutos->retorna_lsita_produtos($tipo2, $vMinimo, $vMaximo, $categoria, $numeroPagina, $ordenacao2, $tipoOrdenacao2, $busca)[2], htmlentities($_GET["pg"]))[0];
+        $pgProximo = "pg=".$classeProdutos->organizar_paginacao($classeProdutos->retorna_lsita_produtos($tipo2, $vMinimo, $vMaximo, $categoria, $numeroPagina, $ordenacao2, $tipoOrdenacao2, $busca)[2], htmlentities($_GET["pg"]))[1];
+        $pgAtual = "pg=".htmlentities($_GET["pg"]);
         
         ?>
 
             <div class="col-md-9 text-center">
 
-                <a href="<?php echo str_replace($pgAtual, $pgAnterior, $_SERVER["REQUEST_URI"]); ?>"><div id="numeroPaginacao" class="<?php if($classeProdutos->organizar_paginacao($classeProdutos->retorna_lsita_produtos($tipo2, $vMinimo, $vMaximo, $categoria, $numeroPagina, $ordenacao2, $tipoOrdenacao2, $busca)[2], $_GET["pg"])[0] == "SE"){ echo "d-none"; } ?>"><span><</span></div></a>
+                <a href="<?php echo str_replace($pgAtual, $pgAnterior, $_SERVER["REQUEST_URI"]); ?>"><div id="numeroPaginacao" class="<?php if($classeProdutos->organizar_paginacao($classeProdutos->retorna_lsita_produtos($tipo2, $vMinimo, $vMaximo, $categoria, $numeroPagina, $ordenacao2, $tipoOrdenacao2, $busca)[2], htmlentities($_GET["pg"]))[0] == "SE"){ echo "d-none"; } ?>"><span><</span></div></a>
 
-                <a href="<?php echo str_replace($pgAtual, $pgAnterior, $_SERVER["REQUEST_URI"]); ?>"><div id="numeroPaginacao" class="<?php if($classeProdutos->organizar_paginacao($classeProdutos->retorna_lsita_produtos($tipo2, $vMinimo, $vMaximo, $categoria, $numeroPagina, $ordenacao2, $tipoOrdenacao2, $busca)[2], $_GET["pg"])[0] == "SE"){ echo "d-none"; } ?>"><span><?php echo $_GET["pg"] - 1; ?></span></div></a>
+                <a href="<?php echo str_replace($pgAtual, $pgAnterior, $_SERVER["REQUEST_URI"]); ?>"><div id="numeroPaginacao" class="<?php if($classeProdutos->organizar_paginacao($classeProdutos->retorna_lsita_produtos($tipo2, $vMinimo, $vMaximo, $categoria, $numeroPagina, $ordenacao2, $tipoOrdenacao2, $busca)[2], htmlentities($_GET["pg"]))[0] == "SE"){ echo "d-none"; } ?>"><span><?php echo htmlentities($_GET["pg"]) - 1; ?></span></div></a>
 
-                <div id="numeroPaginacao" class="ativo"><span><?php echo $_GET["pg"]; ?></span></div>
+                <div id="numeroPaginacao" class="ativo"><span><?php echo htmlentities($_GET["pg"]); ?></span></div>
                 
-                <a href="<?php echo str_replace($pgAtual, $pgProximo, $_SERVER["REQUEST_URI"]); ?>"><div id="numeroPaginacao" class="<?php if($classeProdutos->organizar_paginacao($classeProdutos->retorna_lsita_produtos($tipo2, $vMinimo, $vMaximo, $categoria, $numeroPagina, $ordenacao2, $tipoOrdenacao2, $busca)[2], $_GET["pg"])[1] == "SE"){ echo "d-none"; } ?>"><span><?php echo $_GET["pg"] + 1; ?></span></div></a>
+                <a href="<?php echo str_replace($pgAtual, $pgProximo, $_SERVER["REQUEST_URI"]); ?>"><div id="numeroPaginacao" class="<?php if($classeProdutos->organizar_paginacao($classeProdutos->retorna_lsita_produtos($tipo2, $vMinimo, $vMaximo, $categoria, $numeroPagina, $ordenacao2, $tipoOrdenacao2, $busca)[2], htmlentities($_GET["pg"]))[1] == "SE"){ echo "d-none"; } ?>"><span><?php echo htmlentities($_GET["pg"]) + 1; ?></span></div></a>
 
-                <a href="<?php echo str_replace($pgAtual, $pgProximo, $_SERVER["REQUEST_URI"]); ?>"><div id="numeroPaginacao" class="<?php if($classeProdutos->organizar_paginacao($classeProdutos->retorna_lsita_produtos($tipo2, $vMinimo, $vMaximo, $categoria, $numeroPagina, $ordenacao2, $tipoOrdenacao2, $busca)[2], $_GET["pg"])[1] == "SE"){ echo "d-none"; } ?>"><span>></span></div></a>
+                <a href="<?php echo str_replace($pgAtual, $pgProximo, $_SERVER["REQUEST_URI"]); ?>"><div id="numeroPaginacao" class="<?php if($classeProdutos->organizar_paginacao($classeProdutos->retorna_lsita_produtos($tipo2, $vMinimo, $vMaximo, $categoria, $numeroPagina, $ordenacao2, $tipoOrdenacao2, $busca)[2], htmlentities($_GET["pg"]))[1] == "SE"){ echo "d-none"; } ?>"><span>></span></div></a>
 
             </div>
 

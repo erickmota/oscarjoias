@@ -11,7 +11,7 @@
     include "classes/produtos.class.php";
     $classeProdutos = new produtos();
 
-    $classeProdutos->nome = $explode[1];
+    $classeProdutos->nome = htmlentities($explode[1]);
     
     ?>
 

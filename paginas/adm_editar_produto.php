@@ -8,7 +8,7 @@
     include "./classes/produtos.class.php";
     $classeProdutos = new produtos();
 
-    $idProduto = $_GET["produto"];
+    $idProduto = htmlentities($_GET["produto"]);
 
     $classeProdutos->id = str_replace(array(";", "'", "--", "/", "*", "xp_", "XP_", "SELECT" , "INSERT" , "UPDATE" , "DELETE" , "DROP", "select" , "insert" , "update" , "delete" , "drop"), "", $idProduto);
     

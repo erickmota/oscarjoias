@@ -155,7 +155,7 @@
                                         
                                         if(isset($_GET["q"])){
 
-                                            $busca = $_GET["q"];
+                                            $busca = htmlentities($_GET["q"]);
 
                                         }else{
 

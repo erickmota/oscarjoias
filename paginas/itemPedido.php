@@ -17,11 +17,11 @@
     include "classes/adm.class.php";
     $classeAdm = new adm();
 
-    @$idCliente = str_replace(array(";", "'", "--", "/", "*", "xp_", "XP_", "SELECT" , "INSERT" , "UPDATE" , "DELETE" , "DROP", "select" , "insert" , "update" , "delete" , "drop"), "", base64_decode($_COOKIE["iu_oj"]));
+    @$idCliente = str_replace(array(";", "'", "--", "/", "*", "xp_", "XP_", "SELECT" , "INSERT" , "UPDATE" , "DELETE" , "DROP", "select" , "insert" , "update" , "delete" , "drop"), "", htmlentities(base64_decode($_COOKIE["iu_oj"])));
 
     $classeCompra->idCliente = $idCliente;
 
-    $referencia = str_replace(array(";", "'", "--", "/", "*", "xp_", "XP_", "SELECT" , "INSERT" , "UPDATE" , "DELETE" , "DROP", "select" , "insert" , "update" , "delete" , "drop"), "", $_GET["ref"]);
+    $referencia = str_replace(array(";", "'", "--", "/", "*", "xp_", "XP_", "SELECT" , "INSERT" , "UPDATE" , "DELETE" , "DROP", "select" , "insert" , "update" , "delete" , "drop"), "", htmlentities($_GET["ref"]));
 
     if($classeClientes->verificar_se_numero_pedido_pertence_ao_cliente($referencia, $idCliente) > 0){
 
@@ -82,7 +82,7 @@
 
             <div class="col-md-9 pt-3 pb-1">
 
-                <h1 class="fs-2 fw-light text-secondary" id="nome">Pedido <?php echo $_GET["ref"]; ?></h1>
+                <h1 class="fs-2 fw-light text-secondary" id="nome">Pedido <?php echo htmlentities($_GET["ref"]); ?></h1>
 
             </div>
 

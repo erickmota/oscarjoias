@@ -69,7 +69,7 @@
 
                 if(isset($_GET["estado"])){
 
-                    $novaUrl = str_replace($_GET["estado"], "tudo", $urlAtual);
+                    $novaUrl = str_replace(htmlentities($_GET["estado"]), "tudo", $urlAtual);
 
                 }else{
 
@@ -97,7 +97,7 @@
 
                 if(isset($_GET["estado"])){
 
-                    $novaUrl = str_replace($_GET["estado"], "publicado-disponivel", $urlAtual);
+                    $novaUrl = str_replace(htmlentities($_GET["estado"]), "publicado-disponivel", $urlAtual);
 
                 }else{
 
@@ -125,7 +125,7 @@
 
                 if(isset($_GET["estado"])){
 
-                    $novaUrl = str_replace($_GET["estado"], "publicado-nao-disponivel", $urlAtual);
+                    $novaUrl = str_replace(htmlentities($_GET["estado"]), "publicado-nao-disponivel", $urlAtual);
 
                 }else{
 
@@ -153,7 +153,7 @@
 
                 if(isset($_GET["estado"])){
 
-                    $novaUrl = str_replace($_GET["estado"], "rascunho", $urlAtual);
+                    $novaUrl = str_replace(htmlentities($_GET["estado"]), "rascunho", $urlAtual);
 
                 }else{
 
@@ -187,7 +187,7 @@
 
                 if(isset($_GET["org"])){
 
-                    $novaUrl = str_replace($_GET["org"], "DESC", $urlAtual);
+                    $novaUrl = str_replace(htmlentities($_GET["org"]), "DESC", $urlAtual);
 
                 }else{
 
@@ -215,7 +215,7 @@
 
                 if(isset($_GET["org"])){
 
-                    $novaUrl = str_replace($_GET["org"], "ASC", $urlAtual);
+                    $novaUrl = str_replace(htmlentities($_GET["org"]), "ASC", $urlAtual);
 
                 }else{
 
@@ -327,7 +327,7 @@
 
                             if(isset($_GET["org"])){
 
-                                $organizar = str_replace(array(";", "'", "--", "/", "*", "xp_", "XP_", "SELECT" , "INSERT" , "UPDATE" , "DELETE" , "DROP", "select" , "insert" , "update" , "delete" , "drop"), "", $_GET["org"]);
+                                $organizar = str_replace(array(";", "'", "--", "/", "*", "xp_", "XP_", "SELECT" , "INSERT" , "UPDATE" , "DELETE" , "DROP", "select" , "insert" , "update" , "delete" , "drop"), "", htmlentities($_GET["org"]));
 
                             }else{
 
@@ -337,7 +337,7 @@
 
                             if(isset($_GET["q"])){
 
-                                $busca = str_replace(array(";", "'", "--", "/", "*", "xp_", "XP_", "SELECT" , "INSERT" , "UPDATE" , "DELETE" , "DROP", "select" , "insert" , "update" , "delete" , "drop"), "", $_GET["q"]);
+                                $busca = str_replace(array(";", "'", "--", "/", "*", "xp_", "XP_", "SELECT" , "INSERT" , "UPDATE" , "DELETE" , "DROP", "select" , "insert" , "update" , "delete" , "drop"), "", htmlentities($_GET["q"]));
 
                             }else{
 
@@ -347,13 +347,13 @@
 
                             if(isset($_GET["estado"])){
 
-                                if($_GET["estado"] == "tudo"){
+                                if(htmlentities($_GET["estado"]) == "tudo"){
 
                                     $estado = "SE";
 
                                 }else{
 
-                                    $estado = str_replace(array(";", "'", "--", "/", "*", "xp_", "XP_", "SELECT" , "INSERT" , "UPDATE" , "DELETE" , "DROP", "select" , "insert" , "update" , "delete" , "drop"), "", $_GET["estado"]);
+                                    $estado = str_replace(array(";", "'", "--", "/", "*", "xp_", "XP_", "SELECT" , "INSERT" , "UPDATE" , "DELETE" , "DROP", "select" , "insert" , "update" , "delete" , "drop"), "", htmlentities($_GET["estado"]));
 
                                 }
 

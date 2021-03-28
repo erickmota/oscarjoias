@@ -8,7 +8,7 @@
     include "classes/clientes.class.php";
     $classeClientes = new clientes();
 
-    $classeClientes->emailUsuario = str_replace(array(";", "'", "/", "xp_", "XP_", "SELECT" , "INSERT" , "UPDATE" , "DELETE" , "DROP", "select" , "insert" , "update" , "delete" , "drop"), "", $_COOKIE["eu_oj"]);
+    $classeClientes->emailUsuario = str_replace(array(";", "'", "/", "xp_", "XP_", "SELECT" , "INSERT" , "UPDATE" , "DELETE" , "DROP", "select" , "insert" , "update" , "delete" , "drop"), "", htmlentities($_COOKIE["eu_oj"]));
     
     ?>
 
