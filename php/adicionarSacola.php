@@ -4,35 +4,18 @@
 
     $classeCompra = new compra();
 
-    /* Informações sobre a organização dos dados enviados
-    juntamente ao produto
-    1 - Nenhum
-    2 - Anel único
-    3 - Gravação Anel único
-    4 - Anel Casal
-    5 - Gravação Anel casal
-    6 - Apenas Aro
-    7 - Apenas Gravação
-    8 - Variação complementar
-    9 - Quantidade
-    10 - Id do produto */
+    $anelUnico = htmlentities($_GET["anelUnico"]);
+    $gravacaoAnelUnico = str_replace(array(";", "'", "--", "xp_", "XP_", "SELECT" , "INSERT" , "UPDATE" , "DELETE" , "DROP", "select" , "insert" , "update" , "delete" , "drop"), "", htmlentities($_GET["gravacaoAnelUnico"]));
+    $anelCasal = htmlentities($_GET["anelCasal"]);
+    $gravacaoAnelCasal = str_replace(array(";", "'", "--", "xp_", "XP_", "SELECT" , "INSERT" , "UPDATE" , "DELETE" , "DROP", "select" , "insert" , "update" , "delete" , "drop"), "", htmlentities($_GET["gravacaoAnelCasal"]));
+    $apenasAro = htmlentities($_GET["apenasAro"]);
+    $apenasGravacao = str_replace(array(";", "'", "--", "xp_", "XP_", "SELECT" , "INSERT" , "UPDATE" , "DELETE" , "DROP", "select" , "insert" , "update" , "delete" , "drop"), "", htmlentities($_GET["apenasGravacao"]));
+    $variacaoComplementar = htmlentities($_GET["variacaoComplementar"]);
+    $variacaoComplementar2 = htmlentities($_GET["variacaoComplementar2"]);
+    $variacaoComplementar3 = htmlentities($_GET["variacaoComplementar3"]);
+    $quantidade = htmlentities($_GET["quantidade"]);
+    $idProduto = htmlentities($_GET["idProduto"]);
 
-    $anelUnico = $_GET["anelUnico"];
-    /* $gravacaoAnelUnico = $_GET["gravacaoAnelUnico"]; */
-    $gravacaoAnelUnico = str_replace(array(";", "'", "--", "/", "*", "xp_", "XP_", "SELECT" , "INSERT" , "UPDATE" , "DELETE" , "DROP", "select" , "insert" , "update" , "delete" , "drop"), "", $_GET["gravacaoAnelUnico"]);
-    $anelCasal = $_GET["anelCasal"];
-    /* $gravacaoAnelCasal = $_GET["gravacaoAnelCasal"]; */
-    $gravacaoAnelCasal = str_replace(array(";", "'", "--", "/", "*", "xp_", "XP_", "SELECT" , "INSERT" , "UPDATE" , "DELETE" , "DROP", "select" , "insert" , "update" , "delete" , "drop"), "", $_GET["gravacaoAnelCasal"]);
-    $apenasAro = $_GET["apenasAro"];
-    /* $apenasGravacao = $_GET["apenasGravacao"]; */
-    $apenasGravacao = str_replace(array(";", "'", "--", "/", "*", "xp_", "XP_", "SELECT" , "INSERT" , "UPDATE" , "DELETE" , "DROP", "select" , "insert" , "update" , "delete" , "drop"), "", $_GET["apenasGravacao"]);
-    $variacaoComplementar = $_GET["variacaoComplementar"];
-    $variacaoComplementar2 = $_GET["variacaoComplementar2"];
-    $variacaoComplementar3 = $_GET["variacaoComplementar3"];
-    $quantidade = $_GET["quantidade"];
-    $idProduto = $_GET["idProduto"];
-
-    /* Verificar existencia usuário */
 
     if(!isset($classeClientes)){
 
@@ -50,11 +33,8 @@
         die("<script>window.location='../php/deslogar.php'</script>");
 
     }
-
-    /* //Verificar existencia usuário */
-
-    /* $classeCompra->idCliente = 1; */
-    $classeCompra->idCliente = str_replace(array(";", "'", "--", "/", "*", "xp_", "XP_", "SELECT" , "INSERT" , "UPDATE" , "DELETE" , "DROP", "select" , "insert" , "update" , "delete" , "drop"), "", base64_decode($_COOKIE["iu_oj"]));
+    
+    $classeCompra->idCliente = str_replace(array(";", "'", "--", "/", "*", "xp_", "XP_", "SELECT" , "INSERT" , "UPDATE" , "DELETE" , "DROP", "select" , "insert" , "update" , "delete" , "drop"), "", htmlentities(base64_decode($_COOKIE["iu_oj"])));
     $classeCompra->anelUnico = $anelUnico;
     $classeCompra->gravacaoAnelUnico = $gravacaoAnelUnico;
     $classeCompra->anelCasal = $anelCasal;

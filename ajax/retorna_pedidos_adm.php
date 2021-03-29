@@ -8,7 +8,7 @@ $classeCompra = new compra();
 
 /* $classeCompra->idCliente = $idCliente; */
 
-$busca = str_replace(array(";", "'", "--", "/", "*", "xp_", "XP_", "SELECT" , "INSERT" , "UPDATE" , "DELETE" , "DROP", "select" , "insert" , "update" , "delete" , "drop"), "", $_POST["busca"]);
+$busca = str_replace(array(";", "'", "--", "/", "*", "xp_", "XP_", "SELECT" , "INSERT" , "UPDATE" , "DELETE" , "DROP", "select" , "insert" , "update" , "delete" , "drop"), "", htmlspecialchars($_POST["busca"], ENT_QUOTES, "UTF-8"));
 
 $funcRetornaPedido = $classeCompra->retorna_pedido_adm($busca);
 

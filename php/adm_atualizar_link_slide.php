@@ -17,7 +17,7 @@ if(isset($_COOKIE["aiu_oj"]) && isset($_COOKIE["aeu_oj"]) && isset($_COOKIE["asu
 
 /* // Verificando existencia do ADM */
 
-$link = str_replace(array(";", "'", "*", "xp_", "XP_", "SELECT" , "INSERT" , "UPDATE" , "DELETE" , "DROP", "select" , "insert" , "update" , "delete" , "drop"), "", $_POST["link"]);
+$link = str_replace(array(";", "'", "*", "xp_", "XP_", "SELECT" , "INSERT" , "UPDATE" , "DELETE" , "DROP", "select" , "insert" , "update" , "delete" , "drop"), "", htmlentities($_POST["link"]));
 $posicao = $_POST["hiddenLink"];
 
 $classeAdm->atualizar_link_slide($posicao, $link);

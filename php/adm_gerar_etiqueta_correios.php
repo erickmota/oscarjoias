@@ -6,7 +6,7 @@ include "../classes/adm.class.php";
 
 $classeAdm = new adm();
 
-$id_pedido = str_replace(array(";", "'", "--", "/", "*", "xp_", "XP_", "SELECT" , "INSERT" , "UPDATE" , "DELETE" , "DROP", "select" , "insert" , "update" , "delete" , "drop"), "", $_GET["ip"]);
+$id_pedido = str_replace(array(";", "'", "--", "/", "*", "xp_", "XP_", "SELECT" , "INSERT" , "UPDATE" , "DELETE" , "DROP", "select" , "insert" , "update" , "delete" , "drop"), "", htmlentities($_GET["ip"]));
 
 $functPedido = $classeAdm->retorna_dados_pedido_referencia($id_pedido);
 

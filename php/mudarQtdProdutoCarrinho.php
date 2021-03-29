@@ -4,8 +4,10 @@ include "../classes/compra.class.php";
 
 $classeCompra = new compra();
 
-$id_sacola = $_GET["id_sacola"];
-$nova_qtd = $_GET["nova_qtd"];
+/* $id_sacola = htmlentities($_GET["id_sacola"]);
+$nova_qtd = htmlentities($_GET["nova_qtd"]); */
+$id_sacola = str_replace(array(";", "'", "--", "/", "*", "xp_", "XP_", "SELECT" , "INSERT" , "UPDATE" , "DELETE" , "DROP", "select" , "insert" , "update" , "delete" , "drop"), "", htmlentities($_GET["id_sacola"]));
+$nova_qtd = str_replace(array(";", "'", "--", "/", "*", "xp_", "XP_", "SELECT" , "INSERT" , "UPDATE" , "DELETE" , "DROP", "select" , "insert" , "update" , "delete" , "drop"), "", htmlentities($_GET["nova_qtd"]));
 
 /* Verificar existencia usuário */
 

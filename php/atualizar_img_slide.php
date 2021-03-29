@@ -18,7 +18,7 @@ if(isset($_COOKIE["aiu_oj"]) && isset($_COOKIE["aeu_oj"]) && isset($_COOKIE["asu
 /* // Verificando existencia do ADM */
 
 $img = $_FILES["img"];
-$posicao = str_replace(array(";", "'", "--", "/", "*", "xp_", "XP_", "SELECT" , "INSERT" , "UPDATE" , "DELETE" , "DROP", "select" , "insert" , "update" , "delete" , "drop"), "", $_POST["hiddenFoto"]);
+$posicao = str_replace(array(";", "'", "--", "/", "*", "xp_", "XP_", "SELECT" , "INSERT" , "UPDATE" , "DELETE" , "DROP", "select" , "insert" , "update" , "delete" , "drop"), "", htmlentities($_POST["hiddenFoto"]));
 
 $funcImg = $classeAdm->trocar_slide($posicao, $img);
 

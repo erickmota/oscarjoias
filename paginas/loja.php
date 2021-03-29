@@ -125,9 +125,9 @@
                 
                 if(isset($_GET["tipo"]) || isset($_GET["vma"]) || isset($_GET["cat"]) || isset($_GET["busca"])){
 
-                    $novaOrdenacao = str_replace(htmlentities($_GET["ordenacao"]), "nome", $_SERVER["REQUEST_URI"]);
-                    $novaOrdem = str_replace(htmlentities($_GET["tipoord"]), "cre", $novaOrdenacao);
-                    $novaPg = str_replace(htmlentities($_GET["pg"]), 1, $novaOrdem);
+                    $novaOrdenacao = str_replace($_GET["ordenacao"], "nome", $_SERVER["REQUEST_URI"]);
+                    $novaOrdem = str_replace($_GET["tipoord"], "cre", $novaOrdenacao);
+                    $novaPg = str_replace($_GET["pg"], 1, $novaOrdem);
 
                 ?>
 
@@ -153,9 +153,9 @@
                 
                 if(isset($_GET["tipo"]) || isset($_GET["vma"]) || isset($_GET["cat"]) || isset($_GET["busca"])){
 
-                    $novaOrdenacao = str_replace(htmlentities($_GET["ordenacao"]), "adicionado", $_SERVER["REQUEST_URI"]);
-                    $novaOrdem = str_replace(htmlentities($_GET["tipoord"]), "dec", $novaOrdenacao);
-                    $novaPg = str_replace(htmlentities($_GET["pg"]), 1, $novaOrdem);
+                    $novaOrdenacao = str_replace($_GET["ordenacao"], "adicionado", $_SERVER["REQUEST_URI"]);
+                    $novaOrdem = str_replace($_GET["tipoord"], "dec", $novaOrdenacao);
+                    $novaPg = str_replace($_GET["pg"], 1, $novaOrdem);
 
                 ?>
 
@@ -183,9 +183,9 @@
                 
                 if(isset($_GET["tipo"]) || isset($_GET["vma"]) || isset($_GET["cat"]) || isset($_GET["busca"])){
 
-                    $novaOrdenacao = str_replace(htmlentities($_GET["ordenacao"]), "adicionado", $_SERVER["REQUEST_URI"]);
-                    $novaOrdem = str_replace(htmlentities($_GET["tipoord"]), "cre", $novaOrdenacao);
-                    $novaPg = str_replace(htmlentities($_GET["pg"]), 1, $novaOrdem);
+                    $novaOrdenacao = str_replace($_GET["ordenacao"], "adicionado", $_SERVER["REQUEST_URI"]);
+                    $novaOrdem = str_replace($_GET["tipoord"], "cre", $novaOrdenacao);
+                    $novaPg = str_replace($_GET["pg"], 1, $novaOrdem);
 
                 ?>
 
@@ -213,9 +213,9 @@
                 
                 if(isset($_GET["tipo"]) || isset($_GET["vma"]) || isset($_GET["cat"]) || isset($_GET["busca"])){
 
-                    $novaOrdenacao = str_replace(htmlentities($_GET["ordenacao"]), "preco", $_SERVER["REQUEST_URI"]);
-                    $novaOrdem = str_replace(htmlentities($_GET["tipoord"]), "cre", $novaOrdenacao);
-                    $novaPg = str_replace(htmlentities($_GET["pg"]), 1, $novaOrdem);
+                    $novaOrdenacao = str_replace($_GET["ordenacao"], "preco", $_SERVER["REQUEST_URI"]);
+                    $novaOrdem = str_replace($_GET["tipoord"], "cre", $novaOrdenacao);
+                    $novaPg = str_replace($_GET["pg"], 1, $novaOrdem);
 
                 ?>
 
@@ -243,9 +243,9 @@
                 
                 if(isset($_GET["tipo"]) || isset($_GET["vma"]) || isset($_GET["cat"]) || isset($_GET["busca"])){
 
-                    $novaOrdenacao = str_replace(htmlentities($_GET["ordenacao"]), "preco", $_SERVER["REQUEST_URI"]);
-                    $novaOrdem = str_replace(htmlentities($_GET["tipoord"]), "dec", $novaOrdenacao);
-                    $novaPg = str_replace(htmlentities($_GET["pg"]), 1, $novaOrdem);
+                    $novaOrdenacao = str_replace($_GET["ordenacao"], "preco", $_SERVER["REQUEST_URI"]);
+                    $novaOrdem = str_replace($_GET["tipoord"], "dec", $novaOrdenacao);
+                    $novaPg = str_replace($_GET["pg"], 1, $novaOrdem);
 
                 ?>
 
@@ -650,7 +650,7 @@
 
                                     /* $categoria = $_GET["cat"]; */
 
-                                    $catComTraco = str_replace(" ", "-", htmlentities($_GET["cat"]));
+                                    $catComTraco = str_replace(" ", "-", $_GET["cat"]);
                                     $transformarEmMinuscula = mb_strtolower($catComTraco, "UTF-8");
                                     $trataInjection = str_replace(array(";", "'", "--", "/", "*", "xp_", "XP_", "SELECT" , "INSERT" , "UPDATE" , "DELETE" , "DROP", "select" , "insert" , "update" , "delete" , "drop"), "", $transformarEmMinuscula);
                                     $str1 = preg_replace('/[áàãâä]/ui', 'a', $trataInjection);

@@ -709,7 +709,7 @@
 
                 var hiddenFeminino = document.getElementById("hiddenFeminino").value;
                 var boxFeminino = document.getElementById("boxAroFeminino");
-                var gravacaoFeminino = document.getElementById("campoGravacaoFeminino").value;
+                var gravacaoFeminino = encodeURIComponent(document.getElementById("campoGravacaoFeminino").value);
                 var hiddenVariacaoAdicional = document.getElementById("hiddenVariacaoAdicional").value;
                 var boxVariacaoAdicional = document.getElementById("boxVariacaoAdicional");
                 var hiddenVariacaoAdicional2 = document.getElementById("hiddenVariacaoAdicional2").value;
@@ -785,7 +785,7 @@
 
                 var hiddenFeminino = document.getElementById("hiddenFeminino").value;
                 var boxFeminino = document.getElementById("boxAroFeminino");
-                var gravacaoFeminino = document.getElementById("campoGravacaoFeminino").value;
+                var gravacaoFeminino = encodeURIComponent(document.getElementById("campoGravacaoFeminino").value);
                 var hiddenVariacaoAdicional = document.getElementById("hiddenVariacaoAdicional").value;
                 var boxVariacaoAdicional = document.getElementById("boxVariacaoAdicional");
                 var hiddenVariacaoAdicional2 = document.getElementById("hiddenVariacaoAdicional2").value;
@@ -845,7 +845,7 @@
 
                 var hiddenFeminino = document.getElementById("hiddenFeminino").value;
                 var boxFeminino = document.getElementById("boxAroFeminino");
-                var gravacaoFeminino = document.getElementById("campoGravacaoFeminino").value;
+                var gravacaoFeminino = encodeURIComponent(document.getElementById("campoGravacaoFeminino").value);
                 var hiddenVariacaoAdicional = document.getElementById("hiddenVariacaoAdicional").value;
                 var boxVariacaoAdicional = document.getElementById("boxVariacaoAdicional");
                 var hiddenVariacaoAdicional3 = document.getElementById("hiddenVariacaoAdicional3").value;
@@ -905,7 +905,7 @@
 
                 var hiddenFeminino = document.getElementById("hiddenFeminino").value;
                 var boxFeminino = document.getElementById("boxAroFeminino");
-                var gravacaoFeminino = document.getElementById("campoGravacaoFeminino").value;
+                var gravacaoFeminino = encodeURIComponent(document.getElementById("campoGravacaoFeminino").value);
                 var hiddenVariacaoAdicional = document.getElementById("hiddenVariacaoAdicional").value;
                 var boxVariacaoAdicional = document.getElementById("boxVariacaoAdicional");
                 var botaoAdicionarCarrinho = document.getElementById("botaoAddCarrinho");
@@ -949,7 +949,7 @@
 
                 var hiddenFeminino = document.getElementById("hiddenFeminino").value;
                 var boxFeminino = document.getElementById("boxAroFeminino");
-                var gravacaoFeminino = document.getElementById("campoGravacaoFeminino").value;
+                var gravacaoFeminino = encodeURIComponent(document.getElementById("campoGravacaoFeminino").value);
                 var hiddenVariacaoAdicional2 = document.getElementById("hiddenVariacaoAdicional2").value;
                 var boxVariacaoAdicional2 = document.getElementById("boxVariacaoAdicional2");
                 var hiddenVariacaoAdicional3 = document.getElementById("hiddenVariacaoAdicional3").value;
@@ -1009,7 +1009,7 @@
 
                 var hiddenFeminino = document.getElementById("hiddenFeminino").value;
                 var boxFeminino = document.getElementById("boxAroFeminino");
-                var gravacaoFeminino = document.getElementById("campoGravacaoFeminino").value;
+                var gravacaoFeminino = encodeURIComponent(document.getElementById("campoGravacaoFeminino").value);
                 var hiddenVariacaoAdicional2 = document.getElementById("hiddenVariacaoAdicional2").value;
                 var boxVariacaoAdicional2 = document.getElementById("boxVariacaoAdicional2");
                 var botaoAdicionarCarrinho = document.getElementById("botaoAddCarrinho");
@@ -1053,7 +1053,7 @@
 
                 var hiddenFeminino = document.getElementById("hiddenFeminino").value;
                 var boxFeminino = document.getElementById("boxAroFeminino");
-                var gravacaoFeminino = document.getElementById("campoGravacaoFeminino").value;
+                var gravacaoFeminino = encodeURIComponent(document.getElementById("campoGravacaoFeminino").value);
                 var hiddenVariacaoAdicional3 = document.getElementById("hiddenVariacaoAdicional3").value;
                 var boxVariacaoAdicional3 = document.getElementById("boxVariacaoAdicional3");
                 var botaoAdicionarCarrinho = document.getElementById("botaoAddCarrinho");
@@ -1097,10 +1097,10 @@
 
                 var hiddenFeminino = document.getElementById("hiddenFeminino").value;
                 var boxFeminino = document.getElementById("boxAroFeminino");
-                var gravacaoFeminino = document.getElementById("campoGravacaoFeminino").value;
+                var gravacaoFeminino = encodeURIComponent(document.getElementById("campoGravacaoFeminino").value);
                 var hiddenMasculino = document.getElementById("hiddenMasculino").value;
                 var boxMasculino = document.getElementById("boxAroMasculino");
-                var gravacaoMasculino = document.getElementById("campoGravacaoMasculino").value;
+                var gravacaoMasculino = encodeURIComponent(document.getElementById("campoGravacaoMasculino").value);
                 var hiddenVariacaoAdicional = document.getElementById("hiddenVariacaoAdicional").value;
                 var boxVariacaoAdicional = document.getElementById("boxVariacaoAdicional");
                 var hiddenVariacaoAdicional2 = document.getElementById("hiddenVariacaoAdicional2").value;
@@ -1190,10 +1190,10 @@
 
                 var hiddenFeminino = document.getElementById("hiddenFeminino").value;
                 var boxFeminino = document.getElementById("boxAroFeminino");
-                var gravacaoFeminino = document.getElementById("campoGravacaoFeminino").value;
+                var gravacaoFeminino = encodeURIComponent(document.getElementById("campoGravacaoFeminino").value);
                 var hiddenMasculino = document.getElementById("hiddenMasculino").value;
                 var boxMasculino = document.getElementById("boxAroMasculino");
-                var gravacaoMasculino = document.getElementById("campoGravacaoMasculino").value;
+                var gravacaoMasculino = encodeURIComponent(document.getElementById("campoGravacaoMasculino").value);
                 var hiddenVariacaoAdicional = document.getElementById("hiddenVariacaoAdicional").value;
                 var boxVariacaoAdicional = document.getElementById("boxVariacaoAdicional");
                 var hiddenVariacaoAdicional2 = document.getElementById("hiddenVariacaoAdicional2").value;
@@ -1267,10 +1267,10 @@
 
                 var hiddenFeminino = document.getElementById("hiddenFeminino").value;
                 var boxFeminino = document.getElementById("boxAroFeminino");
-                var gravacaoFeminino = document.getElementById("campoGravacaoFeminino").value;
+                var gravacaoFeminino = encodeURIComponent(document.getElementById("campoGravacaoFeminino").value);
                 var hiddenMasculino = document.getElementById("hiddenMasculino").value;
                 var boxMasculino = document.getElementById("boxAroMasculino");
-                var gravacaoMasculino = document.getElementById("campoGravacaoMasculino").value;
+                var gravacaoMasculino = encodeURIComponent(document.getElementById("campoGravacaoMasculino").value);
                 var hiddenVariacaoAdicional = document.getElementById("hiddenVariacaoAdicional").value;
                 var boxVariacaoAdicional = document.getElementById("boxVariacaoAdicional");
                 var hiddenVariacaoAdicional3 = document.getElementById("hiddenVariacaoAdicional3").value;
@@ -1344,10 +1344,10 @@
 
                 var hiddenFeminino = document.getElementById("hiddenFeminino").value;
                 var boxFeminino = document.getElementById("boxAroFeminino");
-                var gravacaoFeminino = document.getElementById("campoGravacaoFeminino").value;
+                var gravacaoFeminino = encodeURIComponent(document.getElementById("campoGravacaoFeminino").value);
                 var hiddenMasculino = document.getElementById("hiddenMasculino").value;
                 var boxMasculino = document.getElementById("boxAroMasculino");
-                var gravacaoMasculino = document.getElementById("campoGravacaoMasculino").value;
+                var gravacaoMasculino = encodeURIComponent(document.getElementById("campoGravacaoMasculino").value);
                 var hiddenVariacaoAdicional = document.getElementById("hiddenVariacaoAdicional").value;
                 var boxVariacaoAdicional = document.getElementById("boxVariacaoAdicional");
                 var botaoAdicionarCarrinho = document.getElementById("botaoAddCarrinho");
@@ -1405,10 +1405,10 @@
 
                 var hiddenFeminino = document.getElementById("hiddenFeminino").value;
                 var boxFeminino = document.getElementById("boxAroFeminino");
-                var gravacaoFeminino = document.getElementById("campoGravacaoFeminino").value;
+                var gravacaoFeminino = encodeURIComponent(document.getElementById("campoGravacaoFeminino").value);
                 var hiddenMasculino = document.getElementById("hiddenMasculino").value;
                 var boxMasculino = document.getElementById("boxAroMasculino");
-                var gravacaoMasculino = document.getElementById("campoGravacaoMasculino").value;
+                var gravacaoMasculino = encodeURIComponent(document.getElementById("campoGravacaoMasculino").value);
                 var hiddenVariacaoAdicional2 = document.getElementById("hiddenVariacaoAdicional2").value;
                 var boxVariacaoAdicional2 = document.getElementById("boxVariacaoAdicional2");
                 var hiddenVariacaoAdicional3 = document.getElementById("hiddenVariacaoAdicional3").value;
@@ -1482,10 +1482,10 @@
 
                 var hiddenFeminino = document.getElementById("hiddenFeminino").value;
                 var boxFeminino = document.getElementById("boxAroFeminino");
-                var gravacaoFeminino = document.getElementById("campoGravacaoFeminino").value;
+                var gravacaoFeminino = encodeURIComponent(document.getElementById("campoGravacaoFeminino").value);
                 var hiddenMasculino = document.getElementById("hiddenMasculino").value;
                 var boxMasculino = document.getElementById("boxAroMasculino");
-                var gravacaoMasculino = document.getElementById("campoGravacaoMasculino").value;
+                var gravacaoMasculino = encodeURIComponent(document.getElementById("campoGravacaoMasculino").value);
                 var hiddenVariacaoAdicional2 = document.getElementById("hiddenVariacaoAdicional2").value;
                 var boxVariacaoAdicional2 = document.getElementById("boxVariacaoAdicional2");
                 var botaoAdicionarCarrinho = document.getElementById("botaoAddCarrinho");
@@ -1543,10 +1543,10 @@
 
                 var hiddenFeminino = document.getElementById("hiddenFeminino").value;
                 var boxFeminino = document.getElementById("boxAroFeminino");
-                var gravacaoFeminino = document.getElementById("campoGravacaoFeminino").value;
+                var gravacaoFeminino = encodeURIComponent(document.getElementById("campoGravacaoFeminino").value);
                 var hiddenMasculino = document.getElementById("hiddenMasculino").value;
                 var boxMasculino = document.getElementById("boxAroMasculino");
-                var gravacaoMasculino = document.getElementById("campoGravacaoMasculino").value;
+                var gravacaoMasculino = encodeURIComponent(document.getElementById("campoGravacaoMasculino").value);
                 var hiddenVariacaoAdicional3 = document.getElementById("hiddenVariacaoAdicional3").value;
                 var boxVariacaoAdicional3 = document.getElementById("boxVariacaoAdicional3");
                 var botaoAdicionarCarrinho = document.getElementById("botaoAddCarrinho");
@@ -1602,7 +1602,7 @@
 
             }else if(variacao_padrao == "gravacao" && variacao_complementar > 0 && variacao_complementar2 > 0 && variacao_complementar3 > 0){
 
-                var gravacaoApenasGravacao = document.getElementById("campoGravacaoApenasGravacao").value;
+                var gravacaoApenasGravacao = encodeURIComponent(document.getElementById("campoGravacaoApenasGravacao").value);
                 var hiddenVariacaoAdicional = document.getElementById("hiddenVariacaoAdicional").value;
                 var boxVariacaoAdicional = document.getElementById("boxVariacaoAdicional");
                 var hiddenVariacaoAdicional2 = document.getElementById("hiddenVariacaoAdicional2").value;
@@ -1662,7 +1662,7 @@
 
             }else if(variacao_padrao == "gravacao" && variacao_complementar > 0 && variacao_complementar2 > 0 && variacao_complementar3 < 1){
 
-                var gravacaoApenasGravacao = document.getElementById("campoGravacaoApenasGravacao").value;
+                var gravacaoApenasGravacao = encodeURIComponent(document.getElementById("campoGravacaoApenasGravacao").value);
                 var hiddenVariacaoAdicional = document.getElementById("hiddenVariacaoAdicional").value;
                 var boxVariacaoAdicional = document.getElementById("boxVariacaoAdicional");
                 var hiddenVariacaoAdicional2 = document.getElementById("hiddenVariacaoAdicional2").value;
@@ -1706,7 +1706,7 @@
 
             }else if(variacao_padrao == "gravacao" && variacao_complementar > 0 && variacao_complementar2 < 1 && variacao_complementar3 > 0){
 
-                var gravacaoApenasGravacao = document.getElementById("campoGravacaoApenasGravacao").value;
+                var gravacaoApenasGravacao = encodeURIComponent(document.getElementById("campoGravacaoApenasGravacao").value);
                 var hiddenVariacaoAdicional = document.getElementById("hiddenVariacaoAdicional").value;
                 var boxVariacaoAdicional = document.getElementById("boxVariacaoAdicional");
                 var hiddenVariacaoAdicional3 = document.getElementById("hiddenVariacaoAdicional3").value;
@@ -1750,7 +1750,7 @@
 
             }else if(variacao_padrao == "gravacao" && variacao_complementar > 0 && variacao_complementar2 < 1 && variacao_complementar3 < 1){
 
-                var gravacaoApenasGravacao = document.getElementById("campoGravacaoApenasGravacao").value;
+                var gravacaoApenasGravacao = encodeURIComponent(document.getElementById("campoGravacaoApenasGravacao").value);
                 var hiddenVariacaoAdicional = document.getElementById("hiddenVariacaoAdicional").value;
                 var boxVariacaoAdicional = document.getElementById("boxVariacaoAdicional");
                 var botaoAdicionarCarrinho = document.getElementById("botaoAddCarrinho");
@@ -1778,7 +1778,7 @@
 
             }else if(variacao_padrao == "gravacao" && variacao_complementar < 1 && variacao_complementar2 > 0 && variacao_complementar3 > 0){
 
-                var gravacaoApenasGravacao = document.getElementById("campoGravacaoApenasGravacao").value;
+                var gravacaoApenasGravacao = encodeURIComponent(document.getElementById("campoGravacaoApenasGravacao").value);
                 var hiddenVariacaoAdicional2 = document.getElementById("hiddenVariacaoAdicional2").value;
                 var boxVariacaoAdicional2 = document.getElementById("boxVariacaoAdicional2");
                 var hiddenVariacaoAdicional3 = document.getElementById("hiddenVariacaoAdicional3").value;
@@ -1822,7 +1822,7 @@
 
             }else if(variacao_padrao == "gravacao" && variacao_complementar < 1 && variacao_complementar2 > 0 && variacao_complementar3 < 1){
 
-                var gravacaoApenasGravacao = document.getElementById("campoGravacaoApenasGravacao").value;
+                var gravacaoApenasGravacao = encodeURIComponent(document.getElementById("campoGravacaoApenasGravacao").value);
                 var hiddenVariacaoAdicional2 = document.getElementById("hiddenVariacaoAdicional2").value;
                 var boxVariacaoAdicional2 = document.getElementById("boxVariacaoAdicional2");
                 var botaoAdicionarCarrinho = document.getElementById("botaoAddCarrinho");
@@ -1850,7 +1850,7 @@
 
             }else if(variacao_padrao == "gravacao" && variacao_complementar < 1 && variacao_complementar2 < 1 && variacao_complementar3 > 0){
 
-                var gravacaoApenasGravacao = document.getElementById("campoGravacaoApenasGravacao").value;
+                var gravacaoApenasGravacao = encodeURIComponent(document.getElementById("campoGravacaoApenasGravacao").value);
                 var hiddenVariacaoAdicional3 = document.getElementById("hiddenVariacaoAdicional3").value;
                 var boxVariacaoAdicional3 = document.getElementById("boxVariacaoAdicional3");
                 var botaoAdicionarCarrinho = document.getElementById("botaoAddCarrinho");
@@ -2176,7 +2176,7 @@
 
                 var hiddenFeminino = document.getElementById("hiddenFeminino").value;
                 var boxFeminino = document.getElementById("boxAroFeminino");
-                var gravacaoFeminino = document.getElementById("campoGravacaoFeminino").value;
+                var gravacaoFeminino = encodeURIComponent(document.getElementById("campoGravacaoFeminino").value);
                 var botaoAdicionarCarrinho = document.getElementById("botaoAddCarrinho");
 
                 if(hiddenFeminino == ""){
@@ -2204,10 +2204,10 @@
 
                 var hiddenFeminino = document.getElementById("hiddenFeminino").value;
                 var boxFeminino = document.getElementById("boxAroFeminino");
-                var gravacaoFeminino = document.getElementById("campoGravacaoFeminino").value;
+                var gravacaoFeminino = encodeURIComponent(document.getElementById("campoGravacaoFeminino").value);
                 var hiddenMasculino = document.getElementById("hiddenMasculino").value;
                 var boxMasculino = document.getElementById("boxAroMasculino");
-                var gravacaoMasculino = document.getElementById("campoGravacaoMasculino").value;
+                var gravacaoMasculino = encodeURIComponent(document.getElementById("campoGravacaoMasculino").value);
                 var botaoAdicionarCarrinho = document.getElementById("botaoAddCarrinho");
 
                 if(hiddenFeminino == ""){
@@ -2247,7 +2247,7 @@
 
             }else if(variacao_padrao == "gravacao" && variacao_complementar < 1 && variacao_complementar2 < 1 && variacao_complementar3 < 1){
 
-                var gravacaoApenasGravacao = document.getElementById("campoGravacaoApenasGravacao").value;
+                var gravacaoApenasGravacao = encodeURIComponent(document.getElementById("campoGravacaoApenasGravacao").value);
                 var botaoAdicionarCarrinho = document.getElementById("botaoAddCarrinho");
 
                 /* window.location = "php/adicinarSacola.php?aroFeminino="+hiddenFeminino+"&gravacaoFeminino="+gravacaoFeminino+"&aroMasculino="+hiddenMasculino+"&gravacaoMasculino="+gravacaoMasculino+"&variacaoAdicional="+hiddenVariacaoAdicional; */

@@ -3,10 +3,10 @@
 include "../classes/email.class.php";
 $classeEmail = new email();
 
-$nome = $_POST["nome"];
-$email = $_POST["email"];
-$assunto = $_POST["assunto"];
-$texto = $_POST["texto"];
+$nome = htmlentities($_POST["nome"]);
+$email = htmlentities($_POST["email"]);
+$assunto = htmlentities($_POST["assunto"]);
+$texto = htmlentities($_POST["texto"]);
 
 $classeEmail->contato($email, $nome, $assunto, $texto);
 

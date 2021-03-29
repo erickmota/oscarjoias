@@ -223,6 +223,36 @@ class adm{
 
     }
 
+    public function alterar_preco_produtos_tipo($sinal, $porcentagem, $tipo){
+
+        include 'conexao.class.php';
+
+        $sql = mysqli_query($conn, "SELECT * FROM produtos WHERE tipo='$tipo'") or die("Erro alterar_preco_produtos_tipo");
+        while($linha = mysqli_fetch_assoc($sql)){
+
+            $id_produto = $linha["id"];
+            $preco_produto = $linha["preco"];
+
+            if($sinal == "mais"){
+
+                $novo_valor = ($preco_produto * $porcentagem) + $preco_produto;
+
+                $novo_valor = number_format($novo_valor, 2, ".", "");
+
+            }else{
+
+                $novo_valor = ($preco_produto * $porcentagem) - $preco_produto;
+
+                $novo_valor = number_format(abs($novo_valor), 2, ".", "");
+
+            }
+
+            $sql2 = mysqli_query($conn, "UPDATE produtos SET preco=$novo_valor WHERE id=$id_produto") or die("Erro Atualizar produto");
+
+        }
+
+    }
+
 }
 
 ?>

@@ -155,7 +155,7 @@
                                         
                                         if(isset($_GET["q"])){
 
-                                            $busca = htmlentities($_GET["q"]);
+                                            $busca =  htmlspecialchars($_GET["q"], ENT_QUOTES, "UTF-8");
 
                                         }else{
 

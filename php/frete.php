@@ -3,12 +3,12 @@
 include "../classes/compra.class.php";
 $classeCompra = new compra();
 
-$cep = str_replace(array(";", "'", "--", "/", "*", "xp_", "XP_", "SELECT" , "INSERT" , "UPDATE" , "DELETE" , "DROP", "select" , "insert" , "update" , "delete" , "drop"), "", $_POST["cep"]);
-$peso = $_POST["peso"];
-$altura = $_POST["altura"];
-$largura = $_POST["largura"];
-$comprimento = $_POST["comprimento"];
-$dias_entrega = $_POST["dias_entrega"];
+$cep = str_replace(array(";", "'", "--", "/", "*", "xp_", "XP_", "SELECT" , "INSERT" , "UPDATE" , "DELETE" , "DROP", "select" , "insert" , "update" , "delete" , "drop"), "", htmlentities($_POST["cep"]));
+$peso = htmlentities($_POST["peso"]);
+$altura = htmlentities($_POST["altura"]);
+$largura = htmlentities($_POST["largura"]);
+$comprimento = htmlentities($_POST["comprimento"]);
+$dias_entrega = htmlentities($_POST["dias_entrega"]);
 
 /* 04014 = sedex */
 /* 04510 = PAC */

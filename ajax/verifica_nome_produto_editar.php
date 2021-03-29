@@ -3,7 +3,7 @@
 include "../classes/produtos.class.php";
 $classeProdutos = new produtos();
 
-$nome_produto = str_replace(array(";", "'", "/", "*", "xp_", "XP_", "SELECT" , "INSERT" , "UPDATE" , "DELETE" , "DROP", "select" , "insert" , "update" , "delete" , "drop"), "", $_POST["nome_produto"]);
+$nome_produto = str_replace(array(";", "'", "/", "*", "xp_", "XP_", "SELECT" , "INSERT" , "UPDATE" , "DELETE" , "DROP", "select" , "insert" , "update" , "delete" , "drop"), "", htmlentities($_POST["nome_produto"]));
 $nomeAtual = $_POST["nomeAtual"];
 
 $classeProdutos->nome = $nome_produto;

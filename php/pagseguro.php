@@ -3,12 +3,12 @@
 include "../classes/compra.class.php";
 $classeCompra = new compra();
 
-$frete = str_replace(",", ".", $_POST["frete"]);
-$tipo = $_POST["tipo"];
-$dias = $_POST["dias"];
+$frete = str_replace(",", ".", htmlentities($_POST["frete"]));
+$tipo = htmlentities($_POST["tipo"]);
+$dias = htmlentities($_POST["dias"]);
 
 /* $classeCompra->idCliente = 1; */
-$classeCompra->idCliente = str_replace(array(";", "'", "--", "/", "*", "xp_", "XP_", "SELECT" , "INSERT" , "UPDATE" , "DELETE" , "DROP", "select" , "insert" , "update" , "delete" , "drop"), "", base64_decode($_COOKIE["iu_oj"]));
+$classeCompra->idCliente = str_replace(array(";", "'", "--", "/", "*", "xp_", "XP_", "SELECT" , "INSERT" , "UPDATE" , "DELETE" , "DROP", "select" , "insert" , "update" , "delete" , "drop"), "", htmlentities(base64_decode($_COOKIE["iu_oj"])));
 
 /* Verificar existencia usuário */
 

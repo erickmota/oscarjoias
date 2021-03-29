@@ -59,6 +59,93 @@
     ?>
 
     <link rel="stylesheet" href="css/adm_configuracoes.css">
+    <script src="plentz-jquery-maskmoney-cdbeeac/src/jquery.maskMoney.js" type="text/javascript"></script>
+
+    <script>
+
+        function mudarExemplosPreco(porcentagem){
+
+            var hiddenSinal = $("#hiddenSinal").val();
+
+            if(porcentagem < 100){
+
+                var alteraStringPorcentagem = "0."+porcentagem.substr(1, 2);
+
+            }else{
+
+                var alteraStringPorcentagem = "1";
+
+            }
+
+            var porcentagemCorreta = parseFloat(alteraStringPorcentagem);
+
+            if(hiddenSinal == "mais"){
+
+              var soma100 = (100 * porcentagemCorreta) + 100;
+              var soma500 = (500 * porcentagemCorreta) + 500;
+              var soma1000 = (1000 * porcentagemCorreta) + 1000;
+              var soma2000 = (2000 * porcentagemCorreta) + 2000;
+
+            }else{
+
+              var soma100 = (100 * porcentagemCorreta) - 100;
+              var soma500 = (500 * porcentagemCorreta) - 500;
+              var soma1000 = (1000 * porcentagemCorreta) - 1000;
+              var soma2000 = (2000 * porcentagemCorreta) - 2000;
+
+              soma100 = Math.abs(soma100);
+              soma500 = Math.abs(soma500);
+              soma1000 = Math.abs(soma1000);
+              soma2000 = Math.abs(soma2000);
+
+            }
+
+            $("#amostra100").text("R$"+soma100+",00");
+            $("#amostra500").text("R$"+soma500+",00");
+            $("#amostra1000").text("R$"+soma1000+",00");
+            $("#amostra2000").text("R$"+soma2000+",00");
+
+        }
+
+        function alterarSinalPorcentagem(sinal){
+
+            if(sinal == "menos"){
+
+                $("#amostra100").addClass("text-danger");
+                $("#amostra500").addClass("text-danger");
+                $("#amostra1000").addClass("text-danger");
+                $("#amostra2000").addClass("text-danger");
+                $("#selectSinal").addClass("btn-danger");
+                $("#selectSinal").removeClass("btn-success");
+                $("#hiddenSinal").val("menos");
+                $("#campoPorcentagem").val("");
+
+                $("#amostra100").text("R$100,00");
+                $("#amostra500").text("R$500,00");
+                $("#amostra1000").text("R$1000,00");
+                $("#amostra2000").text("R$2000,00");
+
+            }else{
+
+                $("#amostra100").removeClass("text-danger");
+                $("#amostra500").removeClass("text-danger");
+                $("#amostra1000").removeClass("text-danger");
+                $("#amostra2000").removeClass("text-danger");
+                $("#selectSinal").removeClass("btn-danger");
+                $("#selectSinal").addClass("btn-success");
+                $("#hiddenSinal").val("mais");
+                $("#campoPorcentagem").val("");
+
+                $("#amostra100").text("R$100,00");
+                $("#amostra500").text("R$500,00");
+                $("#amostra1000").text("R$1000,00");
+                $("#amostra2000").text("R$2000,00");
+
+            }
+
+        }
+
+    </script>
 
 </head>
 
@@ -89,6 +176,94 @@
                 <script src="jsPartes/adm_menu_mobile.js"></script>
 
                 <div class="row mt-3">
+
+                    <div class="col text-secondary">
+
+                        <h2>Ajuste de preços</h2>
+                        <p>
+
+                            Ajuste os preços dos produtos todos de uma vez. Selecione a porcentagem da alteração e o tipo do produto!
+
+                        </p>
+
+                    </div>
+
+                </div>
+
+                <div class="row mt-2">
+
+                    <div class="col-7">
+
+                        <form method="POST" action="php/adm_atualizar_preco_geral.php">
+
+                            <!-- <input type="text" class="form-control" onchange="mudarExemplosPreco(this.value)"> -->
+
+                            <div class="input-group mb-3">
+                              <select id="selectSinal" class="btn btn-success" aria-expanded="false" onchange="alterarSinalPorcentagem(this.value)">
+                                <option value="mais">+</option>
+                                <option value="menos">-</option>
+                              </select>
+                              <input type="hidden" id="hiddenSinal" value="mais" name="sinal">
+                              <span class="input-group-text">%</span>
+                              <input type="text" id="campoPorcentagem" autocomplete="off" class="form-control" name="porcentagem" required>
+                            </div>
+
+                            <script>
+
+                            $('#campoPorcentagem').keyup(function(){
+                                var valor_bruto = $('#campoPorcentagem').val().replace(/[^\d]/g, '');
+                                var valor = parseInt(0 + valor_bruto);
+                                var novoValor = pad(valor, 3);
+                                $('#campoPorcentagem').val(novoValor);
+
+                                mudarExemplosPreco($('#campoPorcentagem').val())
+                            });
+
+
+                            $(document).ready(function() {
+                                $('#campoPorcentagem').focus(function() { $(this).select(); } );
+                            });
+
+                            function pad (str, max) {
+                              str = str.toString();
+                              str = str.length < max ? pad("0" + str, max) : str; // zero à esquerda
+                              str = str.length > max ? str.substr(0,max) : str; // máximo de caracteres
+                              return str;
+                            }
+
+                            </script>
+
+                            <p class="mt-3 text-secondary">
+                              
+                              <b>Exemplos:</b><br>
+                              R$100,00 > <span id="amostra100">R$100,00</span><br>
+                              R$500,00 > <span id="amostra500">R$500,00</span><br>
+                              R$1000,00 > <span id="amostra1000">R$1000,00</span><br>
+                              R$2000,00 > <span id="amostra2000">R$2000,00</span>
+                            
+                            </p>
+
+                    </div>
+
+                    <div class="col-5">
+
+                          <select class="form-select" name="tipo" required>
+
+                              <option disabled selected hidden value="">Tipo</option>
+                              <option value="ouro">Ouro</option>
+                              <option value="prata">Prata</option>
+
+                          </select>
+
+                          <button type="submit" onclick="if(window.confirm('Essa ação não poderá ser revertida! deseja continuar?')){}else{return false;}" class="btn btn-primary mt-3 form-control">AJUSTAR</button>
+
+                        </form>
+
+                    </div>
+
+                </div>
+
+                <div class="row mt-4">
 
                     <div class="col text-secondary">
 
@@ -166,7 +341,7 @@
 
                 </div>
 
-                <div class="row mt-3">
+                <div class="row mt-5">
 
                     <div class="col text-secondary">
 

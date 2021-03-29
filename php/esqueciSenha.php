@@ -7,7 +7,7 @@ include "../classes/clientes.class.php";
 $classeClientes = new clientes();
 
 /* $email = $_POST["esqueci-email"]; */
-$email = str_replace(array(";", "'", "/", "*", "xp_", "XP_", "SELECT" , "INSERT" , "UPDATE" , "DELETE" , "DROP", "select" , "insert" , "update" , "delete" , "drop"), "", $_POST["esqueci-email"]);
+$email = str_replace(array(";", "'", "/", "*", "xp_", "XP_", "SELECT" , "INSERT" , "UPDATE" , "DELETE" , "DROP", "select" , "insert" , "update" , "delete" , "drop"), "", htmlentities($_POST["esqueci-email"]));
 
 $classeClientes->emailUsuario = $email;
 

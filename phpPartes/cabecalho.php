@@ -399,9 +399,9 @@ if(!isset($classeClientes)){
                 
                 }else if(isset($_COOKIE["iu_oj"]) && isset($_COOKIE["eu_oj"]) && isset($_COOKIE["su_oj"]) && $classeClientes->verificaExistenciaUsuario($_COOKIE["iu_oj"], $_COOKIE["eu_oj"], $_COOKIE["su_oj"]) == true){
 
-                    $classeClientes->emailUsuario = str_replace(array(";", "'", "--", "/", "*", "xp_", "XP_", "SELECT" , "INSERT" , "UPDATE" , "DELETE" , "DROP", "select" , "insert" , "update" , "delete" , "drop"), "", base64_decode($_COOKIE["eu_oj"]));
+                    $classeClientes->emailUsuario = str_replace(array(";", "'", "--", "/", "*", "xp_", "XP_", "SELECT" , "INSERT" , "UPDATE" , "DELETE" , "DROP", "select" , "insert" , "update" , "delete" , "drop"), "", htmlentities(base64_decode($_COOKIE["eu_oj"])));
                 
-                    $classeCompra->idCliente = str_replace(array(";", "'", "--", "/", "*", "xp_", "XP_", "SELECT" , "INSERT" , "UPDATE" , "DELETE" , "DROP", "select" , "insert" , "update" , "delete" , "drop"), "", base64_decode($_COOKIE["iu_oj"]));
+                    $classeCompra->idCliente = str_replace(array(";", "'", "--", "/", "*", "xp_", "XP_", "SELECT" , "INSERT" , "UPDATE" , "DELETE" , "DROP", "select" , "insert" , "update" , "delete" , "drop"), "", htmlentities(base64_decode($_COOKIE["iu_oj"])));
                 ?>
 
                 <img id="iconePessoa" src="img/iconePessoa3.png" width="26px" data-toggle="popover" data-bs-placement="bottom" title="Bem Vindo <?php echo $classeClientes->retorna_dado_individual_cliente("nome") ?>">
@@ -500,7 +500,7 @@ if(!isset($classeClientes)){
 
                             $catComTraco = str_replace(" ", "-", $arrCategoria["nome"]);
                             $transformarEmMinuscula = mb_strtolower($catComTraco, "UTF-8");
-                            $trataInjection = str_replace(array(";", "'", "--", "/", "*", "xp_", "XP_", "SELECT" , "INSERT" , "UPDATE" , "DELETE" , "DROP", "select" , "insert" , "update" , "delete" , "drop"), "", $transformarEmMinuscula);
+                            $trataInjection = str_replace(array(";", "'", "--", "/", "*", "xp_", "XP_", "SELECT" , "INSERT" , "UPDATE" , "DELETE" , "DROP", "select" , "insert" , "update" , "delete" , "drop"), "", htmlspecialchars($transformarEmMinuscula, ENT_QUOTES, "UTF-8"));
                             $str1 = preg_replace('/[áàãâä]/ui', 'a', $trataInjection);
                             $str2 = preg_replace('/[éèêë]/ui', 'e', $str1);
                             $str3 = preg_replace('/[íìîï]/ui', 'i', $str2);
@@ -603,7 +603,7 @@ if(!isset($classeClientes)){
 
                         $catComTraco = str_replace(" ", "-", $arrCategoria["nome"]);
                         $transformarEmMinuscula = mb_strtolower($catComTraco, "UTF-8");
-                        $trataInjection = str_replace(array(";", "'", "--", "/", "*", "xp_", "XP_", "SELECT" , "INSERT" , "UPDATE" , "DELETE" , "DROP", "select" , "insert" , "update" , "delete" , "drop"), "", $transformarEmMinuscula);
+                        $trataInjection = str_replace(array(";", "'", "--", "/", "*", "xp_", "XP_", "SELECT" , "INSERT" , "UPDATE" , "DELETE" , "DROP", "select" , "insert" , "update" , "delete" , "drop"), "", htmlspecialchars($transformarEmMinuscula, ENT_QUOTES, "UTF-8"));
                         $str1 = preg_replace('/[áàãâä]/ui', 'a', $trataInjection);
                         $str2 = preg_replace('/[éèêë]/ui', 'e', $str1);
                         $str3 = preg_replace('/[íìîï]/ui', 'i', $str2);

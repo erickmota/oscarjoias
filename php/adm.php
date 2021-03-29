@@ -23,25 +23,8 @@
 
     /* // Verificando existencia do ADM */
 
-    /* $qtdGaleria = 3;
-    $nome = $_POST["nome"];
-    $capa = $_FILES["capa"];
-    $galeria[1] = $_FILES["galeria1"];
-    $galeria[2] = $_FILES["galeria2"];
-    $galeria[3] = $_FILES["galeria3"];
-    $descricao = $_POST["descricao"];
-    $preco = $_POST["preco"];
-    $qtd = $_POST["qtd"];
-    $estado = $_POST["estado"];
-    $variacao = $_POST["variacao"];
-    $novaVariacao = $_POST["novaVariacao"];
-    $opNovaVariacao = $_POST["opNovaVariacao"];
-    $categoria = $_POST["categoria"];
-    $maximo_caracteres = $_POST["maximo_caracteres"];
-    $promocao = $_POST["promocao"];
-    $tipo = $_POST["tipo"]; */
-
-    $qtdGaleria = $_POST["qtd-galeria"];
+    /* $qtdGaleria = $_POST["qtd-galeria"]; */
+    $qtdGaleria = str_replace(array(";", "'", "*", "xp_", "XP_", "SELECT" , "INSERT" , "UPDATE" , "DELETE" , "DROP", "select" , "insert" , "update" , "delete" , "drop"), "", htmlentities($_POST["qtd-galeria"]));
 
     if($qtdGaleria == ""){
 
@@ -49,7 +32,8 @@
 
     }
 
-    $nome = $_POST["nome"];
+    /* $nome = $_POST["nome"]; */
+    $nome = str_replace(array(";", "'", "*", "xp_", "XP_", "SELECT" , "INSERT" , "UPDATE" , "DELETE" , "DROP", "select" , "insert" , "update" , "delete" , "drop"), "", htmlspecialchars($_POST["nome"], ENT_QUOTES, "UTF-8"));
     $capa = $_FILES["capa"];
 
     $i = 0;
@@ -64,27 +48,40 @@
 
     }
 
-    /* $galeria[1] = $_FILES["galeria1"];
-    $galeria[2] = $_FILES["galeria2"];
-    $galeria[3] = $_FILES["galeria3"]; */
-    $descricao = $_POST["descricao"];
-    $preco = $_POST["preco"];
-    $qtd = $_POST["qtd"];
-    $estado = $_POST["estado"];
-    $variacao = $_POST["variacao"];
+    /* $descricao = $_POST["descricao"]; */
+    $descricao = str_replace(array(";", "'", "*", "xp_", "XP_", "SELECT" , "INSERT" , "UPDATE" , "DELETE" , "DROP", "select" , "insert" , "update" , "delete" , "drop"), "", htmlentities($_POST["descricao"]));
+    /* $preco = $_POST["preco"]; */
+    $preco = str_replace(array(";", "'", "*", "xp_", "XP_", "SELECT" , "INSERT" , "UPDATE" , "DELETE" , "DROP", "select" , "insert" , "update" , "delete" , "drop"), "", htmlentities($_POST["preco"]));
+    /* $qtd = $_POST["qtd"]; */
+    $qtd = str_replace(array(";", "'", "*", "xp_", "XP_", "SELECT" , "INSERT" , "UPDATE" , "DELETE" , "DROP", "select" , "insert" , "update" , "delete" , "drop"), "", htmlentities($_POST["qtd"]));
+    /* $estado = $_POST["estado"]; */
+    $estado = str_replace(array(";", "'", "*", "xp_", "XP_", "SELECT" , "INSERT" , "UPDATE" , "DELETE" , "DROP", "select" , "insert" , "update" , "delete" , "drop"), "", htmlentities($_POST["estado"]));
+    /* $variacao = $_POST["variacao"]; */
+    $variacao = str_replace(array(";", "'", "*", "xp_", "XP_", "SELECT" , "INSERT" , "UPDATE" , "DELETE" , "DROP", "select" , "insert" , "update" , "delete" , "drop"), "", htmlentities($_POST["variacao"]));
 
-    @$novaVariacao1 = $_POST["novaVariacao1"];
-    @$textoVariacao1 = $_POST["texto-variacao1"];
-    @$opNovaVariacao1 = $_POST["opNovaVariacao1"];
-    @$novaVariacao2 = $_POST["novaVariacao2"];
-    @$textoVariacao2 = $_POST["texto-variacao2"];
-    @$opNovaVariacao2 = $_POST["opNovaVariacao2"];
-    @$novaVariacao3 = $_POST["novaVariacao3"];
-    @$textoVariacao3 = $_POST["texto-variacao3"];
-    @$opNovaVariacao3 = $_POST["opNovaVariacao3"];
+    /* @$novaVariacao1 = $_POST["novaVariacao1"]; */
+    @$novaVariacao1 = str_replace(array(";", "'", "*", "xp_", "XP_", "SELECT" , "INSERT" , "UPDATE" , "DELETE" , "DROP", "select" , "insert" , "update" , "delete" , "drop"), "", htmlentities($_POST["novaVariacao1"]));
+    /* @$textoVariacao1 = $_POST["texto-variacao1"]; */
+    @$textoVariacao1 = str_replace(array(";", "'", "*", "xp_", "XP_", "SELECT" , "INSERT" , "UPDATE" , "DELETE" , "DROP", "select" , "insert" , "update" , "delete" , "drop"), "", htmlentities($_POST["texto-variacao1"]));
+    /* @$opNovaVariacao1 = $_POST["opNovaVariacao1"]; */
+    @$opNovaVariacao1 = str_replace(array(";", "'", "*", "xp_", "XP_", "SELECT" , "INSERT" , "UPDATE" , "DELETE" , "DROP", "select" , "insert" , "update" , "delete" , "drop"), "", htmlentities($_POST["opNovaVariacao1"]));
+    /* @$novaVariacao2 = $_POST["novaVariacao2"]; */
+    @$novaVariacao2 = str_replace(array(";", "'", "*", "xp_", "XP_", "SELECT" , "INSERT" , "UPDATE" , "DELETE" , "DROP", "select" , "insert" , "update" , "delete" , "drop"), "", htmlentities($_POST["novaVariacao2"]));
+    /* @$textoVariacao2 = $_POST["texto-variacao2"]; */
+    @$textoVariacao2 = str_replace(array(";", "'", "*", "xp_", "XP_", "SELECT" , "INSERT" , "UPDATE" , "DELETE" , "DROP", "select" , "insert" , "update" , "delete" , "drop"), "", htmlentities($_POST["texto-variacao2"]));
+    /* @$opNovaVariacao2 = $_POST["opNovaVariacao2"]; */
+    @$opNovaVariacao2 = str_replace(array(";", "'", "*", "xp_", "XP_", "SELECT" , "INSERT" , "UPDATE" , "DELETE" , "DROP", "select" , "insert" , "update" , "delete" , "drop"), "", htmlentities($_POST["opNovaVariacao2"]));
+    /* @$novaVariacao3 = $_POST["novaVariacao3"]; */
+    @$novaVariacao3 = str_replace(array(";", "'", "*", "xp_", "XP_", "SELECT" , "INSERT" , "UPDATE" , "DELETE" , "DROP", "select" , "insert" , "update" , "delete" , "drop"), "", htmlentities($_POST["novaVariacao3"]));
+    /* @$textoVariacao3 = $_POST["texto-variacao3"]; */
+    @$textoVariacao3 = str_replace(array(";", "'", "*", "xp_", "XP_", "SELECT" , "INSERT" , "UPDATE" , "DELETE" , "DROP", "select" , "insert" , "update" , "delete" , "drop"), "", htmlentities($_POST["texto-variacao3"]));
+    /* @$opNovaVariacao3 = $_POST["opNovaVariacao3"]; */
+    @$opNovaVariacao3 = str_replace(array(";", "'", "*", "xp_", "XP_", "SELECT" , "INSERT" , "UPDATE" , "DELETE" , "DROP", "select" , "insert" , "update" , "delete" , "drop"), "", htmlentities($_POST["opNovaVariacao3"]));
 
-    $categoria = mb_strtolower($_POST["categoria"], "UTF-8");
-    $maximo_caracteres = $_POST["maximo_caracteres"];
+    /* $categoria = mb_strtolower($_POST["categoria"], "UTF-8"); */
+    $categoria = str_replace(array(";", "'", "*", "xp_", "XP_", "SELECT" , "INSERT" , "UPDATE" , "DELETE" , "DROP", "select" , "insert" , "update" , "delete" , "drop"), "", htmlspecialchars(mb_strtolower($_POST["categoria"], "UTF-8"), ENT_QUOTES, "UTF-8"));
+    /* $maximo_caracteres = $_POST["maximo_caracteres"]; */
+    $maximo_caracteres = str_replace(array(";", "'", "*", "xp_", "XP_", "SELECT" , "INSERT" , "UPDATE" , "DELETE" , "DROP", "select" , "insert" , "update" , "delete" , "drop"), "", htmlentities($_POST["maximo_caracteres"]));
 
     if($maximo_caracteres == ""){
 
@@ -100,14 +97,20 @@
 
     }
 
-    $tipo = $_POST["tipo"];
+    /* $tipo = $_POST["tipo"]; */
+    $tipo = str_replace(array(";", "'", "*", "xp_", "XP_", "SELECT" , "INSERT" , "UPDATE" , "DELETE" , "DROP", "select" , "insert" , "update" , "delete" , "drop"), "", htmlentities($_POST["tipo"]));
 
-    $peso = $_POST["peso"];
-    $altura = $_POST["altura"];
-    $largura = $_POST["largura"];
-    $comprimento = $_POST["comprimento"];
+    /* $peso = $_POST["peso"]; */
+    $peso = str_replace(array(";", "'", "*", "xp_", "XP_", "SELECT" , "INSERT" , "UPDATE" , "DELETE" , "DROP", "select" , "insert" , "update" , "delete" , "drop"), "", htmlentities($_POST["peso"]));
+    /* $altura = $_POST["altura"]; */
+    $altura = str_replace(array(";", "'", "*", "xp_", "XP_", "SELECT" , "INSERT" , "UPDATE" , "DELETE" , "DROP", "select" , "insert" , "update" , "delete" , "drop"), "", htmlentities($_POST["altura"]));
+    /* $largura = $_POST["largura"]; */
+    $largura = str_replace(array(";", "'", "*", "xp_", "XP_", "SELECT" , "INSERT" , "UPDATE" , "DELETE" , "DROP", "select" , "insert" , "update" , "delete" , "drop"), "", htmlentities($_POST["largura"]));
+    /* $comprimento = $_POST["comprimento"]; */
+    $comprimento = str_replace(array(";", "'", "*", "xp_", "XP_", "SELECT" , "INSERT" , "UPDATE" , "DELETE" , "DROP", "select" , "insert" , "update" , "delete" , "drop"), "", htmlentities($_POST["comprimento"]));
 
-    $dias_entrega = $_POST["dias-entrega"];
+    /* $dias_entrega = $_POST["dias-entrega"]; */
+    $dias_entrega = str_replace(array(";", "'", "*", "xp_", "XP_", "SELECT" , "INSERT" , "UPDATE" , "DELETE" , "DROP", "select" , "insert" , "update" , "delete" , "drop"), "", htmlentities($_POST["dias-entrega"]));
 
     if($dias_entrega == ""){
 
