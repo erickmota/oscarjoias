@@ -149,11 +149,11 @@ $corpo = "<html>
             <p style='font-size: 13px; color: rgb(65, 65, 65)'>
 
                 <b>Remetente:</b><br>
-                ERICK PATRICK LAURINDO MOTA<br>
-                (15) 99633-1314<br>
-                RUA CASTILHO ARIBERT FAZZIO Nº 355<br>
-                JD TUPINAMBÁ<br>
-                18066315 &nbsp;&nbsp;&nbsp; SOROCABA/SP
+                OSCAR MUNIZ<br>
+                (15) 98144-6951<br>
+                RUA MICHEL CHICRI MALUF Nº 215<br>
+                PQ DAS LARANJEIRAS<br>
+                18077370 &nbsp;&nbsp;&nbsp; SOROCABA/SP
 
             </p>
 
@@ -171,7 +171,7 @@ $dompdf->setPaper('A4', 'portrait');
 
 $dompdf->render();
 
-$dompdf->stream("OS.pdf", array("Attachment" => false));
+$dompdf->stream("Etiqueta-correios-pedido-{$id_pedido}.pdf", array("Attachment" => false));
 
 ?>
 

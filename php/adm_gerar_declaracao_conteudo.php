@@ -93,12 +93,12 @@ $corpo = "<html>
             <td width='50%'>
 
                 <div id='divTituloRemetente'><b>REMETENTE</b></div>
-                <div id='divConteudoRemetente'><b>NOME:</b> Erick Mota</div>
-                <div id='divConteudoRemetenteEndereco'><b>ENDEREÇO:</b> Rua Castilho Aribert Fazzio, Nº 355</div>
+                <div id='divConteudoRemetente'><b>NOME:</b> Oscar Muniz</div>
+                <div id='divConteudoRemetenteEndereco'><b>ENDEREÇO:</b> Rua Michel chicri Maluf, Nº 215</div>
                 <div id='divConteudoRemetente'><b>CIDADE:</b> Sorocaba</div>
                 <div id='divConteudoRemetente'><b>UF:</b> SP</div>
-                <div id='divConteudoRemetente'><b>CEP:</b> 18066-315</div>
-                <div id='divConteudoRemetenteFinal'><b>CPF/CNPJ:</b> 461.249.598-52</div>
+                <div id='divConteudoRemetente'><b>CEP:</b> 18077-370</div>
+                <div id='divConteudoRemetenteFinal'><b>CPF/CNPJ:</b> 108.415.778-03</div>
 
             </td>
 
@@ -354,6 +354,6 @@ $dompdf->setPaper('A4', 'portrait');
 
 $dompdf->render();
 
-$dompdf->stream("OS.pdf", array("Attachment" => false));
+$dompdf->stream("Declaracao-conteudo-pedido-{$id_pedido}.pdf", array("Attachment" => false));
 
 ?>

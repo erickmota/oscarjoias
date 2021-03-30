@@ -2997,7 +2997,7 @@
 
                         <span class="text-black-50">Produto indisponível</span>
 
-                        <button class="mt-2" data-bs-toggle="modal" data-bs-target="#exampleModal" id="botaoVerMaisOpcoes">VER OPÇÕES SIMILARES</button>
+                        <a href="loja?pg=1"><button class="mt-2" data-bs-toggle="modal" data-bs-target="#exampleModal" id="botaoVerMaisOpcoes">IR PARA LOJA</button></a>
 
                         <?php
                         

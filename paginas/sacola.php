@@ -504,7 +504,7 @@
                             <div class="col">
         
                                 <label class="text-secondary" for="inputCalculaFrete">Digite seu CEP e pressione enter</label><br>
-                                <input onkeyup="abrir_campo_endereco()" type="text" id="inputCalculaFrete" class="maskCep" <?php if($classeCompra->retorna_dados_carrinho() == false){ echo "disabled"; } ?>>
+                                <input onkeyup="abrir_campo_endereco()" type="text" id="inputCalculaFrete" autocomplete="off" class="maskCep" <?php if($classeCompra->retorna_dados_carrinho() == false){ echo "disabled"; } ?>>
         
                             </div>
         

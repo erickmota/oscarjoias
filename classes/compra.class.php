@@ -128,7 +128,7 @@ class compra{
         $sCdMaoPropria="n";
         $sCdAvisoRecebimento="n";
 
-        $sCepOrigem="18066315";
+        $sCepOrigem="18077370";
         /* $sCepDestino="04547000"; */
         /* $nVlPeso="1"; */
         $nCdFormato="1";

@@ -109,7 +109,7 @@ if(!isset($classeClientes)){
 
 </div>
 
-<a href="https://api.whatsapp.com/send?phone=5515996803730&text=Olá Oscar, desejo entrar em contato." target="_blank"><img id="iconeWpp" src="img/iconeWpp.png" width="60px"></a>
+<a href="https://api.whatsapp.com/send?phone=5515981446951&text=Olá Oscar, desejo entrar em contato, sobre o site Oscar Jóias" target="_blank"><img id="iconeWpp" src="img/iconeWpp.png" width="60px"></a>
 
 <!-- Topo site: Logo, Busca etc -->
 <div class="row justify-content-center" id="fundoPreto">

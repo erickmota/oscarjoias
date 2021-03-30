@@ -356,9 +356,9 @@
 
                     <div class="col-12 col-sm-5 mb-4">
 
-                        <p class="text-secondary">Essa é uma amostra de imagem com a resolução ideal para colocar no slide (1920 x 725), clique para baixar!</p>
+                        <p class="text-secondary">Essa é uma amostra de imagem com a resolução ideal para colocar no slide (1920 x 1280), clique para baixar!</p>
 
-                        <img style="cursor: pointer;" onclick="window.open('img/slides/exemplo.zip')" src="img/slides/exemplo.jpg" width="100%">
+                        <img style="cursor: pointer;" onclick="window.open('img/slides/exemplo_slide_oscar_joias.zip')" src="img/slides/exemplo_slide_oscar_joias.jpg" width="100%">
 
                     </div>
 

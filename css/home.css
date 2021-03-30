@@ -84,6 +84,13 @@ body{
 
 }
 
+#botaoVerPromocoes:focus{
+
+    box-shadow: 0 0 0 0;
+    outline: 0;
+
+}
+
 #slideBorda{
 
     border-bottom: 4px solid #efe07b;
@@ -140,5 +147,12 @@ body{
 .botaoComprar:hover{
 
     background-color: #d4c83d;
+
+}
+
+.botaoComprar:focus{
+
+    box-shadow: 0 0 0 0;
+    outline: 0;
 
 }
