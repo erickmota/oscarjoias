@@ -75,7 +75,7 @@ $nomeAdm = $classeAdm->retorna_dados_adm_id();
                     <li><a href="adm/produtos-cadastrados">PRODUTOS</a></li>
                     <li><a href="adm/pedidos">PEDIDOS</a></li>
                     <li><a href="adm/configuracoes">CONFIGURAÇÕES</a></li>
-                    <li><a href="#">PAGSEGURO</a></li>
+                    <li><a href="https://pagseguro.uol.com.br/" target="_blank">PAGSEGURO</a></li>
                     <li><a href="php/adm_deslogar.php">SAIR</a></li>
 
                 </ul>
@@ -128,7 +128,7 @@ $nomeAdm = $classeAdm->retorna_dados_adm_id();
                     <li><a href="adm/produtos-cadastrados">PRODUTOS</a></li>
                     <li><a href="adm/pedidos">PEDIDOS</a></li>
                     <li><a href="adm/configuracoes">CONFIGURAÇÕES</a></li>
-                    <li><a href="#">PAGSEGURO</a></li>
+                    <li><a href="https://pagseguro.uol.com.br/" target="_blank">PAGSEGURO</a></li>
                     <li><a href="php/adm_deslogar.php">SAIR</a></li>
 
                 </ul>

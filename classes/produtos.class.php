@@ -47,8 +47,8 @@ class produtos{
             
         }else{
             
-            $novaLargura = $largura*0.75;
-            $novaAltura = $altura*0.75;
+            $novaLargura = $largura;
+            $novaAltura = $altura;
             
         }
 

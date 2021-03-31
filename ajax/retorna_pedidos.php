@@ -66,7 +66,7 @@ foreach($classeCompra->retorna_pedidos_por_cliente() as $arrPedido){
     <td class="align-middle"><?php echo $arrPedido["status_entrega"] ?></td>
     <td><?php
     
-    if($classeCompra->organizar_status_pagseguro($status) == "Não finalizada"){
+    if($classeCompra->organizar_status_pagseguro($status) == "Não finalizada" || $classeCompra->organizar_status_pagseguro($status) == "Cancelada"){
 
     ?>
 

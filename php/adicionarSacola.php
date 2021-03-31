@@ -4,17 +4,25 @@
 
     $classeCompra = new compra();
 
-    $anelUnico = htmlentities($_GET["anelUnico"]);
-    $gravacaoAnelUnico = str_replace(array(";", "'", "--", "xp_", "XP_", "SELECT" , "INSERT" , "UPDATE" , "DELETE" , "DROP", "select" , "insert" , "update" , "delete" , "drop"), "", htmlentities($_GET["gravacaoAnelUnico"]));
-    $anelCasal = htmlentities($_GET["anelCasal"]);
-    $gravacaoAnelCasal = str_replace(array(";", "'", "--", "xp_", "XP_", "SELECT" , "INSERT" , "UPDATE" , "DELETE" , "DROP", "select" , "insert" , "update" , "delete" , "drop"), "", htmlentities($_GET["gravacaoAnelCasal"]));
-    $apenasAro = htmlentities($_GET["apenasAro"]);
-    $apenasGravacao = str_replace(array(";", "'", "--", "xp_", "XP_", "SELECT" , "INSERT" , "UPDATE" , "DELETE" , "DROP", "select" , "insert" , "update" , "delete" , "drop"), "", htmlentities($_GET["apenasGravacao"]));
-    $variacaoComplementar = htmlentities($_GET["variacaoComplementar"]);
-    $variacaoComplementar2 = htmlentities($_GET["variacaoComplementar2"]);
-    $variacaoComplementar3 = htmlentities($_GET["variacaoComplementar3"]);
-    $quantidade = htmlentities($_GET["quantidade"]);
-    $idProduto = htmlentities($_GET["idProduto"]);
+    /* $anelUnico = htmlentities($_GET["anelUnico"]); */
+    $anelUnico = str_replace(array(";", "'", "--", "xp_", "XP_", "SELECT" , "INSERT" , "UPDATE" , "DELETE" , "DROP", "select" , "insert" , "update" , "delete" , "drop"), "", htmlspecialchars($_GET["anelUnico"], ENT_QUOTES, "UTF-8"));
+    $gravacaoAnelUnico = str_replace(array(";", "'", "--", "xp_", "XP_", "SELECT" , "INSERT" , "UPDATE" , "DELETE" , "DROP", "select" , "insert" , "update" , "delete" , "drop"), "", htmlspecialchars($_GET["gravacaoAnelUnico"], ENT_QUOTES, "UTF-8"));
+    /* $anelCasal = htmlentities($_GET["anelCasal"]); */
+    $anelCasal = str_replace(array(";", "'", "--", "xp_", "XP_", "SELECT" , "INSERT" , "UPDATE" , "DELETE" , "DROP", "select" , "insert" , "update" , "delete" , "drop"), "", htmlspecialchars($_GET["anelCasal"], ENT_QUOTES, "UTF-8"));
+    $gravacaoAnelCasal = str_replace(array(";", "'", "--", "xp_", "XP_", "SELECT" , "INSERT" , "UPDATE" , "DELETE" , "DROP", "select" , "insert" , "update" , "delete" , "drop"), "", htmlspecialchars($_GET["gravacaoAnelCasal"], ENT_QUOTES, "UTF-8"));
+    /* $apenasAro = htmlentities($_GET["apenasAro"]); */
+    $apenasAro = str_replace(array(";", "'", "--", "xp_", "XP_", "SELECT" , "INSERT" , "UPDATE" , "DELETE" , "DROP", "select" , "insert" , "update" , "delete" , "drop"), "", htmlspecialchars($_GET["apenasAro"], ENT_QUOTES, "UTF-8"));
+    $apenasGravacao = str_replace(array(";", "'", "--", "xp_", "XP_", "SELECT" , "INSERT" , "UPDATE" , "DELETE" , "DROP", "select" , "insert" , "update" , "delete" , "drop"), "", htmlspecialchars($_GET["apenasGravacao"], ENT_QUOTES, "UTF-8"));
+    /* $variacaoComplementar = htmlentities($_GET["variacaoComplementar"]); */
+    $variacaoComplementar = str_replace(array(";", "'", "--", "xp_", "XP_", "SELECT" , "INSERT" , "UPDATE" , "DELETE" , "DROP", "select" , "insert" , "update" , "delete" , "drop"), "", htmlspecialchars($_GET["variacaoComplementar"], ENT_QUOTES, "UTF-8"));
+    /* $variacaoComplementar2 = htmlentities($_GET["variacaoComplementar2"]); */
+    $variacaoComplementar2 = str_replace(array(";", "'", "--", "xp_", "XP_", "SELECT" , "INSERT" , "UPDATE" , "DELETE" , "DROP", "select" , "insert" , "update" , "delete" , "drop"), "", htmlspecialchars($_GET["variacaoComplementar2"], ENT_QUOTES, "UTF-8"));
+    /* $variacaoComplementar3 = htmlentities($_GET["variacaoComplementar3"]); */
+    $variacaoComplementar3 = str_replace(array(";", "'", "--", "xp_", "XP_", "SELECT" , "INSERT" , "UPDATE" , "DELETE" , "DROP", "select" , "insert" , "update" , "delete" , "drop"), "", htmlspecialchars($_GET["variacaoComplementar3"], ENT_QUOTES, "UTF-8"));
+    /* $quantidade = htmlentities($_GET["quantidade"]); */
+    $quantidade = str_replace(array(";", "'", "--", "xp_", "XP_", "SELECT" , "INSERT" , "UPDATE" , "DELETE" , "DROP", "select" , "insert" , "update" , "delete" , "drop"), "", htmlspecialchars($_GET["quantidade"], ENT_QUOTES, "UTF-8"));
+    /* $idProduto = htmlentities($_GET["idProduto"]); */
+    $idProduto = str_replace(array(";", "'", "--", "xp_", "XP_", "SELECT" , "INSERT" , "UPDATE" , "DELETE" , "DROP", "select" , "insert" , "update" , "delete" , "drop"), "", htmlspecialchars($_GET["idProduto"], ENT_QUOTES, "UTF-8"));
 
 
     if(!isset($classeClientes)){

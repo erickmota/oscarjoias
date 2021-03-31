@@ -69,7 +69,7 @@
 
     }
     /* $descricao = $_POST["descricao"]; */
-    $descricao = str_replace(array(";", "'", "*", "xp_", "XP_", "SELECT" , "INSERT" , "UPDATE" , "DELETE" , "DROP", "select" , "insert" , "update" , "delete" , "drop"), "", htmlentities($_POST["descricao"]));
+    $descricao = str_replace(array(";", "'", "*", "xp_", "XP_", "SELECT" , "INSERT" , "UPDATE" , "DELETE" , "DROP", "select" , "insert" , "update" , "delete" , "drop"), "", htmlspecialchars($_POST["descricao"], ENT_QUOTES, "UTF-8"));
     /* $preco = $_POST["preco"]; */
     $preco = str_replace(array(";", "'", "*", "xp_", "XP_", "SELECT" , "INSERT" , "UPDATE" , "DELETE" , "DROP", "select" , "insert" , "update" , "delete" , "drop"), "", htmlentities($_POST["preco"]));
     /* $qtd = $_POST["qtd"]; */
@@ -80,23 +80,23 @@
     $variacao = str_replace(array(";", "'", "*", "xp_", "XP_", "SELECT" , "INSERT" , "UPDATE" , "DELETE" , "DROP", "select" , "insert" , "update" , "delete" , "drop"), "", htmlentities($_POST["variacao"]));
 
     /* @$novaVariacao1 = $_POST["novaVariacao1"]; */
-    @$novaVariacao1 = str_replace(array(";", "'", "*", "xp_", "XP_", "SELECT" , "INSERT" , "UPDATE" , "DELETE" , "DROP", "select" , "insert" , "update" , "delete" , "drop"), "", htmlentities($_POST["novaVariacao1"]));
+    @$novaVariacao1 = str_replace(array(";", "'", "*", "xp_", "XP_", "SELECT" , "INSERT" , "UPDATE" , "DELETE" , "DROP", "select" , "insert" , "update" , "delete" , "drop"), "", htmlspecialchars($_POST["novaVariacao1"], ENT_QUOTES, "UTF-8"));
     /* @$textoVariacao1 = $_POST["texto-variacao1"]; */
-    @$textoVariacao1 = str_replace(array(";", "'", "*", "xp_", "XP_", "SELECT" , "INSERT" , "UPDATE" , "DELETE" , "DROP", "select" , "insert" , "update" , "delete" , "drop"), "", htmlentities($_POST["texto-variacao1"]));
+    @$textoVariacao1 = str_replace(array(";", "'", "*", "xp_", "XP_", "SELECT" , "INSERT" , "UPDATE" , "DELETE" , "DROP", "select" , "insert" , "update" , "delete" , "drop"), "", htmlspecialchars($_POST["texto-variacao1"], ENT_QUOTES, "UTF-8"));
     /* @$opNovaVariacao1 = $_POST["opNovaVariacao1"]; */
-    @$opNovaVariacao1 = str_replace(array(";", "'", "*", "xp_", "XP_", "SELECT" , "INSERT" , "UPDATE" , "DELETE" , "DROP", "select" , "insert" , "update" , "delete" , "drop"), "", htmlentities($_POST["opNovaVariacao1"]));
+    @$opNovaVariacao1 = str_replace(array(";", "'", "*", "xp_", "XP_", "SELECT" , "INSERT" , "UPDATE" , "DELETE" , "DROP", "select" , "insert" , "update" , "delete" , "drop"), "", htmlspecialchars($_POST["opNovaVariacao1"], ENT_QUOTES, "UTF-8"));
     /* @$novaVariacao2 = $_POST["novaVariacao2"]; */
-    @$novaVariacao2 = str_replace(array(";", "'", "*", "xp_", "XP_", "SELECT" , "INSERT" , "UPDATE" , "DELETE" , "DROP", "select" , "insert" , "update" , "delete" , "drop"), "", htmlentities($_POST["novaVariacao2"]));
+    @$novaVariacao2 = str_replace(array(";", "'", "*", "xp_", "XP_", "SELECT" , "INSERT" , "UPDATE" , "DELETE" , "DROP", "select" , "insert" , "update" , "delete" , "drop"), "", htmlspecialchars($_POST["novaVariacao2"], ENT_QUOTES, "UTF-8"));
     /* @$textoVariacao2 = $_POST["texto-variacao2"]; */
-    @$textoVariacao2 = str_replace(array(";", "'", "*", "xp_", "XP_", "SELECT" , "INSERT" , "UPDATE" , "DELETE" , "DROP", "select" , "insert" , "update" , "delete" , "drop"), "", htmlentities($_POST["texto-variacao2"]));
+    @$textoVariacao2 = str_replace(array(";", "'", "*", "xp_", "XP_", "SELECT" , "INSERT" , "UPDATE" , "DELETE" , "DROP", "select" , "insert" , "update" , "delete" , "drop"), "", htmlspecialchars($_POST["texto-variacao2"], ENT_QUOTES, "UTF-8"));
     /* @$opNovaVariacao2 = $_POST["opNovaVariacao2"]; */
-    @$opNovaVariacao2 = str_replace(array(";", "'", "*", "xp_", "XP_", "SELECT" , "INSERT" , "UPDATE" , "DELETE" , "DROP", "select" , "insert" , "update" , "delete" , "drop"), "", htmlentities($_POST["opNovaVariacao2"]));
+    @$opNovaVariacao2 = str_replace(array(";", "'", "*", "xp_", "XP_", "SELECT" , "INSERT" , "UPDATE" , "DELETE" , "DROP", "select" , "insert" , "update" , "delete" , "drop"), "", htmlspecialchars($_POST["opNovaVariacao2"], ENT_QUOTES, "UTF-8"));
     /* @$novaVariacao3 = $_POST["novaVariacao3"]; */
-    @$novaVariacao3 = str_replace(array(";", "'", "*", "xp_", "XP_", "SELECT" , "INSERT" , "UPDATE" , "DELETE" , "DROP", "select" , "insert" , "update" , "delete" , "drop"), "", htmlentities($_POST["novaVariacao3"]));
+    @$novaVariacao3 = str_replace(array(";", "'", "*", "xp_", "XP_", "SELECT" , "INSERT" , "UPDATE" , "DELETE" , "DROP", "select" , "insert" , "update" , "delete" , "drop"), "", htmlspecialchars($_POST["novaVariacao3"], ENT_QUOTES, "UTF-8"));
     /* @$textoVariacao3 = $_POST["texto-variacao3"]; */
-    @$textoVariacao3 = str_replace(array(";", "'", "*", "xp_", "XP_", "SELECT" , "INSERT" , "UPDATE" , "DELETE" , "DROP", "select" , "insert" , "update" , "delete" , "drop"), "", htmlentities($_POST["texto-variacao3"]));
+    @$textoVariacao3 = str_replace(array(";", "'", "*", "xp_", "XP_", "SELECT" , "INSERT" , "UPDATE" , "DELETE" , "DROP", "select" , "insert" , "update" , "delete" , "drop"), "", htmlspecialchars($_POST["texto-variacao3"], ENT_QUOTES, "UTF-8"));
     /* @$opNovaVariacao3 = $_POST["opNovaVariacao3"]; */
-    @$opNovaVariacao3 = str_replace(array(";", "'", "*", "xp_", "XP_", "SELECT" , "INSERT" , "UPDATE" , "DELETE" , "DROP", "select" , "insert" , "update" , "delete" , "drop"), "", htmlentities($_POST["opNovaVariacao3"]));
+    @$opNovaVariacao3 = str_replace(array(";", "'", "*", "xp_", "XP_", "SELECT" , "INSERT" , "UPDATE" , "DELETE" , "DROP", "select" , "insert" , "update" , "delete" , "drop"), "", htmlspecialchars($_POST["opNovaVariacao3"], ENT_QUOTES, "UTF-8"));
 
     /* $categoria = mb_strtolower($_POST["categoria"], "UTF-8"); */
     $categoria = str_replace(array(";", "'", "*", "xp_", "XP_", "SELECT" , "INSERT" , "UPDATE" , "DELETE" , "DROP", "select" , "insert" , "update" , "delete" , "drop"), "", htmlspecialchars(mb_strtolower($_POST["categoria"], "UTF-8"), ENT_QUOTES, "UTF-8"));

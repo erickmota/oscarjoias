@@ -124,7 +124,7 @@ foreach($funcRetornaPedido as $arrPedido){
     </td>
     <td class="align-middle"><?php
     
-    if($classeCompra->organizar_status_pagseguro($status) == "Não finalizada"){
+    if($classeCompra->organizar_status_pagseguro($status) == "Não finalizada" || $classeCompra->organizar_status_pagseguro($status) == "Cancelada"){
 
     ?>
 
