@@ -246,3 +246,19 @@
     filter: drop-shadow(4px 4px 4px rgb(122, 122, 122));
 
 }
+
+#corpoAvisoCookie{
+
+    position: fixed;
+    bottom: 15px;
+    max-width: 500px;
+    left: 15px;
+    right: 25px;
+    background-color: rgb(53, 53, 53);
+    color: white;
+    padding: 15px;
+    border-radius: 15px;
+    z-index: 99;
+    height: auto;
+
+}

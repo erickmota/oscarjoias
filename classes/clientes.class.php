@@ -37,6 +37,7 @@ class clientes{
                 setcookie("iu_oj", $idEncode, time() + 7 * (24 * 3600), "/");
                 setcookie("eu_oj", $emailEncode, time() + 7 * (24 * 3600), "/");
                 setcookie("su_oj", $senhaEncode, time() + 7 * (24 * 3600), "/");
+                setcookie("cookies_oscar_joias", "aceitos", time() + 7 * (24 * 3600), "/");
     
             }
     
@@ -88,6 +89,8 @@ class clientes{
         include 'conexao.class.php';
 
         $senhaEncode = base64_encode($this->senhaUsuario);
+
+        setcookie("cookies_oscar_joias", "aceitos", time() + 7 * (24 * 3600), "/");
 
         $sql = mysqli_query($conn, "INSERT INTO cliente (nome, email, senha, estado) VALUES ('$this->nomeUsuario', '$this->emailUsuario', '$senhaEncode', '$estadoUsuario')") or die("Erro ao cadastrar usuario");
 

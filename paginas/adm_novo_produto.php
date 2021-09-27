@@ -171,7 +171,7 @@
         }
 
         $('.flexdatalist').flexdatalist({
-            minLength: 1,
+            minLength: 1
         });
         
         $(document).ready(function () {
@@ -1007,7 +1007,15 @@
 
                                     <label class="form-label" for="input-img1">Categoria <span class="text-danger">*</span></label>
 
-                                    <input type='text' autocomplete="off" class='flexdatalist form-control' pattern="[a-zA-ZÀ-ú0-9, ]+" data-min-length='0' multiple='multiple' list='categorias' name='categoria' required>
+                                    <input type='text' autocomplete="off" class='flexdatalist form-control' pattern="[a-zA-ZÀ-ú0-9, ]+" data-min-length='1' multiple='multiple' list='categorias' name='categoria' required>
+
+                                    <!-- <input type='text'
+                                    placeholder='Programming language name'
+                                    class='flexdatalist'
+                                    data-min-length='1'
+                                    multiple='multiple'
+                                    list='categorias'
+                                    name='language12'> -->
 
                                     <div class="form-text text-warning">Selecione categorias existentes, ou crie uma nova e pressione <b>ENTER</b> para confirmar</div>
                                     <div class="form-text">Você pode selecionar mais de uma categoria; é necessário pelo menos 1 categoria</div>

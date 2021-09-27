@@ -111,6 +111,84 @@ if(!isset($classeClientes)){
 
 <a href="https://api.whatsapp.com/send?phone=5515981446951&text=Olá Oscar, desejo entrar em contato, sobre o site Oscar Jóias" target="_blank"><img id="iconeWpp" src="img/iconeWpp.png" width="60px"></a>
 
+<?php
+
+if(!isset($_COOKIE["cookies_oscar_joias"]) || $_COOKIE["cookies_oscar_joias"] != "aceitos"){
+
+?>
+
+<div id="corpoAvisoCookie">
+
+    <div class="row">
+
+        <div class="col-12">
+
+            <p>
+
+                Nossa loja, utiliza cookies e outras tecnologias para melhorar a experiência de nossos usuários.
+                Ao clicar em "concordo", se cadastrar ou efetuar o login no site, você declara que está de acordo com esses termos!
+
+            </p>
+
+        </div>
+
+    </div>
+
+    <div class="row">
+
+        <div class="col-12">
+
+            <button type="button" class="btn btn-secondary form-control" id="botaoConcordo">CONCORDO</button>
+
+            <script>
+
+            function aceitar_cookie() {
+                    
+                $.ajax({
+
+                    type: "POST",
+                    dataType: "html",
+
+                    url: "php/aceitar_cookie.php",
+
+                    /* beforeSend: function () {
+
+                        $("#areaFrete").html("<img class='imgLoading' src='img/loading2.gif'>");
+
+                    }, */
+
+                    /* data: {}, */
+
+                    success: function () {
+
+                        $("#corpoAvisoCookie").fadeOut("slow");
+
+                    }
+
+                });
+
+            }
+
+            $("#botaoConcordo").click(function(event){
+
+                aceitar_cookie();
+
+            });
+
+            </script>
+
+        </div>
+
+    </div>
+
+</div>
+
+<?php
+
+}
+
+?>
+
 <!-- Topo site: Logo, Busca etc -->
 <div class="row justify-content-center" id="fundoPreto">
 
