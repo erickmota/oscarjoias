@@ -606,7 +606,7 @@
 
                                             </div>
 
-                                            <div class="form-text text-warning">Digite o nome da opção e pressione <b>ENTER</b> para confirmar e pular para a próxima opção</div>
+                                            <div class="form-text text-warning">Digite o nome da opção e pressione <b>VÍRGULA ( , )</b> para confirmar e pular para a próxima opção</div>
 
                                         </div>
 
@@ -765,7 +765,7 @@
 
                                             </div>
 
-                                            <div class="form-text text-warning">Digite o nome da opção e pressione <b>ENTER</b> para confirmar e pular para a próxima opção</div>
+                                            <div class="form-text text-warning">Digite o nome da opção e pressione <b>VÍRGULA ( , )</b> para confirmar e pular para a próxima opção</div>
 
                                         </div>
 
@@ -924,7 +924,7 @@
 
                                             </div>
 
-                                            <div class="form-text text-warning">Digite o nome da opção e pressione <b>ENTER</b> para confirmar e pular para a próxima opção</div>
+                                            <div class="form-text text-warning">Digite o nome da opção e pressione <b>VÍRGULA ( , )</b> para confirmar e pular para a próxima opção</div>
 
                                         </div>
 
@@ -1017,7 +1017,7 @@
                                     list='categorias'
                                     name='language12'> -->
 
-                                    <div class="form-text text-warning">Selecione categorias existentes, ou crie uma nova e pressione <b>ENTER</b> para confirmar</div>
+                                    <div class="form-text text-warning">Selecione categorias existentes, ou crie uma nova e pressione <b>VÍRGULA ( , )</b> para confirmar</div>
                                     <div class="form-text">Você pode selecionar mais de uma categoria; é necessário pelo menos 1 categoria</div>
 
                                     <datalist id="categorias">
